@@ -42,6 +42,7 @@ Upstream JSON comes from [raymdl/BF6-Weapon-Analyzer](https://github.com/raymdl/
 - validates JSON shape / numeric `pts` before writing
 - writes files atomically
 - uses **ETags / hashes** so unchanged files are not re-downloaded or re-embedded
+- **commits and pushes** changed data to this GitHub repo so [GitHub Pages](https://benwilks81.github.io/BF6-Best-Loadouts/) stays current
 
 If a browser refresh feels slow, that is the local layout optimizer — not a network download.
 
