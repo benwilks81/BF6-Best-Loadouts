@@ -5,25 +5,9 @@
   const LABEL_KEYS = ['optic', 'barrel', 'muzzle', 'grip', 'laser', 'light', 'mag', 'ammo', 'ergo'];
   const MAX_FAVORITES = 40;
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
-  const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v3';
-  const APP_BASE = (() => {
-    const script = document.querySelector('script[src*="js/app.js"]');
-    if (script?.src) return new URL('..', script.src).href;
-    const path = window.location.pathname;
-    if (path.endsWith('.html')) return new URL('.', window.location.href).href;
-    if (path.endsWith('/')) return window.location.href;
-    return `${window.location.origin}${path}/`;
-  })();
-  const CLASS_SLUG = {
-    'Assault Rifle': 'AssaultRifle',
-    Carbine: 'Carbine',
-    SMG: 'SMG',
-    LMG: 'LMG',
-    DMR: 'DMR',
-    'Sniper Rifle': 'SniperRifle',
-    Shotgun: 'Shotgun',
-  };
-  // Weapon art: battlefield6.gg media filenames, or full https URLs (battlefieldmeta.gg for guns they don't host).
+  const META_IMG = 'https://img.battlefieldmeta.gg';
+  const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
+  // Weapon art: battlefield6.gg media filenames, or full https URLs from battlefieldmeta.gg.
   const IMAGE_FILES = {
     m433: 'AssaultRifle-M433.png',
     b36a4: 'AssaultRifle-B36A4.png',
@@ -33,9 +17,9 @@
     kord6p67: 'AssaultRifle-KORD-6P67.png',
     nvo228e: 'AssaultRifle-NVO-228E.png',
     l85a3: 'AssaultRifle-L85A3.png',
-    ef88: 'https://img.battlefieldmeta.gg/ef88/gunFullDisplay',
-    vcr2: 'https://img.battlefieldmeta.gg/vcr-2/gunFullDisplay',
-    m16a4: 'https://img.battlefieldmeta.gg/m16a4/gunFullDisplay',
+    ef88: `${META_IMG}/ef88/gunFullDisplay`,
+    vcr2: `${META_IMG}/vcr-2/gunFullDisplay`,
+    m16a4: `${META_IMG}/m16a4/gunFullDisplay`,
     m4a1: 'Carbine-M4A1.png',
     m277: 'Carbine-M277.png',
     ak205: 'Carbine-AK-205.png',
@@ -44,7 +28,7 @@
     qbz192: 'Carbine-QBZ-192.png',
     sg553r: 'Carbine-SG-553R.png',
     sor300sc: 'Carbine-SOR-300SC.png',
-    brod3: 'https://img.battlefieldmeta.gg/brod-3/gunFullDisplay',
+    brod3: `${META_IMG}/brod-3/gunFullDisplay`,
     sgx: 'SMG-SGX.png',
     pw5a3: 'SMG-PW5A3.png',
     pw7a2: 'SMG-PW7A2.png',
@@ -53,8 +37,8 @@
     kv9: 'SMG-KV9.png',
     scw10: 'SMG-SCW-10.png',
     sl9: 'SMG-SL9.png',
-    cz3a1: 'https://img.battlefieldmeta.gg/cz3a1/gunFullDisplay',
-    pp19: 'https://img.battlefieldmeta.gg/pp-19/gunFullDisplay',
+    cz3a1: `${META_IMG}/cz3a1/gunFullDisplay`,
+    pp19: `${META_IMG}/pp-19/gunFullDisplay`,
     l110: 'LMG-L110.png',
     drsiar: 'LMG-DRS-IAR.png',
     m60: 'LMG-M60.png',
@@ -63,23 +47,23 @@
     m250: 'LMG-M250.png',
     kts100: 'LMG-KTS100-MK8.png',
     m240l: 'LMG-M240L.png',
-    m121a2: 'https://img.battlefieldmeta.gg/m121-a2/gunFullDisplay',
-    rpk74m: 'https://img.battlefieldmeta.gg/rpk-74m/gunFullDisplay',
+    m121a2: `${META_IMG}/m121-a2/gunFullDisplay`,
+    rpk74m: `${META_IMG}/rpk-74m/gunFullDisplay`,
     m39emr: 'DMR-M39-EMR.png',
     lmr27: 'DMR-LMR27.png',
     svk86: 'DMR-SVK-86.png',
     svdm: 'DMR-SVDM.png',
-    grtcps: 'https://img.battlefieldmeta.gg/grt-cps/gunFullDisplay',
-    vssm: 'https://img.battlefieldmeta.gg/vssm/gunFullDisplay',
+    grtcps: `${META_IMG}/grt-cps/gunFullDisplay`,
+    vssm: `${META_IMG}/vssm/gunFullDisplay`,
     m2010esr: 'Sniper%20Rifle-M2010-ESR.png',
     sv98: 'Sniper%20Rifle-SV-98.png',
     psr: 'Sniper%20Rifle-PSR.png',
     miniscout: 'SniperRifle-Mini-Scout.png',
-    l115: 'https://img.battlefieldmeta.gg/l115/gunFullDisplay',
+    l115: `${META_IMG}/l115/gunFullDisplay`,
     m87a1: 'Shotgun-M87A1.png',
     m1014: 'Shotgun-M1014.png',
     ks18k: 'Shotgun-185KS-K.png',
-    db12: 'https://img.battlefieldmeta.gg/db-12/gunFullDisplay',
+    db12: `${META_IMG}/db-12/gunFullDisplay`,
   };
 
   const imageUrlCache = loadImageCache();
@@ -329,41 +313,27 @@
 
   function resolveImageUrl(file) {
     if (!file) return null;
-    if (file.startsWith('data:') || file.startsWith('https://') || file.startsWith('http://')) {
-      return file;
-    }
-    if (file.startsWith('./') || file.startsWith('../') || file.startsWith('/')) {
-      return new URL(file.replace(/^\.\//, ''), APP_BASE).href;
-    }
-    if (file.startsWith('assets/')) {
-      return new URL(file, APP_BASE).href;
-    }
+    if (/^https?:\/\//i.test(file) || file.startsWith('data:')) return file;
     return IMG_BASE + file;
   }
 
-  function imageCandidates(weapon) {
+  function weaponImageUrl(weapon) {
     const cached = imageUrlCache[weapon.id];
-    if (cached && !String(cached).includes('/assets/weapons/')) return [cached];
-
-    const known = IMAGE_FILES[weapon.id];
-    if (known) return [resolveImageUrl(known)];
-    return [];
+    if (cached) return cached;
+    return resolveImageUrl(IMAGE_FILES[weapon.id]);
   }
 
   function showWeaponVisual(weapon) {
     els.weaponTitle.textContent = weapon.name;
     els.weaponFallbackClass.textContent = weapon.cls;
     els.weaponFallbackName.textContent = weapon.name;
-    if (els.weaponFallbackNote) {
-      els.weaponFallbackNote.textContent = IMAGE_FILES[weapon.id]
-        ? ''
-        : 'No official art on battlefield6.gg for this gun yet';
-    }
+    if (els.weaponFallbackNote) els.weaponFallbackNote.textContent = '';
+
     els.weaponImageFallback.hidden = false;
     els.weaponImage.hidden = true;
+    els.detail.classList.remove('has-image');
 
-    const urls = imageCandidates(weapon);
-    let index = 0;
+    const url = weaponImageUrl(weapon);
     const img = els.weaponImage;
     img.alt = `${weapon.name} weapon art`;
     img.decoding = 'async';
@@ -376,25 +346,14 @@
       img.removeAttribute('src');
       img.hidden = true;
       els.weaponImageFallback.hidden = false;
-      if (els.weaponFallbackNote && !els.weaponFallbackNote.textContent) {
-        els.weaponFallbackNote.textContent = 'Weapon art unavailable';
-      }
+      if (els.weaponFallbackNote) els.weaponFallbackNote.textContent = 'Weapon art unavailable';
       els.detail.classList.remove('has-image');
     };
 
-    if (!urls.length) {
+    if (!url) {
       finishMissing();
       return;
     }
-
-    const tryNext = () => {
-      if (state.weaponId !== weapon.id) return;
-      if (index >= urls.length) {
-        finishMissing();
-        return;
-      }
-      img.src = urls[index++];
-    };
 
     img.onload = () => {
       if (state.weaponId !== weapon.id) return;
@@ -403,11 +362,9 @@
       els.weaponImageFallback.hidden = true;
       els.detail.classList.add('has-image');
     };
-    img.onerror = tryNext;
+    img.onerror = finishMissing;
+    img.src = url;
 
-    els.detail.classList.remove('has-image');
-    tryNext();
-    // Cached images can complete synchronously before onload is observed in some browsers.
     if (img.complete && img.naturalWidth > 0 && state.weaponId === weapon.id) {
       img.onload();
     }
@@ -454,14 +411,10 @@
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (state.weaponId !== weapon.id) return;
-        const started = performance.now();
         const result = BF6.recommendSets(weapon, state.attachments, state.tables, { topN: 1 });
         state.resultCache.set(weapon.id, result);
         if (state.weaponId !== weapon.id) return;
         applyResult(weapon, result);
-        if (!result.error && performance.now() - started > 250) {
-          console.info(`[bf6] ${weapon.id} optimized in ${Math.round(performance.now() - started)}ms (${result.considered} evals)`);
-        }
       });
     });
   }

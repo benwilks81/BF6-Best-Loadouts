@@ -7,3 +7,4 @@ data/.etag-cache.json
 __pycache__/
 *.pyc
 .Python
+assets/
