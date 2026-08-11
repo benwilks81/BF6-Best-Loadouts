@@ -1,25 +1,32 @@
 [Unit]
-Description=BF6 Best Loadouts weekly data refresh
+Description=BF6 Best Loadouts static web server on :5175
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-Type=oneshot
+Type=simple
 WorkingDirectory=/home/ben/BF6 Visualisation Stats
-ExecStart="/home/ben/BF6 Visualisation Stats/scripts/refresh-data.sh"
+ExecStart=/usr/bin/python3 -m http.server 5175 --bind 0.0.0.0
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=0
+TimeoutStopSec=10
+Environment=PYTHONUNBUFFERED=1
 
-# Hardening for an unattended network oneshot that refreshes local data and
-# pushes published artifacts to GitHub Pages.
+# Hardening: read-only project tree (static serve only).
 NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectSystem=strict
 ProtectHome=read-only
-ReadWritePaths=/home/ben/BF6 Visualisation Stats/data /home/ben/BF6 Visualisation Stats/js /home/ben/BF6 Visualisation Stats/.git
+ReadOnlyPaths=/home/ben/BF6 Visualisation Stats
 ProtectKernelTunables=yes
 ProtectKernelModules=yes
 ProtectControlGroups=yes
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 RestrictSUIDSGID=yes
 LockPersonality=yes
-MemoryMax=512M
+MemoryMax=256M
 SystemCallArchitectures=native
+
+[Install]
+WantedBy=default.target

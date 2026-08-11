@@ -1,0 +1,10 @@
+[Unit]
+Description=Run BF6 Best Loadouts HTTP health check every 2 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+AccuracySec=15s
+
+[Install]
+WantedBy=timers.target

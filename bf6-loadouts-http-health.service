@@ -1,0 +1,7 @@
+[Unit]
+Description=BF6 Best Loadouts HTTP health check (restarts server if unreachable)
+After=bf6-loadouts-http.service
+
+[Service]
+Type=oneshot
+ExecStart="/home/ben/BF6 Visualisation Stats/scripts/healthcheck.sh"

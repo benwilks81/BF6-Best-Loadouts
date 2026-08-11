@@ -8,27 +8,45 @@ Favourites are saved in your browser so you can jump back to guns you use.
 
 This folder is self-contained: scripts only read/write under this directory, and browser storage uses the key `bf6-best-loadouts-favorites-v1`.
 
-## Open in Chrome
+## Keep the local site online
 
-You can double-click `index.html` — it works offline via embedded data (weapon images still need network).
-
-Optional local server on **5175**:
+The **local** static server and healthcheck run as **user systemd** units so they keep working after SSH disconnect (user lingering is already enabled for `ben`). That keeps this host available for the weekly data refresh → GitHub sync. GitHub Pages itself is not health-checked.
 
 ```bash
 cd "/home/ben/BF6 Visualisation Stats"
-# Prefer localhost unless you intentionally need LAN access:
-python3 -m http.server 5175 --bind 127.0.0.1
+./install-refresh-timer.sh
 ```
 
-Then open **http://localhost:5175**.
+That installs:
 
-For LAN access only when needed:
+- `bf6-loadouts-http.service` — serves the site on **5175**, restarts on crash
+- `bf6-loadouts-http-health.timer` — every 2 minutes checks local `/`, `index.html`, JS, and CSS; restarts the local server if anything fails
+- `bf6-loadouts-refresh.timer` — weekly data refresh + push to GitHub
 
 ```bash
-python3 -m http.server 5175 --bind 0.0.0.0
+systemctl --user status bf6-loadouts-http.service
+systemctl --user start bf6-loadouts-http-health.service   # run one health check now
+journalctl --user -u bf6-loadouts-http.service -n 50
+journalctl --user -u bf6-loadouts-http-health.service -n 50
 ```
 
-That exposes the whole project folder over cleartext HTTP with directory listing — keep it on a trusted network, or put a reverse proxy with TLS/headers in front.
+Do **not** also run a manual `python3 -m http.server 5175` — it will conflict on the port.
+
+## Open in Chrome
+
+You can double-click `index.html` — layouts work offline via embedded data (weapon images still need network).
+
+Or use the systemd server on **5175**:
+
+- http://localhost:5175
+- http://192.168.1.45:5175 (LAN)
+
+For a one-off manual server (only if the systemd unit is stopped):
+
+```bash
+cd "/home/ben/BF6 Visualisation Stats"
+python3 -m http.server 5175 --bind 127.0.0.1
+```
 
 Do **not** enable CSP `upgrade-insecure-requests` while serving plain HTTP, or the browser will block the local scripts.
 
