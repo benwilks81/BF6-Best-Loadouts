@@ -4,7 +4,8 @@
   const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
   const LABEL_KEYS = ['optic', 'barrel', 'muzzle', 'grip', 'laser', 'light', 'mag', 'ammo', 'ergo'];
   const MAX_FAVORITES = 40;
-  const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=85,width=1000/media/';
+  const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
+  const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v1';
   const CLASS_SLUG = {
     'Assault Rifle': 'AssaultRifle',
     Carbine: 'Carbine',
@@ -57,6 +58,8 @@
     m1014: 'Shotgun-M1014.png',
     ks18k: 'Shotgun-185KS-K.png',
   };
+
+  const imageUrlCache = loadImageCache();
 
   const state = {
     weapons: [],
@@ -281,22 +284,45 @@
     renderFavorites();
   }
 
+  function loadImageCache() {
+    try {
+      const raw = sessionStorage.getItem(IMG_CACHE_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function rememberImageUrl(weaponId, url) {
+    imageUrlCache[weaponId] = url;
+    try {
+      sessionStorage.setItem(IMG_CACHE_KEY, JSON.stringify(imageUrlCache));
+    } catch {
+      /* ignore quota / private mode */
+    }
+  }
+
   function imageCandidates(weapon) {
+    const cached = imageUrlCache[weapon.id];
+    if (cached) return [cached];
+
     const known = IMAGE_FILES[weapon.id];
+    // Known mapping: one URL only — avoid slow sequential 404 fallbacks.
+    if (known) return [IMG_BASE + known];
+
     const slug = CLASS_SLUG[weapon.cls] ?? weapon.cls.replaceAll(' ', '');
     const names = [
       weapon.name,
       weapon.name.replaceAll(' ', '-'),
       weapon.name.replaceAll(' ', ''),
-      weapon.id.toUpperCase(),
     ];
     const files = [];
-    if (known) files.push(known);
     for (const n of names) {
       files.push(`${slug}-${n}.png`);
-      files.push(`${encodeURIComponent(weapon.cls)}-${n}.png`);
     }
-    return [...new Set(files)].map((file) => IMG_BASE + file);
+    // Cap guesses so missing CDN art fails fast to the text fallback.
+    return [...new Set(files)].slice(0, 3).map((file) => IMG_BASE + file);
   }
 
   function showWeaponVisual(weapon) {
@@ -305,26 +331,41 @@
     els.weaponFallbackName.textContent = weapon.name;
     els.weaponImageFallback.hidden = false;
     els.weaponImage.hidden = true;
-    els.weaponImage.removeAttribute('src');
 
     const urls = imageCandidates(weapon);
     let index = 0;
+    const img = els.weaponImage;
+    img.alt = `${weapon.name} weapon art`;
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.referrerPolicy = 'no-referrer';
+    if ('fetchPriority' in img) img.fetchPriority = 'high';
+
+    const finishMissing = () => {
+      if (state.weaponId !== weapon.id) return;
+      img.removeAttribute('src');
+      img.hidden = true;
+      els.weaponImageFallback.hidden = false;
+      els.detail.classList.remove('has-image');
+    };
 
     const tryNext = () => {
-      if (index >= urls.length) return;
-      const url = urls[index++];
-      const img = new Image();
-      img.onload = () => {
-        if (state.weaponId !== weapon.id) return;
-        els.weaponImage.src = url;
-        els.weaponImage.alt = `${weapon.name} weapon art`;
-        els.weaponImage.hidden = false;
-        els.weaponImageFallback.hidden = true;
-        els.detail.classList.add('has-image');
-      };
-      img.onerror = tryNext;
-      img.src = url;
+      if (state.weaponId !== weapon.id) return;
+      if (index >= urls.length) {
+        finishMissing();
+        return;
+      }
+      img.src = urls[index++];
     };
+
+    img.onload = () => {
+      if (state.weaponId !== weapon.id) return;
+      rememberImageUrl(weapon.id, img.currentSrc || img.src);
+      img.hidden = false;
+      els.weaponImageFallback.hidden = true;
+      els.detail.classList.add('has-image');
+    };
+    img.onerror = tryNext;
 
     els.detail.classList.remove('has-image');
     tryNext();

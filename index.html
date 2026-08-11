@@ -15,7 +15,8 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://media.battlefield6.gg" />
+    <link rel="preconnect" href="https://media.battlefield6.gg" crossorigin />
+    <link rel="dns-prefetch" href="https://media.battlefield6.gg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
@@ -74,7 +75,14 @@
       <section class="detail" id="detail" aria-live="polite">
         <div class="weapon-stage">
           <div class="weapon-stage-frame">
-            <img id="weaponImage" class="weapon-image" alt="" hidden />
+            <img
+              id="weaponImage"
+              class="weapon-image"
+              alt=""
+              hidden
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
             <div id="weaponImageFallback" class="weapon-fallback" aria-hidden="true">
               <span class="weapon-fallback-class" id="weaponFallbackClass"></span>
               <strong id="weaponFallbackName"></strong>
