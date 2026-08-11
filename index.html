@@ -11,12 +11,14 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://media.battlefield6.gg data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+      content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://media.battlefield6.gg https://img.battlefieldmeta.gg data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://media.battlefield6.gg" crossorigin />
     <link rel="dns-prefetch" href="https://media.battlefield6.gg" />
+    <link rel="preconnect" href="https://img.battlefieldmeta.gg" crossorigin />
+    <link rel="dns-prefetch" href="https://img.battlefieldmeta.gg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
@@ -67,7 +69,7 @@
           <a href="https://sym.gg/" target="_blank" rel="noopener noreferrer">sym.gg</a>
           via
           <a href="https://raymdl.github.io/BF6-Weapon-Analyzer/" target="_blank" rel="noopener noreferrer">raymdl</a>
-          · images via battlefield6.gg
+          · images via battlefield6.gg / battlefieldmeta.gg
           · <span id="dataAge">checking data age…</span>
         </p>
       </aside>
@@ -86,6 +88,7 @@
             <div id="weaponImageFallback" class="weapon-fallback" aria-hidden="true">
               <span class="weapon-fallback-class" id="weaponFallbackClass"></span>
               <strong id="weaponFallbackName"></strong>
+              <span class="weapon-fallback-note" id="weaponFallbackNote"></span>
             </div>
           </div>
           <div class="weapon-stage-meta">
@@ -97,9 +100,9 @@
       </section>
     </main>
 
-    <script src="./js/embedded-data.js?v=20260811b"></script>
-    <script src="./js/stats.js?v=20260811b"></script>
-    <script src="./js/optimizer.js?v=20260811b"></script>
-    <script src="./js/app.js?v=20260811b"></script>
+    <script src="./js/embedded-data.js?v=20260811d"></script>
+    <script src="./js/stats.js?v=20260811d"></script>
+    <script src="./js/optimizer.js?v=20260811d"></script>
+    <script src="./js/app.js?v=20260811d"></script>
   </body>
 </html>

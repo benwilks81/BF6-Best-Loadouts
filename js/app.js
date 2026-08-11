@@ -5,7 +5,7 @@
   const LABEL_KEYS = ['optic', 'barrel', 'muzzle', 'grip', 'laser', 'light', 'mag', 'ammo', 'ergo'];
   const MAX_FAVORITES = 40;
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
-  const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v2';
+  const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v3';
   const APP_BASE = (() => {
     const script = document.querySelector('script[src*="js/app.js"]');
     if (script?.src) return new URL('..', script.src).href;
@@ -23,7 +23,7 @@
     'Sniper Rifle': 'SniperRifle',
     Shotgun: 'Shotgun',
   };
-  // Filenames under media.battlefield6.gg/media/ — or local ./assets paths when CDN art is missing.
+  // Weapon art: battlefield6.gg media filenames, or full https URLs (battlefieldmeta.gg for guns they don't host).
   const IMAGE_FILES = {
     m433: 'AssaultRifle-M433.png',
     b36a4: 'AssaultRifle-B36A4.png',
@@ -33,9 +33,9 @@
     kord6p67: 'AssaultRifle-KORD-6P67.png',
     nvo228e: 'AssaultRifle-NVO-228E.png',
     l85a3: 'AssaultRifle-L85A3.png',
-    ef88: 'assets/weapons/ef88.svg',
-    vcr2: 'assets/weapons/vcr2.svg',
-    m16a4: 'assets/weapons/m16a4.svg',
+    ef88: 'https://img.battlefieldmeta.gg/ef88/gunFullDisplay',
+    vcr2: 'https://img.battlefieldmeta.gg/vcr-2/gunFullDisplay',
+    m16a4: 'https://img.battlefieldmeta.gg/m16a4/gunFullDisplay',
     m4a1: 'Carbine-M4A1.png',
     m277: 'Carbine-M277.png',
     ak205: 'Carbine-AK-205.png',
@@ -44,7 +44,7 @@
     qbz192: 'Carbine-QBZ-192.png',
     sg553r: 'Carbine-SG-553R.png',
     sor300sc: 'Carbine-SOR-300SC.png',
-    brod3: 'assets/weapons/brod3.svg',
+    brod3: 'https://img.battlefieldmeta.gg/brod-3/gunFullDisplay',
     sgx: 'SMG-SGX.png',
     pw5a3: 'SMG-PW5A3.png',
     pw7a2: 'SMG-PW7A2.png',
@@ -53,8 +53,8 @@
     kv9: 'SMG-KV9.png',
     scw10: 'SMG-SCW-10.png',
     sl9: 'SMG-SL9.png',
-    cz3a1: 'assets/weapons/cz3a1.svg',
-    pp19: 'assets/weapons/pp19.svg',
+    cz3a1: 'https://img.battlefieldmeta.gg/cz3a1/gunFullDisplay',
+    pp19: 'https://img.battlefieldmeta.gg/pp-19/gunFullDisplay',
     l110: 'LMG-L110.png',
     drsiar: 'LMG-DRS-IAR.png',
     m60: 'LMG-M60.png',
@@ -63,23 +63,23 @@
     m250: 'LMG-M250.png',
     kts100: 'LMG-KTS100-MK8.png',
     m240l: 'LMG-M240L.png',
-    m121a2: 'assets/weapons/m121a2.svg',
-    rpk74m: 'assets/weapons/rpk74m.svg',
+    m121a2: 'https://img.battlefieldmeta.gg/m121-a2/gunFullDisplay',
+    rpk74m: 'https://img.battlefieldmeta.gg/rpk-74m/gunFullDisplay',
     m39emr: 'DMR-M39-EMR.png',
     lmr27: 'DMR-LMR27.png',
     svk86: 'DMR-SVK-86.png',
     svdm: 'DMR-SVDM.png',
-    grtcps: 'assets/weapons/grtcps.svg',
-    vssm: 'assets/weapons/vssm.svg',
+    grtcps: 'https://img.battlefieldmeta.gg/grt-cps/gunFullDisplay',
+    vssm: 'https://img.battlefieldmeta.gg/vssm/gunFullDisplay',
     m2010esr: 'Sniper%20Rifle-M2010-ESR.png',
     sv98: 'Sniper%20Rifle-SV-98.png',
     psr: 'Sniper%20Rifle-PSR.png',
     miniscout: 'SniperRifle-Mini-Scout.png',
-    l115: 'assets/weapons/l115.svg',
+    l115: 'https://img.battlefieldmeta.gg/l115/gunFullDisplay',
     m87a1: 'Shotgun-M87A1.png',
     m1014: 'Shotgun-M1014.png',
     ks18k: 'Shotgun-185KS-K.png',
-    db12: 'assets/weapons/db12.svg',
+    db12: 'https://img.battlefieldmeta.gg/db-12/gunFullDisplay',
   };
 
   const imageUrlCache = loadImageCache();
@@ -110,6 +110,7 @@
     weaponImageFallback: document.getElementById('weaponImageFallback'),
     weaponFallbackClass: document.getElementById('weaponFallbackClass'),
     weaponFallbackName: document.getElementById('weaponFallbackName'),
+    weaponFallbackNote: document.getElementById('weaponFallbackNote'),
     results: document.getElementById('results'),
     detail: document.getElementById('detail'),
     dataAge: document.getElementById('dataAge'),
@@ -342,30 +343,22 @@
 
   function imageCandidates(weapon) {
     const cached = imageUrlCache[weapon.id];
-    if (cached) return [cached];
+    if (cached && !String(cached).includes('/assets/weapons/')) return [cached];
 
     const known = IMAGE_FILES[weapon.id];
-    // Known mapping: one URL only — avoid slow sequential 404 fallbacks.
     if (known) return [resolveImageUrl(known)];
-
-    const slug = CLASS_SLUG[weapon.cls] ?? weapon.cls.replaceAll(' ', '');
-    const names = [
-      weapon.name,
-      weapon.name.replaceAll(' ', '-'),
-      weapon.name.replaceAll(' ', ''),
-    ];
-    const files = [];
-    for (const n of names) {
-      files.push(`${slug}-${n}.png`);
-    }
-    // Cap guesses so missing CDN art fails fast to the text fallback.
-    return [...new Set(files)].slice(0, 3).map((file) => IMG_BASE + file);
+    return [];
   }
 
   function showWeaponVisual(weapon) {
     els.weaponTitle.textContent = weapon.name;
     els.weaponFallbackClass.textContent = weapon.cls;
     els.weaponFallbackName.textContent = weapon.name;
+    if (els.weaponFallbackNote) {
+      els.weaponFallbackNote.textContent = IMAGE_FILES[weapon.id]
+        ? ''
+        : 'No official art on battlefield6.gg for this gun yet';
+    }
     els.weaponImageFallback.hidden = false;
     els.weaponImage.hidden = true;
 
@@ -383,8 +376,16 @@
       img.removeAttribute('src');
       img.hidden = true;
       els.weaponImageFallback.hidden = false;
+      if (els.weaponFallbackNote && !els.weaponFallbackNote.textContent) {
+        els.weaponFallbackNote.textContent = 'Weapon art unavailable';
+      }
       els.detail.classList.remove('has-image');
     };
+
+    if (!urls.length) {
+      finishMissing();
+      return;
+    }
 
     const tryNext = () => {
       if (state.weaponId !== weapon.id) return;

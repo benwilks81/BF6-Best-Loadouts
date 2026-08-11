@@ -622,6 +622,16 @@ body::before {
   text-transform: uppercase;
 }
 
+.weapon-fallback-note {
+  max-width: 18rem;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: var(--mid);
+}
+
 .weapon-stage-meta {
   display: flex;
   flex-direction: column;
