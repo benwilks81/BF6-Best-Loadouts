@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="EF88">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2218"/>
+      <stop offset="100%" stop-color="#0d120c"/>
+    </linearGradient>
+    <linearGradient id="gun" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6b7a62"/>
+      <stop offset="50%" stop-color="#c4d4b8"/>
+      <stop offset="100%" stop-color="#6b7a62"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bg)"/>
+  <rect x="24" y="24" width="952" height="512" fill="none" stroke="#e85d04" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M120 290 h520 l40-18 h80 l30 18 v36 l-30 14 h-90 l-40-16 H220 l-40 20 h-60 z" fill="url(#gun)" opacity="0.55"/>
+  <rect x="160" y="318" width="70" height="70" rx="4" fill="#9aa890" opacity="0.35"/>
+  <text x="500" y="430" text-anchor="middle" fill="#e85d04" font-family="Rajdhani, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="6">ASSAULT RIFLE</text>
+  <text x="500" y="485" text-anchor="middle" fill="#f2f5ee" font-family="Rajdhani, Segoe UI, sans-serif" font-size="56" font-weight="700">EF88</text>
+</svg>

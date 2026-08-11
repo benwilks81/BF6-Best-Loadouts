@@ -15,15 +15,19 @@
     'Sniper Rifle': 'SniperRifle',
     Shotgun: 'Shotgun',
   };
-  // Filenames verified against media.battlefield6.gg
+  // Filenames under media.battlefield6.gg/media/ — or local ./assets paths when CDN art is missing.
   const IMAGE_FILES = {
     m433: 'AssaultRifle-M433.png',
     b36a4: 'AssaultRifle-B36A4.png',
+    sor556: 'AssaultRifle-SOR-556-Mk2.png',
     ak4d: 'AssaultRifle-AK4D.png',
     tr7: 'AssaultRifle-TR7.png',
     kord6p67: 'AssaultRifle-KORD-6P67.png',
     nvo228e: 'AssaultRifle-NVO-228E.png',
     l85a3: 'AssaultRifle-L85A3.png',
+    ef88: './assets/weapons/ef88.svg',
+    vcr2: './assets/weapons/vcr2.svg',
+    m16a4: './assets/weapons/m16a4.svg',
     m4a1: 'Carbine-M4A1.png',
     m277: 'Carbine-M277.png',
     ak205: 'Carbine-AK-205.png',
@@ -32,6 +36,7 @@
     qbz192: 'Carbine-QBZ-192.png',
     sg553r: 'Carbine-SG-553R.png',
     sor300sc: 'Carbine-SOR-300SC.png',
+    brod3: './assets/weapons/brod3.svg',
     sgx: 'SMG-SGX.png',
     pw5a3: 'SMG-PW5A3.png',
     pw7a2: 'SMG-PW7A2.png',
@@ -40,6 +45,8 @@
     kv9: 'SMG-KV9.png',
     scw10: 'SMG-SCW-10.png',
     sl9: 'SMG-SL9.png',
+    cz3a1: './assets/weapons/cz3a1.svg',
+    pp19: './assets/weapons/pp19.svg',
     l110: 'LMG-L110.png',
     drsiar: 'LMG-DRS-IAR.png',
     m60: 'LMG-M60.png',
@@ -48,15 +55,23 @@
     m250: 'LMG-M250.png',
     kts100: 'LMG-KTS100-MK8.png',
     m240l: 'LMG-M240L.png',
+    m121a2: './assets/weapons/m121a2.svg',
+    rpk74m: './assets/weapons/rpk74m.svg',
     m39emr: 'DMR-M39-EMR.png',
     lmr27: 'DMR-LMR27.png',
     svk86: 'DMR-SVK-86.png',
     svdm: 'DMR-SVDM.png',
+    grtcps: './assets/weapons/grtcps.svg',
+    vssm: './assets/weapons/vssm.svg',
+    m2010esr: 'Sniper%20Rifle-M2010-ESR.png',
+    sv98: 'Sniper%20Rifle-SV-98.png',
     psr: 'Sniper%20Rifle-PSR.png',
     miniscout: 'SniperRifle-Mini-Scout.png',
+    l115: './assets/weapons/l115.svg',
     m87a1: 'Shotgun-M87A1.png',
     m1014: 'Shotgun-M1014.png',
     ks18k: 'Shotgun-185KS-K.png',
+    db12: './assets/weapons/db12.svg',
   };
 
   const imageUrlCache = loadImageCache();
@@ -303,13 +318,21 @@
     }
   }
 
+  function resolveImageUrl(file) {
+    if (!file) return null;
+    if (file.startsWith('./') || file.startsWith('/') || file.startsWith('data:') || file.startsWith('https://')) {
+      return file;
+    }
+    return IMG_BASE + file;
+  }
+
   function imageCandidates(weapon) {
     const cached = imageUrlCache[weapon.id];
     if (cached) return [cached];
 
     const known = IMAGE_FILES[weapon.id];
     // Known mapping: one URL only — avoid slow sequential 404 fallbacks.
-    if (known) return [IMG_BASE + known];
+    if (known) return [resolveImageUrl(known)];
 
     const slug = CLASS_SLUG[weapon.cls] ?? weapon.cls.replaceAll(' ', '');
     const names = [
