@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+*.log
+data/.etag-cache.json
+__pycache__/
+*.pyc
+.Python

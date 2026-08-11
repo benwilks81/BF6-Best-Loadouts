@@ -1,0 +1,16 @@
+{
+  "refreshedAt": "2026-08-11T11:08:37+00:00",
+  "lastCheckedAt": "2026-08-11T11:08:39+00:00",
+  "changed": false,
+  "source": "https://raw.githubusercontent.com/raymdl/BF6-Weapon-Analyzer/main/data/",
+  "files": [
+    "weapons.json",
+    "attachments.json",
+    "balance_tables.json",
+    "ammo.json",
+    "ballistics.json",
+    "recoil_decay.json"
+  ],
+  "weaponCount": 62,
+  "embeddedBytes": 234192
+}

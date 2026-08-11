@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh BF6 Best Loadouts data weekly
+
+[Timer]
+# Monday 03:15 local (container) time
+OnCalendar=Mon *-*-* 03:15:00
+Persistent=true
+AccuracySec=5min
+
+[Install]
+WantedBy=timers.target

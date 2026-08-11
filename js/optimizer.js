@@ -1,0 +1,401 @@
+/* global BF6 */
+window.BF6 = window.BF6 || {};
+
+(function (BF6) {
+  const SLOT_ORDER = ['barrel', 'muzzle', 'grip', 'laser', 'mag', 'ammo', 'ergo', 'light', 'sight'];
+
+  function lookupList(list, id, fallbackId = 'none') {
+    return list.find((x) => x.id === id) ?? list.find((x) => x.id === fallbackId) ?? list[0];
+  }
+
+  function uniqueGrips(gripIds, gripsById) {
+    const best = new Map();
+    for (const id of gripIds) {
+      const g = gripsById[id];
+      if (!g || g.noEffect) continue;
+      const key = [
+        g.adsRecoilTierMod ?? 0,
+        g.movingAdsSpreadTierMod ?? 0,
+        g.adsTimeTierMod ?? 0,
+        g.adsMoveSpeedTierShift ?? 0,
+        g.sprintRecoveryTierShift ?? 0,
+      ].join('|');
+      const prev = best.get(key);
+      if (!prev || (g.pts ?? 0) < (prev.pts ?? 0)) best.set(key, g);
+    }
+    return [...best.values()];
+  }
+
+  function uniqueMuzzles(muzzleIds, muzzlesById) {
+    const best = new Map();
+    for (const id of muzzleIds) {
+      const m = muzzlesById[id];
+      if (!m) continue;
+      const key = [
+        m.adsRecoilTierMod ?? 0,
+        m.adsRecoilVariationTierMod ?? 0,
+        m.hipSpreadTierMod ?? 0,
+        m.adsRecoilDecayMult ?? 1,
+        m.worldSpot ?? 54,
+        m.minimapSpot ?? 150,
+        m.suppressor ? 1 : 0,
+      ].join('|');
+      const prev = best.get(key);
+      if (!prev || (m.pts ?? 0) < (prev.pts ?? 0)) best.set(key, m);
+    }
+    return [...best.values()];
+  }
+
+  function uniqueLasers(laserIds, lasersById) {
+    const best = new Map();
+    for (const id of laserIds) {
+      const laser = lasersById[id];
+      if (!laser) continue;
+      const key = [
+        laser.hipSpreadTierMod ?? 0,
+        laser.movingAdsSpreadTierMod ?? 0,
+        (laser.hipSpreadDecayBoost ?? 0).toFixed(3),
+      ].join('|');
+      const prev = best.get(key);
+      if (!prev || (laser.pts ?? 0) < (prev.pts ?? 0)) best.set(key, laser);
+    }
+    return [...best.values()];
+  }
+
+  function uniqueMags(mags) {
+    const best = new Map();
+    for (const mag of mags) {
+      const key = [
+        mag.mag ?? 0,
+        mag.adsTimeTierShift ?? 0,
+        mag.movingAdsSpreadTierMod ?? 0,
+        mag.reloadSpeedTier ?? 0,
+        mag.sprintRecoveryTierShift ?? 0,
+        mag.adsMoveSpeedTierShift ?? 0,
+      ].join('|');
+      const prev = best.get(key);
+      if (!prev || (mag.pts ?? 0) < (prev.pts ?? 0)) best.set(key, mag);
+    }
+    return [...best.values()];
+  }
+
+  function uniqueLights(lightIds, lightsById) {
+    const best = new Map();
+    for (const id of lightIds) {
+      const light = lightsById[id];
+      if (!light) continue;
+      if (light.noEffect && light.id !== 'none') continue;
+      const key = [(light.hipSpreadDecayBoost ?? 0).toFixed(3), light.pts ?? 0].join('|');
+      const prev = best.get(key);
+      if (!prev || (light.pts ?? 0) < (prev.pts ?? 0)) best.set(key, light);
+    }
+    if (lightsById.none) best.set('none', lightsById.none);
+    return [...best.values()];
+  }
+
+  function uniqueErgos(ergoIds, ergosById) {
+    const out = [];
+    const seen = new Set();
+    for (const id of ['none', ...ergoIds]) {
+      const ergo = ergosById[id];
+      if (!ergo || seen.has(ergo.id)) continue;
+      if (ergo.noEffect && ergo.id !== 'none') continue;
+      seen.add(ergo.id);
+      out.push(ergo);
+    }
+    return out;
+  }
+
+  function defaultSight(sightsById, sightList) {
+    return (
+      sightList.find((s) => s.id === 'iron') ??
+      sightList.find((s) => s.id === 'std_optic') ??
+      sightsById.iron ??
+      sightsById.std_optic ??
+      sightList[0]
+    );
+  }
+
+  function preferredSight(rangeId, sightPool) {
+    const prefs = {
+      close: ['std_optic', 'iron', 'var_low'],
+      mid: ['var_low', 'std_optic', 'var_high'],
+      long: ['var_high', 'var_low', 'std_optic', 'thermal'],
+    };
+    for (const id of prefs[rangeId] ?? []) {
+      const hit = sightPool.find((s) => s.id === id);
+      if (hit) return hit;
+    }
+    return sightPool[0];
+  }
+
+  function buildSightPool(atts, sightsById) {
+    const ids = atts.sight?.length ? atts.sight : Object.keys(sightsById);
+    const pool = ids.map((id) => sightsById[id]).filter(Boolean);
+    if (!pool.length && sightsById.iron) pool.push(sightsById.iron);
+    if (!pool.length && sightsById.std_optic) pool.push(sightsById.std_optic);
+    return pool;
+  }
+
+  function buildAmmoPool(weapon, data, tables) {
+    const ammoTypes = BF6.byId(tables.AMMO_TYPES ?? data.AMMO?.AMMO ?? []);
+    const weaponAmmo = tables.WEAPON_AMMO?.[weapon.id] ?? data.AMMO?.WEAPON_AMMO?.[weapon.id];
+    const defId = weaponAmmo?.def ?? 'standard';
+    const entries = Object.entries(weaponAmmo?.ammo ?? { [defId]: 0 });
+    const pool = entries
+      .map(([id, pts]) => {
+        const base = ammoTypes[id] ?? { id, name: id };
+        return { ...base, pts: pts ?? base.pts ?? 0 };
+      })
+      .filter(Boolean);
+    if (!pool.length) {
+      pool.push({ id: 'standard', name: 'Standard', pts: 0, ...(ammoTypes.standard ?? {}) });
+    }
+    return { pool, defId };
+  }
+
+  function stockParts(weapon, data, tables) {
+    const atts = data.WEAPON_ATTS[weapon.id] ?? {};
+    const wm = data.WEAPON_MAG[weapon.id];
+    const barrelId = atts.barrelDef ?? atts.barrel?.[0] ?? 'basic';
+    const magId = wm?.def ?? Object.keys(wm?.mags ?? {})[0];
+    const sightsById = BF6.byId(data.SIGHTS);
+    const sightPool = buildSightPool(atts, sightsById);
+    const { pool: ammos, defId } = buildAmmoPool(weapon, data, tables);
+    const ammo = ammos.find((a) => a.id === defId) ?? ammos[0];
+    const ergosById = BF6.byId(data.ERGOS);
+
+    return {
+      muzzle: lookupList(data.MUZZLES, 'none'),
+      barrel: lookupList(data.BARRELS, barrelId, 'basic'),
+      grip: lookupList(data.GRIPS, 'none'),
+      laser: lookupList(data.LASERS, 'none'),
+      light: lookupList(data.LIGHTS, 'none'),
+      sight: defaultSight(sightsById, sightPool),
+      mag: { id: magId, ...(wm?.mags?.[magId] ?? { pts: 0, mag: weapon.mag }) },
+      ammo,
+      ergo: ergosById.none ?? { id: 'none', name: 'None', pts: 0 },
+    };
+  }
+
+  function buildOptionPools(weapon, data, tables) {
+    const atts = data.WEAPON_ATTS[weapon.id];
+    if (!atts) return null;
+
+    const muzzlesById = BF6.byId(data.MUZZLES);
+    const barrelsById = BF6.byId(data.BARRELS);
+    const gripsById = BF6.byId(data.GRIPS);
+    const lasersById = BF6.byId(data.LASERS);
+    const lightsById = BF6.byId(data.LIGHTS);
+    const sightsById = BF6.byId(data.SIGHTS);
+    const ergosById = BF6.byId(data.ERGOS);
+
+    const muzzles = uniqueMuzzles(['none', ...(atts.muzzle ?? [])], muzzlesById);
+    const barrels = (atts.barrel ?? ['basic']).map((id) => barrelsById[id]).filter(Boolean);
+    if (!barrels.length) barrels.push(barrelsById.basic ?? barrelsById.none);
+
+    const grips = [gripsById.none, ...uniqueGrips(atts.grip ?? [], gripsById)].filter(Boolean);
+    const lasers = uniqueLasers(['none', ...(atts.laser ?? [])], lasersById);
+    const lights = uniqueLights(['none', ...(atts.light ?? [])], lightsById);
+    const sights = buildSightPool(atts, sightsById);
+
+    const wm = data.WEAPON_MAG[weapon.id];
+    const mags = uniqueMags(Object.entries(wm?.mags ?? {}).map(([id, mag]) => ({ id, ...mag })));
+    if (!mags.length) mags.push({ id: 'default', name: 'Default', pts: 0, mag: weapon.mag });
+
+    const { pool: ammos } = buildAmmoPool(weapon, data, tables);
+    const ergoIds = data.WEAPON_ERGO?.[weapon.id]?.avail ?? [];
+    const ergos = uniqueErgos(ergoIds, ergosById);
+
+    return {
+      muzzles,
+      barrels,
+      grips,
+      lasers,
+      lights,
+      sights,
+      mags,
+      ammos,
+      ergos,
+      laserLightCombined: Boolean(atts.laserLightCombined || atts.laserGripLightCombined),
+      bySlot: {
+        barrel: barrels,
+        muzzle: muzzles,
+        grip: grips,
+        laser: lasers,
+        mag: mags,
+        ammo: ammos,
+        ergo: ergos,
+        light: lights,
+        sight: sights,
+      },
+    };
+  }
+
+  function cloneParts(parts) {
+    return {
+      muzzle: parts.muzzle,
+      barrel: parts.barrel,
+      grip: parts.grip,
+      laser: parts.laser,
+      light: parts.light,
+      sight: parts.sight,
+      mag: parts.mag,
+      ammo: parts.ammo,
+      ergo: parts.ergo,
+    };
+  }
+
+  function isValidCombo(parts, pools) {
+    if (!pools.laserLightCombined) return true;
+    if (parts.laser?.id !== 'none' && parts.light?.id !== 'none') return false;
+    return true;
+  }
+
+  function makeEntry(parts, stats, ranked) {
+    return {
+      parts,
+      stats,
+      ranked,
+      labels: {
+        muzzle: parts.muzzle.name,
+        barrel: parts.barrel.name,
+        grip: parts.grip.name,
+        laser: parts.laser.name,
+        light: parts.light.name,
+        optic: parts.sight.name,
+        mag: parts.mag.name ?? parts.mag.id,
+        ammo: parts.ammo?.name ?? parts.ammo?.id ?? 'Standard',
+        ergo: parts.ergo?.name ?? 'None',
+      },
+    };
+  }
+
+  function scoreParts(weapon, parts, tables, stockStats, rangeId, mode, pools) {
+    if (!isValidCombo(parts, pools)) return null;
+    const stats = BF6.evaluateLoadout(weapon, parts, tables);
+    if (stats.pts > BF6.POINT_BUDGET) return null;
+    const ranked = BF6.scoreVsStock(stats, stockStats, rangeId, weapon.cls);
+    const metric = mode === 'value' ? ranked.value : ranked.score;
+    return { parts, stats, ranked, metric };
+  }
+
+  function coordinateDescent(weapon, start, pools, tables, stockStats, rangeId, mode, passes = 2) {
+    let current = cloneParts(start);
+    let best = scoreParts(weapon, current, tables, stockStats, rangeId, mode, pools);
+    if (!best) return null;
+    let considered = 1;
+
+    for (let pass = 0; pass < passes; pass++) {
+      for (const slot of SLOT_ORDER) {
+        const options = pools.bySlot[slot];
+        for (const option of options) {
+          const trial = cloneParts(current);
+          trial[slot] = option;
+          if (pools.laserLightCombined && trial.laser?.id !== 'none' && trial.light?.id !== 'none') {
+            if (slot === 'laser') trial.light = pools.bySlot.light.find((l) => l.id === 'none') ?? trial.light;
+            if (slot === 'light') trial.laser = pools.bySlot.laser.find((l) => l.id === 'none') ?? trial.laser;
+          }
+          const scored = scoreParts(weapon, trial, tables, stockStats, rangeId, mode, pools);
+          considered += 1;
+          if (!scored) continue;
+          if (scored.metric > best.metric + 1e-9) {
+            best = scored;
+            current = cloneParts(trial);
+          }
+        }
+      }
+    }
+
+    return { ...best, considered };
+  }
+
+  function insertTop(list, entry, topN, compare) {
+    const key = [
+      entry.parts.barrel.id,
+      entry.parts.muzzle.id,
+      entry.parts.grip.id,
+      entry.parts.laser.id,
+      entry.parts.light.id,
+      entry.parts.sight.id,
+      entry.parts.mag.id,
+      entry.parts.ammo.id,
+      entry.parts.ergo.id,
+    ].join('|');
+    if (list.some((x) => x.__key === key)) return;
+    entry.__key = key;
+    list.push(entry);
+    list.sort(compare);
+    if (list.length > topN) list.length = topN;
+  }
+
+  BF6.recommendSets = function recommendSets(weapon, data, tables, { topN = 1 } = {}) {
+    const pools = buildOptionPools(weapon, data, tables);
+    if (!pools) return { error: 'No attachment data for this weapon.' };
+
+    const stock = stockParts(weapon, data, tables);
+    const stockStats = BF6.evaluateLoadout(weapon, stock, tables);
+
+    const bestByRange = { close: [], mid: [], long: [] };
+    const maxPerf = { close: [], mid: [], long: [] };
+    let considered = 0;
+
+    for (const rangeId of Object.keys(BF6.RANGES)) {
+      const seeds = [];
+
+      // One seed per barrel keeps search tiny but covers the main build forks.
+      for (const barrel of pools.barrels) {
+        const seed = cloneParts(stock);
+        seed.barrel = barrel;
+        seed.sight = preferredSight(rangeId, pools.sights) ?? seed.sight;
+        seeds.push(seed);
+      }
+
+      // Also seed a suppressor-friendly and hipfire-friendly start when available.
+      const suppressor = pools.muzzles.find((m) => m.suppressor);
+      if (suppressor) {
+        const seed = cloneParts(stock);
+        seed.muzzle = suppressor;
+        seed.sight = preferredSight(rangeId, pools.sights) ?? seed.sight;
+        seeds.push(seed);
+      }
+
+      for (const seed of seeds) {
+        const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, rangeId, 'score', 2);
+        if (perf) {
+          considered += perf.considered;
+          if (perf.ranked.score > 0.015) {
+            insertTop(maxPerf[rangeId], makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
+              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+              return a.stats.pts - b.stats.pts;
+            });
+            insertTop(bestByRange[rangeId], makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
+              if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
+              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+              return a.stats.pts - b.stats.pts;
+            });
+          }
+        }
+
+        const value = coordinateDescent(weapon, seed, pools, tables, stockStats, rangeId, 'value', 2);
+        if (value) {
+          considered += value.considered;
+          if (value.ranked.score > 0.015) {
+            insertTop(bestByRange[rangeId], makeEntry(value.parts, value.stats, value.ranked), topN, (a, b) => {
+              if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
+              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+              return a.stats.pts - b.stats.pts;
+            });
+          }
+        }
+      }
+    }
+
+    return {
+      considered,
+      stock: { parts: stock, stats: stockStats },
+      value: bestByRange,
+      performance: maxPerf,
+    };
+  };
+})(window.BF6);

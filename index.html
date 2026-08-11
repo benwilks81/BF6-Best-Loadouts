@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BF6 Best Loadouts</title>
+    <meta
+      name="description"
+      content="Pick a Battlefield 6 gun and see the best close, medium, and long range attachment layouts."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://media.battlefield6.gg data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://media.battlefield6.gg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="fx-scan" aria-hidden="true"></div>
+    <div class="fx-vignette" aria-hidden="true"></div>
+    <main class="app">
+      <aside class="sidebar">
+        <header class="hero">
+          <div class="hud-corners" aria-hidden="true"></div>
+          <p class="brand">Battlefield 6</p>
+          <h1>Best <span>Loadouts</span></h1>
+          <p>Select a gun. View its picture and the best close, medium, and long layouts.</p>
+          <div class="hero-rule" aria-hidden="true"></div>
+        </header>
+
+        <section class="favorites" id="favorites" hidden>
+          <h2>Favourites</h2>
+          <div class="fav-list" id="favList"></div>
+        </section>
+
+        <section class="controls" aria-label="Weapon list">
+          <div class="field weapon-field">
+            <div class="weapon-heading">
+              <label for="weaponFilter">Guns</label>
+              <button type="button" id="favToggle" class="fav-btn" aria-pressed="false" title="Favourite this gun">
+                ☆ Favourite
+              </button>
+            </div>
+            <input
+              id="weaponFilter"
+              class="weapon-filter"
+              type="search"
+              placeholder="Filter guns…"
+              autocomplete="off"
+            />
+            <div class="weapon-list" id="weaponList" role="listbox" aria-label="Weapons"></div>
+            <select id="weapon" class="weapon-select-fallback" hidden></select>
+          </div>
+        </section>
+
+        <p class="status" id="status">Loading…</p>
+        <p class="credit">
+          Data from
+          <a href="https://sym.gg/" target="_blank" rel="noopener noreferrer">sym.gg</a>
+          via
+          <a href="https://raymdl.github.io/BF6-Weapon-Analyzer/" target="_blank" rel="noopener noreferrer">raymdl</a>
+          · images via battlefield6.gg
+          · <span id="dataAge">checking data age…</span>
+        </p>
+      </aside>
+
+      <section class="detail" id="detail" aria-live="polite">
+        <div class="weapon-stage">
+          <div class="weapon-stage-frame">
+            <img id="weaponImage" class="weapon-image" alt="" hidden />
+            <div id="weaponImageFallback" class="weapon-fallback" aria-hidden="true">
+              <span class="weapon-fallback-class" id="weaponFallbackClass"></span>
+              <strong id="weaponFallbackName"></strong>
+            </div>
+          </div>
+          <div class="weapon-stage-meta">
+            <h2 id="weaponTitle">Select a gun</h2>
+            <p class="weapon-meta" id="weaponMeta"></p>
+          </div>
+        </div>
+        <div class="results" id="results"></div>
+      </section>
+    </main>
+
+    <script src="./js/embedded-data.js"></script>
+    <script src="./js/stats.js"></script>
+    <script src="./js/optimizer.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

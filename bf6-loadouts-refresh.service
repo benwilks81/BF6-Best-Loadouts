@@ -1,0 +1,24 @@
+[Unit]
+Description=BF6 Best Loadouts weekly data refresh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ben/BF6 Visualisation Stats
+ExecStart=/home/ben/BF6 Visualisation Stats/scripts/refresh-data.sh
+
+# Hardening for an unattended network oneshot that only writes under this app.
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/ben/BF6 Visualisation Stats/data /home/ben/BF6 Visualisation Stats/js
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryMax=512M
+SystemCallArchitectures=native
