@@ -1,8 +1,8 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
   "fetchedAt": "2026-08-12T00:30:42+00:00",
-  "playerMaxLevel": 50,
-  "weaponMasteryMax": 50,
+  "playerMaxLevel": null,
+  "weaponMasteryMax": null,
   "weapons": {
     "m433": {
       "metaId": "m433",
@@ -6039,5 +6039,6 @@
       "barrel:None",
       1
     ]
-  ]
+  ],
+  "attachmentUnlockCap": 50
 }

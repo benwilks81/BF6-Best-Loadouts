@@ -7,6 +7,8 @@
   const MAX_FAVORITES = 40;
   const DEFAULT_PLAYER_LEVEL = 50;
   const DEFAULT_MASTERY_LEVEL = 50;
+  // Soft sanity bound only — game ranks are not capped at the attachment unlock track (50).
+  const LEVEL_INPUT_MAX = 9999;
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
   const META_IMG = 'https://img.battlefieldmeta.gg';
   const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
@@ -170,18 +172,14 @@
     run();
   }
 
-  function playerMaxLevel() {
-    return state.unlocks?.playerMaxLevel ?? DEFAULT_PLAYER_LEVEL;
+  function attachmentUnlockCap() {
+    return state.unlocks?.attachmentUnlockCap ?? 50;
   }
 
-  function masteryMaxLevel() {
-    return state.unlocks?.weaponMasteryMax ?? DEFAULT_MASTERY_LEVEL;
-  }
-
-  function clampLevel(value, min, max, fallback) {
+  function clampLevel(value, min, fallback) {
     const n = Number(value);
     if (!Number.isFinite(n)) return fallback;
-    return Math.max(min, Math.min(max, Math.floor(n)));
+    return Math.max(min, Math.min(LEVEL_INPUT_MAX, Math.floor(n)));
   }
 
   function loadLevels() {
@@ -189,8 +187,8 @@
       const raw = localStorage.getItem(LEVEL_KEY);
       const parsed = raw ? JSON.parse(raw) : {};
       return {
-        playerLevel: clampLevel(parsed.playerLevel, 1, playerMaxLevel(), DEFAULT_PLAYER_LEVEL),
-        masteryLevel: clampLevel(parsed.masteryLevel, 0, masteryMaxLevel(), DEFAULT_MASTERY_LEVEL),
+        playerLevel: clampLevel(parsed.playerLevel, 1, DEFAULT_PLAYER_LEVEL),
+        masteryLevel: clampLevel(parsed.masteryLevel, 0, DEFAULT_MASTERY_LEVEL),
         includeChallenges: Boolean(parsed.includeChallenges),
       };
     } catch {
@@ -219,11 +217,11 @@
 
   function syncLevelInputs() {
     if (els.playerLevel) {
-      els.playerLevel.max = String(playerMaxLevel());
+      els.playerLevel.removeAttribute('max');
       els.playerLevel.value = String(state.playerLevel);
     }
     if (els.masteryLevel) {
-      els.masteryLevel.max = String(masteryMaxLevel());
+      els.masteryLevel.removeAttribute('max');
       els.masteryLevel.value = String(state.masteryLevel);
     }
     if (els.includeChallenges) {
@@ -232,8 +230,8 @@
   }
 
   function applyLevelInputs({ rerun = true } = {}) {
-    const nextPlayer = clampLevel(els.playerLevel?.value, 1, playerMaxLevel(), state.playerLevel);
-    const nextMastery = clampLevel(els.masteryLevel?.value, 0, masteryMaxLevel(), state.masteryLevel);
+    const nextPlayer = clampLevel(els.playerLevel?.value, 1, state.playerLevel);
+    const nextMastery = clampLevel(els.masteryLevel?.value, 0, state.masteryLevel);
     const nextChallenges = Boolean(els.includeChallenges?.checked);
     const changed =
       nextPlayer !== state.playerLevel ||
@@ -529,7 +527,10 @@
 
   function weaponMetaLine(weapon) {
     const bits = [`${weapon.cls}`, weapon.cal || null, `${Math.round(weapon.rpm)} RPM`].filter(Boolean);
-    bits.push(`Layouts use gun lvl ${state.masteryLevel}/${masteryMaxLevel()}`);
+    bits.push(`Layouts use gun lvl ${state.masteryLevel}`);
+    if (state.masteryLevel >= attachmentUnlockCap()) {
+      bits.push(`attachment track complete (${attachmentUnlockCap()})`);
+    }
     if (state.includeChallenges) bits.push('challenge parts on');
     return bits.join(' · ');
   }

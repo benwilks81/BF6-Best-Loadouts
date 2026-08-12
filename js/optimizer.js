@@ -181,10 +181,11 @@ window.BF6 = window.BF6 || {};
     };
   }
 
-  function clampMasteryLevel(level, maxLevel = 50) {
+  function clampMasteryLevel(level, fallback = 50) {
     const n = Number(level);
-    if (!Number.isFinite(n)) return maxLevel;
-    return Math.max(0, Math.min(maxLevel, Math.floor(n)));
+    if (!Number.isFinite(n)) return fallback;
+    // No gameplay cap — attachment unlocks stop at 50, but gun level can be higher.
+    return Math.max(0, Math.min(9999, Math.floor(n)));
   }
 
   function attachmentUnlockLevel(weaponUnlocks, slot, id) {
@@ -233,8 +234,11 @@ window.BF6 = window.BF6 || {};
     if (!atts) return null;
 
     const unlocks = options.unlocks ?? tables.unlocks ?? data.unlocks ?? null;
-    const masteryMax = options.masteryMax ?? unlocks?.weaponMasteryMax ?? 50;
-    const masteryLevel = clampMasteryLevel(options.masteryLevel ?? masteryMax, masteryMax);
+    const attachmentCap = unlocks?.attachmentUnlockCap ?? unlocks?.weaponMasteryMax ?? 50;
+    const masteryLevel = clampMasteryLevel(
+      options.masteryLevel ?? attachmentCap,
+      attachmentCap
+    );
     const includeChallenges = Boolean(options.includeChallenges);
     const weaponUnlocks = unlocks?.weapons?.[weapon.id] ?? null;
     const filterOpts = { includeChallenges };
@@ -476,7 +480,6 @@ window.BF6 = window.BF6 || {};
     const unlocks = tables.unlocks ?? data.unlocks ?? null;
     const pools = buildOptionPools(weapon, data, tables, {
       masteryLevel,
-      masteryMax: unlocks?.weaponMasteryMax,
       unlocks,
       includeChallenges,
     });

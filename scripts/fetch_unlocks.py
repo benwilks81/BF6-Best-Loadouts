@@ -543,8 +543,9 @@ def build_unlocks() -> dict:
     payload = {
         "source": API_BASE,
         "fetchedAt": fetched_at,
-        "playerMaxLevel": 50,
-        "weaponMasteryMax": 50,
+        "attachmentUnlockCap": 50,
+        "playerMaxLevel": null,
+        "weaponMasteryMax": null,
         "weapons": out_weapons,
         "unmappedSample": sorted(unmapped.items(), key=lambda item: (-item[1], item[0]))[:30],
     }
