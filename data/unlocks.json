@@ -1,0 +1,5679 @@
+{
+  "source": "https://app.battlefieldmeta.gg/api",
+  "fetchedAt": "2026-08-12T00:14:17+00:00",
+  "playerMaxLevel": 50,
+  "weaponMasteryMax": 50,
+  "weapons": {
+    "m433": {
+      "metaId": "m433",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 5,
+          "linear_comp": 6,
+          "std_supp": 8,
+          "cqb_supp": 18,
+          "dp_brake": 20,
+          "long_supp": 25,
+          "comp_brake": 30,
+          "light_supp": 35
+        },
+        "barrel": {
+          "none": 0,
+          "short": 5,
+          "extended": 5,
+          "basic": 20,
+          "light": 29
+        },
+        "grip": {
+          "none": 0,
+          "classic_vert": 1,
+          "classic_vert_db12": 1,
+          "classic_vert_ks18k": 1,
+          "classic_vert_svk86": 1,
+          "classic_vert_vssm": 1,
+          "fold_vert": 1,
+          "underslung_mount": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 7,
+          "6h64_vert": 9,
+          "6h64_vert_db12": 9,
+          "6h64_vert_ks18k": 9,
+          "6h64_vert_svk86": 9,
+          "6h64_vert_vssm": 9,
+          "fold_stubby": 14,
+          "ribbed_stubby": 16,
+          "canted_stubby": 17,
+          "full_angled": 22,
+          "full_angled_sr": 22,
+          "stipp_stubby": 23,
+          "stipp_stubby_db12": 23,
+          "stipp_stubby_ks18k": 23,
+          "stipp_stubby_svk86": 23,
+          "stipp_stubby_vssm": 23,
+          "ptt_grip_pod": 26,
+          "adj_angled": 28,
+          "lp_stubby": 30,
+          "lp_stubby_db12": 30,
+          "lp_stubby_ks18k": 30,
+          "lp_stubby_sr": 30,
+          "lp_stubby_svk86": 30,
+          "lp_stubby_vssm": 30,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "slim_angled": 33,
+          "slim_angled_smg": 33,
+          "slim_angled_sr": 33,
+          "qd_grip_pod": 35,
+          "qd_grip_pod_sr": 35,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_green": 5,
+          "5mw_red": 6,
+          "50mw_green": 17,
+          "50mw_blue": 33,
+          "120mw_blue": 37
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 5
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 2,
+          "var_high": 22,
+          "thermal": 36
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 11,
+          "20_fast": 14,
+          "20_rnd": 19,
+          "40_fast": 24,
+          "36_rnd": 31,
+          "40_rnd": 36
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 16,
+          "hollow_pt": 25,
+          "frangible": 34,
+          "lightweight": 39
+        },
+        "ergo": {
+          "none": 0,
+          "mag_flare": 13,
+          "match_trigger": 31
+        }
+      }
+    },
+    "b36a4": {
+      "metaId": "b36a4",
+      "unlockAtPlayerLevel": 14,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 4,
+          "dp_brake": 9,
+          "std_supp": 13,
+          "comp_brake": 15,
+          "long_supp": 28,
+          "light_supp": 35,
+          "cqb_supp": 40
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 5,
+          "heavy": 14,
+          "light": 21,
+          "heavy_ext": 26,
+          "short": 36
+        },
+        "grip": {
+          "none": 0,
+          "underslung_mount": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 2,
+          "ribbed_vert": 4,
+          "6h64_vert": 8,
+          "6h64_vert_db12": 8,
+          "6h64_vert_ks18k": 8,
+          "6h64_vert_svk86": 8,
+          "6h64_vert_vssm": 8,
+          "classic_vert": 13,
+          "classic_vert_db12": 13,
+          "classic_vert_ks18k": 13,
+          "classic_vert_svk86": 13,
+          "classic_vert_vssm": 13,
+          "fold_stubby": 18,
+          "ribbed_stubby": 19,
+          "canted_stubby": 21,
+          "stipp_stubby": 23,
+          "stipp_stubby_db12": 23,
+          "stipp_stubby_ks18k": 23,
+          "stipp_stubby_svk86": 23,
+          "stipp_stubby_vssm": 23,
+          "lp_stubby": 24,
+          "lp_stubby_db12": 24,
+          "lp_stubby_ks18k": 24,
+          "lp_stubby_sr": 24,
+          "lp_stubby_svk86": 24,
+          "lp_stubby_vssm": 24,
+          "adj_angled": 25,
+          "slim_angled": 29,
+          "slim_angled_smg": 29,
+          "slim_angled_sr": 29,
+          "full_angled": 31,
+          "full_angled_sr": 31,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "classic_grip_pod": 34,
+          "classic_grip_pod_sr": 34,
+          "ptt_grip_pod": 36,
+          "qd_grip_pod": 38,
+          "qd_grip_pod_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 15,
+          "5mw_green": 17,
+          "50mw_green": 22,
+          "50mw_blue": 33,
+          "120mw_blue": 39
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 3
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 18,
+          "thermal": 30
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 5,
+          "20_fast": 8,
+          "20_rnd": 9,
+          "40_rnd": 12,
+          "45_rnd": 16,
+          "36_rnd": 18,
+          "40_fast": 27,
+          "45_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "hollow_pt": 20,
+          "frangible": 26,
+          "synthetic": 31,
+          "lightweight": 37
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "match_trigger": 28
+        }
+      }
+    },
+    "sor556": {
+      "metaId": "sor-556-mk2",
+      "unlockAtPlayerLevel": 25,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 3,
+          "linear_comp": 6,
+          "std_supp": 7,
+          "dp_brake": 16,
+          "cqb_supp": 22,
+          "comp_brake": 28,
+          "long_supp": 34,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "short": 0,
+          "cryo": 0,
+          "basic": 3,
+          "extended": 9,
+          "heavy": 20,
+          "heavy_ext": 28
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 2,
+          "ribbed_vert": 5,
+          "6h64_vert": 8,
+          "6h64_vert_db12": 8,
+          "6h64_vert_ks18k": 8,
+          "6h64_vert_svk86": 8,
+          "6h64_vert_vssm": 8,
+          "fold_stubby": 11,
+          "ribbed_stubby": 12,
+          "canted_stubby": 17,
+          "stipp_stubby": 23,
+          "stipp_stubby_db12": 23,
+          "stipp_stubby_ks18k": 23,
+          "stipp_stubby_svk86": 23,
+          "stipp_stubby_vssm": 23,
+          "ptt_grip_pod": 25,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "adj_angled": 29,
+          "full_angled": 30,
+          "full_angled_sr": 30,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "classic_vert": 33,
+          "classic_vert_db12": 33,
+          "classic_vert_ks18k": 33,
+          "classic_vert_svk86": 33,
+          "classic_vert_vssm": 33,
+          "lp_stubby": 37,
+          "lp_stubby_db12": 37,
+          "lp_stubby_ks18k": 37,
+          "lp_stubby_sr": 37,
+          "lp_stubby_svk86": 37,
+          "lp_stubby_vssm": 37,
+          "slim_angled": 38,
+          "slim_angled_smg": 38,
+          "slim_angled_sr": 38,
+          "classic_grip_pod": 40,
+          "classic_grip_pod_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "5mw_green": 8,
+          "50mw_green": 32,
+          "50mw_blue": 34,
+          "120mw_blue": 36
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 21,
+          "thermal": 35
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "40_rnd": 5,
+          "36_rnd": 12,
+          "20_fast": 18,
+          "20_rnd": 20,
+          "30_fast": 24,
+          "40_fast": 26,
+          "45_fast": 33,
+          "45_rnd": 39
+        },
+        "ammo": {
+          "standard": 0,
+          "hollow_pt": 10,
+          "penetration": 19,
+          "synthetic": 25,
+          "lightweight": 30,
+          "frangible": 39
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "rail_cover": 0,
+          "mag_flare": 10,
+          "match_trigger": 11
+        }
+      }
+    },
+    "ak4d": {
+      "metaId": "ak4d",
+      "unlockAtPlayerLevel": 35,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 12,
+          "long_supp": 13,
+          "dp_brake": 20,
+          "std_supp": 22,
+          "light_supp": 25,
+          "cqb_supp": 32,
+          "comp_brake": 35
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 4,
+          "extended": 9,
+          "short": 15,
+          "heavy_ext": 40
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 2,
+          "ribbed_vert": 3,
+          "6h64_vert": 6,
+          "6h64_vert_db12": 6,
+          "6h64_vert_ks18k": 6,
+          "6h64_vert_svk86": 6,
+          "6h64_vert_vssm": 6,
+          "classic_vert": 7,
+          "classic_vert_db12": 7,
+          "classic_vert_ks18k": 7,
+          "classic_vert_svk86": 7,
+          "classic_vert_vssm": 7,
+          "fold_stubby": 13,
+          "stipp_stubby": 17,
+          "stipp_stubby_db12": 17,
+          "stipp_stubby_ks18k": 17,
+          "stipp_stubby_svk86": 17,
+          "stipp_stubby_vssm": 17,
+          "ribbed_stubby": 18,
+          "lp_stubby": 21,
+          "lp_stubby_db12": 21,
+          "lp_stubby_ks18k": 21,
+          "lp_stubby_sr": 21,
+          "lp_stubby_svk86": 21,
+          "lp_stubby_vssm": 21,
+          "canted_stubby": 26,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "slim_angled": 28,
+          "slim_angled_smg": 28,
+          "slim_angled_sr": 28,
+          "adj_angled": 29,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "ptt_grip_pod": 34,
+          "full_angled": 38,
+          "full_angled_sr": 38,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 0,
+          "50mw_violet": 0,
+          "5mw_green": 5,
+          "50mw_green": 31,
+          "50mw_blue": 33,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 17
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 19,
+          "thermal": 27
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "15_rnd": 8,
+          "20_fast": 15,
+          "30_rnd": 30,
+          "15_fast": 35
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 16,
+          "penetration": 24,
+          "hollow_pt": 25,
+          "lightweight": 34
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "match_trigger": 22
+        }
+      }
+    },
+    "tr7": {
+      "metaId": "tr-7",
+      "unlockAtPlayerLevel": 50,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "dp_brake": 0,
+          "flash_comp": 0,
+          "flash_hider": 4,
+          "std_supp": 14,
+          "linear_comp": 19,
+          "sp_brake": 23,
+          "cqb_supp": 24,
+          "long_supp": 29,
+          "comp_brake": 31,
+          "light_supp": 34
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 7,
+          "light": 25,
+          "short": 40
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 5,
+          "6h64_vert": 9,
+          "6h64_vert_db12": 9,
+          "6h64_vert_ks18k": 9,
+          "6h64_vert_svk86": 9,
+          "6h64_vert_vssm": 9,
+          "fold_stubby": 11,
+          "ribbed_stubby": 15,
+          "classic_vert": 19,
+          "classic_vert_db12": 19,
+          "classic_vert_ks18k": 19,
+          "classic_vert_svk86": 19,
+          "classic_vert_vssm": 19,
+          "ptt_grip_pod": 21,
+          "lp_stubby": 24,
+          "lp_stubby_db12": 24,
+          "lp_stubby_ks18k": 24,
+          "lp_stubby_sr": 24,
+          "lp_stubby_svk86": 24,
+          "lp_stubby_vssm": 24,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35,
+          "canted_stubby": 37,
+          "stipp_stubby": 39,
+          "stipp_stubby_db12": 39,
+          "stipp_stubby_ks18k": 39,
+          "stipp_stubby_svk86": 39,
+          "stipp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 6,
+          "5mw_green": 11,
+          "50mw_green": 18,
+          "50mw_blue": 22,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 27,
+          "thermal": 29
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "20_fast": 10,
+          "15_rnd": 12,
+          "10_fast": 17,
+          "25_rnd": 26,
+          "30_rnd": 30,
+          "25_fast": 35
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 13,
+          "frangible": 14,
+          "hollow_pt": 22,
+          "lightweight": 32
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 23,
+          "match_trigger": 25
+        }
+      }
+    },
+    "kord6p67": {
+      "metaId": "kord-6p67",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "sp_brake": 0,
+          "flash_hider": 5,
+          "linear_comp": 9,
+          "dp_brake": 15,
+          "comp_brake": 20,
+          "std_supp": 24,
+          "cqb_supp": 27,
+          "long_supp": 32,
+          "light_supp": 40
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 7,
+          "light": 29
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 6,
+          "6h64_vert": 8,
+          "6h64_vert_db12": 8,
+          "6h64_vert_ks18k": 8,
+          "6h64_vert_svk86": 8,
+          "6h64_vert_vssm": 8,
+          "fold_stubby": 11,
+          "ribbed_stubby": 13,
+          "classic_vert": 16,
+          "classic_vert_db12": 16,
+          "classic_vert_ks18k": 16,
+          "classic_vert_svk86": 16,
+          "classic_vert_vssm": 16,
+          "canted_stubby": 17,
+          "stipp_stubby": 19,
+          "stipp_stubby_db12": 19,
+          "stipp_stubby_ks18k": 19,
+          "stipp_stubby_svk86": 19,
+          "stipp_stubby_vssm": 19,
+          "slim_angled": 23,
+          "slim_angled_smg": 23,
+          "slim_angled_sr": 23,
+          "full_angled": 26,
+          "full_angled_sr": 26,
+          "ptt_grip_pod": 30,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "qd_grip_pod": 33,
+          "qd_grip_pod_sr": 33,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 6,
+          "5mw_green": 12,
+          "120mw_blue": 26,
+          "50mw_green": 28,
+          "combo_green": 34,
+          "50mw_blue": 37
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 21,
+          "thermal": 34
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 4,
+          "36_rnd": 13,
+          "40_rnd": 21,
+          "45_rnd": 30,
+          "40_fast": 36,
+          "45_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 14,
+          "penetration": 17,
+          "hollow_pt": 25,
+          "lightweight": 38
+        },
+        "ergo": {
+          "none": 0,
+          "match_trigger": 18
+        }
+      }
+    },
+    "nvo228e": {
+      "metaId": "nvo-228e",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 4,
+          "linear_comp": 7,
+          "dp_brake": 11,
+          "std_supp": 23,
+          "cqb_supp": 28,
+          "long_supp": 29,
+          "light_supp": 36,
+          "comp_brake": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 10,
+          "short": 20,
+          "light": 30
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 2,
+          "alloy_vert": 9,
+          "slim_angled": 11,
+          "slim_angled_smg": 11,
+          "slim_angled_sr": 11,
+          "ribbed_vert": 14,
+          "6h64_vert": 16,
+          "6h64_vert_db12": 16,
+          "6h64_vert_ks18k": 16,
+          "6h64_vert_svk86": 16,
+          "6h64_vert_vssm": 16,
+          "classic_vert": 21,
+          "classic_vert_db12": 21,
+          "classic_vert_ks18k": 21,
+          "classic_vert_svk86": 21,
+          "classic_vert_vssm": 21,
+          "fold_stubby": 22,
+          "full_angled": 24,
+          "full_angled_sr": 24,
+          "ribbed_stubby": 25,
+          "canted_stubby": 28,
+          "bipod": 33,
+          "bipod_sr": 33,
+          "lp_stubby": 34,
+          "lp_stubby_db12": 34,
+          "lp_stubby_ks18k": 34,
+          "lp_stubby_sr": 34,
+          "lp_stubby_svk86": 34,
+          "lp_stubby_vssm": 34,
+          "stipp_stubby": 34,
+          "stipp_stubby_db12": 34,
+          "stipp_stubby_ks18k": 34,
+          "stipp_stubby_svk86": 34,
+          "stipp_stubby_vssm": 34,
+          "ptt_grip_pod": 37,
+          "qd_grip_pod": 38,
+          "qd_grip_pod_sr": 38,
+          "classic_grip_pod": 40,
+          "classic_grip_pod_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 1,
+          "5mw_green": 6,
+          "50mw_green": 22,
+          "120mw_blue": 32,
+          "50mw_blue": 39
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 5
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 18,
+          "thermal": 31
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 3,
+          "20_fast": 10,
+          "40_fast": 18,
+          "36_rnd": 25,
+          "20_rnd": 30,
+          "40_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "hollow_pt": 15,
+          "lightweight": 20,
+          "frangible": 27,
+          "penetration": 35
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "match_trigger": 21
+        }
+      }
+    },
+    "l85a3": {
+      "metaId": "l85a3",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 7,
+          "linear_comp": 9,
+          "dp_brake": 13,
+          "std_supp": 16,
+          "cqb_supp": 21,
+          "long_supp": 27,
+          "light_supp": 32,
+          "comp_brake": 33
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 3,
+          "extended": 10,
+          "short": 17,
+          "heavy_ext": 30,
+          "light": 39
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "underslung_mount": 0,
+          "fold_vert": 1,
+          "alloy_vert": 2,
+          "ribbed_vert": 5,
+          "6h64_vert": 12,
+          "6h64_vert_db12": 12,
+          "6h64_vert_ks18k": 12,
+          "6h64_vert_svk86": 12,
+          "6h64_vert_vssm": 12,
+          "adj_angled": 16,
+          "classic_vert": 17,
+          "classic_vert_db12": 17,
+          "classic_vert_ks18k": 17,
+          "classic_vert_svk86": 17,
+          "classic_vert_vssm": 17,
+          "stipp_stubby": 18,
+          "stipp_stubby_db12": 18,
+          "stipp_stubby_ks18k": 18,
+          "stipp_stubby_svk86": 18,
+          "stipp_stubby_vssm": 18,
+          "fold_stubby": 19,
+          "ptt_grip_pod": 22,
+          "ribbed_stubby": 24,
+          "lp_stubby": 26,
+          "lp_stubby_db12": 26,
+          "lp_stubby_ks18k": 26,
+          "lp_stubby_sr": 26,
+          "lp_stubby_svk86": 26,
+          "lp_stubby_vssm": 26,
+          "canted_stubby": 28,
+          "slim_angled": 29,
+          "slim_angled_smg": 29,
+          "slim_angled_sr": 29,
+          "qd_grip_pod": 31,
+          "qd_grip_pod_sr": 31,
+          "bipod": 32,
+          "bipod_sr": 32,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35,
+          "full_angled": 40,
+          "full_angled_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 8,
+          "5mw_green": 27,
+          "50mw_green": 33,
+          "50mw_blue": 36,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 4
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 23,
+          "thermal": 31
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_rnd": 6,
+          "30_fast": 9,
+          "20_fast": 11,
+          "36_rnd": 12,
+          "40_rnd": 21,
+          "40_fast": 25,
+          "45_rnd": 34,
+          "45_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "hollow_pt": 14,
+          "lightweight": 25,
+          "synthetic": 30,
+          "frangible": 37
+        },
+        "ergo": {
+          "none": 0,
+          "match_trigger": 24
+        }
+      }
+    },
+    "vcr2": {
+      "metaId": "vcr-2",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 3,
+          "std_supp": 8,
+          "sp_brake": 11,
+          "cqb_supp": 16,
+          "dp_brake": 21,
+          "long_supp": 26,
+          "comp_brake": 31,
+          "light_supp": 36
+        },
+        "barrel": {
+          "none": 0,
+          "short": 0,
+          "basic": 2,
+          "extended": 15,
+          "light": 25
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "fold_stubby": 3,
+          "adj_angled": 5,
+          "alloy_vert": 7,
+          "ribbed_stubby": 9,
+          "slim_angled": 12,
+          "slim_angled_smg": 12,
+          "slim_angled_sr": 12,
+          "ptt_grip_pod": 14,
+          "slim_handstop": 15,
+          "ribbed_vert": 17,
+          "canted_stubby": 19,
+          "full_angled": 22,
+          "full_angled_sr": 22,
+          "qd_grip_pod": 24,
+          "qd_grip_pod_sr": 24,
+          "bipod": 27,
+          "bipod_sr": 27,
+          "6h64_vert": 29,
+          "6h64_vert_db12": 29,
+          "6h64_vert_ks18k": 29,
+          "6h64_vert_svk86": 29,
+          "6h64_vert_vssm": 29,
+          "stipp_stubby": 32,
+          "stipp_stubby_db12": 32,
+          "stipp_stubby_ks18k": 32,
+          "stipp_stubby_svk86": 32,
+          "stipp_stubby_vssm": 32,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "lp_stubby": 37,
+          "lp_stubby_db12": 37,
+          "lp_stubby_ks18k": 37,
+          "lp_stubby_sr": 37,
+          "lp_stubby_svk86": 37,
+          "lp_stubby_vssm": 37,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "5mw_green": 9,
+          "50mw_green": 18,
+          "50mw_blue": 28,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "ads_taclight": 0,
+          "hip_taclight": 0,
+          "flashlight": 6
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "therm_hyb": 0,
+          "var_low": 6,
+          "var_high": 18,
+          "thermal": 27
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_rnd": 2,
+          "30_fast": 8,
+          "20_fast": 20,
+          "36_rnd": 30,
+          "40_rnd": 35,
+          "40_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 4,
+          "penetration": 7,
+          "hollow_pt": 23,
+          "lightweight": 33
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "match_trigger": 13
+        }
+      }
+    },
+    "m16a4": {
+      "metaId": "m16a4",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "linear_comp": 6,
+          "sp_brake": 14,
+          "std_supp": 16,
+          "cqb_supp": 20,
+          "dp_brake": 22,
+          "long_supp": 27,
+          "comp_brake": 29,
+          "flash_comp": 35,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "extended": 0,
+          "cryo": 0,
+          "basic": 2,
+          "heavy": 10,
+          "light": 18,
+          "heavy_ext": 25,
+          "short": 33
+        },
+        "grip": {
+          "none": 0,
+          "underslung_mount": 0,
+          "fold_stubby": 1,
+          "fold_vert": 3,
+          "adj_angled": 5,
+          "slim_handstop": 7,
+          "ptt_grip_pod": 9,
+          "alloy_vert": 11,
+          "slim_angled": 13,
+          "slim_angled_smg": 13,
+          "slim_angled_sr": 13,
+          "ribbed_stubby": 15,
+          "qd_grip_pod": 17,
+          "qd_grip_pod_sr": 17,
+          "full_angled": 19,
+          "full_angled_sr": 19,
+          "canted_stubby": 24,
+          "ribbed_vert": 26,
+          "6h64_vert": 28,
+          "6h64_vert_db12": 28,
+          "6h64_vert_ks18k": 28,
+          "6h64_vert_svk86": 28,
+          "6h64_vert_vssm": 28,
+          "bipod": 30,
+          "bipod_sr": 30,
+          "stipp_stubby": 32,
+          "stipp_stubby_db12": 32,
+          "stipp_stubby_ks18k": 32,
+          "stipp_stubby_svk86": 32,
+          "stipp_stubby_vssm": 32,
+          "lp_stubby": 34,
+          "lp_stubby_db12": 34,
+          "lp_stubby_ks18k": 34,
+          "lp_stubby_sr": 34,
+          "lp_stubby_svk86": 34,
+          "lp_stubby_vssm": 34,
+          "classic_vert": 36,
+          "classic_vert_db12": 36,
+          "classic_vert_ks18k": 36,
+          "classic_vert_svk86": 36,
+          "classic_vert_vssm": 36,
+          "classic_grip_pod": 38,
+          "classic_grip_pod_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 8,
+          "5mw_green": 20,
+          "50mw_green": 23,
+          "50mw_blue": 35,
+          "120mw_blue": 37
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 1
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "std_optic": 1,
+          "var_high": 13,
+          "thermal": 34
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_rnd": 4,
+          "30_fast": 11,
+          "20_fast": 18,
+          "36_rnd": 25,
+          "40_rnd": 33,
+          "40_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 4,
+          "penetration": 12,
+          "hollow_pt": 21,
+          "lightweight": 31
+        },
+        "ergo": {
+          "none": 0,
+          "rail_cover": 0,
+          "full_auto": 15,
+          "match_trigger": 30,
+          "mag_flare": 32
+        }
+      }
+    },
+    "m4a1": {
+      "metaId": "m4a1",
+      "unlockAtPlayerLevel": 2,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 15,
+          "comp_brake": 21,
+          "std_supp": 24,
+          "long_supp": 29,
+          "cqb_supp": 35,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "short": 0,
+          "basic": 3,
+          "extended": 13,
+          "light": 25
+        },
+        "grip": {
+          "none": 0,
+          "underslung_mount": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 9,
+          "fold_stubby": 11,
+          "ptt_grip_pod": 13,
+          "classic_vert": 15,
+          "classic_vert_db12": 15,
+          "classic_vert_ks18k": 15,
+          "classic_vert_svk86": 15,
+          "classic_vert_vssm": 15,
+          "6h64_vert": 18,
+          "6h64_vert_db12": 18,
+          "6h64_vert_ks18k": 18,
+          "6h64_vert_svk86": 18,
+          "6h64_vert_vssm": 18,
+          "adj_angled": 21,
+          "slim_angled": 23,
+          "slim_angled_smg": 23,
+          "slim_angled_sr": 23,
+          "ribbed_stubby": 25,
+          "canted_stubby": 27,
+          "full_angled": 29,
+          "full_angled_sr": 29,
+          "qd_grip_pod": 31,
+          "qd_grip_pod_sr": 31,
+          "bipod": 34,
+          "bipod_sr": 34,
+          "classic_grip_pod": 36,
+          "classic_grip_pod_sr": 36,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 17,
+          "thermal": 22
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_fast": 6,
+          "20_rnd": 14,
+          "30_fast": 22,
+          "36_rnd": 31,
+          "40_rnd": 34,
+          "40_fast": 38
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "lightweight": 18,
+          "hollow_pt": 28,
+          "frangible": 37
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "rail_cover": 0,
+          "mag_catch": 4,
+          "mag_flare": 16,
+          "match_trigger": 32
+        }
+      }
+    },
+    "m277": {
+      "metaId": "m277",
+      "unlockAtPlayerLevel": 11,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "light_supp": 0,
+          "sp_brake": 2,
+          "flash_hider": 11,
+          "linear_comp": 17,
+          "dp_brake": 22,
+          "comp_brake": 28,
+          "std_supp": 34,
+          "long_supp": 37,
+          "cqb_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 3,
+          "heavy_ext": 7,
+          "extended": 18,
+          "light": 35
+        },
+        "grip": {
+          "none": 0,
+          "underslung_mount": 0,
+          "fold_vert": 1,
+          "alloy_vert": 5,
+          "ribbed_vert": 9,
+          "fold_stubby": 11,
+          "ptt_grip_pod": 13,
+          "6h64_vert": 15,
+          "6h64_vert_db12": 15,
+          "6h64_vert_ks18k": 15,
+          "6h64_vert_svk86": 15,
+          "6h64_vert_vssm": 15,
+          "adj_angled": 18,
+          "slim_angled": 21,
+          "slim_angled_smg": 21,
+          "slim_angled_sr": 21,
+          "ribbed_stubby": 23,
+          "canted_stubby": 25,
+          "full_angled": 27,
+          "full_angled_sr": 27,
+          "qd_grip_pod": 29,
+          "qd_grip_pod_sr": 29,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "bipod": 33,
+          "bipod_sr": 33,
+          "classic_vert": 35,
+          "classic_vert_db12": 35,
+          "classic_vert_ks18k": 35,
+          "classic_vert_svk86": 35,
+          "classic_vert_vssm": 35,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_high": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 2,
+          "thermal": 22
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "15_rnd": 6,
+          "20_fast": 16,
+          "25_rnd": 25,
+          "25_fast": 32,
+          "30_rnd": 38
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 14,
+          "hollow_pt": 21,
+          "frangible": 31
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 4,
+          "mag_flare": 15,
+          "match_trigger": 24
+        }
+      }
+    },
+    "ak205": {
+      "metaId": "ak-205",
+      "unlockAtPlayerLevel": 22,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 2,
+          "dp_brake": 7,
+          "comp_brake": 13,
+          "std_supp": 18,
+          "long_supp": 24,
+          "cqb_supp": 28,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 3,
+          "light": 37
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 7,
+          "fold_stubby": 11,
+          "6h64_vert": 15,
+          "6h64_vert_db12": 15,
+          "6h64_vert_ks18k": 15,
+          "6h64_vert_svk86": 15,
+          "6h64_vert_vssm": 15,
+          "slim_angled": 19,
+          "slim_angled_smg": 19,
+          "slim_angled_sr": 19,
+          "ribbed_stubby": 22,
+          "canted_stubby": 25,
+          "full_angled": 29,
+          "full_angled_sr": 29,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 21,
+          "thermal": 26
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 4,
+          "36_rnd": 14,
+          "40_rnd": 17,
+          "40_fast": 22,
+          "45_rnd": 25,
+          "45_fast": 27,
+          "50_rnd": 35
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 9,
+          "lightweight": 15,
+          "hollow_pt": 23,
+          "frangible": 32,
+          "synthetic": 39
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_catch": 6,
+          "mag_flare": 16,
+          "match_trigger": 28
+        }
+      }
+    },
+    "m417a2": {
+      "metaId": "m417-a2",
+      "unlockAtPlayerLevel": 32,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "linear_comp": 1,
+          "dp_brake": 6,
+          "comp_brake": 14,
+          "std_supp": 21,
+          "long_supp": 28,
+          "flash_hider": 32,
+          "light_supp": 32,
+          "cqb_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 5,
+          "short": 13
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "underslung_mount": 0,
+          "fold_vert": 2,
+          "alloy_vert": 6,
+          "ribbed_vert": 8,
+          "ptt_grip_pod": 12,
+          "classic_vert": 14,
+          "classic_vert_db12": 14,
+          "classic_vert_ks18k": 14,
+          "classic_vert_svk86": 14,
+          "classic_vert_vssm": 14,
+          "fold_stubby": 16,
+          "6h64_vert": 18,
+          "6h64_vert_db12": 18,
+          "6h64_vert_ks18k": 18,
+          "6h64_vert_svk86": 18,
+          "6h64_vert_vssm": 18,
+          "adj_angled": 21,
+          "slim_angled": 23,
+          "slim_angled_smg": 23,
+          "slim_angled_sr": 23,
+          "ribbed_stubby": 25,
+          "canted_stubby": 27,
+          "full_angled": 29,
+          "full_angled_sr": 29,
+          "qd_grip_pod": 31,
+          "qd_grip_pod_sr": 31,
+          "bipod": 34,
+          "bipod_sr": 34,
+          "classic_grip_pod": 34,
+          "classic_grip_pod_sr": 34,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "5mw_green": 11,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 7
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "thermal": 17,
+          "var_high": 26
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "10_rnd": 15,
+          "20_fast": 24,
+          "25_rnd": 29
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 9,
+          "lightweight": 16,
+          "hollow_pt": 25,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_flare": 3,
+          "match_trigger": 13
+        }
+      }
+    },
+    "grtbc": {
+      "metaId": "grt-bc",
+      "unlockAtPlayerLevel": 41,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 14,
+          "comp_brake": 18,
+          "std_supp": 23,
+          "long_supp": 28,
+          "cqb_supp": 32,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "light": 0,
+          "basic": 4,
+          "extended": 16
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "ribbed_vert": 3,
+          "alloy_vert": 9,
+          "fold_stubby": 13,
+          "6h64_vert": 17,
+          "6h64_vert_db12": 17,
+          "6h64_vert_ks18k": 17,
+          "6h64_vert_svk86": 17,
+          "6h64_vert_vssm": 17,
+          "ribbed_stubby": 21,
+          "canted_stubby": 25,
+          "classic_vert": 29,
+          "classic_vert_db12": 29,
+          "classic_vert_ks18k": 29,
+          "classic_vert_svk86": 29,
+          "classic_vert_vssm": 29,
+          "stipp_stubby": 34,
+          "stipp_stubby_db12": 34,
+          "stipp_stubby_ks18k": 34,
+          "stipp_stubby_svk86": 34,
+          "stipp_stubby_vssm": 34,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "combo_red": 15,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "combo_green": 28,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 18,
+          "thermal": 27
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 8,
+          "36_rnd": 15,
+          "45_rnd": 24,
+          "45_fast": 37
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "lightweight": 22,
+          "hollow_pt": 31,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "grtbc_burst_mode": 0,
+          "mag_catch": 6,
+          "match_trigger": 27
+        }
+      }
+    },
+    "qbz192": {
+      "metaId": "qbz-192",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "linear_comp": 2,
+          "std_supp": 17
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 16
+        },
+        "grip": {
+          "none": 0,
+          "ptt_grip_pod": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "adj_angled": 15,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "full_angled": 25,
+          "full_angled_sr": 25,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "stipp_stubby": 36,
+          "stipp_stubby_db12": 36,
+          "stipp_stubby_ks18k": 36,
+          "stipp_stubby_svk86": 36,
+          "stipp_stubby_vssm": 36,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "thermal": 15,
+          "var_high": 17
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "36_rnd": 0,
+          "30_fast": 7,
+          "40_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 4,
+          "lightweight": 14,
+          "hollow_pt": 22,
+          "frangible": 29,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "rail_cover": 0,
+          "match_trigger": 27
+        }
+      }
+    },
+    "sg553r": {
+      "metaId": "sg-553r",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 9,
+          "dp_brake": 14,
+          "comp_brake": 16,
+          "sp_brake": 19,
+          "std_supp": 23,
+          "long_supp": 28,
+          "cqb_supp": 32,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 2,
+          "light": 24
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 7,
+          "fold_stubby": 11,
+          "6h64_vert": 14,
+          "6h64_vert_db12": 14,
+          "6h64_vert_ks18k": 14,
+          "6h64_vert_svk86": 14,
+          "6h64_vert_vssm": 14,
+          "slim_angled": 17,
+          "slim_angled_smg": 17,
+          "slim_angled_sr": 17,
+          "ribbed_stubby": 21,
+          "canted_stubby": 24,
+          "full_angled": 27,
+          "full_angled_sr": 27,
+          "classic_vert": 31,
+          "classic_vert_db12": 31,
+          "classic_vert_ks18k": 31,
+          "classic_vert_svk86": 31,
+          "classic_vert_vssm": 31,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 40,
+          "lp_stubby_db12": 40,
+          "lp_stubby_ks18k": 40,
+          "lp_stubby_sr": 40,
+          "lp_stubby_svk86": 40,
+          "lp_stubby_vssm": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "thermal": 18,
+          "var_high": 21
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_fast": 7,
+          "20_rnd": 15,
+          "30_fast": 22,
+          "36_rnd": 29,
+          "40_rnd": 34,
+          "40_fast": 39
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 6,
+          "lightweight": 13,
+          "hollow_pt": 25,
+          "frangible": 37
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "grtbc_burst_mode": 0,
+          "mag_catch": 3,
+          "match_trigger": 31
+        }
+      }
+    },
+    "sor300sc": {
+      "metaId": "sor-300sc",
+      "unlockAtPlayerLevel": 50,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 12,
+          "comp_brake": 17,
+          "std_supp": 22,
+          "long_supp": 27,
+          "cqb_supp": 32,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 5,
+          "short": 13,
+          "light": 24
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 6,
+          "ribbed_vert": 8,
+          "fold_stubby": 11,
+          "adj_angled": 15,
+          "6h64_vert": 16,
+          "6h64_vert_db12": 16,
+          "6h64_vert_ks18k": 16,
+          "6h64_vert_svk86": 16,
+          "6h64_vert_vssm": 16,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "full_angled": 21,
+          "full_angled_sr": 21,
+          "ribbed_stubby": 24,
+          "canted_stubby": 26,
+          "classic_vert": 33,
+          "classic_vert_db12": 33,
+          "classic_vert_ks18k": 33,
+          "classic_vert_svk86": 33,
+          "classic_vert_vssm": 33,
+          "stipp_stubby": 36,
+          "stipp_stubby_db12": 36,
+          "stipp_stubby_ks18k": 36,
+          "stipp_stubby_svk86": 36,
+          "stipp_stubby_vssm": 36,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "120mw_blue": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 9,
+          "50mw_green": 18,
+          "50mw_blue": 25
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 15
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 17,
+          "thermal": 25
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_fast": 6,
+          "20_rnd": 14,
+          "30_fast": 21,
+          "36_rnd": 28,
+          "40_rnd": 35,
+          "40_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 8,
+          "lightweight": 23,
+          "frangible": 31,
+          "hollow_pt": 38
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "rail_cover": 0,
+          "mag_flare": 19,
+          "match_trigger": 29
+        }
+      }
+    },
+    "sgx": {
+      "metaId": "sgx",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 5,
+          "linear_comp": 5,
+          "sp_brake": 5,
+          "std_supp": 14,
+          "dp_brake": 23,
+          "cqb_supp": 25,
+          "long_supp": 29,
+          "light_supp": 36,
+          "comp_brake": 39
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "short": 8,
+          "extended": 16,
+          "light": 34
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 5,
+          "ribbed_stubby": 5,
+          "alloy_vert": 7,
+          "ribbed_vert": 11,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "fold_stubby": 18,
+          "classic_vert": 24,
+          "classic_vert_db12": 24,
+          "classic_vert_ks18k": 24,
+          "classic_vert_svk86": 24,
+          "classic_vert_vssm": 24,
+          "lp_stubby": 27,
+          "lp_stubby_db12": 27,
+          "lp_stubby_ks18k": 27,
+          "lp_stubby_sr": 27,
+          "lp_stubby_svk86": 27,
+          "lp_stubby_vssm": 27,
+          "canted_stubby": 31,
+          "cmpct_handstop": 33,
+          "slim_angled": 35,
+          "slim_angled_smg": 35,
+          "slim_angled_sr": 35,
+          "stipp_stubby": 38,
+          "stipp_stubby_db12": 38,
+          "stipp_stubby_ks18k": 38,
+          "stipp_stubby_svk86": 38,
+          "stipp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "50mw_green": 12,
+          "5mw_green": 19,
+          "120mw_blue": 26,
+          "50mw_blue": 27
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 5
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 5,
+          "var_high": 19,
+          "thermal": 38
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "36_rnd": 10,
+          "30_fast": 22,
+          "41_rnd": 32
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 6,
+          "penetration": 21,
+          "hollow_pt": 37
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0
+        }
+      }
+    },
+    "pw5a3": {
+      "metaId": "pw5a3",
+      "unlockAtPlayerLevel": 6,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 5,
+          "std_supp": 9,
+          "linear_comp": 11,
+          "dp_brake": 13,
+          "cqb_supp": 16,
+          "long_supp": 24,
+          "comp_brake": 28,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "extended": 12
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 6,
+          "6h64_vert": 14,
+          "6h64_vert_db12": 14,
+          "6h64_vert_ks18k": 14,
+          "6h64_vert_svk86": 14,
+          "6h64_vert_vssm": 14,
+          "classic_vert": 21,
+          "classic_vert_db12": 21,
+          "classic_vert_ks18k": 21,
+          "classic_vert_svk86": 21,
+          "classic_vert_vssm": 21,
+          "fold_stubby": 23,
+          "ribbed_stubby": 26,
+          "canted_stubby": 29,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "lp_stubby": 33,
+          "lp_stubby_db12": 33,
+          "lp_stubby_ks18k": 33,
+          "lp_stubby_sr": 33,
+          "lp_stubby_svk86": 33,
+          "lp_stubby_vssm": 33,
+          "cmpct_handstop": 36,
+          "slim_angled": 38,
+          "slim_angled_smg": 38,
+          "slim_angled_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 8,
+          "5mw_green": 17,
+          "50mw_green": 22,
+          "50mw_blue": 27,
+          "120mw_blue": 35
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 18,
+          "thermal": 34
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 5,
+          "20_rnd": 18,
+          "40_rnd": 28
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 15,
+          "hollow_pt": 28,
+          "frangible": 33,
+          "synthetic": 40
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "grtbc_burst_mode": 0,
+          "mag_catch": 12
+        }
+      }
+    },
+    "pw7a2": {
+      "metaId": "pw7a2",
+      "unlockAtPlayerLevel": 19,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "linear_comp": 6,
+          "dp_brake": 11,
+          "comp_brake": 16,
+          "std_supp": 23,
+          "long_supp": 27,
+          "cqb_supp": 31,
+          "light_supp": 36
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 14
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "cmpct_handstop": 4,
+          "alloy_vert": 7,
+          "ribbed_vert": 9,
+          "fold_stubby": 13,
+          "slim_angled": 17,
+          "slim_angled_smg": 17,
+          "slim_angled_sr": 17,
+          "6h64_vert": 21,
+          "6h64_vert_db12": 21,
+          "6h64_vert_ks18k": 21,
+          "6h64_vert_svk86": 21,
+          "6h64_vert_vssm": 21,
+          "ribbed_stubby": 25,
+          "canted_stubby": 29,
+          "classic_vert": 33,
+          "classic_vert_db12": 33,
+          "classic_vert_ks18k": 33,
+          "classic_vert_svk86": 33,
+          "classic_vert_vssm": 33,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 40,
+          "lp_stubby_db12": 40,
+          "lp_stubby_ks18k": 40,
+          "lp_stubby_sr": 40,
+          "lp_stubby_svk86": 40,
+          "lp_stubby_vssm": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 35
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 17,
+          "thermal": 25
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 15,
+          "20_rnd": 24,
+          "40_rnd": 34
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 3,
+          "frangible": 18,
+          "hollow_pt": 28,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 22
+        }
+      }
+    },
+    "umg40": {
+      "metaId": "umg-40",
+      "unlockAtPlayerLevel": 29,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 2,
+          "linear_comp": 8,
+          "dp_brake": 13,
+          "comp_brake": 19,
+          "std_supp": 24,
+          "long_supp": 28,
+          "cqb_supp": 32,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 5,
+          "heavy_ext": 16,
+          "extended": 26,
+          "light": 34
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 1,
+          "cmpct_handstop": 4,
+          "alloy_vert": 7,
+          "ribbed_vert": 11,
+          "fold_stubby": 14,
+          "slim_angled": 17,
+          "slim_angled_smg": 17,
+          "slim_angled_sr": 17,
+          "6h64_vert": 21,
+          "6h64_vert_db12": 21,
+          "6h64_vert_ks18k": 21,
+          "6h64_vert_svk86": 21,
+          "6h64_vert_vssm": 21,
+          "ribbed_stubby": 25,
+          "canted_stubby": 29,
+          "classic_vert": 33,
+          "classic_vert_db12": 33,
+          "classic_vert_ks18k": 33,
+          "classic_vert_svk86": 33,
+          "classic_vert_vssm": 33,
+          "stipp_stubby": 36,
+          "stipp_stubby_db12": 36,
+          "stipp_stubby_ks18k": 36,
+          "stipp_stubby_svk86": 36,
+          "stipp_stubby_vssm": 36,
+          "lp_stubby": 40,
+          "lp_stubby_db12": 40,
+          "lp_stubby_ks18k": 40,
+          "lp_stubby_sr": 40,
+          "lp_stubby_svk86": 40,
+          "lp_stubby_vssm": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 12,
+          "50mw_green": 23,
+          "50mw_blue": 31,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 22
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 15,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "25_rnd": 6,
+          "30_fast": 15,
+          "25_fast": 25,
+          "36_rnd": 35
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 9,
+          "hollow_pt": 18,
+          "frangible": 27,
+          "synthetic": 39
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "grtbc_burst_mode": 0
+        }
+      }
+    },
+    "usg90": {
+      "metaId": "usg-90",
+      "unlockAtPlayerLevel": 36,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 1,
+          "linear_comp": 6,
+          "dp_brake": 11,
+          "comp_brake": 16,
+          "std_supp": 21,
+          "long_supp": 26,
+          "cqb_supp": 32,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "heavy": 3,
+          "heavy_ext": 15,
+          "light": 34
+        },
+        "grip": {
+          "none": 0
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 18,
+          "50mw_blue": 25,
+          "120mw_blue": 36
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 23
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 14,
+          "thermal": 24
+        },
+        "mag": {
+          "default": 0,
+          "50_rnd": 0
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 8,
+          "lightweight": 17,
+          "frangible": 28,
+          "hollow_pt": 40
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_catch": 13
+        }
+      }
+    },
+    "kv9": {
+      "metaId": "kv9",
+      "unlockAtPlayerLevel": 45,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 1,
+          "std_supp": 5,
+          "sp_brake": 8,
+          "linear_comp": 11,
+          "cqb_supp": 18,
+          "dp_brake": 23,
+          "long_supp": 28,
+          "light_supp": 34,
+          "comp_brake": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 10,
+          "light": 31
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 2,
+          "alloy_vert": 7,
+          "ribbed_vert": 12,
+          "6h64_vert": 16,
+          "6h64_vert_db12": 16,
+          "6h64_vert_ks18k": 16,
+          "6h64_vert_svk86": 16,
+          "6h64_vert_vssm": 16,
+          "fold_stubby": 19,
+          "lp_stubby": 22,
+          "lp_stubby_db12": 22,
+          "lp_stubby_ks18k": 22,
+          "lp_stubby_sr": 22,
+          "lp_stubby_svk86": 22,
+          "lp_stubby_vssm": 22,
+          "ribbed_stubby": 24,
+          "classic_vert": 26,
+          "classic_vert_db12": 26,
+          "classic_vert_ks18k": 26,
+          "classic_vert_svk86": 26,
+          "classic_vert_vssm": 26,
+          "canted_stubby": 29,
+          "stipp_stubby": 30,
+          "stipp_stubby_db12": 30,
+          "stipp_stubby_ks18k": 30,
+          "stipp_stubby_svk86": 30,
+          "stipp_stubby_vssm": 30,
+          "cmpct_handstop": 35,
+          "slim_angled": 38,
+          "slim_angled_smg": 38,
+          "slim_angled_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 14,
+          "5mw_green": 21,
+          "50mw_green": 30,
+          "50mw_blue": 32,
+          "120mw_blue": 39
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 4
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 21,
+          "thermal": 33
+        },
+        "mag": {
+          "default": 0,
+          "17_rnd": 0,
+          "17_fast": 15,
+          "23_rnd": 26,
+          "27_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 12,
+          "hollow_pt": 20,
+          "penetration": 36
+        },
+        "ergo": {
+          "none": 0,
+          "grtbc_burst_mode": 0
+        }
+      }
+    },
+    "scw10": {
+      "metaId": "scw-10",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 4,
+          "linear_comp": 7,
+          "std_supp": 14,
+          "dp_brake": 15,
+          "cqb_supp": 20,
+          "long_supp": 26,
+          "comp_brake": 30,
+          "light_supp": 34
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 1,
+          "light": 24
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 2,
+          "classic_vert": 8,
+          "classic_vert_db12": 8,
+          "classic_vert_ks18k": 8,
+          "classic_vert_svk86": 8,
+          "classic_vert_vssm": 8,
+          "ribbed_vert": 11,
+          "lp_stubby": 13,
+          "lp_stubby_db12": 13,
+          "lp_stubby_ks18k": 13,
+          "lp_stubby_sr": 13,
+          "lp_stubby_svk86": 13,
+          "lp_stubby_vssm": 13,
+          "6h64_vert": 16,
+          "6h64_vert_db12": 16,
+          "6h64_vert_ks18k": 16,
+          "6h64_vert_svk86": 16,
+          "6h64_vert_vssm": 16,
+          "alloy_vert": 18,
+          "fold_stubby": 21,
+          "ribbed_stubby": 25,
+          "canted_stubby": 29,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "cmpct_handstop": 36,
+          "slim_angled": 38,
+          "slim_angled_smg": 38,
+          "slim_angled_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 6,
+          "5mw_green": 18,
+          "50mw_green": 23,
+          "50mw_blue": 28,
+          "120mw_blue": 32
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 12
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 1,
+          "thermal": 37
+        },
+        "mag": {
+          "default": 0,
+          "15_rnd": 0,
+          "15_fast": 13,
+          "20_rnd": 22,
+          "25_rnd": 27
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 17,
+          "penetration": 23,
+          "hollow_pt": 33
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 21
+        }
+      }
+    },
+    "sl9": {
+      "metaId": "sl9",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "linear_comp": 3,
+          "std_supp": 7,
+          "sp_brake": 13,
+          "cqb_supp": 16,
+          "long_supp": 22,
+          "dp_brake": 23,
+          "comp_brake": 32,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "cryo": 0,
+          "light": 10,
+          "extended": 20,
+          "heavy": 28,
+          "heavy_ext": 34
+        },
+        "grip": {
+          "none": 0,
+          "factory_angled_db12": 0,
+          "fold_vert": 2,
+          "alloy_vert": 4,
+          "ribbed_vert": 6,
+          "classic_vert": 8,
+          "classic_vert_db12": 8,
+          "classic_vert_ks18k": 8,
+          "classic_vert_svk86": 8,
+          "classic_vert_vssm": 8,
+          "6h64_vert": 11,
+          "6h64_vert_db12": 11,
+          "6h64_vert_ks18k": 11,
+          "6h64_vert_svk86": 11,
+          "6h64_vert_vssm": 11,
+          "fold_stubby": 14,
+          "lp_stubby": 19,
+          "lp_stubby_db12": 19,
+          "lp_stubby_ks18k": 19,
+          "lp_stubby_sr": 19,
+          "lp_stubby_svk86": 19,
+          "lp_stubby_vssm": 19,
+          "ribbed_stubby": 27,
+          "canted_stubby": 33,
+          "stipp_stubby": 38,
+          "stipp_stubby_db12": 38,
+          "stipp_stubby_ks18k": 38,
+          "stipp_stubby_svk86": 38,
+          "stipp_stubby_vssm": 38,
+          "cmpct_handstop": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 9,
+          "5mw_green": 15,
+          "50mw_green": 21,
+          "50mw_blue": 24,
+          "combo_red": 29,
+          "120mw_blue": 36,
+          "combo_green": 39
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 17
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 8,
+          "thermal": 35
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "60_rnd": 30
+        },
+        "ammo": {
+          "standard": 0,
+          "frangible": 6,
+          "penetration": 15,
+          "hollow_pt": 25,
+          "synthetic": 36
+        },
+        "ergo": {
+          "none": 0,
+          "grtbc_burst_mode": 0,
+          "mag_catch": 31
+        }
+      }
+    },
+    "cz3a1": {
+      "metaId": "cz3a1",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "sp_brake": 1,
+          "linear_comp": 8,
+          "std_supp": 11,
+          "dp_brake": 18,
+          "cqb_supp": 25,
+          "long_supp": 29,
+          "comp_brake": 34,
+          "light_supp": 40
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "light": 4,
+          "extended": 24
+        },
+        "grip": {
+          "none": 0,
+          "slim_angled": 0,
+          "slim_angled_smg": 0,
+          "slim_angled_sr": 0,
+          "fold_vert": 1,
+          "fold_stubby": 2,
+          "cmpct_handstop": 6,
+          "alloy_vert": 9,
+          "ribbed_stubby": 13,
+          "ribbed_vert": 20,
+          "canted_stubby": 22,
+          "6h64_vert": 27,
+          "6h64_vert_db12": 27,
+          "6h64_vert_ks18k": 27,
+          "6h64_vert_svk86": 27,
+          "6h64_vert_vssm": 27,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "lp_stubby": 36,
+          "lp_stubby_db12": 36,
+          "lp_stubby_ks18k": 36,
+          "lp_stubby_sr": 36,
+          "lp_stubby_svk86": 36,
+          "lp_stubby_vssm": 36
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "5mw_green": 15,
+          "50mw_green": 24,
+          "50mw_blue": 29,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 16
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 19,
+          "thermal": 31
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_fast": 20,
+          "30_fast": 32,
+          "35_rnd": 36,
+          "35_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 16,
+          "hollow_pt": 28,
+          "frangible": 34
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "grtbc_burst_mode": 0,
+          "mag_catch": 12
+        }
+      }
+    },
+    "pp19": {
+      "metaId": "pp-19",
+      "unlockAtPlayerLevel": 0,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 4,
+          "dp_brake": 16,
+          "linear_comp": 24,
+          "comp_brake": 30,
+          "cqb_supp": 35
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 4,
+          "light": 23
+        },
+        "grip": {
+          "none": 0,
+          "cmpct_handstop": 2,
+          "fold_vert": 7,
+          "fold_stubby": 9,
+          "slim_angled": 12,
+          "slim_angled_smg": 12,
+          "slim_angled_sr": 12,
+          "alloy_vert": 14,
+          "ribbed_stubby": 17,
+          "ribbed_vert": 19,
+          "canted_stubby": 22,
+          "6h64_vert": 29,
+          "6h64_vert_db12": 29,
+          "6h64_vert_ks18k": 29,
+          "6h64_vert_svk86": 29,
+          "6h64_vert_vssm": 29,
+          "stipp_stubby": 32,
+          "stipp_stubby_db12": 32,
+          "stipp_stubby_ks18k": 32,
+          "stipp_stubby_svk86": 32,
+          "stipp_stubby_vssm": 32,
+          "classic_vert": 37,
+          "classic_vert_db12": 37,
+          "classic_vert_ks18k": 37,
+          "classic_vert_svk86": 37,
+          "classic_vert_vssm": 37,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 0,
+          "5mw_green": 11,
+          "50mw_green": 24,
+          "50mw_blue": 27,
+          "120mw_blue": 33,
+          "50mw_violet": 40
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 1
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "thermal": 0,
+          "var_high": 0
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_fast": 8,
+          "53_rnd": 16,
+          "30_fast": 32,
+          "35_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 6,
+          "hollow_pt": 19,
+          "frangible": 33,
+          "synthetic": 37
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 14,
+          "buffer": 28
+        }
+      }
+    },
+    "l110": {
+      "metaId": "l110",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 1,
+          "sp_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 13,
+          "comp_brake": 17,
+          "std_supp": 23,
+          "long_supp": 28,
+          "cqb_supp": 34,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 1,
+          "heavy_ext": 3,
+          "light": 37,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "bipod": 1,
+          "bipod_sr": 1,
+          "classic_grip_pod": 1,
+          "classic_grip_pod_sr": 1,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 14,
+          "6h64_vert_db12": 14,
+          "6h64_vert_ks18k": 14,
+          "6h64_vert_svk86": 14,
+          "6h64_vert_vssm": 14,
+          "slim_angled": 16,
+          "slim_angled_smg": 16,
+          "slim_angled_sr": 16,
+          "ribbed_stubby": 18,
+          "canted_stubby": 21,
+          "full_angled": 24,
+          "full_angled_sr": 24,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_green": 1,
+          "5mw_red": 5,
+          "50mw_green": 18,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "thermal": 19,
+          "var_high": 22
+        },
+        "mag": {
+          "default": 0,
+          "100_rnd": 0,
+          "200_rnd": 25
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 4,
+          "hollow_pt": 15,
+          "frangible": 31
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "drsiar": {
+      "metaId": "drs-iar",
+      "unlockAtPlayerLevel": 9,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 13,
+          "comp_brake": 18,
+          "std_supp": 24,
+          "long_supp": 29,
+          "cqb_supp": 34,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 0,
+          "basic": 3,
+          "extended": 11,
+          "heavy_ext": 14,
+          "short": 28,
+          "light": 37
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 5,
+          "fold_stubby": 8,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "adj_angled": 15,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "full_angled": 25,
+          "full_angled_sr": 25,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "classic_vert": 33,
+          "classic_vert_db12": 33,
+          "classic_vert_ks18k": 33,
+          "classic_vert_svk86": 33,
+          "classic_vert_vssm": 33,
+          "stipp_stubby": 36,
+          "stipp_stubby_db12": 36,
+          "stipp_stubby_ks18k": 36,
+          "stipp_stubby_svk86": 36,
+          "stipp_stubby_vssm": 36,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "thermal": 22,
+          "var_high": 30
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 6,
+          "36_rnd": 12,
+          "40_rnd": 17,
+          "40_fast": 22,
+          "45_rnd": 27,
+          "45_fast": 31,
+          "50_rnd": 35,
+          "60_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 9,
+          "lightweight": 15,
+          "hollow_pt": 25,
+          "frangible": 32,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "rail_cover": 0,
+          "mag_flare": 4,
+          "match_trigger": 16
+        }
+      }
+    },
+    "m60": {
+      "metaId": "m60",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 7,
+          "dp_brake": 13,
+          "comp_brake": 17,
+          "std_supp": 22,
+          "sp_brake": 24,
+          "long_supp": 27,
+          "cqb_supp": 32,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 0,
+          "heavy_ext": 4,
+          "light": 29,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 14,
+          "6h64_vert_db12": 14,
+          "6h64_vert_ks18k": 14,
+          "6h64_vert_svk86": 14,
+          "6h64_vert_vssm": 14,
+          "adj_angled": 16,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "full_angled": 25,
+          "full_angled_sr": 25,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 14,
+          "thermal": 23
+        },
+        "mag": {
+          "default": 0,
+          "100_rnd": 0,
+          "50_rnd": 24
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 3,
+          "hollow_pt": 15,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "rpkm": {
+      "metaId": "rpkm",
+      "unlockAtPlayerLevel": 30,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "slant_brake": 2,
+          "linear_comp": 7,
+          "dp_brake": 13,
+          "comp_brake": 17,
+          "std_supp": 22,
+          "long_supp": 27,
+          "cqb_supp": 31,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "heavy_ext": 0,
+          "basic": 3,
+          "heavy": 11,
+          "extended": 21,
+          "short": 28
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "adj_angled": 16,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "full_angled": 25,
+          "full_angled_sr": 25,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "classic_grip_pod": 29,
+          "classic_grip_pod_sr": 29,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 14,
+          "thermal": 23
+        },
+        "mag": {
+          "default": 0,
+          "40_rnd": 0,
+          "30_rnd": 6,
+          "36_rnd": 15,
+          "40_fast": 24,
+          "30_fast": 32,
+          "60_rnd": 35,
+          "75_rnd": 39
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 14,
+          "lightweight": 25,
+          "hollow_pt": 29,
+          "frangible": 34,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_flare": 4,
+          "match_trigger": 18
+        }
+      }
+    },
+    "m123k": {
+      "metaId": "m123k",
+      "unlockAtPlayerLevel": 38,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 2,
+          "dp_brake": 6,
+          "comp_brake": 13,
+          "std_supp": 17,
+          "long_supp": 23,
+          "cqb_supp": 28,
+          "light_supp": 34
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 3,
+          "heavy_ext": 22,
+          "short": 38,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "adj_angled": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 7,
+          "fold_stubby": 11,
+          "ptt_grip_pod": 14,
+          "6h64_vert": 16,
+          "6h64_vert_db12": 16,
+          "6h64_vert_ks18k": 16,
+          "6h64_vert_svk86": 16,
+          "6h64_vert_vssm": 16,
+          "ribbed_stubby": 18,
+          "canted_stubby": 21,
+          "full_angled": 24,
+          "full_angled_sr": 24,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "classic_grip_pod": 29,
+          "classic_grip_pod_sr": 29,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 16,
+          "thermal": 21
+        },
+        "mag": {
+          "default": 0,
+          "100_rnd": 0,
+          "200_rnd": 15
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 9,
+          "hollow_pt": 25,
+          "frangible": 39
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "m250": {
+      "metaId": "m250",
+      "unlockAtPlayerLevel": 46,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "light_supp": 0,
+          "flash_hider": 4,
+          "linear_comp": 7,
+          "dp_brake": 14,
+          "sp_brake": 18,
+          "comp_brake": 22,
+          "std_supp": 27,
+          "long_supp": 32,
+          "cqb_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 0,
+          "heavy_ext": 3,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "adj_angled": 15,
+          "slim_angled": 18,
+          "slim_angled_smg": 18,
+          "slim_angled_sr": 18,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "full_angled": 25,
+          "full_angled_sr": 25,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "120mw_blue": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 0
+        },
+        "sight": {
+          "iron": 0,
+          "var_high": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "50_rnd": 0,
+          "100_rnd": 22
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 16,
+          "hollow_pt": 24,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "kts100": {
+      "metaId": "kts100-mk8",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 3,
+          "linear_comp": 9,
+          "dp_brake": 13,
+          "comp_brake": 17,
+          "std_supp": 23,
+          "long_supp": 27,
+          "cqb_supp": 32,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "heavy_ext": 0,
+          "heavy": 2,
+          "short": 24,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "qd_grip_pod": 0,
+          "qd_grip_pod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "bipod": 4,
+          "bipod_sr": 4,
+          "alloy_vert": 7,
+          "ribbed_vert": 11,
+          "fold_stubby": 14,
+          "ptt_grip_pod": 16,
+          "6h64_vert": 18,
+          "6h64_vert_db12": 18,
+          "6h64_vert_ks18k": 18,
+          "6h64_vert_svk86": 18,
+          "6h64_vert_vssm": 18,
+          "slim_angled": 21,
+          "slim_angled_smg": 21,
+          "slim_angled_sr": 21,
+          "ribbed_stubby": 23,
+          "canted_stubby": 25,
+          "full_angled": 28,
+          "full_angled_sr": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "stipp_stubby": 37,
+          "stipp_stubby_db12": 37,
+          "stipp_stubby_ks18k": 37,
+          "stipp_stubby_svk86": 37,
+          "stipp_stubby_vssm": 37,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "combo_red": 22,
+          "50mw_blue": 26,
+          "120mw_blue": 33,
+          "combo_green": 34
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 13,
+          "thermal": 24
+        },
+        "mag": {
+          "default": 0,
+          "60_rnd": 0,
+          "45_rnd": 4,
+          "50_rnd": 11,
+          "60_fast": 21,
+          "45_fast": 29,
+          "100_rnd": 35
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 6,
+          "lightweight": 15,
+          "hollow_pt": 25,
+          "frangible": 31,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "rail_cover": 0,
+          "match_trigger": 16
+        }
+      }
+    },
+    "m240l": {
+      "metaId": "m240l",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "linear_comp": 2,
+          "dp_brake": 7,
+          "comp_brake": 15,
+          "std_supp": 22,
+          "long_supp": 28,
+          "cqb_supp": 34,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "heavy": 0,
+          "heavy_ext": 4,
+          "light": 23,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "classic_grip_pod": 0,
+          "classic_grip_pod_sr": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 6,
+          "fold_stubby": 9,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 14,
+          "6h64_vert_db12": 14,
+          "6h64_vert_ks18k": 14,
+          "6h64_vert_svk86": 14,
+          "6h64_vert_vssm": 14,
+          "slim_angled": 16,
+          "slim_angled_smg": 16,
+          "slim_angled_sr": 16,
+          "ribbed_stubby": 18,
+          "canted_stubby": 21,
+          "full_angled": 24,
+          "full_angled_sr": 24,
+          "qd_grip_pod": 27,
+          "qd_grip_pod_sr": 27,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 5,
+          "5mw_green": 12,
+          "50mw_green": 19,
+          "50mw_blue": 26,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 11,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "50_rnd": 0,
+          "75_rnd": 17,
+          "100_rnd": 31
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 13,
+          "hollow_pt": 25,
+          "frangible": 37
+        },
+        "ergo": {
+          "none": 0,
+          "rail_cover": 0
+        }
+      }
+    },
+    "m121a2": {
+      "metaId": "m121-a2",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "std_supp": 2,
+          "dp_brake": 9,
+          "linear_comp": 13,
+          "cqb_supp": 16,
+          "comp_brake": 23,
+          "long_supp": 30,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "short": 0,
+          "heavy": 5,
+          "heavy_ext": 21,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "fold_stubby": 1,
+          "fold_vert": 4,
+          "ptt_grip_pod": 7,
+          "slim_handstop": 11,
+          "alloy_vert": 15,
+          "ribbed_stubby": 17,
+          "slim_angled": 19,
+          "slim_angled_smg": 19,
+          "slim_angled_sr": 19,
+          "ribbed_vert": 20,
+          "canted_stubby": 25,
+          "classic_grip_pod": 27,
+          "classic_grip_pod_sr": 27,
+          "full_angled": 29,
+          "full_angled_sr": 29,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "6h64_vert": 33,
+          "6h64_vert_db12": 33,
+          "6h64_vert_ks18k": 33,
+          "6h64_vert_svk86": 33,
+          "6h64_vert_vssm": 33,
+          "lp_stubby": 35,
+          "lp_stubby_db12": 35,
+          "lp_stubby_ks18k": 35,
+          "lp_stubby_sr": 35,
+          "lp_stubby_svk86": 35,
+          "lp_stubby_vssm": 35,
+          "classic_vert": 37,
+          "classic_vert_db12": 37,
+          "classic_vert_ks18k": 37,
+          "classic_vert_svk86": 37,
+          "classic_vert_vssm": 37,
+          "qd_grip_pod": 39,
+          "qd_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 12,
+          "50mw_green": 23,
+          "50mw_blue": 28,
+          "120mw_blue": 35
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "therm_hyb": 0,
+          "var_low": 2,
+          "var_high": 28,
+          "thermal": 34
+        },
+        "mag": {
+          "default": 0,
+          "50_rnd": 0,
+          "50_fast": 6,
+          "100_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "frangible": 14,
+          "hollow_pt": 33
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "rpk74m": {
+      "metaId": "rpk-74m",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "slant_brake": 2,
+          "std_supp": 8,
+          "linear_comp": 11,
+          "cqb_supp": 15,
+          "dp_brake": 18,
+          "long_supp": 24,
+          "flash_comp": 27,
+          "light_supp": 33,
+          "comp_brake": 36
+        },
+        "barrel": {
+          "none": 0,
+          "heavy_ext": 0,
+          "basic": 4,
+          "heavy": 20,
+          "short": 31
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "adj_angled": 1,
+          "fold_vert": 3,
+          "fold_stubby": 7,
+          "ptt_grip_pod": 10,
+          "alloy_vert": 12,
+          "ribbed_stubby": 14,
+          "slim_angled": 17,
+          "slim_angled_smg": 17,
+          "slim_angled_sr": 17,
+          "slim_handstop": 19,
+          "canted_stubby": 21,
+          "ribbed_vert": 23,
+          "full_angled": 26,
+          "full_angled_sr": 26,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "6h64_vert": 30,
+          "6h64_vert_db12": 30,
+          "6h64_vert_ks18k": 30,
+          "6h64_vert_svk86": 30,
+          "6h64_vert_vssm": 30,
+          "stipp_stubby": 32,
+          "stipp_stubby_db12": 32,
+          "stipp_stubby_ks18k": 32,
+          "stipp_stubby_svk86": 32,
+          "stipp_stubby_vssm": 32,
+          "classic_vert": 35,
+          "classic_vert_db12": 35,
+          "classic_vert_ks18k": 35,
+          "classic_vert_svk86": 35,
+          "classic_vert_vssm": 35,
+          "lp_stubby": 37,
+          "lp_stubby_db12": 37,
+          "lp_stubby_ks18k": 37,
+          "lp_stubby_sr": 37,
+          "lp_stubby_svk86": 37,
+          "lp_stubby_vssm": 37,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 6,
+          "5mw_green": 9,
+          "50mw_green": 16,
+          "50mw_blue": 34,
+          "120mw_blue": 40
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 1
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "std_optic": 1,
+          "var_high": 11,
+          "thermal": 29
+        },
+        "mag": {
+          "default": 0,
+          "45_rnd": 0,
+          "30_rnd": 5,
+          "30_fast": 10,
+          "36_rnd": 15,
+          "45_fast": 22,
+          "50_rnd": 30,
+          "60_rnd": 35,
+          "95_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 5,
+          "lightweight": 13,
+          "frangible": 22,
+          "hollow_pt": 25,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_flare": 12,
+          "match_trigger": 38
+        }
+      }
+    },
+    "m39emr": {
+      "metaId": "m39-emr",
+      "unlockAtPlayerLevel": 4,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 4,
+          "light_supp": 6,
+          "std_supp": 7,
+          "linear_comp": 8,
+          "cqb_supp": 19,
+          "dp_brake": 24,
+          "long_supp": 28,
+          "comp_brake": 38
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 0,
+          "short": 20
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 3,
+          "ribbed_vert": 7,
+          "ptt_grip_pod": 11,
+          "6h64_vert": 15,
+          "6h64_vert_db12": 15,
+          "6h64_vert_ks18k": 15,
+          "6h64_vert_svk86": 15,
+          "6h64_vert_vssm": 15,
+          "bipod": 17,
+          "bipod_sr": 17,
+          "classic_vert": 21,
+          "classic_vert_db12": 21,
+          "classic_vert_ks18k": 21,
+          "classic_vert_svk86": 21,
+          "classic_vert_vssm": 21,
+          "fold_stubby": 23,
+          "ribbed_stubby": 25,
+          "canted_stubby": 27,
+          "stipp_stubby": 29,
+          "stipp_stubby_db12": 29,
+          "stipp_stubby_ks18k": 29,
+          "stipp_stubby_svk86": 29,
+          "stipp_stubby_vssm": 29,
+          "lp_stubby": 32,
+          "lp_stubby_db12": 32,
+          "lp_stubby_ks18k": 32,
+          "lp_stubby_sr": 32,
+          "lp_stubby_svk86": 32,
+          "lp_stubby_vssm": 32,
+          "adj_angled": 33,
+          "qd_grip_pod": 33,
+          "qd_grip_pod_sr": 33,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35,
+          "full_angled": 37,
+          "full_angled_sr": 37,
+          "slim_angled": 39,
+          "slim_angled_smg": 39,
+          "slim_angled_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 0,
+          "50mw_violet": 0,
+          "5mw_green": 13,
+          "50mw_green": 18,
+          "50mw_blue": 24,
+          "120mw_blue": 29
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2,
+          "range_finder": 26
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 8,
+          "thermal": 25
+        },
+        "mag": {
+          "default": 0,
+          "20_fast": 0,
+          "20_rnd": 0,
+          "15_fast": 6,
+          "15_rnd": 12,
+          "25_rnd": 15
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 10,
+          "frangible": 20,
+          "long_range": 28,
+          "lightweight": 30,
+          "hollow_pt": 40
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_catch": 19
+        }
+      }
+    },
+    "lmr27": {
+      "metaId": "lmr27",
+      "unlockAtPlayerLevel": 16,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 3,
+          "sp_brake": 6,
+          "std_supp": 9,
+          "cqb_supp": 17,
+          "long_supp": 20,
+          "dp_brake": 30,
+          "light_supp": 36,
+          "comp_brake": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 15,
+          "light": 40
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "factory_angled_db12": 0,
+          "slim_handstop": 0,
+          "fold_vert": 2,
+          "alloy_vert": 7,
+          "ribbed_vert": 11,
+          "6h64_vert": 13,
+          "6h64_vert_db12": 13,
+          "6h64_vert_ks18k": 13,
+          "6h64_vert_svk86": 13,
+          "6h64_vert_vssm": 13,
+          "ptt_grip_pod": 15,
+          "classic_vert": 16,
+          "classic_vert_db12": 16,
+          "classic_vert_ks18k": 16,
+          "classic_vert_svk86": 16,
+          "classic_vert_vssm": 16,
+          "fold_stubby": 21,
+          "ribbed_stubby": 24,
+          "qd_grip_pod": 25,
+          "qd_grip_pod_sr": 25,
+          "canted_stubby": 26,
+          "stipp_stubby": 29,
+          "stipp_stubby_db12": 29,
+          "stipp_stubby_ks18k": 29,
+          "stipp_stubby_svk86": 29,
+          "stipp_stubby_vssm": 29,
+          "lp_stubby": 31,
+          "lp_stubby_db12": 31,
+          "lp_stubby_ks18k": 31,
+          "lp_stubby_sr": 31,
+          "lp_stubby_svk86": 31,
+          "lp_stubby_vssm": 31,
+          "adj_angled": 33,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35,
+          "full_angled": 36,
+          "full_angled_sr": 36
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 1,
+          "5mw_green": 5,
+          "50mw_green": 16,
+          "50mw_blue": 28,
+          "120mw_blue": 34
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 3,
+          "range_finder": 27
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 10,
+          "thermal": 35
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0,
+          "10_fast": 5,
+          "15_rnd": 14,
+          "15_fast": 19,
+          "20_rnd": 28,
+          "20_fast": 39
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 7,
+          "hollow_pt": 11,
+          "frangible": 19,
+          "synthetic": 38
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 4
+        }
+      }
+    },
+    "svk86": {
+      "metaId": "svk-86",
+      "unlockAtPlayerLevel": 33,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "sp_brake": 0,
+          "tp_brake": 0,
+          "std_supp": 1,
+          "flash_hider": 5,
+          "linear_comp": 7,
+          "cqb_supp": 14,
+          "comp_brake": 20,
+          "long_supp": 21,
+          "light_supp": 30
+        },
+        "barrel": {
+          "none": 0,
+          "extended": 0,
+          "basic": 10,
+          "short": 39
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 2,
+          "alloy_vert": 4,
+          "ribbed_vert": 8,
+          "6h64_vert": 11,
+          "6h64_vert_db12": 11,
+          "6h64_vert_ks18k": 11,
+          "6h64_vert_svk86": 11,
+          "6h64_vert_vssm": 11,
+          "classic_vert": 13,
+          "classic_vert_db12": 13,
+          "classic_vert_ks18k": 13,
+          "classic_vert_svk86": 13,
+          "classic_vert_vssm": 13,
+          "ptt_grip_pod": 15,
+          "bipod": 17,
+          "bipod_sr": 17,
+          "fold_stubby": 17,
+          "ribbed_stubby": 19,
+          "canted_stubby": 22,
+          "stipp_stubby": 23,
+          "stipp_stubby_db12": 23,
+          "stipp_stubby_ks18k": 23,
+          "stipp_stubby_svk86": 23,
+          "stipp_stubby_vssm": 23,
+          "lp_stubby": 27,
+          "lp_stubby_db12": 27,
+          "lp_stubby_ks18k": 27,
+          "lp_stubby_sr": 27,
+          "lp_stubby_svk86": 27,
+          "lp_stubby_vssm": 27,
+          "qd_grip_pod": 29,
+          "qd_grip_pod_sr": 29,
+          "slim_angled": 32,
+          "slim_angled_smg": 32,
+          "slim_angled_sr": 32,
+          "classic_grip_pod": 36,
+          "classic_grip_pod_sr": 36,
+          "full_angled": 40,
+          "full_angled_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 18,
+          "50mw_green": 26,
+          "50mw_blue": 33,
+          "120mw_blue": 36
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 6,
+          "range_finder": 38
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 9,
+          "thermal": 25
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0,
+          "10_fast": 25
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 15,
+          "frangible": 20,
+          "hollow_pt": 30,
+          "long_range": 37
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "svdm": {
+      "metaId": "svdm",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "cqb_supp": 5,
+          "linear_comp": 6,
+          "std_supp": 9,
+          "sp_brake": 10,
+          "long_supp": 11,
+          "dp_brake": 19,
+          "comp_brake": 31,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "short": 0,
+          "basic": 1,
+          "extended": 15,
+          "light": 30
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "ptt_grip_pod": 7,
+          "ribbed_vert": 8,
+          "6h64_vert": 12,
+          "6h64_vert_db12": 12,
+          "6h64_vert_ks18k": 12,
+          "6h64_vert_svk86": 12,
+          "6h64_vert_vssm": 12,
+          "classic_vert": 16,
+          "classic_vert_db12": 16,
+          "classic_vert_ks18k": 16,
+          "classic_vert_svk86": 16,
+          "classic_vert_vssm": 16,
+          "bipod": 17,
+          "bipod_sr": 17,
+          "fold_stubby": 17,
+          "qd_grip_pod": 20,
+          "qd_grip_pod_sr": 20,
+          "ribbed_stubby": 21,
+          "canted_stubby": 23,
+          "stipp_stubby": 27,
+          "stipp_stubby_db12": 27,
+          "stipp_stubby_ks18k": 27,
+          "stipp_stubby_svk86": 27,
+          "stipp_stubby_vssm": 27,
+          "lp_stubby": 32,
+          "lp_stubby_db12": 32,
+          "lp_stubby_ks18k": 32,
+          "lp_stubby_sr": 32,
+          "lp_stubby_svk86": 32,
+          "lp_stubby_vssm": 32,
+          "adj_angled": 33,
+          "classic_grip_pod": 34,
+          "classic_grip_pod_sr": 34,
+          "slim_angled": 37,
+          "slim_angled_smg": 37,
+          "slim_angled_sr": 37,
+          "full_angled": 40,
+          "full_angled_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 2,
+          "5mw_green": 6,
+          "50mw_green": 15,
+          "50mw_blue": 26,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 3,
+          "range_finder": 21
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 2,
+          "var_high": 18,
+          "thermal": 29
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0,
+          "5_fast": 14,
+          "10_fast": 16,
+          "20_rnd": 25
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 14,
+          "long_range": 24,
+          "frangible": 29,
+          "hollow_pt": 36
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_catch": 25
+        }
+      }
+    },
+    "grtcps": {
+      "metaId": "grt-cps",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "linear_comp": 1,
+          "std_supp": 9,
+          "sp_brake": 13,
+          "cqb_supp": 19,
+          "dp_brake": 23,
+          "long_supp": 29,
+          "comp_brake": 34,
+          "light_supp": 38
+        },
+        "barrel": {
+          "none": 0,
+          "extended": 0,
+          "basic": 5,
+          "light": 25,
+          "short": 35
+        },
+        "grip": {
+          "none": 0,
+          "fold_vert": 2,
+          "fold_stubby": 4,
+          "alloy_vert": 8,
+          "bipod": 10,
+          "bipod_sr": 10,
+          "ribbed_stubby": 12,
+          "slim_angled": 14,
+          "slim_angled_smg": 14,
+          "slim_angled_sr": 14,
+          "slim_handstop": 15,
+          "ribbed_vert": 16,
+          "canted_stubby": 18,
+          "ptt_grip_pod": 20,
+          "full_angled": 22,
+          "full_angled_sr": 22,
+          "6h64_vert": 24,
+          "6h64_vert_db12": 24,
+          "6h64_vert_ks18k": 24,
+          "6h64_vert_svk86": 24,
+          "6h64_vert_vssm": 24,
+          "stipp_stubby": 26,
+          "stipp_stubby_db12": 26,
+          "stipp_stubby_ks18k": 26,
+          "stipp_stubby_svk86": 26,
+          "stipp_stubby_vssm": 26,
+          "classic_vert": 28,
+          "classic_vert_db12": 28,
+          "classic_vert_ks18k": 28,
+          "classic_vert_svk86": 28,
+          "classic_vert_vssm": 28,
+          "qd_grip_pod": 30,
+          "qd_grip_pod_sr": 30,
+          "lp_stubby": 32,
+          "lp_stubby_db12": 32,
+          "lp_stubby_ks18k": 32,
+          "lp_stubby_sr": 32,
+          "lp_stubby_svk86": 32,
+          "lp_stubby_vssm": 32,
+          "classic_grip_pod": 35,
+          "classic_grip_pod_sr": 35
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 11,
+          "50mw_green": 21,
+          "50mw_blue": 27,
+          "120mw_blue": 39
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 6,
+          "range_finder": 37
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 7,
+          "thermal": 32
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "20_fast": 7,
+          "15_rnd": 25,
+          "30_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "hollow_pt": 0,
+          "frangible": 31,
+          "penetration": 33,
+          "lightweight": 36,
+          "synthetic": 40
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0
+        }
+      }
+    },
+    "m2010esr": {
+      "metaId": "m2010-esr",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "sp_brake": 2,
+          "comp_brake": 7,
+          "flash_hider": 9,
+          "dp_brake": 12,
+          "std_supp": 21,
+          "long_supp": 28,
+          "cqb_supp": 34,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "light": 2,
+          "basic": 11,
+          "extended": 16
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 2,
+          "bipod_sr": 2,
+          "full_angled": 2,
+          "full_angled_sr": 2,
+          "lp_stubby": 14,
+          "lp_stubby_db12": 14,
+          "lp_stubby_ks18k": 14,
+          "lp_stubby_sr": 14,
+          "lp_stubby_svk86": 14,
+          "lp_stubby_vssm": 14,
+          "qd_grip_pod": 20,
+          "qd_grip_pod_sr": 20,
+          "slim_angled": 22,
+          "slim_angled_smg": 22,
+          "slim_angled_sr": 22,
+          "classic_grip_pod": 37,
+          "classic_grip_pod_sr": 37
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 2,
+          "5mw_green": 7,
+          "50mw_green": 18,
+          "50mw_blue": 29,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "range_finder": 2,
+          "flashlight": 25
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 2,
+          "std_optic": 4,
+          "thermal": 15
+        },
+        "mag": {
+          "default": 0,
+          "5_rnd": 0,
+          "5_fast": 15,
+          "8_rnd": 24
+        },
+        "ammo": {
+          "standard": 0,
+          "long_range": 3,
+          "penetration": 26,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0,
+          "ads_bolt": 13
+        }
+      }
+    },
+    "sv98": {
+      "metaId": "sv-98",
+      "unlockAtPlayerLevel": 26,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "dp_brake": 0,
+          "thread_prot": 3,
+          "comp_brake": 11,
+          "long_supp": 35
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 9,
+          "light": 17,
+          "short": 34
+        },
+        "grip": {
+          "none": 0,
+          "lp_stubby": 1,
+          "lp_stubby_db12": 1,
+          "lp_stubby_ks18k": 1,
+          "lp_stubby_sr": 1,
+          "lp_stubby_svk86": 1,
+          "lp_stubby_vssm": 1,
+          "full_angled": 7,
+          "full_angled_sr": 7,
+          "slim_angled": 22,
+          "slim_angled_smg": 22,
+          "slim_angled_sr": 22,
+          "bipod": 23,
+          "bipod_sr": 23,
+          "qd_grip_pod": 30,
+          "qd_grip_pod_sr": 30,
+          "classic_grip_pod": 37,
+          "classic_grip_pod_sr": 37
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 1,
+          "50mw_green": 13,
+          "5mw_green": 14,
+          "50mw_blue": 29,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "range_finder": 7,
+          "flashlight": 25
+        },
+        "sight": {
+          "iron": 0,
+          "var_high": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 4,
+          "thermal": 15
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0
+        },
+        "ammo": {
+          "standard": 0,
+          "long_range": 3,
+          "penetration": 21,
+          "frangible": 28
+        },
+        "ergo": {
+          "none": 0,
+          "buffer": 0,
+          "mag_catch": 5,
+          "ads_bolt": 13
+        }
+      }
+    },
+    "psr": {
+      "metaId": "psr",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "dp_brake": 0,
+          "flash_hider": 3,
+          "comp_brake": 7,
+          "sp_brake": 11,
+          "std_supp": 21,
+          "long_supp": 28,
+          "light_supp": 34,
+          "cqb_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "extended": 0,
+          "basic": 11
+        },
+        "grip": {
+          "none": 0,
+          "lp_stubby": 1,
+          "lp_stubby_db12": 1,
+          "lp_stubby_ks18k": 1,
+          "lp_stubby_sr": 1,
+          "lp_stubby_svk86": 1,
+          "lp_stubby_vssm": 1,
+          "full_angled": 9,
+          "full_angled_sr": 9,
+          "slim_angled": 22,
+          "slim_angled_smg": 22,
+          "slim_angled_sr": 22,
+          "bipod": 24,
+          "bipod_sr": 24,
+          "qd_grip_pod": 30,
+          "qd_grip_pod_sr": 30,
+          "classic_grip_pod": 37,
+          "classic_grip_pod_sr": 37
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 1,
+          "5mw_green": 12,
+          "50mw_green": 18,
+          "50mw_blue": 29,
+          "120mw_blue": 33
+        },
+        "light": {
+          "none": 0,
+          "range_finder": 7,
+          "flashlight": 27
+        },
+        "sight": {
+          "iron": 0,
+          "var_high": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 4,
+          "thermal": 15
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0,
+          "7_rnd": 9
+        },
+        "ammo": {
+          "standard": 0,
+          "long_range": 3,
+          "penetration": 26,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0,
+          "ads_bolt": 13,
+          "mag_catch": 17
+        }
+      }
+    },
+    "miniscout": {
+      "metaId": "mini-scout",
+      "unlockAtPlayerLevel": 50,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_comp": 0,
+          "flash_hider": 0,
+          "sp_brake": 1,
+          "dp_brake": 7,
+          "comp_brake": 13,
+          "std_supp": 19,
+          "long_supp": 26,
+          "cqb_supp": 32,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 4,
+          "light": 14,
+          "short": 22
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 0,
+          "bipod_sr": 0,
+          "full_angled": 2,
+          "full_angled_sr": 2,
+          "lp_stubby": 9,
+          "lp_stubby_db12": 9,
+          "lp_stubby_ks18k": 9,
+          "lp_stubby_sr": 9,
+          "lp_stubby_svk86": 9,
+          "lp_stubby_vssm": 9,
+          "qd_grip_pod": 16,
+          "qd_grip_pod_sr": 16,
+          "slim_angled": 31,
+          "slim_angled_smg": 31,
+          "slim_angled_sr": 31,
+          "classic_grip_pod": 37,
+          "classic_grip_pod_sr": 37
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 3,
+          "5mw_green": 12,
+          "50mw_green": 21,
+          "50mw_blue": 28,
+          "120mw_blue": 36
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 6,
+          "range_finder": 24
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 2,
+          "thermal": 14
+        },
+        "mag": {
+          "default": 0,
+          "10_rnd": 0,
+          "10_fast": 8,
+          "15_rnd": 17,
+          "15_fast": 27,
+          "20_rnd": 34,
+          "20_fast": 38
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "frangible": 29
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "l115": {
+      "metaId": "l115",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "dp_brake": 0,
+          "std_supp": 4,
+          "sp_brake": 10,
+          "cqb_supp": 15,
+          "comp_brake": 23,
+          "light_supp": 32,
+          "long_supp": 40
+        },
+        "barrel": {
+          "none": 0,
+          "light": 0,
+          "basic": 2,
+          "extended": 18,
+          "short": 33
+        },
+        "grip": {
+          "none": 0,
+          "bipod": 1,
+          "bipod_sr": 1,
+          "full_angled": 8,
+          "full_angled_sr": 8,
+          "qd_grip_pod": 16,
+          "qd_grip_pod_sr": 16,
+          "lp_stubby": 22,
+          "lp_stubby_db12": 22,
+          "lp_stubby_ks18k": 22,
+          "lp_stubby_sr": 22,
+          "lp_stubby_svk86": 22,
+          "lp_stubby_vssm": 22,
+          "slim_angled": 35,
+          "slim_angled_smg": 35,
+          "slim_angled_sr": 35,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 3,
+          "5mw_green": 7,
+          "50mw_green": 13,
+          "50mw_blue": 19,
+          "120mw_blue": 27
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 5,
+          "range_finder": 37
+        },
+        "sight": {
+          "iron": 0,
+          "var_high": 0,
+          "var_low": 0,
+          "std_optic": 1,
+          "thermal": 30
+        },
+        "mag": {
+          "default": 0,
+          "5_rnd": 0,
+          "7_rnd": 20,
+          "7_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 11,
+          "frangible": 17,
+          "long_range": 30
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 6,
+          "ads_bolt": 29
+        }
+      }
+    },
+    "m87a1": {
+      "metaId": "m87a1",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "cqb_supp": 18,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "alloy_vert": 2,
+          "ribbed_stubby": 5,
+          "stipp_stubby": 7,
+          "stipp_stubby_db12": 7,
+          "stipp_stubby_ks18k": 7,
+          "stipp_stubby_svk86": 7,
+          "stipp_stubby_vssm": 7,
+          "slim_angled": 10,
+          "slim_angled_smg": 10,
+          "slim_angled_sr": 10,
+          "fold_vert": 14,
+          "fold_stubby": 17,
+          "adj_angled": 19,
+          "6h64_vert": 21,
+          "6h64_vert_db12": 21,
+          "6h64_vert_ks18k": 21,
+          "6h64_vert_svk86": 21,
+          "6h64_vert_vssm": 21,
+          "canted_stubby": 24,
+          "ribbed_vert": 28,
+          "classic_vert": 31,
+          "classic_vert_db12": 31,
+          "classic_vert_ks18k": 31,
+          "classic_vert_svk86": 31,
+          "classic_vert_vssm": 31,
+          "lp_stubby": 34,
+          "lp_stubby_db12": 34,
+          "lp_stubby_ks18k": 34,
+          "lp_stubby_sr": 34,
+          "lp_stubby_svk86": 34,
+          "lp_stubby_vssm": 34,
+          "full_angled": 38,
+          "full_angled_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "50mw_blue": 15,
+          "5mw_green": 22,
+          "50mw_green": 35,
+          "120mw_blue": 40
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 13
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 14,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "7_rnd": 0,
+          "5_rnd": 6,
+          "6_rnd": 33
+        },
+        "ammo": {
+          "standard": 0,
+          "buckshot": 0,
+          "slugs": 8,
+          "flechette": 26
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "m1014": {
+      "metaId": "m1014",
+      "unlockAtPlayerLevel": 42,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "cqb_supp": 0,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 40
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "alloy_vert": 2,
+          "ribbed_stubby": 5,
+          "stipp_stubby": 7,
+          "stipp_stubby_db12": 7,
+          "stipp_stubby_ks18k": 7,
+          "stipp_stubby_svk86": 7,
+          "stipp_stubby_vssm": 7,
+          "slim_angled": 10,
+          "slim_angled_smg": 10,
+          "slim_angled_sr": 10,
+          "fold_vert": 14,
+          "fold_stubby": 17,
+          "adj_angled": 19,
+          "6h64_vert": 21,
+          "6h64_vert_db12": 21,
+          "6h64_vert_ks18k": 21,
+          "6h64_vert_svk86": 21,
+          "6h64_vert_vssm": 21,
+          "canted_stubby": 25,
+          "ribbed_vert": 29,
+          "classic_vert": 32,
+          "classic_vert_db12": 32,
+          "classic_vert_ks18k": 32,
+          "classic_vert_svk86": 32,
+          "classic_vert_vssm": 32,
+          "lp_stubby": 36,
+          "lp_stubby_db12": 36,
+          "lp_stubby_ks18k": 36,
+          "lp_stubby_sr": 36,
+          "lp_stubby_svk86": 36,
+          "lp_stubby_vssm": 36,
+          "full_angled": 39,
+          "full_angled_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "50mw_blue": 15,
+          "5mw_green": 23,
+          "50mw_green": 34,
+          "120mw_blue": 40
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 13
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "var_high": 14,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "4_rnd": 6
+        },
+        "ammo": {
+          "standard": 0,
+          "buckshot": 0,
+          "slugs": 8,
+          "flechette": 27
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "ks18k": {
+      "metaId": "185ks-k",
+      "unlockAtPlayerLevel": 15,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "dp_brake": 13,
+          "cqb_supp": 18,
+          "light_supp": 37
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "extended": 29
+        },
+        "grip": {
+          "none": 0,
+          "slim_handstop": 0,
+          "alloy_vert": 2,
+          "ribbed_stubby": 5,
+          "stipp_stubby": 7,
+          "stipp_stubby_db12": 7,
+          "stipp_stubby_ks18k": 7,
+          "stipp_stubby_svk86": 7,
+          "stipp_stubby_vssm": 7,
+          "slim_angled": 10,
+          "slim_angled_smg": 10,
+          "slim_angled_sr": 10,
+          "fold_vert": 14,
+          "fold_stubby": 17,
+          "6h64_vert": 21,
+          "6h64_vert_db12": 21,
+          "6h64_vert_ks18k": 21,
+          "6h64_vert_svk86": 21,
+          "6h64_vert_vssm": 21,
+          "canted_stubby": 24,
+          "ribbed_vert": 28,
+          "classic_vert": 31,
+          "classic_vert_db12": 31,
+          "classic_vert_ks18k": 31,
+          "classic_vert_svk86": 31,
+          "classic_vert_vssm": 31,
+          "lp_stubby": 34,
+          "lp_stubby_db12": 34,
+          "lp_stubby_ks18k": 34,
+          "lp_stubby_sr": 34,
+          "lp_stubby_svk86": 34,
+          "lp_stubby_vssm": 34,
+          "full_angled": 38,
+          "full_angled_sr": 38
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 4,
+          "50mw_blue": 15,
+          "5mw_green": 22,
+          "50mw_green": 35,
+          "120mw_blue": 40
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 0
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "var_high": 14,
+          "thermal": 17
+        },
+        "mag": {
+          "default": 0,
+          "8_rnd": 0,
+          "4_rnd": 6,
+          "8_fast": 20,
+          "4_fast": 33
+        },
+        "ammo": {
+          "standard": 0,
+          "buckshot": 0,
+          "slugs": 8,
+          "flechette": 26
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "db12": {
+      "metaId": "db-12",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 3,
+          "cqb_supp": 25
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "factory_angled_db12": 0,
+          "slim_handstop": 0,
+          "fold_vert": 1,
+          "alloy_vert": 4,
+          "fold_stubby": 8,
+          "ribbed_vert": 11,
+          "6h64_vert": 15,
+          "6h64_vert_db12": 15,
+          "6h64_vert_ks18k": 15,
+          "6h64_vert_svk86": 15,
+          "6h64_vert_vssm": 15,
+          "slim_angled": 19,
+          "slim_angled_smg": 19,
+          "slim_angled_sr": 19,
+          "ribbed_stubby": 23,
+          "canted_stubby": 27,
+          "classic_vert": 31,
+          "classic_vert_db12": 31,
+          "classic_vert_ks18k": 31,
+          "classic_vert_svk86": 31,
+          "classic_vert_vssm": 31,
+          "stipp_stubby": 35,
+          "stipp_stubby_db12": 35,
+          "stipp_stubby_ks18k": 35,
+          "stipp_stubby_svk86": 35,
+          "stipp_stubby_vssm": 35,
+          "lp_stubby": 39,
+          "lp_stubby_db12": 39,
+          "lp_stubby_ks18k": 39,
+          "lp_stubby_sr": 39,
+          "lp_stubby_svk86": 39,
+          "lp_stubby_vssm": 39
+        },
+        "laser": {
+          "none": 0,
+          "50mw_violet": 0,
+          "5mw_red": 2,
+          "5mw_green": 13,
+          "50mw_green": 22,
+          "50mw_blue": 29,
+          "120mw_blue": 37
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 6
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "therm_hyb": 0,
+          "std_optic": 1,
+          "thermal": 16,
+          "var_high": 17
+        },
+        "mag": {
+          "default": 0,
+          "14_rnd": 0
+        },
+        "ammo": {
+          "standard": 0,
+          "buckshot": 0,
+          "slugs": 17,
+          "flechette": 33
+        },
+        "ergo": {
+          "none": 0
+        }
+      }
+    },
+    "brod3": {
+      "metaId": "brod-3",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "sp_brake": 2,
+          "compensator": 7,
+          "std_supp": 12,
+          "linear_comp": 15,
+          "dp_brake": 20,
+          "cqb_supp": 24,
+          "flash_comp": 27,
+          "comp_brake": 32,
+          "long_supp": 35,
+          "light_supp": 40
+        },
+        "barrel": {
+          "none": 0,
+          "basic": 0,
+          "short": 6,
+          "extended": 13,
+          "light": 35
+        },
+        "grip": {
+          "none": 0,
+          "slim_angled": 1,
+          "slim_angled_smg": 1,
+          "slim_angled_sr": 1,
+          "fold_vert": 3,
+          "fold_stubby": 6,
+          "ptt_grip_pod": 8,
+          "alloy_vert": 11,
+          "ribbed_stubby": 13,
+          "full_angled": 16,
+          "full_angled_sr": 16,
+          "qd_grip_pod": 18,
+          "qd_grip_pod_sr": 18,
+          "ribbed_vert": 21,
+          "canted_stubby": 23,
+          "6h64_vert": 26,
+          "6h64_vert_db12": 26,
+          "6h64_vert_ks18k": 26,
+          "6h64_vert_svk86": 26,
+          "6h64_vert_vssm": 26,
+          "slim_handstop": 28,
+          "classic_grip_pod": 31,
+          "classic_grip_pod_sr": 31,
+          "stipp_stubby": 33,
+          "stipp_stubby_db12": 33,
+          "stipp_stubby_ks18k": 33,
+          "stipp_stubby_svk86": 33,
+          "stipp_stubby_vssm": 33,
+          "classic_vert": 36,
+          "classic_vert_db12": 36,
+          "classic_vert_ks18k": 36,
+          "classic_vert_svk86": 36,
+          "classic_vert_vssm": 36,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 4,
+          "5mw_green": 17,
+          "50mw_green": 22,
+          "50mw_blue": 29,
+          "120mw_blue": 34
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 5
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "thermal": 0,
+          "var_high": 0
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "20_rnd": 7,
+          "20_fast": 14,
+          "30_fast": 20,
+          "36_rnd": 27,
+          "40_rnd": 34,
+          "40_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 1,
+          "lightweight": 14,
+          "hollow_pt": 30,
+          "frangible": 39
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 9,
+          "buffer": 25,
+          "rail_cover": 26,
+          "match_trigger": 37
+        }
+      }
+    },
+    "ef88": {
+      "metaId": "ef88",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0,
+          "flash_hider": 0,
+          "compensator": 2,
+          "linear_comp": 6,
+          "std_supp": 11,
+          "sp_brake": 15,
+          "flash_comp": 20,
+          "cqb_supp": 23,
+          "dp_brake": 26,
+          "long_supp": 30,
+          "comp_brake": 35,
+          "light_supp": 39
+        },
+        "barrel": {
+          "none": 0,
+          "light": 0,
+          "basic": 4,
+          "extended": 5,
+          "short": 13,
+          "cryo": 26,
+          "heavy_ext": 31,
+          "short_light": 35,
+          "ext_light": 39
+        },
+        "grip": {
+          "none": 0,
+          "fold_stubby": 1,
+          "fold_vert": 4,
+          "full_angled": 7,
+          "full_angled_sr": 7,
+          "ptt_grip_pod": 10,
+          "alloy_vert": 13,
+          "ribbed_stubby": 16,
+          "bipod": 17,
+          "bipod_sr": 17,
+          "ribbed_vert": 19,
+          "canted_stubby": 21,
+          "qd_grip_pod": 24,
+          "qd_grip_pod_sr": 24,
+          "6h64_vert": 28,
+          "6h64_vert_db12": 28,
+          "6h64_vert_ks18k": 28,
+          "6h64_vert_svk86": 28,
+          "6h64_vert_vssm": 28,
+          "stipp_stubby": 31,
+          "stipp_stubby_db12": 31,
+          "stipp_stubby_ks18k": 31,
+          "stipp_stubby_svk86": 31,
+          "stipp_stubby_vssm": 31,
+          "classic_vert": 34,
+          "classic_vert_db12": 34,
+          "classic_vert_ks18k": 34,
+          "classic_vert_svk86": 34,
+          "classic_vert_vssm": 34,
+          "lp_stubby": 37,
+          "lp_stubby_db12": 37,
+          "lp_stubby_ks18k": 37,
+          "lp_stubby_sr": 37,
+          "lp_stubby_svk86": 37,
+          "lp_stubby_vssm": 37,
+          "classic_grip_pod": 40,
+          "classic_grip_pod_sr": 40
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 3,
+          "5mw_green": 12,
+          "50mw_green": 17,
+          "50mw_violet": 25,
+          "50mw_blue": 29,
+          "120mw_blue": 38
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 8
+        },
+        "sight": {
+          "iron": 0,
+          "std_optic": 0,
+          "var_low": 0,
+          "thermal": 0,
+          "var_high": 0
+        },
+        "mag": {
+          "default": 0,
+          "30_rnd": 0,
+          "30_fast": 10,
+          "36_rnd": 20,
+          "42_rnd": 30,
+          "42_fast": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "penetration": 5,
+          "lightweight": 14,
+          "hollow_pt": 25,
+          "synthetic": 33,
+          "frangible": 35
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 20,
+          "buffer": 22,
+          "match_trigger": 40
+        }
+      }
+    },
+    "vssm": {
+      "metaId": "vssm",
+      "unlockAtPlayerLevel": 1,
+      "attachments": {
+        "muzzle": {
+          "none": 0
+        },
+        "barrel": {
+          "none": 0,
+          "vssm_suppressed_asm": 0,
+          "basic": 0
+        },
+        "grip": {
+          "none": 0,
+          "fold_stubby": 1,
+          "bipod": 3,
+          "bipod_sr": 3,
+          "fold_vert": 6,
+          "slim_angled": 8,
+          "slim_angled_smg": 8,
+          "slim_angled_sr": 8,
+          "ptt_grip_pod": 11,
+          "alloy_vert": 13,
+          "ribbed_stubby": 16,
+          "ribbed_vert": 21,
+          "full_angled": 23,
+          "full_angled_sr": 23,
+          "canted_stubby": 25,
+          "qd_grip_pod": 28,
+          "qd_grip_pod_sr": 28,
+          "6h64_vert": 31,
+          "6h64_vert_db12": 31,
+          "6h64_vert_ks18k": 31,
+          "6h64_vert_svk86": 31,
+          "6h64_vert_vssm": 31,
+          "stipp_stubby": 33,
+          "stipp_stubby_db12": 33,
+          "stipp_stubby_ks18k": 33,
+          "stipp_stubby_svk86": 33,
+          "stipp_stubby_vssm": 33,
+          "classic_vert": 36,
+          "classic_vert_db12": 36,
+          "classic_vert_ks18k": 36,
+          "classic_vert_svk86": 36,
+          "classic_vert_vssm": 36,
+          "lp_stubby": 38,
+          "lp_stubby_db12": 38,
+          "lp_stubby_ks18k": 38,
+          "lp_stubby_sr": 38,
+          "lp_stubby_svk86": 38,
+          "lp_stubby_vssm": 38,
+          "classic_grip_pod": 39,
+          "classic_grip_pod_sr": 39
+        },
+        "laser": {
+          "none": 0,
+          "5mw_red": 4,
+          "50mw_violet": 9,
+          "5mw_green": 14,
+          "50mw_green": 22,
+          "50mw_blue": 27,
+          "120mw_blue": 37
+        },
+        "light": {
+          "none": 0,
+          "flashlight": 2
+        },
+        "sight": {
+          "iron": 0,
+          "var_low": 0,
+          "var_high": 1,
+          "std_optic": 2,
+          "thermal": 34
+        },
+        "mag": {
+          "default": 0,
+          "20_rnd": 0,
+          "10_rnd": 10,
+          "10_fast": 20,
+          "20_fast": 30,
+          "30_rnd": 40
+        },
+        "ammo": {
+          "standard": 0,
+          "range_pen": 0,
+          "penetration": 5,
+          "long_range": 17,
+          "frangible": 26
+        },
+        "ergo": {
+          "none": 0,
+          "mag_catch": 0,
+          "full_auto_vssm": 15
+        }
+      }
+    }
+  },
+  "unmappedSample": [
+    [
+      "barrel:",
+      1
+    ],
+    [
+      "barrel:None",
+      1
+    ]
+  ]
+}

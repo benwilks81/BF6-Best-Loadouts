@@ -1,12 +1,14 @@
 # BF6 Best Loadouts
 
-Pick a gun → see the **one best attachment layout** for close, medium, and long range.
+Pick a gun → see the **one best attachment layout** for close, medium, long, hipfire, recoil, and ADS.
 
 Live site: https://benwilks81.github.io/BF6-Best-Loadouts/
 
-Favourites are saved in your browser so you can jump back to guns you use.
+Set your **player level** and **weapon mastery** so recommendations only use attachments you can unlock. Each gun also shows the player level required to unlock it.
 
-This folder is self-contained: scripts only read/write under this directory, and browser storage uses the key `bf6-best-loadouts-favorites-v1`.
+Favourites and level prefs are saved in your browser (`bf6-best-loadouts-favorites-v1`, `bf6-best-loadouts-levels-v1`).
+
+This folder is self-contained: scripts only read/write under this directory.
 
 ## Keep the local site online
 
@@ -58,10 +60,11 @@ Layouts are computed in the browser from **local** `js/embedded-data.js` (no Git
 
 Weapon pictures come from **battlefield6.gg** and, for guns they don’t host, **battlefieldmeta.gg**.
 
-Upstream JSON comes from [raymdl/BF6-Weapon-Analyzer](https://github.com/raymdl/BF6-Weapon-Analyzer). A **weekly** systemd timer checks for updates (Monday 03:15). The refresh script:
+Upstream weapon/attachment JSON comes from [raymdl/BF6-Weapon-Analyzer](https://github.com/raymdl/BF6-Weapon-Analyzer). Unlock levels come from [battlefieldmeta.gg](https://app.battlefieldmeta.gg/). A **weekly** systemd timer checks for updates (Monday 03:15). The refresh script:
 
-- only fetches from `raw.githubusercontent.com` (redirects elsewhere are blocked)
+- only fetches from allowlisted hosts (redirects elsewhere are blocked)
 - validates JSON shape / numeric `pts` before writing
+- fetches unlock levels into `data/unlocks.json` and embeds them with the rest
 - writes files atomically
 - uses **ETags / hashes** so unchanged files are not re-downloaded or re-embedded
 - **commits and pushes** changed data to this GitHub repo so GitHub Pages stays current

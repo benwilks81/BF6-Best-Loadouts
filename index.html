@@ -41,6 +41,23 @@
           <div class="fav-list" id="favList"></div>
         </section>
 
+        <section class="levels" aria-label="Your levels">
+          <h2>Your levels</h2>
+          <div class="level-grid">
+            <label class="level-field" for="playerLevel">
+              <span>Player level</span>
+              <input id="playerLevel" type="number" min="1" max="50" step="1" value="50" inputmode="numeric" />
+            </label>
+            <label class="level-field" for="masteryLevel">
+              <span>Weapon mastery</span>
+              <input id="masteryLevel" type="number" min="0" max="50" step="1" value="50" inputmode="numeric" />
+            </label>
+          </div>
+          <p class="level-hint">
+            Player level gates which guns unlock. Weapon mastery (0–50) limits attachments in the recommended layouts.
+          </p>
+        </section>
+
         <section class="controls" aria-label="Weapon list">
           <div class="field weapon-field">
             <div class="weapon-heading">
@@ -67,7 +84,7 @@
           <a href="https://sym.gg/" target="_blank" rel="noopener noreferrer">sym.gg</a>
           via
           <a href="https://raymdl.github.io/BF6-Weapon-Analyzer/" target="_blank" rel="noopener noreferrer">raymdl</a>
-          · images via battlefield6.gg / battlefieldmeta.gg
+          · images / unlocks via battlefield6.gg / battlefieldmeta.gg
           · <span id="dataAge">checking data age…</span>
         </p>
       </aside>
@@ -98,9 +115,9 @@
       </section>
     </main>
 
-    <script src="./js/embedded-data.js?v=20260812b"></script>
-    <script src="./js/stats.js?v=20260812b"></script>
-    <script src="./js/optimizer.js?v=20260812b"></script>
-    <script src="./js/app.js?v=20260812b"></script>
+    <script src="./js/embedded-data.js?v=20260812c"></script>
+    <script src="./js/stats.js?v=20260812c"></script>
+    <script src="./js/optimizer.js?v=20260812c"></script>
+    <script src="./js/app.js?v=20260812c"></script>
   </body>
 </html>

@@ -26,6 +26,7 @@ SYNC_PATHS=(
   data/ammo.json
   data/ballistics.json
   data/recoil_decay.json
+  data/unlocks.json
   data/last-refresh.json
   js/embedded-data.js
 )

@@ -1,9 +1,12 @@
 /* global BF6, BF6_DATA */
 (function () {
   const FAV_KEY = 'bf6-best-loadouts-favorites-v1';
+  const LEVEL_KEY = 'bf6-best-loadouts-levels-v1';
   const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
   const LABEL_KEYS = ['optic', 'barrel', 'muzzle', 'grip', 'laser', 'light', 'mag', 'ammo', 'ergo'];
   const MAX_FAVORITES = 40;
+  const DEFAULT_PLAYER_LEVEL = 50;
+  const DEFAULT_MASTERY_LEVEL = 50;
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
   const META_IMG = 'https://img.battlefieldmeta.gg';
   const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
@@ -72,8 +75,11 @@
     weapons: [],
     attachments: null,
     tables: null,
+    unlocks: null,
     weaponId: null,
     filter: '',
+    playerLevel: DEFAULT_PLAYER_LEVEL,
+    masteryLevel: DEFAULT_MASTERY_LEVEL,
     lastResult: null,
     resultCache: new Map(),
     favorites: [],
@@ -84,6 +90,8 @@
     weapon: document.getElementById('weapon'),
     weaponList: document.getElementById('weaponList'),
     weaponFilter: document.getElementById('weaponFilter'),
+    playerLevel: document.getElementById('playerLevel'),
+    masteryLevel: document.getElementById('masteryLevel'),
     favToggle: document.getElementById('favToggle'),
     favorites: document.getElementById('favorites'),
     favList: document.getElementById('favList'),
@@ -112,7 +120,7 @@
       throw new Error('Missing embedded data. Run the weekly refresh script.');
     }
 
-    const { weapons, attachments, balance, ammo } = BF6_DATA;
+    const { weapons, attachments, balance, ammo, unlocks } = BF6_DATA;
 
     state.weapons = weapons
       .filter((w) => w && typeof w === 'object' && SAFE_ID.test(w.id) && w.cls !== 'Sidearm')
@@ -124,6 +132,7 @@
         cal: w.cal == null ? '' : String(w.cal).slice(0, 32),
       }));
     state.attachments = attachments;
+    state.unlocks = unlocks && typeof unlocks === 'object' ? unlocks : null;
     state.tables = {
       ...balance,
       MUZZLES: attachments.MUZZLES,
@@ -139,7 +148,13 @@
       AMMO: ammo,
       AMMO_TYPES: ammo?.AMMO ?? [],
       WEAPON_AMMO: ammo?.WEAPON_AMMO ?? {},
+      unlocks: state.unlocks,
     };
+
+    const savedLevels = loadLevels();
+    state.playerLevel = savedLevels.playerLevel;
+    state.masteryLevel = savedLevels.masteryLevel;
+    syncLevelInputs();
 
     state.favorites = loadFavorites();
     fillWeapons();
@@ -148,6 +163,76 @@
     renderDataAge(BF6_DATA.refreshedAt);
     bind();
     run();
+  }
+
+  function playerMaxLevel() {
+    return state.unlocks?.playerMaxLevel ?? DEFAULT_PLAYER_LEVEL;
+  }
+
+  function masteryMaxLevel() {
+    return state.unlocks?.weaponMasteryMax ?? DEFAULT_MASTERY_LEVEL;
+  }
+
+  function clampLevel(value, min, max, fallback) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return fallback;
+    return Math.max(min, Math.min(max, Math.floor(n)));
+  }
+
+  function loadLevels() {
+    try {
+      const raw = localStorage.getItem(LEVEL_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      return {
+        playerLevel: clampLevel(parsed.playerLevel, 1, playerMaxLevel(), DEFAULT_PLAYER_LEVEL),
+        masteryLevel: clampLevel(parsed.masteryLevel, 0, masteryMaxLevel(), DEFAULT_MASTERY_LEVEL),
+      };
+    } catch {
+      return {
+        playerLevel: DEFAULT_PLAYER_LEVEL,
+        masteryLevel: DEFAULT_MASTERY_LEVEL,
+      };
+    }
+  }
+
+  function saveLevels() {
+    try {
+      localStorage.setItem(
+        LEVEL_KEY,
+        JSON.stringify({
+          playerLevel: state.playerLevel,
+          masteryLevel: state.masteryLevel,
+        })
+      );
+    } catch {
+      /* ignore quota / private mode */
+    }
+  }
+
+  function syncLevelInputs() {
+    if (els.playerLevel) {
+      els.playerLevel.max = String(playerMaxLevel());
+      els.playerLevel.value = String(state.playerLevel);
+    }
+    if (els.masteryLevel) {
+      els.masteryLevel.max = String(masteryMaxLevel());
+      els.masteryLevel.value = String(state.masteryLevel);
+    }
+  }
+
+  function weaponUnlockLevel(weaponId) {
+    const level = state.unlocks?.weapons?.[weaponId]?.unlockAtPlayerLevel;
+    return Number.isFinite(Number(level)) ? Number(level) : null;
+  }
+
+  function isWeaponUnlocked(weaponId) {
+    const need = weaponUnlockLevel(weaponId);
+    if (need == null) return true;
+    return state.playerLevel >= need;
+  }
+
+  function cacheKey(weaponId) {
+    return `${weaponId}@m${state.masteryLevel}`;
   }
 
   function renderDataAge(iso) {
@@ -222,16 +307,32 @@
           .map((w) => {
             const active = w.id === state.weaponId ? ' is-active' : '';
             const fav = isFavorite(w.id) ? ' is-fav' : '';
+            const unlockAt = weaponUnlockLevel(w.id);
+            const locked = unlockAt != null && !isWeaponUnlocked(w.id);
+            const lockedClass = locked ? ' is-locked' : '';
+            const unlockLabel =
+              unlockAt == null
+                ? ''
+                : locked
+                  ? `Locked · lvl ${unlockAt}`
+                  : unlockAt <= 1
+                    ? 'Unlocked'
+                    : `Unlocks lvl ${unlockAt}`;
             return `
               <button
                 type="button"
-                class="weapon-item${active}${fav}"
+                class="weapon-item${active}${fav}${lockedClass}"
                 role="option"
                 aria-selected="${w.id === state.weaponId}"
                 data-weapon-id="${escapeHtml(w.id)}"
               >
                 <span class="weapon-item-name">${escapeHtml(w.name)}</span>
                 <span class="weapon-item-cal">${escapeHtml(w.cal ?? '')}</span>
+                ${
+                  unlockLabel
+                    ? `<span class="weapon-item-unlock">${escapeHtml(unlockLabel)}</span>`
+                    : ''
+                }
               </button>
             `;
           })
@@ -257,6 +358,31 @@
       if (!btn) return;
       selectWeapon(btn.dataset.weaponId);
     });
+
+    if (els.playerLevel) {
+      els.playerLevel.addEventListener('change', () => {
+        state.playerLevel = clampLevel(els.playerLevel.value, 1, playerMaxLevel(), state.playerLevel);
+        syncLevelInputs();
+        saveLevels();
+        renderWeaponList();
+        run();
+      });
+    }
+
+    if (els.masteryLevel) {
+      els.masteryLevel.addEventListener('change', () => {
+        state.masteryLevel = clampLevel(
+          els.masteryLevel.value,
+          0,
+          masteryMaxLevel(),
+          state.masteryLevel
+        );
+        syncLevelInputs();
+        saveLevels();
+        state.resultCache.clear();
+        run();
+      });
+    }
 
     els.favToggle.addEventListener('click', toggleFavorite);
     els.favList.addEventListener('click', (event) => {
@@ -389,21 +515,36 @@
     }
   }
 
+  function weaponMetaLine(weapon) {
+    const bits = [`${weapon.cls}`, weapon.cal || null, `${Math.round(weapon.rpm)} RPM`].filter(Boolean);
+    const unlockAt = weaponUnlockLevel(weapon.id);
+    if (unlockAt != null) {
+      bits.push(unlockAt <= 1 ? 'Unlocks at player lvl 1' : `Unlocks at player lvl ${unlockAt}`);
+    }
+    bits.push(`Mastery ${state.masteryLevel}/${masteryMaxLevel()}`);
+    return bits.join(' · ');
+  }
+
   function run() {
     const weapon = state.weapons.find((w) => w.id === state.weaponId);
     if (!weapon) return;
 
     updateFavButton();
     showWeaponVisual(weapon);
-    els.weaponMeta.textContent = `${weapon.cls} · ${weapon.cal ?? ''} · ${Math.round(weapon.rpm)} RPM`.trim();
+    els.weaponMeta.textContent = weaponMetaLine(weapon);
 
-    const cached = state.resultCache.get(weapon.id);
+    const key = cacheKey(weapon.id);
+    const cached = state.resultCache.get(key);
     if (cached) {
       applyResult(weapon, cached);
       return;
     }
 
-    els.status.textContent = `Finding best layouts for ${weapon.name}…`;
+    const locked = !isWeaponUnlocked(weapon.id);
+    const unlockAt = weaponUnlockLevel(weapon.id);
+    els.status.textContent = locked
+      ? `${weapon.name} unlocks at player level ${unlockAt}. Showing mastery ${state.masteryLevel} layouts…`
+      : `Finding best layouts for ${weapon.name} at mastery ${state.masteryLevel}…`;
     els.detail.classList.add('is-loading');
     els.results.innerHTML = '';
 
@@ -411,8 +552,11 @@
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (state.weaponId !== weapon.id) return;
-        const result = BF6.recommendSets(weapon, state.attachments, state.tables, { topN: 1 });
-        state.resultCache.set(weapon.id, result);
+        const result = BF6.recommendSets(weapon, state.attachments, state.tables, {
+          topN: 1,
+          masteryLevel: state.masteryLevel,
+        });
+        state.resultCache.set(key, result);
         if (state.weaponId !== weapon.id) return;
         applyResult(weapon, result);
       });

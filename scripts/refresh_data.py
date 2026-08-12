@@ -46,7 +46,9 @@ EMBED_FILES = (
     "attachments.json",
     "balance_tables.json",
     "ammo.json",
+    "unlocks.json",
 )
+UNLOCKS_PATH = DATA_DIR / "unlocks.json"
 SAFE_ID = __import__("re").compile(r"^[A-Za-z0-9_-]{1,64}$")
 MAX_JSON_BYTES = 8 * 1024 * 1024
 
@@ -205,6 +207,35 @@ def validate_recoil_decay(data: Any):
     return data
 
 
+def validate_unlocks(data: Any) -> dict:
+    unlocks = require_mapping(data, "unlocks.json")
+    weapons = require_mapping(unlocks.get("weapons"), "unlocks.weapons")
+    if not weapons:
+        raise ValueError("unlocks.json has no weapons")
+    if len(weapons) > 500:
+        raise ValueError("unlocks.json unexpectedly large")
+    for wid, entry in weapons.items():
+        require_id(wid, "unlocks.weapons")
+        obj = require_mapping(entry, f"unlocks.weapons.{wid}")
+        level = obj.get("unlockAtPlayerLevel")
+        if level is None or isinstance(level, bool) or not isinstance(level, (int, float)):
+            raise ValueError(f"unlocks.weapons.{wid} missing unlockAtPlayerLevel")
+        if not (0 <= float(level) <= 100):
+            raise ValueError(f"unlocks.weapons.{wid} unlockAtPlayerLevel out of range")
+        atts = require_mapping(obj.get("attachments"), f"unlocks.weapons.{wid}.attachments")
+        for slot, levels in atts.items():
+            if not isinstance(slot, str) or not slot or len(slot) > 32:
+                raise ValueError(f"unlocks.weapons.{wid} has invalid slot")
+            slot_map = require_mapping(levels, f"unlocks.weapons.{wid}.attachments.{slot}")
+            for att_id, att_level in slot_map.items():
+                require_id(att_id, f"unlocks.{wid}.{slot}")
+                if isinstance(att_level, bool) or not isinstance(att_level, (int, float)):
+                    raise ValueError(f"unlocks.{wid}.{slot}.{att_id} level must be numeric")
+                if not (0 <= float(att_level) <= 100):
+                    raise ValueError(f"unlocks.{wid}.{slot}.{att_id} level out of range")
+    return unlocks
+
+
 VALIDATORS = {
     "weapons.json": validate_weapons,
     "attachments.json": validate_attachments,
@@ -212,6 +243,7 @@ VALIDATORS = {
     "ammo.json": validate_ammo,
     "ballistics.json": lambda data: require_mapping(data, "ballistics.json"),
     "recoil_decay.json": validate_recoil_decay,
+    "unlocks.json": validate_unlocks,
 }
 
 
@@ -265,6 +297,26 @@ def fetch_conditional(url: str, etag: str | None, last_modified: str | None) -> 
         raise
 
 
+def refresh_unlocks() -> bool:
+    """Fetch unlock levels from battlefieldmeta. Return True if file changed."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        from fetch_unlocks import build_unlocks  # noqa: WPS433
+    except Exception as err:  # noqa: BLE001
+        raise RuntimeError(f"unable to import fetch_unlocks: {err}") from err
+
+    before = UNLOCKS_PATH.read_text(encoding="utf-8") if UNLOCKS_PATH.exists() else ""
+    payload = build_unlocks()
+    validate_unlocks(payload)
+    text = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
+    if text == before:
+        print("unchanged data/unlocks.json")
+        return False
+    atomic_write_text(UNLOCKS_PATH, text)
+    print(f"updated data/unlocks.json ({len(payload['weapons'])} weapons)")
+    return True
+
+
 def embed(refreshed_at: str) -> dict:
     weapons = validate_weapons(json.loads(safe_under(DATA_DIR, "weapons.json").read_text(encoding="utf-8")))
     attachments = validate_attachments(
@@ -274,12 +326,16 @@ def embed(refreshed_at: str) -> dict:
         json.loads(safe_under(DATA_DIR, "balance_tables.json").read_text(encoding="utf-8"))
     )
     ammo = validate_ammo(json.loads(safe_under(DATA_DIR, "ammo.json").read_text(encoding="utf-8")))
+    if not UNLOCKS_PATH.exists():
+        raise ValueError("unlocks.json missing — run scripts/fetch_unlocks.py")
+    unlocks = validate_unlocks(json.loads(UNLOCKS_PATH.read_text(encoding="utf-8")))
 
     payload = {
         "weapons": weapons,
         "attachments": attachments,
         "balance": balance,
         "ammo": ammo,
+        "unlocks": unlocks,
         "refreshedAt": refreshed_at,
     }
     body = (
@@ -355,6 +411,13 @@ def main() -> int:
         print(f"updated data/{name} ({len(body)} bytes)")
 
     atomic_write_text(ETAG_PATH, json.dumps(etags, indent=2) + "\n")
+
+    try:
+        unlocks_changed = refresh_unlocks()
+    except Exception as err:  # noqa: BLE001
+        print(f"FAILED unlocks: {err}", file=sys.stderr)
+        return 1
+    changed = changed or unlocks_changed
 
     if not changed and OUT_PATH.exists() and META_PATH.exists():
         prev = load_json(META_PATH, {})

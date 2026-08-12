@@ -207,9 +207,76 @@ body::before {
 }
 
 .favorites,
+.levels,
 .controls {
   border: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(18, 24, 32, 0.95), rgba(12, 17, 23, 0.98));
+}
+
+.levels {
+  position: relative;
+  padding: 0.7rem 0.75rem;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  flex: 0 0 auto;
+}
+
+.levels::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.levels h2 {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.level-field {
+  display: grid;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.level-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  background: rgba(7, 9, 12, 0.85);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.level-field input:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.level-hint {
+  margin: 0.55rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--muted);
 }
 
 .favorites {
@@ -495,11 +562,40 @@ body::before {
   font-size: 0.8em;
 }
 
+.weapon-item.is-locked {
+  opacity: 0.55;
+}
+
 .weapon-item-name {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   font-size: 0.95rem;
+}
+
+.weapon-item-unlock {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.weapon-item.is-locked .weapon-item-unlock {
+  color: color-mix(in srgb, #e2a35a 80%, var(--muted));
+}
+
+.weapon-unlock-note {
+  margin: 0.35rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.weapon-unlock-note.is-locked {
+  color: color-mix(in srgb, #e2a35a 85%, var(--muted));
 }
 
 .fav-btn {
