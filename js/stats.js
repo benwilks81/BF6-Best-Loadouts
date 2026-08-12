@@ -179,13 +179,26 @@ window.BF6 = window.BF6 || {};
     return Math.ceil((health - 1e-9) / damage);
   }
 
-  function timeToKillMs(weapon, rangeMeters) {
-    const dmg = damageAtRange(weapon, rangeMeters);
-    if (dmg == null || !(weapon.rpm > 0)) return null;
-    const btk = bulletsToKill(dmg);
+  function timeToKillMsFromDamage(damage, rpm) {
+    if (!(damage > 0) || !(rpm > 0)) return null;
+    const btk = bulletsToKill(damage);
     if (!Number.isFinite(btk)) return null;
-    return ((btk - 1) * 60000) / weapon.rpm;
+    return ((btk - 1) * 60000) / rpm;
   }
+
+  function timeToKillMs(weapon, rangeMeters) {
+    return timeToKillMsFromDamage(damageAtRange(weapon, rangeMeters), weapon.rpm);
+  }
+
+  function profileRangeMeters(profileId) {
+    if (BF6.RANGES[profileId]) return BF6.RANGES[profileId].meters;
+    const opticProfile = BF6.FOCUS_OPTIC_PROFILE[profileId] ?? 'mid';
+    return BF6.RANGES[opticProfile]?.meters ?? 35;
+  }
+
+  BF6.profileRangeMeters = profileRangeMeters;
+  BF6.damageAtRange = damageAtRange;
+  BF6.timeToKillMsFromDamage = timeToKillMsFromDamage;
 
   function clampIndex(index, length) {
     return Math.max(0, Math.min(length - 1, index));
@@ -261,12 +274,34 @@ window.BF6 = window.BF6 || {};
   }
 
   function resolveHsMult(ammo, weapon, tables) {
-    const base = tables.BASE_HS_MULT?.[weapon.id] ?? tables.AUTO_HS_MULT?.standard ?? 1.4;
+    const base = tables.BASE_HS_MULT?.[weapon.id] ?? tables.AUTO_HS_MULT?.standard ?? 1.34;
     if (ammo == null || ammo.hsMult == null) return base;
     if (typeof ammo.hsMult === 'number') return ammo.hsMult;
-    if (ammo.hsMult === 'hp') return tables.AUTO_HS_MULT?.hp ?? 1.57;
+    if (ammo.hsMult === 'hp') {
+      // raymdl: Hollow Point is 1.75× on HP_HS_HIGH weapons, otherwise the AUTO hp tier.
+      const high = tables.HP_HS_HIGH;
+      if (Array.isArray(high) && high.includes(weapon.id)) return 1.75;
+      return tables.AUTO_HS_MULT?.hp ?? 1.57;
+    }
     if (ammo.hsMult === 'synthetic') return tables.AUTO_HS_MULT?.synthetic ?? 1.8;
     return tables.AUTO_HS_MULT?.[ammo.hsMult] ?? base;
+  }
+
+  function headshotTtkMs(weapon, hsMult, rangeMeters) {
+    const body = damageAtRange(weapon, rangeMeters);
+    if (body == null) return null;
+    return timeToKillMsFromDamage(body * Math.max(hsMult, 0), weapon.rpm);
+  }
+
+  function hsTtkGain(statsHsTtk, stockHsTtk, statsHsMult, stockHsMult) {
+    if (statsHsTtk == null || stockHsTtk == null) {
+      return (statsHsMult - stockHsMult) / Math.max(stockHsMult, 1);
+    }
+    // Both already one-shot headshots: keep a small multiplier tie-break.
+    if (stockHsTtk <= 0 && statsHsTtk <= 0) {
+      return ((statsHsMult - stockHsMult) / Math.max(stockHsMult, 1)) * 0.25;
+    }
+    return (stockHsTtk - statsHsTtk) / Math.max(stockHsTtk, 1);
   }
 
   function resolveReloadScore(magData, ergo, ladder) {
@@ -292,10 +327,11 @@ window.BF6 = window.BF6 || {};
     return -0.55 * adsMove - 0.45 * sprint;
   }
 
-  BF6.evaluateLoadout = function evaluateLoadout(weapon, parts, tables) {
+  BF6.evaluateLoadout = function evaluateLoadout(weapon, parts, tables, options = {}) {
     const { muzzle, barrel, grip, laser, mag, sight, light, ammo, ergo } = parts;
     const wm = tables.WEAPON_MAG[weapon.id];
     const magData = wm?.mags?.[mag.id] ?? mag ?? null;
+    const rangeMeters = num(options.rangeMeters, BF6.RANGES.mid.meters);
 
     const adsAttachmentMod = (grip?.adsTimeTierMod ?? 0) + (barrel?.adsTimeTierMod ?? 0);
     const magAdsShift = magData?.adsTimeTierShift ?? 0;
@@ -339,10 +375,11 @@ window.BF6 = window.BF6 || {};
     const hipControl = (laser?.hipSpreadDecayBoost ?? 0) + (light?.hipSpreadDecayBoost ?? 0);
 
     const bulletVel = resolveVelocity(weapon.bulletVel, barrel, tables.VELOCITY_LADDER);
-    const rangeMeters = 35;
-    const ttk = timeToKillMs(weapon, rangeMeters);
+    const bodyDmg = damageAtRange(weapon, rangeMeters);
+    const ttk = timeToKillMsFromDamage(bodyDmg, weapon.rpm);
     const magSize = magData?.mag ?? weapon.mag;
     const hsMult = resolveHsMult(ammo, weapon, tables);
+    const hsTtkMs = headshotTtkMs(weapon, hsMult, rangeMeters);
     const spreadControl = adsSpreadControl(barrel);
     const reloadScore = resolveReloadScore(magData, ergo, tables.RELOAD_SPEED_LADDER);
     const handling = resolveHandling(parts, magData);
@@ -375,9 +412,12 @@ window.BF6 = window.BF6 || {};
       hipSpread,
       hipControl,
       bulletVel,
+      rangeMeters,
+      bodyDmg,
       ttkMs: ttk,
       magSize,
       hsMult,
+      hsTtkMs,
       spreadControl,
       reloadScore,
       handling,
@@ -484,12 +524,13 @@ window.BF6 = window.BF6 || {};
       .map((key) => labels[key]);
   }
 
-  BF6.scoreVsStock = function scoreVsStock(stats, stock, profileId, weaponClass = null) {
+  BF6.scoreVsStock = function scoreVsStock(stats, stock, profileId, weaponClass = null, weapon = null) {
     const weights = BF6.RANGE_WEIGHTS[profileId] ?? BF6.FOCUS_WEIGHTS[profileId];
     if (!weights) {
       return { score: 0, value: 0, ptsSpent: 0, deltas: {}, why: [] };
     }
     const classBias = BF6.CLASS_RANGE_BIAS[weaponClass]?.[profileId] ?? 1;
+    const rangeMeters = profileRangeMeters(profileId);
 
     const adsGain = (stock.adsTimeMs - stats.adsTimeMs) / Math.max(stock.adsTimeMs, 1);
     const recoilGain = (stock.recoilPerShot - stats.recoilPerShot) / Math.max(stock.recoilPerShot, 0.01);
@@ -506,7 +547,12 @@ window.BF6 = window.BF6 || {};
     const recoveryGain = (stats.recoilRecovery - stock.recoilRecovery) / Math.max(stock.recoilRecovery, 1);
     const reloadGain = stats.reloadScore - stock.reloadScore;
     const handlingGain = (stats.handling - stock.handling) / 2;
-    const hsGain = (stats.hsMult - stock.hsMult) / Math.max(stock.hsMult, 1);
+    // Headshot ammo is scored by actual headshot TTK at this layout's range, not raw mult alone.
+    const statsHsTtk =
+      weapon != null ? headshotTtkMs(weapon, stats.hsMult, rangeMeters) : stats.hsTtkMs;
+    const stockHsTtk =
+      weapon != null ? headshotTtkMs(weapon, stock.hsMult, rangeMeters) : stock.hsTtkMs;
+    const hsGain = hsTtkGain(statsHsTtk, stockHsTtk, stats.hsMult, stock.hsMult);
     const hipControlGain = stats.hipControl - stock.hipControl;
     const fireModeGain = (stats.fireMode ?? 0) - (stock.fireMode ?? 0);
 

@@ -132,8 +132,18 @@ window.BF6 = window.BF6 || {};
     return sightPool[0];
   }
 
-  function buildSightPool(atts, sightsById) {
-    const ids = atts.sight?.length ? atts.sight : Object.keys(sightsById);
+  function buildSightPool(atts, sightsById, weaponUnlocks = null) {
+    let ids;
+    if (atts.sight?.length) {
+      ids = [...atts.sight];
+    } else if (weaponUnlocks?.attachments?.sight) {
+      // Primaries rarely list optics in WEAPON_ATTS; only allow categories this gun unlocks.
+      ids = Object.keys(weaponUnlocks.attachments.sight);
+    } else {
+      // Conservative fallback when unlock optics are missing — no thermals assumed.
+      ids = ['iron', 'std_optic', 'var_low', 'var_high'];
+    }
+    if (!ids.includes('iron')) ids = ['iron', ...ids];
     const pool = ids.map((id) => sightsById[id]).filter(Boolean);
     if (!pool.length && sightsById.iron) pool.push(sightsById.iron);
     if (!pool.length && sightsById.std_optic) pool.push(sightsById.std_optic);
@@ -188,14 +198,20 @@ window.BF6 = window.BF6 || {};
     return Math.max(0, Math.min(9999, Math.floor(n)));
   }
 
-  function attachmentUnlockLevel(weaponUnlocks, slot, id) {
+  function attachmentUnlockLevel(weaponUnlocks, slot, id, allowedIds = null) {
     if (!id || id === 'none' || id === 'default') return 0;
     const levels = weaponUnlocks?.attachments?.[slot];
     if (!levels || typeof levels !== 'object') return null;
     if (Object.prototype.hasOwnProperty.call(levels, id)) return levels[id];
-    // Weapon-specific grip variants share the base unlock (fold_vert_svk86 → fold_vert).
+    // Weapon-specific grip variants share the base unlock (fold_vert_svk86 → fold_vert),
+    // but only when this gun can actually equip that exact variant.
     const base = String(id).replace(/_[a-z0-9]+$/i, '');
-    if (base && base !== id && Object.prototype.hasOwnProperty.call(levels, base)) {
+    if (
+      base &&
+      base !== id &&
+      Object.prototype.hasOwnProperty.call(levels, base) &&
+      (!allowedIds || allowedIds.has(id))
+    ) {
       return levels[base];
     }
     return null;
@@ -210,17 +226,24 @@ window.BF6 = window.BF6 || {};
     return Boolean(base && base !== id && list.includes(base));
   }
 
-  function isAttachmentUnlocked(weaponUnlocks, slot, id, masteryLevel, { includeChallenges = false } = {}) {
+  function isAttachmentUnlocked(
+    weaponUnlocks,
+    slot,
+    id,
+    masteryLevel,
+    { includeChallenges = false, attachmentCap = 50, allowedIds = null } = {}
+  ) {
     if (!id || id === 'none' || id === 'default' || id === 'iron') return true;
+    if (allowedIds && !allowedIds.has(id)) return false;
     if (isChallengeAttachment(weaponUnlocks, slot, id)) return includeChallenges;
-    const need = attachmentUnlockLevel(weaponUnlocks, slot, id);
-    // Unmapped attachments are treated as unavailable so we never invent max-level unlocks.
-    if (need == null) return false;
+    if (!weaponUnlocks) return masteryLevel >= attachmentCap;
+    const need = attachmentUnlockLevel(weaponUnlocks, slot, id, allowedIds);
+    // Equippable but missing unlock metadata: available once the attachment track is complete.
+    if (need == null) return masteryLevel >= attachmentCap;
     return masteryLevel >= need;
   }
 
   function filterPool(pool, weaponUnlocks, slot, masteryLevel, options = {}) {
-    if (!weaponUnlocks) return pool;
     const kept = pool.filter((item) =>
       isAttachmentUnlocked(weaponUnlocks, slot, item?.id, masteryLevel, options)
     );
@@ -234,14 +257,13 @@ window.BF6 = window.BF6 || {};
     if (!atts) return null;
 
     const unlocks = options.unlocks ?? tables.unlocks ?? data.unlocks ?? null;
-    const attachmentCap = unlocks?.attachmentUnlockCap ?? unlocks?.weaponMasteryMax ?? 50;
+    const attachmentCap = unlocks?.attachmentUnlockCap ?? 50;
     const masteryLevel = clampMasteryLevel(
       options.masteryLevel ?? attachmentCap,
       attachmentCap
     );
     const includeChallenges = Boolean(options.includeChallenges);
     const weaponUnlocks = unlocks?.weapons?.[weapon.id] ?? null;
-    const filterOpts = { includeChallenges };
 
     const muzzlesById = BF6.byId(data.MUZZLES);
     const barrelsById = BF6.byId(data.BARRELS);
@@ -251,37 +273,70 @@ window.BF6 = window.BF6 || {};
     const sightsById = BF6.byId(data.SIGHTS);
     const ergosById = BF6.byId(data.ERGOS);
 
-    let muzzles = uniqueMuzzles(['none', ...(atts.muzzle ?? [])], muzzlesById);
-    let barrels = (atts.barrel ?? ['basic']).map((id) => barrelsById[id]).filter(Boolean);
+    const rawLaserIds = atts.laser ?? [];
+    // Some sidearms store shared-slot grips under laser when laserGripLightCombined is set.
+    const gripIdsFromLaser = rawLaserIds.filter((id) => gripsById[id]);
+    const trueLaserIds = rawLaserIds.filter((id) => id === 'none' || lasersById[id]);
+
+    const allowed = {
+      muzzle: new Set(['none', ...(atts.muzzle ?? [])]),
+      barrel: new Set(atts.barrel ?? ['basic']),
+      grip: new Set(['none', ...(atts.grip ?? []), ...gripIdsFromLaser]),
+      laser: new Set(['none', ...trueLaserIds]),
+      light: new Set(['none', ...(atts.light ?? [])]),
+      sight: null, // filled after sight pool build
+      mag: null,
+      ammo: null,
+      ergo: new Set(['none', ...(data.WEAPON_ERGO?.[weapon.id]?.avail ?? [])]),
+    };
+
+    let muzzles = uniqueMuzzles([...allowed.muzzle], muzzlesById);
+    let barrels = [...allowed.barrel].map((id) => barrelsById[id]).filter(Boolean);
     if (!barrels.length) barrels.push(barrelsById.basic ?? barrelsById.none);
 
-    let grips = [gripsById.none, ...uniqueGrips(atts.grip ?? [], gripsById)].filter(Boolean);
-    let lasers = uniqueLasers(['none', ...(atts.laser ?? [])], lasersById);
-    let lights = uniqueLights(['none', ...(atts.light ?? [])], lightsById);
-    let sights = buildSightPool(atts, sightsById);
+    let grips = [gripsById.none, ...uniqueGrips([...allowed.grip], gripsById)].filter(Boolean);
+    let lasers = uniqueLasers([...allowed.laser], lasersById);
+    let lights = uniqueLights([...allowed.light], lightsById);
+    let sights = buildSightPool(atts, sightsById, weaponUnlocks);
+    allowed.sight = new Set(sights.map((s) => s.id));
 
     const wm = data.WEAPON_MAG[weapon.id];
     let mags = uniqueMags(Object.entries(wm?.mags ?? {}).map(([id, mag]) => ({ id, ...mag })));
     if (!mags.length) mags.push({ id: 'default', name: 'Default', pts: 0, mag: weapon.mag });
+    allowed.mag = new Set(mags.map((m) => m.id));
 
     let { pool: ammos } = buildAmmoPool(weapon, data, tables);
+    allowed.ammo = new Set(ammos.map((a) => a.id));
     const ergoIds = data.WEAPON_ERGO?.[weapon.id]?.avail ?? [];
     let ergos = uniqueErgos(ergoIds, ergosById);
 
-    muzzles = filterPool(muzzles, weaponUnlocks, 'muzzle', masteryLevel, filterOpts);
-    barrels = filterPool(barrels, weaponUnlocks, 'barrel', masteryLevel, filterOpts);
-    grips = filterPool(grips, weaponUnlocks, 'grip', masteryLevel, filterOpts);
-    lasers = filterPool(lasers, weaponUnlocks, 'laser', masteryLevel, filterOpts);
-    lights = filterPool(lights, weaponUnlocks, 'light', masteryLevel, filterOpts);
-    sights = filterPool(sights, weaponUnlocks, 'sight', masteryLevel, filterOpts);
-    mags = filterPool(mags, weaponUnlocks, 'mag', masteryLevel, filterOpts);
-    ammos = filterPool(ammos, weaponUnlocks, 'ammo', masteryLevel, filterOpts);
-    ergos = filterPool(ergos, weaponUnlocks, 'ergo', masteryLevel, filterOpts);
+    const filterOptsFor = (slot) => ({
+      includeChallenges,
+      attachmentCap,
+      allowedIds: allowed[slot],
+    });
+
+    muzzles = filterPool(muzzles, weaponUnlocks, 'muzzle', masteryLevel, filterOptsFor('muzzle'));
+    barrels = filterPool(barrels, weaponUnlocks, 'barrel', masteryLevel, filterOptsFor('barrel'));
+    grips = filterPool(grips, weaponUnlocks, 'grip', masteryLevel, filterOptsFor('grip'));
+    lasers = filterPool(lasers, weaponUnlocks, 'laser', masteryLevel, filterOptsFor('laser'));
+    lights = filterPool(lights, weaponUnlocks, 'light', masteryLevel, filterOptsFor('light'));
+    sights = filterPool(sights, weaponUnlocks, 'sight', masteryLevel, filterOptsFor('sight'));
+    mags = filterPool(mags, weaponUnlocks, 'mag', masteryLevel, filterOptsFor('mag'));
+    ammos = filterPool(ammos, weaponUnlocks, 'ammo', masteryLevel, filterOptsFor('ammo'));
+    ergos = filterPool(ergos, weaponUnlocks, 'ergo', masteryLevel, filterOptsFor('ergo'));
 
     if (!barrels.length) barrels.push(barrelsById.basic ?? barrelsById.none);
     if (!mags.length) mags.push({ id: 'default', name: 'Default', pts: 0, mag: weapon.mag });
     if (!sights.length && sightsById.iron) sights.push(sightsById.iron);
     if (!ergos.length && ergosById.none) ergos.push(ergosById.none);
+    if (!ammos.length) {
+      const std = buildAmmoPool(weapon, data, tables).pool.find((a) => a.id === 'standard');
+      if (std) ammos.push(std);
+    }
+
+    const laserGripLightCombined = Boolean(atts.laserGripLightCombined);
+    const laserLightCombined = Boolean(atts.laserLightCombined || laserGripLightCombined);
 
     return {
       muzzles,
@@ -294,7 +349,9 @@ window.BF6 = window.BF6 || {};
       ammos,
       ergos,
       masteryLevel,
-      laserLightCombined: Boolean(atts.laserLightCombined || atts.laserGripLightCombined),
+      allowed,
+      laserLightCombined,
+      laserGripLightCombined,
       bySlot: {
         barrel: barrels,
         muzzle: muzzles,
@@ -324,8 +381,22 @@ window.BF6 = window.BF6 || {};
   }
 
   function isValidCombo(parts, pools) {
+    if (pools.laserGripLightCombined) {
+      const used = [parts.laser, parts.light, parts.grip].filter((p) => p && p.id !== 'none');
+      return used.length <= 1;
+    }
     if (!pools.laserLightCombined) return true;
     if (parts.laser?.id !== 'none' && parts.light?.id !== 'none') return false;
+    return true;
+  }
+
+  function partsAreEquippable(parts, pools) {
+    for (const slot of SLOT_ORDER) {
+      const id = parts[slot]?.id;
+      if (!id) return false;
+      const options = pools.bySlot[slot];
+      if (!options?.some((item) => item.id === id)) return false;
+    }
     return true;
   }
 
@@ -350,9 +421,11 @@ window.BF6 = window.BF6 || {};
 
   function scoreParts(weapon, parts, tables, stockStats, rangeId, mode, pools) {
     if (!isValidCombo(parts, pools)) return null;
-    const stats = BF6.evaluateLoadout(weapon, parts, tables);
+    if (!partsAreEquippable(parts, pools)) return null;
+    const rangeMeters = BF6.profileRangeMeters?.(rangeId) ?? 35;
+    const stats = BF6.evaluateLoadout(weapon, parts, tables, { rangeMeters });
     if (stats.pts > BF6.POINT_BUDGET) return null;
-    const ranked = BF6.scoreVsStock(stats, stockStats, rangeId, weapon.cls);
+    const ranked = BF6.scoreVsStock(stats, stockStats, rangeId, weapon.cls, weapon);
     const metric = mode === 'value' ? ranked.value : ranked.score;
     return { parts, stats, ranked, metric };
   }
@@ -369,7 +442,18 @@ window.BF6 = window.BF6 || {};
         for (const option of options) {
           const trial = cloneParts(current);
           trial[slot] = option;
-          if (pools.laserLightCombined && trial.laser?.id !== 'none' && trial.light?.id !== 'none') {
+          if (pools.laserGripLightCombined) {
+            if (slot === 'laser' && trial.laser?.id !== 'none') {
+              trial.light = pools.bySlot.light.find((l) => l.id === 'none') ?? trial.light;
+              trial.grip = pools.bySlot.grip.find((g) => g.id === 'none') ?? trial.grip;
+            } else if (slot === 'light' && trial.light?.id !== 'none') {
+              trial.laser = pools.bySlot.laser.find((l) => l.id === 'none') ?? trial.laser;
+              trial.grip = pools.bySlot.grip.find((g) => g.id === 'none') ?? trial.grip;
+            } else if (slot === 'grip' && trial.grip?.id !== 'none') {
+              trial.laser = pools.bySlot.laser.find((l) => l.id === 'none') ?? trial.laser;
+              trial.light = pools.bySlot.light.find((l) => l.id === 'none') ?? trial.light;
+            }
+          } else if (pools.laserLightCombined && trial.laser?.id !== 'none' && trial.light?.id !== 'none') {
             if (slot === 'laser') trial.light = pools.bySlot.light.find((l) => l.id === 'none') ?? trial.light;
             if (slot === 'light') trial.laser = pools.bySlot.laser.find((l) => l.id === 'none') ?? trial.laser;
           }
