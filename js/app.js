@@ -23,6 +23,43 @@
     subsonic_pen: 'Sub Pen',
     range_pen: 'Range Pen',
   };
+  // Curated latest weapon-facing patch overview (prototype). Keep only the newest notes.
+  const LATEST_CHANGELOG = {
+    id: '1.3.3.0',
+    title: 'Update 1.3.3.0',
+    dateLabel: '30 Jun 2026',
+    url: 'https://www.ea.com/games/battlefield/battlefield-6/news/battlefield-6-game-update-1-3-3-0',
+    bullets: [
+      {
+        text: 'Muzzle velocity down ~5% on most primaries; more lead needed at range.',
+        weapons: null,
+      },
+      {
+        text: 'Bullet drag up ~40% (Match Grade +100%); long shots drop faster.',
+        weapons: null,
+      },
+      {
+        text: 'Auto headshot mults raised to 1.4 / 1.57 / 1.8 by ammo type.',
+        weapons: null,
+      },
+      {
+        text: 'Stomach/limb damage reduced on autos; upper-body shots matter more.',
+        weapons: null,
+      },
+      {
+        text: 'Dispersion growth up ~14% on average; burst/tap fire rewarded farther out.',
+        weapons: null,
+      },
+      {
+        text: 'Recoil variation reduced for more predictable sustained fire.',
+        weapons: null,
+      },
+      {
+        text: 'Bolt-action sweet spots narrowed (M2010 ESR, SV-98, PSR, L115).',
+        weapons: ['m2010esr', 'sv98', 'psr', 'l115', 'miniscout'],
+      },
+    ],
+  };
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
   const META_IMG = 'https://img.battlefieldmeta.gg';
   const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
@@ -117,6 +154,10 @@
     status: document.getElementById('status'),
     weaponMeta: document.getElementById('weaponMeta'),
     weaponUnlockNote: document.getElementById('weaponUnlockNote'),
+    changelogPatch: document.getElementById('changelogPatch'),
+    changelogList: document.getElementById('changelogList'),
+    changelogGun: document.getElementById('changelogGun'),
+    changelogLink: document.getElementById('changelogLink'),
     weaponTitle: document.getElementById('weaponTitle'),
     weaponImage: document.getElementById('weaponImage'),
     weaponImageFallback: document.getElementById('weaponImageFallback'),
@@ -182,6 +223,7 @@
     fillWeapons();
     renderWeaponList();
     renderFavorites();
+    renderChangelog(null);
     renderDataAge(BF6_DATA.refreshedAt);
     bind();
     run();
@@ -194,6 +236,45 @@
       if (!label) return entry;
       return { ...entry, name: label };
     });
+  }
+
+  function renderChangelog(weaponId) {
+    const log = LATEST_CHANGELOG;
+    if (!els.changelogList) return;
+
+    if (els.changelogPatch) {
+      els.changelogPatch.textContent = `${log.title} · ${log.dateLabel}`;
+    }
+    if (els.changelogLink) {
+      els.changelogLink.href = log.url;
+    }
+
+    const bullets = Array.isArray(log.bullets) ? log.bullets : [];
+    els.changelogList.innerHTML = bullets
+      .map((bullet) => {
+        const text = String(bullet?.text ?? '').slice(0, 180);
+        if (!text) return '';
+        const tagged = Array.isArray(bullet.weapons) && bullet.weapons.length;
+        const relevant = tagged && weaponId && bullet.weapons.includes(weaponId);
+        const cls = relevant ? 'is-relevant' : tagged && weaponId ? 'is-other' : '';
+        return `<li class="${cls}">${escapeHtml(text)}</li>`;
+      })
+      .join('');
+
+    if (!els.changelogGun) return;
+    const hit = bullets.some(
+      (b) => Array.isArray(b.weapons) && weaponId && b.weapons.includes(weaponId)
+    );
+    if (hit) {
+      els.changelogGun.hidden = false;
+      els.changelogGun.textContent = 'Highlighted notes touch this gun';
+    } else if (weaponId) {
+      els.changelogGun.hidden = false;
+      els.changelogGun.textContent = 'General gunplay pass — applies across the arsenal';
+    } else {
+      els.changelogGun.hidden = true;
+      els.changelogGun.textContent = '';
+    }
   }
 
   function attachmentUnlockCap() {
@@ -587,6 +668,7 @@
     showWeaponVisual(weapon);
     els.weaponMeta.textContent = weaponMetaLine(weapon);
     renderWeaponUnlockNote(weapon);
+    renderChangelog(weapon.id);
 
     const key = cacheKey(weapon.id);
     const cached = state.resultCache.get(key);
