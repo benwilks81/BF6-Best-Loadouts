@@ -522,6 +522,17 @@ window.BF6 = window.BF6 || {};
       }
     }
 
+    // Headshot-ammo seeds so 15–20 pt Synthetic / HP can rebuild the rest of the loadout
+    // around the budget instead of losing to an already-full 100 pt attachment stack.
+    for (const ammoId of ['synthetic', 'hollow_pt', 'subsonic_hp']) {
+      const ammo = pools.ammos.find((a) => a.id === ammoId);
+      if (!ammo || ammo.id === stock.ammo?.id) continue;
+      const seed = cloneParts(stock);
+      seed.ammo = ammo;
+      seed.sight = preferredSight(profileId, pools.sights) ?? seed.sight;
+      seeds.push(seed);
+    }
+
     for (const seed of seeds) {
       const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'score', 2);
       if (perf) {

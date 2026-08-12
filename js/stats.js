@@ -26,7 +26,7 @@ window.BF6 = window.BF6 || {};
   };
 
   BF6.RANGE_WEIGHTS = {
-    close: {
+      close: {
       ads: 1.15,
       recoil: 0.65,
       movingAds: 0.45,
@@ -39,7 +39,7 @@ window.BF6 = window.BF6 || {};
       recovery: 0.35,
       reload: 0.55,
       handling: 0.4,
-      hs: 0.7,
+      hs: 0.95,
       hipControl: 0.45,
       fireMode: 0.9,
     },
@@ -56,7 +56,7 @@ window.BF6 = window.BF6 || {};
       recovery: 0.55,
       reload: 0.35,
       handling: 0.3,
-      hs: 0.55,
+      hs: 1.05,
       hipControl: 0.15,
       fireMode: 0.7,
     },
@@ -73,7 +73,7 @@ window.BF6 = window.BF6 || {};
       recovery: 0.65,
       reload: 0.2,
       handling: 0.2,
-      hs: 0.45,
+      hs: 0.95,
       hipControl: 0.05,
       fireMode: 0.45,
     },
@@ -93,7 +93,7 @@ window.BF6 = window.BF6 || {};
       recovery: 0.35,
       reload: 0.4,
       handling: 0.65,
-      hs: 0.25,
+      hs: 0.45,
       hipControl: 1.75,
       fireMode: 0.85,
     },
@@ -110,7 +110,7 @@ window.BF6 = window.BF6 || {};
       recovery: 1.85,
       reload: 0.15,
       handling: 0.25,
-      hs: 0.25,
+      hs: 0.55,
       hipControl: 0.1,
       fireMode: 0.4,
     },
@@ -127,7 +127,7 @@ window.BF6 = window.BF6 || {};
       recovery: 0.35,
       reload: 0.4,
       handling: 1.15,
-      hs: 0.3,
+      hs: 0.55,
       hipControl: 0.05,
       fireMode: 0.55,
     },
@@ -275,15 +275,19 @@ window.BF6 = window.BF6 || {};
 
   function resolveHsMult(ammo, weapon, tables) {
     const base = tables.BASE_HS_MULT?.[weapon.id] ?? tables.AUTO_HS_MULT?.standard ?? 1.34;
-    if (ammo == null || ammo.hsMult == null) return base;
-    if (typeof ammo.hsMult === 'number') return ammo.hsMult;
+    if (ammo == null) return base;
+    // Synthetic tip uses the AUTO ladder even when the ammo row stores a numeric fallback.
+    if (ammo.id === 'synthetic' || ammo.hsMult === 'synthetic') {
+      return tables.AUTO_HS_MULT?.synthetic ?? (typeof ammo.hsMult === 'number' ? ammo.hsMult : 1.8);
+    }
+    if (ammo.hsMult == null) return base;
     if (ammo.hsMult === 'hp') {
       // raymdl: Hollow Point is 1.75× on HP_HS_HIGH weapons, otherwise the AUTO hp tier.
       const high = tables.HP_HS_HIGH;
       if (Array.isArray(high) && high.includes(weapon.id)) return 1.75;
       return tables.AUTO_HS_MULT?.hp ?? 1.57;
     }
-    if (ammo.hsMult === 'synthetic') return tables.AUTO_HS_MULT?.synthetic ?? 1.8;
+    if (typeof ammo.hsMult === 'number') return ammo.hsMult;
     return tables.AUTO_HS_MULT?.[ammo.hsMult] ?? base;
   }
 
@@ -293,15 +297,38 @@ window.BF6 = window.BF6 || {};
     return timeToKillMsFromDamage(body * Math.max(hsMult, 0), weapon.rpm);
   }
 
-  function hsTtkGain(statsHsTtk, stockHsTtk, statsHsMult, stockHsMult) {
-    if (statsHsTtk == null || stockHsTtk == null) {
-      return (statsHsMult - stockHsMult) / Math.max(stockHsMult, 1);
-    }
+  function headshotBtk(weapon, hsMult, rangeMeters) {
+    const body = damageAtRange(weapon, rangeMeters);
+    if (body == null) return null;
+    return bulletsToKill(body * Math.max(hsMult, 0));
+  }
+
+  function hsTtkGain(statsHsTtk, stockHsTtk, statsHsMult, stockHsMult, statsHsBtk = null, stockHsBtk = null) {
+    const multGain = (statsHsMult - stockHsMult) / Math.max(stockHsMult, 1);
+    if (statsHsTtk == null || stockHsTtk == null) return multGain;
+
+    let gain = 0;
     // Both already one-shot headshots: keep a small multiplier tie-break.
     if (stockHsTtk <= 0 && statsHsTtk <= 0) {
-      return ((statsHsMult - stockHsMult) / Math.max(stockHsMult, 1)) * 0.25;
+      gain = multGain * 0.25;
+    } else {
+      gain = (stockHsTtk - statsHsTtk) / Math.max(stockHsTtk, 1);
     }
-    return (stockHsTtk - statsHsTtk) / Math.max(stockHsTtk, 1);
+
+    // Crossing a headshot breakpoint (e.g. 4HK → 3HK) is the real reason synth/HP matter.
+    if (
+      Number.isFinite(statsHsBtk) &&
+      Number.isFinite(stockHsBtk) &&
+      statsHsBtk < stockHsBtk
+    ) {
+      gain += 0.65 * (stockHsBtk - statsHsBtk);
+    } else if (gain <= 1e-9 && multGain > 0) {
+      // Same BTK, but higher mult still helps marginal ranges / damage drop-off.
+      gain = multGain * 0.4;
+    } else {
+      gain += Math.max(0, multGain) * 0.12;
+    }
+    return gain;
   }
 
   function resolveReloadScore(magData, ergo, ladder) {
@@ -547,12 +574,21 @@ window.BF6 = window.BF6 || {};
     const recoveryGain = (stats.recoilRecovery - stock.recoilRecovery) / Math.max(stock.recoilRecovery, 1);
     const reloadGain = stats.reloadScore - stock.reloadScore;
     const handlingGain = (stats.handling - stock.handling) / 2;
-    // Headshot ammo is scored by actual headshot TTK at this layout's range, not raw mult alone.
+    // Headshot ammo is scored by actual headshot TTK / breakpoint at this layout's range.
     const statsHsTtk =
       weapon != null ? headshotTtkMs(weapon, stats.hsMult, rangeMeters) : stats.hsTtkMs;
     const stockHsTtk =
       weapon != null ? headshotTtkMs(weapon, stock.hsMult, rangeMeters) : stock.hsTtkMs;
-    const hsGain = hsTtkGain(statsHsTtk, stockHsTtk, stats.hsMult, stock.hsMult);
+    const statsHsBtk = weapon != null ? headshotBtk(weapon, stats.hsMult, rangeMeters) : null;
+    const stockHsBtk = weapon != null ? headshotBtk(weapon, stock.hsMult, rangeMeters) : null;
+    const hsGain = hsTtkGain(
+      statsHsTtk,
+      stockHsTtk,
+      stats.hsMult,
+      stock.hsMult,
+      statsHsBtk,
+      stockHsBtk
+    );
     const hipControlGain = stats.hipControl - stock.hipControl;
     const fireModeGain = (stats.fireMode ?? 0) - (stock.fireMode ?? 0);
 
