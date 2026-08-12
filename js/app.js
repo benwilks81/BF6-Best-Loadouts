@@ -9,6 +9,20 @@
   const DEFAULT_MASTERY_LEVEL = 50;
   // Soft sanity bound only — game ranks are not capped at the attachment unlock track (50).
   const LEVEL_INPUT_MAX = 9999;
+  // Upstream data often stores ammo *category* names; show the in-game attachment names.
+  const AMMO_DISPLAY_NAMES = {
+    long_range: 'Match Grade',
+    penetration: 'Tungsten Core',
+    lightweight: 'Polymer Case',
+    synthetic: 'Synthetic Tip',
+    standard: 'FMJ',
+    hollow_pt: 'Hollow Point',
+    frangible: 'Frangible',
+    subsonic: 'Subsonic',
+    subsonic_hp: 'Sub HP',
+    subsonic_pen: 'Sub Pen',
+    range_pen: 'Range Pen',
+  };
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
   const META_IMG = 'https://img.battlefieldmeta.gg';
   const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
@@ -139,6 +153,7 @@
       }));
     state.attachments = attachments;
     state.unlocks = unlocks && typeof unlocks === 'object' ? unlocks : null;
+    const ammoTypes = withAmmoDisplayNames(ammo?.AMMO ?? []);
     state.tables = {
       ...balance,
       MUZZLES: attachments.MUZZLES,
@@ -152,7 +167,7 @@
       WEAPON_ERGO: attachments.WEAPON_ERGO,
       WEAPON_ATTS: attachments.WEAPON_ATTS,
       AMMO: ammo,
-      AMMO_TYPES: ammo?.AMMO ?? [],
+      AMMO_TYPES: ammoTypes,
       WEAPON_AMMO: ammo?.WEAPON_AMMO ?? {},
       unlocks: state.unlocks,
     };
@@ -170,6 +185,15 @@
     renderDataAge(BF6_DATA.refreshedAt);
     bind();
     run();
+  }
+
+  function withAmmoDisplayNames(list) {
+    return (list ?? []).map((entry) => {
+      if (!entry || typeof entry !== 'object') return entry;
+      const label = AMMO_DISPLAY_NAMES[entry.id];
+      if (!label) return entry;
+      return { ...entry, name: label };
+    });
   }
 
   function attachmentUnlockCap() {
