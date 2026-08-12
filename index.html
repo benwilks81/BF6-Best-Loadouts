@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/styles.css?v=20260812d" />
+    <link rel="stylesheet" href="./css/styles.css?v=20260812e" />
   </head>
   <body>
     <div class="fx-scan" aria-hidden="true"></div>
@@ -49,12 +49,16 @@
               <input id="playerLevel" type="number" min="1" max="50" step="1" value="50" inputmode="numeric" />
             </label>
             <label class="level-field" for="masteryLevel">
-              <span>Weapon mastery</span>
+              <span>Gun level</span>
               <input id="masteryLevel" type="number" min="0" max="50" step="1" value="50" inputmode="numeric" />
             </label>
           </div>
+          <label class="level-check" for="includeChallenges">
+            <input id="includeChallenges" type="checkbox" />
+            <span>Include season / challenge attachments</span>
+          </label>
           <p class="level-hint">
-            Player level gates which guns unlock. Weapon mastery (0–50) limits attachments in the recommended layouts.
+            Player level gates which guns unlock. Gun level (Hardware Mastery 0–50) limits attachments. Season rewards like Cryogenic stay off unless you tick the box.
           </p>
         </section>
 
@@ -116,9 +120,9 @@
       </section>
     </main>
 
-    <script src="./js/embedded-data.js?v=20260812d"></script>
-    <script src="./js/stats.js?v=20260812d"></script>
-    <script src="./js/optimizer.js?v=20260812d"></script>
-    <script src="./js/app.js?v=20260812d"></script>
+    <script src="./js/embedded-data.js?v=20260812e"></script>
+    <script src="./js/stats.js?v=20260812e"></script>
+    <script src="./js/optimizer.js?v=20260812e"></script>
+    <script src="./js/app.js?v=20260812e"></script>
   </body>
 </html>

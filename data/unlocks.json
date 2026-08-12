@@ -1,6 +1,6 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-08-12T00:14:17+00:00",
+  "fetchedAt": "2026-08-12T00:23:59+00:00",
   "playerMaxLevel": 50,
   "weaponMasteryMax": 50,
   "weapons": {
@@ -10,7 +10,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 5,
           "linear_comp": 6,
           "std_supp": 8,
@@ -73,7 +72,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_green": 5,
           "5mw_red": 6,
           "50mw_green": 17,
@@ -86,9 +84,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 2,
+          "var_low": 10,
           "var_high": 22,
           "thermal": 36
         },
@@ -114,6 +111,14 @@
           "mag_flare": 13,
           "match_trigger": 31
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "b36a4": {
@@ -122,7 +127,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 4,
           "dp_brake": 9,
@@ -135,7 +139,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 5,
           "heavy": 14,
           "light": 21,
@@ -145,7 +148,6 @@
         "grip": {
           "none": 0,
           "underslung_mount": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 2,
           "ribbed_vert": 4,
@@ -189,7 +191,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 15,
           "5mw_green": 17,
           "50mw_green": 22,
@@ -203,8 +204,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 12,
           "var_high": 18,
           "thermal": 30
         },
@@ -230,9 +230,25 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "match_trigger": 28
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "sor556": {
@@ -241,7 +257,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 3,
           "linear_comp": 6,
@@ -255,7 +270,6 @@
         "barrel": {
           "none": 0,
           "short": 0,
-          "cryo": 0,
           "basic": 3,
           "extended": 9,
           "heavy": 20,
@@ -263,7 +277,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 2,
           "ribbed_vert": 5,
@@ -307,7 +320,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "5mw_green": 8,
           "50mw_green": 32,
@@ -321,7 +333,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 21,
           "thermal": 35
@@ -348,11 +359,27 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "rail_cover": 0,
           "mag_flare": 10,
           "match_trigger": 11
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "rail_cover"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "ak4d": {
@@ -361,7 +388,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 12,
           "long_supp": 13,
@@ -374,7 +400,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 4,
           "extended": 9,
           "short": 15,
@@ -382,7 +407,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 2,
           "ribbed_vert": 3,
@@ -427,7 +451,6 @@
         "laser": {
           "none": 0,
           "5mw_red": 0,
-          "50mw_violet": 0,
           "5mw_green": 5,
           "50mw_green": 31,
           "50mw_blue": 33,
@@ -440,8 +463,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 5,
           "var_high": 19,
           "thermal": 27
         },
@@ -462,9 +484,25 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "match_trigger": 22
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "tr7": {
@@ -474,7 +512,6 @@
         "muzzle": {
           "none": 0,
           "dp_brake": 0,
-          "flash_comp": 0,
           "flash_hider": 4,
           "std_supp": 14,
           "linear_comp": 19,
@@ -530,7 +567,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 6,
           "5mw_green": 11,
           "50mw_green": 18,
@@ -544,8 +580,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 8,
           "var_high": 27,
           "thermal": 29
         },
@@ -571,6 +606,14 @@
           "mag_catch": 23,
           "match_trigger": 25
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "kord6p67": {
@@ -579,7 +622,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "sp_brake": 0,
           "flash_hider": 5,
           "linear_comp": 9,
@@ -593,13 +635,11 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 7,
           "light": 29
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 6,
@@ -642,7 +682,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 6,
           "5mw_green": 12,
           "120mw_blue": 26,
@@ -657,8 +696,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 7,
           "var_high": 21,
           "thermal": 34
         },
@@ -683,6 +721,20 @@
           "none": 0,
           "match_trigger": 18
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "nvo228e": {
@@ -691,7 +743,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 4,
           "linear_comp": 7,
@@ -705,14 +756,12 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 10,
           "short": 20,
           "light": 30
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 2,
           "alloy_vert": 9,
           "slim_angled": 11,
@@ -755,7 +804,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 1,
           "5mw_green": 6,
           "50mw_green": 22,
@@ -769,8 +817,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 13,
           "var_high": 18,
           "thermal": 31
         },
@@ -793,9 +840,25 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "match_trigger": 21
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "l85a3": {
@@ -804,7 +867,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 7,
           "linear_comp": 9,
@@ -818,7 +880,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 3,
           "extended": 10,
           "short": 17,
@@ -827,7 +888,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "underslung_mount": 0,
           "fold_vert": 1,
           "alloy_vert": 2,
@@ -872,7 +932,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 8,
           "5mw_green": 27,
           "50mw_green": 33,
@@ -886,7 +945,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 23,
           "thermal": 31
@@ -915,6 +973,20 @@
           "none": 0,
           "match_trigger": 24
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "vcr2": {
@@ -923,7 +995,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 3,
           "std_supp": 8,
@@ -987,7 +1058,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "5mw_green": 9,
           "50mw_green": 18,
@@ -996,14 +1066,11 @@
         },
         "light": {
           "none": 0,
-          "ads_taclight": 0,
-          "hip_taclight": 0,
           "flashlight": 6
         },
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "therm_hyb": 0,
           "var_low": 6,
           "var_high": 18,
           "thermal": 27
@@ -1027,9 +1094,23 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "match_trigger": 13
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "light": [
+          "ads_taclight",
+          "hip_taclight"
+        ]
       }
     },
     "m16a4": {
@@ -1052,7 +1133,6 @@
         "barrel": {
           "none": 0,
           "extended": 0,
-          "cryo": 0,
           "basic": 2,
           "heavy": 10,
           "light": 18,
@@ -1118,8 +1198,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
           "std_optic": 1,
+          "var_low": 3,
           "var_high": 13,
           "thermal": 34
         },
@@ -1147,6 +1227,11 @@
           "match_trigger": 30,
           "mag_flare": 32
         }
+      },
+      "challengeAttachments": {
+        "barrel": [
+          "cryo"
+        ]
       }
     },
     "m4a1": {
@@ -1155,7 +1240,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 2,
           "linear_comp": 7,
@@ -1176,7 +1260,6 @@
         "grip": {
           "none": 0,
           "underslung_mount": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 9,
@@ -1220,7 +1303,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -1234,8 +1316,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "var_high": 17,
           "thermal": 22
         },
@@ -1258,12 +1339,25 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "rail_cover": 0,
           "mag_catch": 4,
           "mag_flare": 16,
           "match_trigger": 32
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "rail_cover"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m277": {
@@ -1272,7 +1366,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "light_supp": 0,
           "sp_brake": 2,
           "flash_hider": 11,
@@ -1286,7 +1379,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 3,
           "heavy_ext": 7,
           "extended": 18,
@@ -1338,7 +1430,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -1352,8 +1443,7 @@
         "sight": {
           "iron": 0,
           "var_high": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "std_optic": 2,
           "thermal": 22
         },
@@ -1378,6 +1468,17 @@
           "mag_flare": 15,
           "match_trigger": 24
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "ak205": {
@@ -1386,7 +1487,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 2,
           "dp_brake": 7,
@@ -1399,13 +1499,11 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 3,
           "light": 37
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 7,
@@ -1441,7 +1539,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -1455,7 +1552,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 21,
           "thermal": 26
@@ -1481,11 +1577,27 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_catch": 6,
           "mag_flare": 16,
           "match_trigger": 28
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m417a2": {
@@ -1494,7 +1606,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "linear_comp": 1,
           "dp_brake": 6,
           "comp_brake": 14,
@@ -1507,13 +1618,11 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 5,
           "short": 13
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "underslung_mount": 0,
           "fold_vert": 2,
           "alloy_vert": 6,
@@ -1558,7 +1667,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "5mw_green": 11,
           "50mw_green": 19,
@@ -1572,8 +1680,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "thermal": 17,
           "var_high": 26
         },
@@ -1593,10 +1700,26 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_flare": 3,
           "match_trigger": 13
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "grtbc": {
@@ -1605,7 +1728,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 2,
           "linear_comp": 7,
@@ -1654,7 +1776,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "combo_red": 15,
@@ -1670,8 +1791,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "var_high": 18,
           "thermal": 27
         },
@@ -1692,11 +1812,21 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "grtbc_burst_mode": 0,
           "mag_catch": 6,
           "match_trigger": 27
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "grtbc_burst_mode"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "qbz192": {
@@ -1712,13 +1842,11 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 16
         },
         "grip": {
           "none": 0,
           "ptt_grip_pod": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 6,
@@ -1759,7 +1887,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -1773,8 +1900,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "thermal": 15,
           "var_high": 17
         },
@@ -1795,9 +1921,22 @@
         },
         "ergo": {
           "none": 0,
-          "rail_cover": 0,
           "match_trigger": 27
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "ergo": [
+          "rail_cover"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "sg553r": {
@@ -1806,7 +1945,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 9,
           "dp_brake": 14,
@@ -1825,7 +1963,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 7,
@@ -1861,7 +1998,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -1875,8 +2011,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "thermal": 18,
           "var_high": 21
         },
@@ -1899,11 +2034,24 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "grtbc_burst_mode": 0,
           "mag_catch": 3,
           "match_trigger": 31
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "grtbc_burst_mode"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "sor300sc": {
@@ -1912,7 +2060,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 2,
           "linear_comp": 7,
@@ -1926,14 +2073,12 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 5,
           "short": 13,
           "light": 24
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 6,
           "ribbed_vert": 8,
@@ -1971,7 +2116,6 @@
         "laser": {
           "none": 0,
           "120mw_blue": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 9,
           "50mw_green": 18,
@@ -1984,8 +2128,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "var_high": 17,
           "thermal": 25
         },
@@ -2008,11 +2151,27 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "rail_cover": 0,
           "mag_flare": 19,
           "match_trigger": 29
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "rail_cover"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "sgx": {
@@ -2074,7 +2233,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "50mw_green": 12,
           "5mw_green": 19,
@@ -2087,9 +2245,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 5,
+          "var_low": 12,
           "var_high": 19,
           "thermal": 38
         },
@@ -2107,9 +2264,16 @@
           "hollow_pt": 37
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0
+          "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ]
       }
     },
     "pw5a3": {
@@ -2118,7 +2282,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 5,
           "std_supp": 9,
           "linear_comp": 11,
@@ -2131,7 +2294,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "extended": 12
         },
         "grip": {
@@ -2170,7 +2332,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 8,
           "5mw_green": 17,
           "50mw_green": 22,
@@ -2183,9 +2344,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 3,
           "var_high": 18,
           "thermal": 34
         },
@@ -2205,10 +2365,23 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "grtbc_burst_mode": 0,
           "mag_catch": 12
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "grtbc_burst_mode"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "pw7a2": {
@@ -2217,7 +2390,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 2,
           "linear_comp": 6,
@@ -2231,7 +2403,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 14
         },
         "grip": {
@@ -2270,7 +2441,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -2284,8 +2454,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 3,
           "var_high": 17,
           "thermal": 25
         },
@@ -2307,6 +2476,17 @@
           "none": 0,
           "mag_catch": 22
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "umg40": {
@@ -2315,7 +2495,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 2,
           "linear_comp": 8,
           "dp_brake": 13,
@@ -2328,7 +2507,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 5,
           "heavy_ext": 16,
           "extended": 26,
@@ -2370,7 +2548,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 12,
           "50mw_green": 23,
@@ -2384,8 +2561,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "var_high": 15,
           "thermal": 17
         },
@@ -2405,10 +2581,23 @@
           "synthetic": 39
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0,
-          "grtbc_burst_mode": 0
+          "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "grtbc_burst_mode"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "usg90": {
@@ -2417,7 +2606,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 1,
           "linear_comp": 6,
@@ -2431,7 +2619,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "heavy": 3,
           "heavy_ext": 15,
           "light": 34
@@ -2441,7 +2628,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 18,
@@ -2455,8 +2641,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 3,
           "var_high": 14,
           "thermal": 24
         },
@@ -2473,9 +2658,22 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_catch": 13
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "barrel": [
+          "cryo"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "kv9": {
@@ -2536,7 +2734,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 14,
           "5mw_green": 21,
           "50mw_green": 30,
@@ -2550,8 +2747,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 3,
           "var_high": 21,
           "thermal": 33
         },
@@ -2569,9 +2765,16 @@
           "penetration": 36
         },
         "ergo": {
-          "none": 0,
-          "grtbc_burst_mode": 0
+          "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "grtbc_burst_mode"
+        ]
       }
     },
     "scw10": {
@@ -2580,7 +2783,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 4,
           "linear_comp": 7,
           "std_supp": 14,
@@ -2632,7 +2834,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 6,
           "5mw_green": 18,
           "50mw_green": 23,
@@ -2646,9 +2847,8 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "var_high": 1,
+          "var_low": 22,
           "thermal": 37
         },
         "mag": {
@@ -2668,6 +2868,14 @@
           "none": 0,
           "mag_catch": 21
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "sl9": {
@@ -2689,7 +2897,6 @@
         "barrel": {
           "none": 0,
           "basic": 0,
-          "cryo": 0,
           "light": 10,
           "extended": 20,
           "heavy": 28,
@@ -2729,7 +2936,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 9,
           "5mw_green": 15,
           "50mw_green": 21,
@@ -2745,9 +2951,8 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "var_high": 8,
+          "var_low": 18,
           "thermal": 35
         },
         "mag": {
@@ -2764,9 +2969,19 @@
         },
         "ergo": {
           "none": 0,
-          "grtbc_burst_mode": 0,
           "mag_catch": 31
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "grtbc_burst_mode"
+        ],
+        "barrel": [
+          "cryo"
+        ]
       }
     },
     "cz3a1": {
@@ -2827,7 +3042,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "5mw_green": 15,
           "50mw_green": 24,
@@ -2841,8 +3055,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "var_high": 19,
           "thermal": 31
         },
@@ -2862,10 +3075,17 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "grtbc_burst_mode": 0,
           "mag_catch": 12
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "grtbc_burst_mode"
+        ]
       }
     },
     "pp19": {
@@ -2961,7 +3181,8 @@
           "mag_catch": 14,
           "buffer": 28
         }
-      }
+      },
+      "challengeAttachments": {}
     },
     "l110": {
       "metaId": "l110",
@@ -2969,7 +3190,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 1,
           "sp_brake": 2,
           "linear_comp": 7,
@@ -2989,7 +3209,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "bipod": 1,
           "bipod_sr": 1,
           "classic_grip_pod": 1,
@@ -3032,7 +3251,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_green": 1,
           "5mw_red": 5,
           "50mw_green": 18,
@@ -3045,9 +3263,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 2,
           "thermal": 19,
           "var_high": 22
         },
@@ -3065,6 +3282,17 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "drsiar": {
@@ -3073,7 +3301,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 2,
           "linear_comp": 7,
@@ -3097,7 +3324,6 @@
           "none": 0,
           "bipod": 0,
           "bipod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 5,
@@ -3139,7 +3365,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3153,7 +3378,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "thermal": 22,
           "var_high": 30
@@ -3180,11 +3404,24 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
-          "rail_cover": 0,
           "mag_flare": 4,
           "match_trigger": 16
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer",
+          "rail_cover"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m60": {
@@ -3193,7 +3430,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 7,
           "dp_brake": 13,
@@ -3215,7 +3451,6 @@
           "none": 0,
           "bipod": 0,
           "bipod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 6,
@@ -3257,7 +3492,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3271,7 +3505,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 14,
           "thermal": 23
@@ -3290,6 +3523,17 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "rpkm": {
@@ -3298,7 +3542,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "slant_brake": 2,
           "linear_comp": 7,
@@ -3321,7 +3564,6 @@
           "none": 0,
           "bipod": 0,
           "bipod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 6,
@@ -3363,7 +3605,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3377,7 +3618,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 14,
           "thermal": 23
@@ -3402,10 +3642,23 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_flare": 4,
           "match_trigger": 18
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m123k": {
@@ -3414,7 +3667,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 2,
           "dp_brake": 6,
@@ -3436,7 +3688,6 @@
           "adj_angled": 0,
           "bipod": 0,
           "bipod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 7,
@@ -3474,7 +3725,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3488,8 +3738,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "var_high": 16,
           "thermal": 21
         },
@@ -3507,6 +3756,17 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m250": {
@@ -3515,7 +3775,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "light_supp": 0,
           "flash_hider": 4,
           "linear_comp": 7,
@@ -3536,7 +3795,6 @@
           "none": 0,
           "bipod": 0,
           "bipod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ribbed_vert": 6,
@@ -3579,7 +3837,6 @@
         "laser": {
           "none": 0,
           "120mw_blue": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3592,9 +3849,8 @@
         "sight": {
           "iron": 0,
           "var_high": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 2,
           "thermal": 17
         },
         "mag": {
@@ -3611,6 +3867,17 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "kts100": {
@@ -3619,7 +3886,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 3,
           "linear_comp": 9,
@@ -3641,7 +3907,6 @@
           "none": 0,
           "qd_grip_pod": 0,
           "qd_grip_pod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "bipod": 4,
           "bipod_sr": 4,
@@ -3682,7 +3947,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3698,7 +3962,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 13,
           "thermal": 24
@@ -3722,9 +3985,22 @@
         },
         "ergo": {
           "none": 0,
-          "rail_cover": 0,
           "match_trigger": 16
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "ergo": [
+          "rail_cover"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m240l": {
@@ -3755,7 +4031,6 @@
           "bipod_sr": 0,
           "classic_grip_pod": 0,
           "classic_grip_pod_sr": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 6,
@@ -3794,7 +4069,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 5,
           "5mw_green": 12,
           "50mw_green": 19,
@@ -3808,8 +4082,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 1,
           "var_high": 11,
           "thermal": 17
         },
@@ -3826,9 +4099,19 @@
           "frangible": 37
         },
         "ergo": {
-          "none": 0,
-          "rail_cover": 0
+          "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "rail_cover"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m121a2": {
@@ -3898,7 +4181,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 12,
           "50mw_green": 23,
@@ -3912,7 +4194,6 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "therm_hyb": 0,
           "var_low": 2,
           "var_high": 28,
           "thermal": 34
@@ -3932,6 +4213,11 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ]
       }
     },
     "rpk74m": {
@@ -4046,7 +4332,8 @@
           "mag_flare": 12,
           "match_trigger": 38
         }
-      }
+      },
+      "challengeAttachments": {}
     },
     "m39emr": {
       "metaId": "m39-emr",
@@ -4054,7 +4341,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 4,
           "light_supp": 6,
@@ -4073,7 +4359,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 3,
           "ribbed_vert": 7,
@@ -4118,7 +4403,6 @@
         "laser": {
           "none": 0,
           "5mw_red": 0,
-          "50mw_violet": 0,
           "5mw_green": 13,
           "50mw_green": 18,
           "50mw_blue": 24,
@@ -4133,7 +4417,6 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "var_high": 8,
           "thermal": 25
         },
@@ -4155,9 +4438,22 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_catch": 19
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "lmr27": {
@@ -4166,7 +4462,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 3,
           "sp_brake": 6,
@@ -4188,7 +4483,6 @@
           "bipod": 0,
           "bipod_sr": 0,
           "factory_angled_db12": 0,
-          "slim_handstop": 0,
           "fold_vert": 2,
           "alloy_vert": 7,
           "ribbed_vert": 11,
@@ -4227,7 +4521,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 1,
           "5mw_green": 5,
           "50mw_green": 16,
@@ -4242,7 +4535,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 10,
           "thermal": 35
@@ -4267,6 +4559,17 @@
           "none": 0,
           "mag_catch": 4
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "svk86": {
@@ -4293,7 +4596,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 2,
           "alloy_vert": 4,
           "ribbed_vert": 8,
@@ -4336,7 +4638,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 18,
           "50mw_green": 26,
@@ -4350,9 +4651,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 6,
           "var_high": 9,
           "thermal": 25
         },
@@ -4371,6 +4671,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "svdm": {
@@ -4398,7 +4706,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "ptt_grip_pod": 7,
@@ -4442,7 +4749,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 2,
           "5mw_green": 6,
           "50mw_green": 15,
@@ -4457,7 +4763,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 2,
           "var_high": 18,
           "thermal": 29
@@ -4478,9 +4783,19 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_catch": 25
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "grtcps": {
@@ -4489,7 +4804,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "linear_comp": 1,
           "std_supp": 9,
@@ -4552,7 +4866,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 11,
           "50mw_green": 21,
@@ -4567,7 +4880,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 7,
           "thermal": 32
@@ -4588,9 +4900,19 @@
           "synthetic": 40
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0
+          "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "m2010esr": {
@@ -4599,7 +4921,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "sp_brake": 2,
           "comp_brake": 7,
           "flash_hider": 9,
@@ -4637,7 +4958,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 2,
           "5mw_green": 7,
           "50mw_green": 18,
@@ -4651,8 +4971,7 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "var_high": 2,
           "std_optic": 4,
           "thermal": 15
@@ -4673,6 +4992,14 @@
           "none": 0,
           "ads_bolt": 13
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "sv98": {
@@ -4715,7 +5042,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 1,
           "50mw_green": 13,
           "5mw_green": 14,
@@ -4730,8 +5056,7 @@
         "sight": {
           "iron": 0,
           "var_high": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "std_optic": 4,
           "thermal": 15
         },
@@ -4747,10 +5072,17 @@
         },
         "ergo": {
           "none": 0,
-          "buffer": 0,
           "mag_catch": 5,
           "ads_bolt": 13
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "ergo": [
+          "buffer"
+        ]
       }
     },
     "psr": {
@@ -4795,7 +5127,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 1,
           "5mw_green": 12,
           "50mw_green": 18,
@@ -4810,8 +5141,7 @@
         "sight": {
           "iron": 0,
           "var_high": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 2,
           "std_optic": 4,
           "thermal": 15
         },
@@ -4831,6 +5161,11 @@
           "ads_bolt": 13,
           "mag_catch": 17
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ]
       }
     },
     "miniscout": {
@@ -4839,7 +5174,6 @@
       "attachments": {
         "muzzle": {
           "none": 0,
-          "flash_comp": 0,
           "flash_hider": 0,
           "sp_brake": 1,
           "dp_brake": 7,
@@ -4878,7 +5212,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 3,
           "5mw_green": 12,
           "50mw_green": 21,
@@ -4893,7 +5226,6 @@
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
           "var_high": 2,
           "thermal": 14
@@ -4915,6 +5247,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "muzzle": [
+          "flash_comp"
+        ]
       }
     },
     "l115": {
@@ -4974,8 +5314,8 @@
         "sight": {
           "iron": 0,
           "var_high": 0,
-          "var_low": 0,
           "std_optic": 1,
+          "var_low": 4,
           "thermal": 30
         },
         "mag": {
@@ -4995,7 +5335,8 @@
           "mag_catch": 6,
           "ads_bolt": 29
         }
-      }
+      },
+      "challengeAttachments": {}
     },
     "m87a1": {
       "metaId": "m87a1",
@@ -5012,7 +5353,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "alloy_vert": 2,
           "ribbed_stubby": 5,
           "stipp_stubby": 7,
@@ -5049,7 +5389,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "50mw_blue": 15,
           "5mw_green": 22,
@@ -5062,9 +5401,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 9,
           "var_high": 14,
           "thermal": 17
         },
@@ -5083,6 +5421,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "m1014": {
@@ -5100,7 +5446,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "alloy_vert": 2,
           "ribbed_stubby": 5,
           "stipp_stubby": 7,
@@ -5137,7 +5482,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "50mw_blue": 15,
           "5mw_green": 23,
@@ -5150,9 +5494,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 9,
           "var_high": 14,
           "thermal": 17
         },
@@ -5169,6 +5512,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "ks18k": {
@@ -5189,7 +5540,6 @@
         },
         "grip": {
           "none": 0,
-          "slim_handstop": 0,
           "alloy_vert": 2,
           "ribbed_stubby": 5,
           "stipp_stubby": 7,
@@ -5225,7 +5575,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 4,
           "50mw_blue": 15,
           "5mw_green": 22,
@@ -5239,8 +5588,7 @@
         "sight": {
           "iron": 0,
           "std_optic": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
+          "var_low": 9,
           "var_high": 14,
           "thermal": 17
         },
@@ -5260,6 +5608,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "db12": {
@@ -5278,7 +5634,6 @@
         "grip": {
           "none": 0,
           "factory_angled_db12": 0,
-          "slim_handstop": 0,
           "fold_vert": 1,
           "alloy_vert": 4,
           "fold_stubby": 8,
@@ -5312,7 +5667,6 @@
         },
         "laser": {
           "none": 0,
-          "50mw_violet": 0,
           "5mw_red": 2,
           "5mw_green": 13,
           "50mw_green": 22,
@@ -5325,9 +5679,8 @@
         },
         "sight": {
           "iron": 0,
-          "var_low": 0,
-          "therm_hyb": 0,
           "std_optic": 1,
+          "var_low": 9,
           "thermal": 16,
           "var_high": 17
         },
@@ -5344,6 +5697,14 @@
         "ergo": {
           "none": 0
         }
+      },
+      "challengeAttachments": {
+        "laser": [
+          "50mw_violet"
+        ],
+        "grip": [
+          "slim_handstop"
+        ]
       }
     },
     "brod3": {
@@ -5455,7 +5816,8 @@
           "rail_cover": 26,
           "match_trigger": 37
         }
-      }
+      },
+      "challengeAttachments": {}
     },
     "ef88": {
       "metaId": "ef88",
@@ -5567,7 +5929,8 @@
           "buffer": 22,
           "match_trigger": 40
         }
-      }
+      },
+      "challengeAttachments": {}
     },
     "vssm": {
       "metaId": "vssm",
@@ -5663,7 +6026,8 @@
           "mag_catch": 0,
           "full_auto_vssm": 15
         }
-      }
+      },
+      "challengeAttachments": {}
     }
   },
   "unmappedSample": [

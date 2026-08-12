@@ -233,6 +233,14 @@ def validate_unlocks(data: Any) -> dict:
                     raise ValueError(f"unlocks.{wid}.{slot}.{att_id} level must be numeric")
                 if not (0 <= float(att_level) <= 100):
                     raise ValueError(f"unlocks.{wid}.{slot}.{att_id} level out of range")
+        challenge = obj.get("challengeAttachments")
+        if challenge is not None:
+            challenge_map = require_mapping(challenge, f"unlocks.weapons.{wid}.challengeAttachments")
+            for slot, ids in challenge_map.items():
+                if not isinstance(slot, str) or not slot or len(slot) > 32:
+                    raise ValueError(f"unlocks.weapons.{wid} has invalid challenge slot")
+                for att_id in require_list(ids, f"unlocks.weapons.{wid}.challengeAttachments.{slot}"):
+                    require_id(att_id, f"unlocks.{wid}.challenge.{slot}")
     return unlocks
 
 

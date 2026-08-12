@@ -272,6 +272,24 @@ body::before {
   border-color: var(--accent);
 }
 
+.level-check {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  margin-top: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.level-check input {
+  margin-top: 0.1rem;
+  accent-color: var(--accent);
+}
+
 .level-hint {
   margin: 0.55rem 0 0;
   font-size: 0.72rem;

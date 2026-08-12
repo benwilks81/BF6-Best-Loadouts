@@ -272,6 +272,17 @@ def set_level(bucket: dict[str, int], att_id: str, level: int) -> None:
         bucket[att_id] = int(level)
 
 
+def add_challenge(challenge: dict[str, list[str]], slot: str, att_id: str) -> None:
+    ids = challenge.setdefault(slot, [])
+    if att_id not in ids:
+        ids.append(att_id)
+
+
+def is_challenge_unlock(att: dict) -> bool:
+    """Seasonal / assignment unlocks are not tied to Hardware Mastery level."""
+    return bool(att.get("unlockByAssignmentChallengeId") or att.get("unlockByAssignmentChallenge"))
+
+
 def expand_grip_ids(base_id: str, grips: list[dict]) -> list[str]:
     base = next((g for g in grips if g.get("id") == base_id), None)
     if not base:
@@ -372,6 +383,7 @@ def build_unlocks() -> dict:
             "ammo": {"standard": 0},
             "ergo": {"none": 0},
         }
+        challenge: dict[str, list[str]] = {}
 
         atts = api_get(f"/weapons/{meta_id}/unlocked-attachments")
         time.sleep(REQUEST_PAUSE_S)
@@ -386,32 +398,40 @@ def build_unlocks() -> dict:
             if not isinstance(level, (int, float)):
                 continue
             level = int(level)
+            challenge_only = is_challenge_unlock(att)
 
             if slot == "muzzle":
                 lid = resolve_id(att.get("name"), muzzle_cat, muzzle_ids) or resolve_id(
                     att.get("summaryName"), muzzle_cat, muzzle_ids
                 )
-                if lid:
-                    set_level(slots["muzzle"], lid, level)
-                else:
+                if not lid:
                     unmapped[f"muzzle:{att.get('name')}"] = unmapped.get(f"muzzle:{att.get('name')}", 0) + 1
+                elif challenge_only:
+                    add_challenge(challenge, "muzzle", lid)
+                else:
+                    set_level(slots["muzzle"], lid, level)
 
             elif slot == "barrel":
                 lid = resolve_id(att.get("summaryName"), barrel_cat, barrel_ids) or resolve_id(
                     att.get("name"), barrel_cat, barrel_ids
                 )
-                if lid:
-                    set_level(slots["barrel"], lid, level)
-                else:
+                if not lid:
                     key = f"barrel:{att.get('summaryName')}"
                     unmapped[key] = unmapped.get(key, 0) + 1
+                elif challenge_only:
+                    add_challenge(challenge, "barrel", lid)
+                else:
+                    set_level(slots["barrel"], lid, level)
 
             elif slot == "underbarrel":
                 name = att.get("name") or ""
                 if "LASER/LIGHT COMBO" in name.upper():
                     lid = resolve_id(name, laser_cat, laser_ids)
                     if lid:
-                        set_level(slots["laser"], lid, level)
+                        if challenge_only:
+                            add_challenge(challenge, "laser", lid)
+                        else:
+                            set_level(slots["laser"], lid, level)
                     continue
                 lid = resolve_id(name, grip_cat, grip_ids)
                 if not lid:
@@ -421,7 +441,11 @@ def build_unlocks() -> dict:
                             break
                 if lid:
                     for gid in expand_grip_ids(lid, attachments["GRIPS"]):
-                        if gid in grip_ids:
+                        if gid not in grip_ids:
+                            continue
+                        if challenge_only:
+                            add_challenge(challenge, "grip", gid)
+                        else:
                             set_level(slots["grip"], gid, level)
                 else:
                     key = f"grip:{name}"
@@ -433,57 +457,81 @@ def build_unlocks() -> dict:
                     att.get("summaryName"), laser_cat, laser_ids
                 )
                 if lid:
-                    set_level(slots["laser"], lid, level)
+                    if challenge_only:
+                        add_challenge(challenge, "laser", lid)
+                    else:
+                        set_level(slots["laser"], lid, level)
                     continue
                 lid = resolve_id(name, light_cat, light_ids) or resolve_id(
                     att.get("summaryName"), light_cat, light_ids
                 )
                 if lid:
-                    set_level(slots["light"], lid, level)
+                    if challenge_only:
+                        add_challenge(challenge, "light", lid)
+                    else:
+                        set_level(slots["light"], lid, level)
                 else:
                     key = f"acc:{slot}:{name}"
                     unmapped[key] = unmapped.get(key, 0) + 1
 
             elif slot == "scope":
+                # Challenge optics (e.g. season LPVO) must not pull an optic category down to level 0.
+                if challenge_only:
+                    continue
                 cat = optic_category(att)
                 if cat and cat in sight_ids:
                     set_level(slots["sight"], cat, level)
 
             elif slot == "magazine":
                 mid = mag_id(att)
-                if mid:
-                    set_level(slots["mag"], mid, level)
-                else:
+                if not mid:
                     key = f"mag:{att.get('name')}"
                     unmapped[key] = unmapped.get(key, 0) + 1
+                elif challenge_only:
+                    add_challenge(challenge, "mag", mid)
+                else:
+                    set_level(slots["mag"], mid, level)
 
             elif slot == "ammunition":
                 lid = resolve_id(att.get("summaryName"), ammo_cat, ammo_ids) or resolve_id(
                     att.get("name"), ammo_cat, ammo_ids
                 )
-                if lid:
-                    set_level(slots["ammo"], lid, level)
-                else:
+                if not lid:
                     key = f"ammo:{att.get('name')}/{att.get('summaryName')}"
                     unmapped[key] = unmapped.get(key, 0) + 1
+                elif challenge_only:
+                    add_challenge(challenge, "ammo", lid)
+                else:
+                    set_level(slots["ammo"], lid, level)
 
             elif slot == "ergonomics":
                 lid = resolve_id(att.get("name"), ergo_cat, ergo_ids) or resolve_id(
                     att.get("summaryName"), ergo_cat, ergo_ids
                 )
-                if lid:
-                    set_level(slots["ergo"], lid, level)
-                else:
+                if not lid:
                     key = f"ergo:{att.get('name')}"
                     unmapped[key] = unmapped.get(key, 0) + 1
+                elif challenge_only:
+                    add_challenge(challenge, "ergo", lid)
+                else:
+                    set_level(slots["ergo"], lid, level)
 
         # Default barrel is usually available early; keep basic at 0 if absent.
         slots["barrel"].setdefault("basic", 0)
+
+        # Challenge-only parts are never treated as mastery unlocks (API often marks them level 0).
+        for slot_name, ids in challenge.items():
+            bucket = slots.get(slot_name)
+            if not bucket:
+                continue
+            for att_id in ids:
+                bucket.pop(att_id, None)
 
         out_weapons[local_id] = {
             "metaId": meta_id,
             "unlockAtPlayerLevel": int(unlock_player or 0),
             "attachments": slots,
+            "challengeAttachments": challenge,
         }
 
     if missing:

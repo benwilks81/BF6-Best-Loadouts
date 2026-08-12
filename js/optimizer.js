@@ -200,16 +200,32 @@ window.BF6 = window.BF6 || {};
     return null;
   }
 
-  function isAttachmentUnlocked(weaponUnlocks, slot, id, masteryLevel, unknownLevel = 50) {
+  function isChallengeAttachment(weaponUnlocks, slot, id) {
+    if (!id || !weaponUnlocks?.challengeAttachments) return false;
+    const list = weaponUnlocks.challengeAttachments[slot];
+    if (!Array.isArray(list)) return false;
+    if (list.includes(id)) return true;
+    const base = String(id).replace(/_[a-z0-9]+$/i, '');
+    return Boolean(base && base !== id && list.includes(base));
+  }
+
+  function isAttachmentUnlocked(weaponUnlocks, slot, id, masteryLevel, { includeChallenges = false } = {}) {
+    if (!id || id === 'none' || id === 'default' || id === 'iron') return true;
+    if (isChallengeAttachment(weaponUnlocks, slot, id)) return includeChallenges;
     const need = attachmentUnlockLevel(weaponUnlocks, slot, id);
-    if (need == null) return masteryLevel >= unknownLevel;
+    // Unmapped attachments are treated as unavailable so we never invent max-level unlocks.
+    if (need == null) return false;
     return masteryLevel >= need;
   }
 
-  function filterPool(pool, weaponUnlocks, slot, masteryLevel) {
+  function filterPool(pool, weaponUnlocks, slot, masteryLevel, options = {}) {
     if (!weaponUnlocks) return pool;
-    const kept = pool.filter((item) => isAttachmentUnlocked(weaponUnlocks, slot, item?.id, masteryLevel));
-    return kept.length ? kept : pool.filter((item) => item?.id === 'none' || item?.id === 'default' || item?.id === 'iron');
+    const kept = pool.filter((item) =>
+      isAttachmentUnlocked(weaponUnlocks, slot, item?.id, masteryLevel, options)
+    );
+    return kept.length
+      ? kept
+      : pool.filter((item) => item?.id === 'none' || item?.id === 'default' || item?.id === 'iron');
   }
 
   function buildOptionPools(weapon, data, tables, options = {}) {
@@ -219,7 +235,9 @@ window.BF6 = window.BF6 || {};
     const unlocks = options.unlocks ?? tables.unlocks ?? data.unlocks ?? null;
     const masteryMax = options.masteryMax ?? unlocks?.weaponMasteryMax ?? 50;
     const masteryLevel = clampMasteryLevel(options.masteryLevel ?? masteryMax, masteryMax);
+    const includeChallenges = Boolean(options.includeChallenges);
     const weaponUnlocks = unlocks?.weapons?.[weapon.id] ?? null;
+    const filterOpts = { includeChallenges };
 
     const muzzlesById = BF6.byId(data.MUZZLES);
     const barrelsById = BF6.byId(data.BARRELS);
@@ -246,15 +264,15 @@ window.BF6 = window.BF6 || {};
     const ergoIds = data.WEAPON_ERGO?.[weapon.id]?.avail ?? [];
     let ergos = uniqueErgos(ergoIds, ergosById);
 
-    muzzles = filterPool(muzzles, weaponUnlocks, 'muzzle', masteryLevel);
-    barrels = filterPool(barrels, weaponUnlocks, 'barrel', masteryLevel);
-    grips = filterPool(grips, weaponUnlocks, 'grip', masteryLevel);
-    lasers = filterPool(lasers, weaponUnlocks, 'laser', masteryLevel);
-    lights = filterPool(lights, weaponUnlocks, 'light', masteryLevel);
-    sights = filterPool(sights, weaponUnlocks, 'sight', masteryLevel);
-    mags = filterPool(mags, weaponUnlocks, 'mag', masteryLevel);
-    ammos = filterPool(ammos, weaponUnlocks, 'ammo', masteryLevel);
-    ergos = filterPool(ergos, weaponUnlocks, 'ergo', masteryLevel);
+    muzzles = filterPool(muzzles, weaponUnlocks, 'muzzle', masteryLevel, filterOpts);
+    barrels = filterPool(barrels, weaponUnlocks, 'barrel', masteryLevel, filterOpts);
+    grips = filterPool(grips, weaponUnlocks, 'grip', masteryLevel, filterOpts);
+    lasers = filterPool(lasers, weaponUnlocks, 'laser', masteryLevel, filterOpts);
+    lights = filterPool(lights, weaponUnlocks, 'light', masteryLevel, filterOpts);
+    sights = filterPool(sights, weaponUnlocks, 'sight', masteryLevel, filterOpts);
+    mags = filterPool(mags, weaponUnlocks, 'mag', masteryLevel, filterOpts);
+    ammos = filterPool(ammos, weaponUnlocks, 'ammo', masteryLevel, filterOpts);
+    ergos = filterPool(ergos, weaponUnlocks, 'ergo', masteryLevel, filterOpts);
 
     if (!barrels.length) barrels.push(barrelsById.basic ?? barrelsById.none);
     if (!mags.length) mags.push({ id: 'default', name: 'Default', pts: 0, mag: weapon.mag });
@@ -449,12 +467,18 @@ window.BF6 = window.BF6 || {};
     return { considered, value: bestValue, performance: bestPerf };
   }
 
-  BF6.recommendSets = function recommendSets(weapon, data, tables, { topN = 1, masteryLevel } = {}) {
+  BF6.recommendSets = function recommendSets(
+    weapon,
+    data,
+    tables,
+    { topN = 1, masteryLevel, includeChallenges = false } = {}
+  ) {
     const unlocks = tables.unlocks ?? data.unlocks ?? null;
     const pools = buildOptionPools(weapon, data, tables, {
       masteryLevel,
       masteryMax: unlocks?.weaponMasteryMax,
       unlocks,
+      includeChallenges,
     });
     if (!pools) return { error: 'No attachment data for this weapon.' };
 

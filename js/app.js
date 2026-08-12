@@ -80,8 +80,10 @@
     filter: '',
     playerLevel: DEFAULT_PLAYER_LEVEL,
     masteryLevel: DEFAULT_MASTERY_LEVEL,
+    includeChallenges: false,
     lastResult: null,
     resultCache: new Map(),
+    activeOptimizeRequest: null,
     favorites: [],
     expandedFavs: new Set(),
   };
@@ -92,6 +94,7 @@
     weaponFilter: document.getElementById('weaponFilter'),
     playerLevel: document.getElementById('playerLevel'),
     masteryLevel: document.getElementById('masteryLevel'),
+    includeChallenges: document.getElementById('includeChallenges'),
     favToggle: document.getElementById('favToggle'),
     favorites: document.getElementById('favorites'),
     favList: document.getElementById('favList'),
@@ -155,6 +158,7 @@
     const savedLevels = loadLevels();
     state.playerLevel = savedLevels.playerLevel;
     state.masteryLevel = savedLevels.masteryLevel;
+    state.includeChallenges = savedLevels.includeChallenges;
     syncLevelInputs();
 
     state.favorites = loadFavorites();
@@ -187,11 +191,13 @@
       return {
         playerLevel: clampLevel(parsed.playerLevel, 1, playerMaxLevel(), DEFAULT_PLAYER_LEVEL),
         masteryLevel: clampLevel(parsed.masteryLevel, 0, masteryMaxLevel(), DEFAULT_MASTERY_LEVEL),
+        includeChallenges: Boolean(parsed.includeChallenges),
       };
     } catch {
       return {
         playerLevel: DEFAULT_PLAYER_LEVEL,
         masteryLevel: DEFAULT_MASTERY_LEVEL,
+        includeChallenges: false,
       };
     }
   }
@@ -203,6 +209,7 @@
         JSON.stringify({
           playerLevel: state.playerLevel,
           masteryLevel: state.masteryLevel,
+          includeChallenges: state.includeChallenges,
         })
       );
     } catch {
@@ -219,6 +226,30 @@
       els.masteryLevel.max = String(masteryMaxLevel());
       els.masteryLevel.value = String(state.masteryLevel);
     }
+    if (els.includeChallenges) {
+      els.includeChallenges.checked = state.includeChallenges;
+    }
+  }
+
+  function applyLevelInputs({ rerun = true } = {}) {
+    const nextPlayer = clampLevel(els.playerLevel?.value, 1, playerMaxLevel(), state.playerLevel);
+    const nextMastery = clampLevel(els.masteryLevel?.value, 0, masteryMaxLevel(), state.masteryLevel);
+    const nextChallenges = Boolean(els.includeChallenges?.checked);
+    const changed =
+      nextPlayer !== state.playerLevel ||
+      nextMastery !== state.masteryLevel ||
+      nextChallenges !== state.includeChallenges;
+
+    state.playerLevel = nextPlayer;
+    state.masteryLevel = nextMastery;
+    state.includeChallenges = nextChallenges;
+    syncLevelInputs();
+    saveLevels();
+    renderWeaponList();
+
+    if (!changed || !rerun) return;
+    state.resultCache.clear();
+    run();
   }
 
   function weaponUnlockLevel(weaponId) {
@@ -233,7 +264,7 @@
   }
 
   function cacheKey(weaponId) {
-    return `${weaponId}@m${state.masteryLevel}`;
+    return `${weaponId}@m${state.masteryLevel}@c${state.includeChallenges ? 1 : 0}`;
   }
 
   function renderDataAge(iso) {
@@ -356,29 +387,13 @@
       selectWeapon(btn.dataset.weaponId);
     });
 
-    if (els.playerLevel) {
-      els.playerLevel.addEventListener('change', () => {
-        state.playerLevel = clampLevel(els.playerLevel.value, 1, playerMaxLevel(), state.playerLevel);
-        syncLevelInputs();
-        saveLevels();
-        renderWeaponList();
-        run();
-      });
+    for (const el of [els.playerLevel, els.masteryLevel]) {
+      if (!el) continue;
+      el.addEventListener('input', () => applyLevelInputs());
+      el.addEventListener('change', () => applyLevelInputs());
     }
-
-    if (els.masteryLevel) {
-      els.masteryLevel.addEventListener('change', () => {
-        state.masteryLevel = clampLevel(
-          els.masteryLevel.value,
-          0,
-          masteryMaxLevel(),
-          state.masteryLevel
-        );
-        syncLevelInputs();
-        saveLevels();
-        state.resultCache.clear();
-        run();
-      });
+    if (els.includeChallenges) {
+      els.includeChallenges.addEventListener('change', () => applyLevelInputs());
     }
 
     els.favToggle.addEventListener('click', toggleFavorite);
@@ -514,7 +529,8 @@
 
   function weaponMetaLine(weapon) {
     const bits = [`${weapon.cls}`, weapon.cal || null, `${Math.round(weapon.rpm)} RPM`].filter(Boolean);
-    bits.push(`Layouts use mastery ${state.masteryLevel}/${masteryMaxLevel()}`);
+    bits.push(`Layouts use gun lvl ${state.masteryLevel}/${masteryMaxLevel()}`);
+    if (state.includeChallenges) bits.push('challenge parts on');
     return bits.join(' · ');
   }
 
@@ -556,22 +572,27 @@
 
     const locked = !isWeaponUnlocked(weapon.id);
     const unlockAt = weaponUnlockLevel(weapon.id);
+    const challengeNote = state.includeChallenges ? ', challenge parts on' : '';
     els.status.textContent = locked
-      ? `${weapon.name} unlocks at player level ${unlockAt}. Showing mastery ${state.masteryLevel} layouts…`
-      : `Finding best layouts for ${weapon.name} at mastery ${state.masteryLevel}…`;
+      ? `${weapon.name} unlocks at player level ${unlockAt}. Showing gun lvl ${state.masteryLevel} layouts${challengeNote}…`
+      : `Finding best layouts for ${weapon.name} at gun lvl ${state.masteryLevel}${challengeNote}…`;
     els.detail.classList.add('is-loading');
     els.results.innerHTML = '';
+
+    const requestId = `${key}:${Date.now()}`;
+    state.activeOptimizeRequest = requestId;
 
     // Double rAF so the loading state paints before the (still sync) optimizer runs.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        if (state.weaponId !== weapon.id) return;
+        if (state.weaponId !== weapon.id || state.activeOptimizeRequest !== requestId) return;
         const result = BF6.recommendSets(weapon, state.attachments, state.tables, {
           topN: 1,
           masteryLevel: state.masteryLevel,
+          includeChallenges: state.includeChallenges,
         });
         state.resultCache.set(key, result);
-        if (state.weaponId !== weapon.id) return;
+        if (state.weaponId !== weapon.id || state.activeOptimizeRequest !== requestId) return;
         applyResult(weapon, result);
       });
     });
