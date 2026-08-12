@@ -611,14 +611,65 @@
     }
   }
 
-  function weaponMetaLine(weapon) {
-    const bits = [`${weapon.cls}`, weapon.cal || null, `${Math.round(weapon.rpm)} RPM`].filter(Boolean);
-    bits.push(`Layouts use gun lvl ${state.masteryLevel}`);
+  function formatDamageStat(weapon) {
+    const points = Array.isArray(weapon.dmg) ? weapon.dmg : null;
+    if (!points?.length) return null;
+    const values = points.map((p) => Number(p.d)).filter((n) => Number.isFinite(n));
+    if (!values.length) return null;
+
+    const fmt = (n) => {
+      const rounded = Math.round(n * 10) / 10;
+      return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+    };
+
+    const start = values[0];
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    let text = fmt(start);
+    if (max - min > 0.05) text += ` → ${fmt(min)}`;
+    if (Number(weapon.pellets) > 1) text += ` × ${Math.round(weapon.pellets)} pellets`;
+    return text;
+  }
+
+  function weaponStatRows(weapon) {
+    const rows = [
+      ['Class', weapon.cls],
+      ['Caliber', weapon.cal || null],
+      ['Damage', formatDamageStat(weapon)],
+      ['RPM', Number.isFinite(Number(weapon.rpm)) ? String(Math.round(weapon.rpm)) : null],
+      ['Magazine', weapon.mag == null ? null : String(weapon.mag)],
+      [
+        'Velocity',
+        Number.isFinite(Number(weapon.bulletVel)) ? `${Math.round(weapon.bulletVel)} m/s` : null,
+      ],
+      [
+        'ADS',
+        Number.isFinite(Number(weapon.adsTime)) ? `${Math.round(weapon.adsTime)} ms` : null,
+      ],
+      ['Fire mode', weapon.fireMode ? String(weapon.fireMode) : null],
+      ['Gun level', `${state.masteryLevel}`],
+    ];
+
     if (state.masteryLevel >= attachmentUnlockCap()) {
-      bits.push(`attachment track complete (${attachmentUnlockCap()})`);
+      rows.push(['Track', `complete (${attachmentUnlockCap()})`]);
     }
-    if (state.includeChallenges) bits.push('challenge parts on');
-    return bits.join(' · ');
+    if (state.includeChallenges) rows.push(['Extras', 'challenge parts on']);
+
+    return rows.filter(([, value]) => value != null && String(value).trim() !== '');
+  }
+
+  function renderWeaponStats(weapon) {
+    if (!els.weaponMeta) return;
+    els.weaponMeta.innerHTML = weaponStatRows(weapon)
+      .map(
+        ([label, value]) => `
+          <li>
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(String(value))}</strong>
+          </li>
+        `
+      )
+      .join('');
   }
 
   function renderWeaponUnlockNote(weapon) {
@@ -647,7 +698,7 @@
 
     updateFavButton();
     showWeaponVisual(weapon);
-    els.weaponMeta.textContent = weaponMetaLine(weapon);
+    renderWeaponStats(weapon);
     renderWeaponUnlockNote(weapon);
 
     const key = cacheKey(weapon.id);
