@@ -625,8 +625,10 @@
     const start = values[0];
     const min = Math.min(...values);
     const max = Math.max(...values);
-    let text = fmt(start);
-    if (max - min > 0.05) text += ` → ${fmt(min)}`;
+    let text =
+      max - min > 0.05
+        ? `${fmt(start)} close → ${fmt(min)} far`
+        : `${fmt(start)} body`;
     if (Number(weapon.pellets) > 1) text += ` × ${Math.round(weapon.pellets)} pellets`;
     return text;
   }
@@ -635,7 +637,7 @@
     const rows = [
       ['Class', weapon.cls],
       ['Caliber', weapon.cal || null],
-      ['Damage', formatDamageStat(weapon)],
+      ['Body dmg', formatDamageStat(weapon)],
       ['RPM', Number.isFinite(Number(weapon.rpm)) ? String(Math.round(weapon.rpm)) : null],
       ['Magazine', weapon.mag == null ? null : String(weapon.mag)],
       [

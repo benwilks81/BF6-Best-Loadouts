@@ -800,7 +800,7 @@ body::before {
 
 .weapon-stat-list li {
   display: grid;
-  grid-template-columns: 5.6rem minmax(0, 1fr);
+  grid-template-columns: 6.2rem minmax(0, 1fr);
   gap: 0.45rem;
   align-items: baseline;
   padding: 0.22rem 0.35rem 0.22rem 0.55rem;
