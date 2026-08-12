@@ -156,7 +156,6 @@
     weaponUnlockNote: document.getElementById('weaponUnlockNote'),
     changelogPatch: document.getElementById('changelogPatch'),
     changelogList: document.getElementById('changelogList'),
-    changelogGun: document.getElementById('changelogGun'),
     changelogLink: document.getElementById('changelogLink'),
     weaponTitle: document.getElementById('weaponTitle'),
     weaponImage: document.getElementById('weaponImage'),
@@ -223,7 +222,7 @@
     fillWeapons();
     renderWeaponList();
     renderFavorites();
-    renderChangelog(null);
+    renderChangelog();
     renderDataAge(BF6_DATA.refreshedAt);
     bind();
     run();
@@ -238,7 +237,7 @@
     });
   }
 
-  function renderChangelog(weaponId) {
+  function renderChangelog() {
     const log = LATEST_CHANGELOG;
     if (!els.changelogList) return;
 
@@ -254,27 +253,9 @@
       .map((bullet) => {
         const text = String(bullet?.text ?? '').slice(0, 180);
         if (!text) return '';
-        const tagged = Array.isArray(bullet.weapons) && bullet.weapons.length;
-        const relevant = tagged && weaponId && bullet.weapons.includes(weaponId);
-        const cls = relevant ? 'is-relevant' : tagged && weaponId ? 'is-other' : '';
-        return `<li class="${cls}">${escapeHtml(text)}</li>`;
+        return `<li>${escapeHtml(text)}</li>`;
       })
       .join('');
-
-    if (!els.changelogGun) return;
-    const hit = bullets.some(
-      (b) => Array.isArray(b.weapons) && weaponId && b.weapons.includes(weaponId)
-    );
-    if (hit) {
-      els.changelogGun.hidden = false;
-      els.changelogGun.textContent = 'Highlighted notes touch this gun';
-    } else if (weaponId) {
-      els.changelogGun.hidden = false;
-      els.changelogGun.textContent = 'General gunplay pass — applies across the arsenal';
-    } else {
-      els.changelogGun.hidden = true;
-      els.changelogGun.textContent = '';
-    }
   }
 
   function attachmentUnlockCap() {
@@ -668,7 +649,6 @@
     showWeaponVisual(weapon);
     els.weaponMeta.textContent = weaponMetaLine(weapon);
     renderWeaponUnlockNote(weapon);
-    renderChangelog(weapon.id);
 
     const key = cacheKey(weapon.id);
     const cached = state.resultCache.get(key);
