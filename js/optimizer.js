@@ -116,13 +116,16 @@ window.BF6 = window.BF6 || {};
     );
   }
 
-  function preferredSight(rangeId, sightPool) {
+  function preferredSight(profileId, sightPool) {
     const prefs = {
       close: ['std_optic', 'iron', 'var_low'],
       mid: ['var_low', 'std_optic', 'var_high'],
       long: ['var_high', 'var_low', 'std_optic', 'thermal'],
+      hipfire: ['iron', 'std_optic', 'var_low'],
+      recoil: ['std_optic', 'var_low', 'iron'],
+      ads: ['std_optic', 'iron', 'var_low'],
     };
-    for (const id of prefs[rangeId] ?? []) {
+    for (const id of prefs[profileId] ?? []) {
       const hit = sightPool.find((s) => s.id === id);
       if (hit) return hit;
     }
@@ -329,6 +332,71 @@ window.BF6 = window.BF6 || {};
     if (list.length > topN) list.length = topN;
   }
 
+  function optimizeProfile(weapon, pools, tables, stock, stockStats, profileId, topN) {
+    const bestValue = [];
+    const bestPerf = [];
+    let considered = 0;
+    const seeds = [];
+
+    for (const barrel of pools.barrels) {
+      const seed = cloneParts(stock);
+      seed.barrel = barrel;
+      seed.sight = preferredSight(profileId, pools.sights) ?? seed.sight;
+      seeds.push(seed);
+    }
+
+    const suppressor = pools.muzzles.find((m) => m.suppressor);
+    if (suppressor) {
+      const seed = cloneParts(stock);
+      seed.muzzle = suppressor;
+      seed.sight = preferredSight(profileId, pools.sights) ?? seed.sight;
+      seeds.push(seed);
+    }
+
+    // Hipfire-friendly seed: laser on when available.
+    if (profileId === 'hipfire') {
+      const laser = pools.lasers.find((l) => l.id !== 'none') ?? pools.lasers[0];
+      if (laser) {
+        const seed = cloneParts(stock);
+        seed.laser = laser;
+        seed.sight = preferredSight(profileId, pools.sights) ?? seed.sight;
+        seeds.push(seed);
+      }
+    }
+
+    for (const seed of seeds) {
+      const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'score', 2);
+      if (perf) {
+        considered += perf.considered;
+        if (perf.ranked.score > 0.015) {
+          insertTop(bestPerf, makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
+            if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+            return a.stats.pts - b.stats.pts;
+          });
+          insertTop(bestValue, makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
+            if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
+            if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+            return a.stats.pts - b.stats.pts;
+          });
+        }
+      }
+
+      const value = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'value', 2);
+      if (value) {
+        considered += value.considered;
+        if (value.ranked.score > 0.015) {
+          insertTop(bestValue, makeEntry(value.parts, value.stats, value.ranked), topN, (a, b) => {
+            if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
+            if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+            return a.stats.pts - b.stats.pts;
+          });
+        }
+      }
+    }
+
+    return { considered, value: bestValue, performance: bestPerf };
+  }
+
   BF6.recommendSets = function recommendSets(weapon, data, tables, { topN = 1 } = {}) {
     const pools = buildOptionPools(weapon, data, tables);
     if (!pools) return { error: 'No attachment data for this weapon.' };
@@ -338,57 +406,22 @@ window.BF6 = window.BF6 || {};
 
     const bestByRange = { close: [], mid: [], long: [] };
     const maxPerf = { close: [], mid: [], long: [] };
+    const bestByFocus = { hipfire: [], recoil: [], ads: [] };
+    const maxFocus = { hipfire: [], recoil: [], ads: [] };
     let considered = 0;
 
     for (const rangeId of Object.keys(BF6.RANGES)) {
-      const seeds = [];
+      const out = optimizeProfile(weapon, pools, tables, stock, stockStats, rangeId, topN);
+      considered += out.considered;
+      bestByRange[rangeId] = out.value;
+      maxPerf[rangeId] = out.performance;
+    }
 
-      // One seed per barrel keeps search tiny but covers the main build forks.
-      for (const barrel of pools.barrels) {
-        const seed = cloneParts(stock);
-        seed.barrel = barrel;
-        seed.sight = preferredSight(rangeId, pools.sights) ?? seed.sight;
-        seeds.push(seed);
-      }
-
-      // Also seed a suppressor-friendly and hipfire-friendly start when available.
-      const suppressor = pools.muzzles.find((m) => m.suppressor);
-      if (suppressor) {
-        const seed = cloneParts(stock);
-        seed.muzzle = suppressor;
-        seed.sight = preferredSight(rangeId, pools.sights) ?? seed.sight;
-        seeds.push(seed);
-      }
-
-      for (const seed of seeds) {
-        const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, rangeId, 'score', 2);
-        if (perf) {
-          considered += perf.considered;
-          if (perf.ranked.score > 0.015) {
-            insertTop(maxPerf[rangeId], makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
-              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
-              return a.stats.pts - b.stats.pts;
-            });
-            insertTop(bestByRange[rangeId], makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
-              if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
-              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
-              return a.stats.pts - b.stats.pts;
-            });
-          }
-        }
-
-        const value = coordinateDescent(weapon, seed, pools, tables, stockStats, rangeId, 'value', 2);
-        if (value) {
-          considered += value.considered;
-          if (value.ranked.score > 0.015) {
-            insertTop(bestByRange[rangeId], makeEntry(value.parts, value.stats, value.ranked), topN, (a, b) => {
-              if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
-              if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
-              return a.stats.pts - b.stats.pts;
-            });
-          }
-        }
-      }
+    for (const focusId of Object.keys(BF6.FOCUSES)) {
+      const out = optimizeProfile(weapon, pools, tables, stock, stockStats, focusId, topN);
+      considered += out.considered;
+      bestByFocus[focusId] = out.value;
+      maxFocus[focusId] = out.performance;
     }
 
     return {
@@ -396,6 +429,8 @@ window.BF6 = window.BF6 || {};
       stock: { parts: stock, stats: stockStats },
       value: bestByRange,
       performance: maxPerf,
+      focusValue: bestByFocus,
+      focusPerformance: maxFocus,
     };
   };
 })(window.BF6);

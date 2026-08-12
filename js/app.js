@@ -78,6 +78,7 @@
     resultCache: new Map(),
     favorites: [],
     expandedFavs: new Set(),
+    focusTab: 'hipfire',
   };
 
   const els = {
@@ -276,6 +277,13 @@
       if (!openBtn) return;
       selectWeapon(openBtn.dataset.favOpen);
     });
+
+    els.results.addEventListener('click', (event) => {
+      const tab = event.target.closest('[data-focus-tab]');
+      if (!tab || !BF6.FOCUSES[tab.dataset.focusTab]) return;
+      state.focusTab = tab.dataset.focusTab;
+      if (state.lastResult && !state.lastResult.error) renderResults(state.lastResult);
+    });
   }
 
   function selectWeapon(id) {
@@ -423,19 +431,60 @@
     return result.performance?.[rangeId]?.[0] ?? result.value?.[rangeId]?.[0] ?? null;
   }
 
+  function bestForFocus(result, focusId) {
+    return result.focusPerformance?.[focusId]?.[0] ?? result.focusValue?.[focusId]?.[0] ?? null;
+  }
+
   function renderResults(result) {
+    if (!BF6.FOCUSES[state.focusTab]) state.focusTab = 'hipfire';
     els.results.classList.remove('is-booting');
     void els.results.offsetWidth;
-    els.results.innerHTML = Object.values(BF6.RANGES)
+
+    const rangeGrid = Object.values(BF6.RANGES)
       .map((range) => rangeCard(range, bestForRange(result, range.id)))
       .join('');
+
+    const tabs = Object.values(BF6.FOCUSES)
+      .map((focus) => {
+        const selected = focus.id === state.focusTab;
+        return `
+          <button
+            type="button"
+            class="focus-tab${selected ? ' is-active' : ''}"
+            role="tab"
+            aria-selected="${selected}"
+            data-focus-tab="${focus.id}"
+          >${focus.label}</button>
+        `;
+      })
+      .join('');
+
+    const activeFocus = BF6.FOCUSES[state.focusTab];
+    const focusEntry = bestForFocus(result, state.focusTab);
+
+    els.results.innerHTML = `
+      <div class="results-grid">${rangeGrid}</div>
+      <section class="specialist" aria-label="Specialist builds">
+        <div class="specialist-bar">
+          <div class="specialist-title">
+            <h2>Specialist</h2>
+            <p>Hipfire, recoil, and ADS-focused layouts</p>
+          </div>
+          <div class="focus-tabs" role="tablist" aria-label="Specialist build type">${tabs}</div>
+        </div>
+        <div class="specialist-panel" role="tabpanel">
+          ${rangeCard(activeFocus, focusEntry, 'focus')}
+        </div>
+      </section>
+    `;
     els.results.classList.add('is-booting');
   }
 
-  function rangeCard(range, entry) {
+  function rangeCard(range, entry, kind = 'range') {
+    const kindClass = kind === 'focus' ? ' range-col--focus' : '';
     if (!entry) {
       return `
-        <section class="range-col" data-range="${range.id}">
+        <section class="range-col${kindClass}" data-range="${range.id}">
           <header>
             <h2>${range.label}</h2>
             <p>${range.band}</p>
@@ -449,7 +498,7 @@
     const why = ranked.why.length ? ranked.why.join(' · ') : 'balanced gains';
 
     return `
-      <section class="range-col" data-range="${range.id}">
+      <section class="range-col${kindClass}" data-range="${range.id}">
         <header>
           <h2>${range.label}</h2>
           <p>${range.band}</p>
@@ -540,7 +589,12 @@
       if (!lo) return null;
       loadouts[rangeId] = lo;
     }
-    if (!Object.keys(loadouts).length) return null;
+    for (const focusId of Object.keys(BF6.FOCUSES ?? {})) {
+      if (!(focusId in raw.loadouts)) continue;
+      const lo = sanitizeLoadout(raw.loadouts[focusId]);
+      if (lo) loadouts[focusId] = lo;
+    }
+    if (!Object.keys(BF6.RANGES).some((id) => loadouts[id])) return null;
 
     const savedAt = Number(raw.savedAt);
     return {
@@ -609,6 +663,15 @@
         why: entry.ranked.why,
       };
     }
+    for (const focus of Object.values(BF6.FOCUSES)) {
+      const entry = bestForFocus(result, focus.id);
+      if (!entry) continue;
+      loadouts[focus.id] = {
+        labels: entry.labels,
+        pts: entry.stats.pts,
+        why: entry.ranked.why,
+      };
+    }
 
     const next = {
       weaponId: weapon.id,
@@ -656,8 +719,11 @@
           })
           .join('');
 
-        const detail = Object.values(BF6.RANGES)
+        const detailRanges = Object.values(BF6.RANGES)
           .map((range) => favLoadoutPanel(range, fav.loadouts?.[range.id]))
+          .join('');
+        const detailFocus = Object.values(BF6.FOCUSES)
+          .map((focus) => favLoadoutPanel(focus, fav.loadouts?.[focus.id]))
           .join('');
 
         return `
@@ -679,7 +745,11 @@
               <button type="button" class="fav-remove" data-remove-fav data-fav-weapon="${escapeHtml(fav.weaponId)}" title="Remove favourite">✕</button>
             </div>
             <div class="fav-summary"${open ? ' hidden' : ''}>${summary}</div>
-            <div class="fav-detail"${open ? '' : ' hidden'}>${detail}</div>
+            <div class="fav-detail"${open ? '' : ' hidden'}>
+              ${detailRanges}
+              <div class="fav-specialist-label">Specialist</div>
+              ${detailFocus}
+            </div>
           </article>
         `;
       })

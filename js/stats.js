@@ -18,6 +18,13 @@ window.BF6 = window.BF6 || {};
     long: { id: 'long', label: 'Long', meters: 75, band: '50–100 m+' },
   };
 
+  /** Specialist goals shown under the range layouts (tabbed, not in the main 3-col row). */
+  BF6.FOCUSES = {
+    hipfire: { id: 'hipfire', label: 'Hipfire', band: 'From the hip' },
+    recoil: { id: 'recoil', label: 'Recoil', band: 'Control & recovery' },
+    ads: { id: 'ads', label: 'ADS', band: 'Snap onto target' },
+  };
+
   BF6.RANGE_WEIGHTS = {
     close: {
       ads: 1.15,
@@ -72,11 +79,71 @@ window.BF6 = window.BF6 || {};
     },
   };
 
+  BF6.FOCUS_WEIGHTS = {
+    hipfire: {
+      ads: 0.2,
+      recoil: 0.5,
+      movingAds: 0.25,
+      velocity: 0.05,
+      hipfire: 2.35,
+      mag: 0.4,
+      optic: 0.08,
+      stealth: 0.3,
+      spread: 0.2,
+      recovery: 0.35,
+      reload: 0.4,
+      handling: 0.65,
+      hs: 0.25,
+      hipControl: 1.75,
+      fireMode: 0.85,
+    },
+    recoil: {
+      ads: 0.35,
+      recoil: 2.45,
+      movingAds: 0.55,
+      velocity: 0.2,
+      hipfire: 0.1,
+      mag: 0.2,
+      optic: 0.35,
+      stealth: 0.2,
+      spread: 0.75,
+      recovery: 1.85,
+      reload: 0.15,
+      handling: 0.25,
+      hs: 0.25,
+      hipControl: 0.1,
+      fireMode: 0.4,
+    },
+    ads: {
+      ads: 2.55,
+      recoil: 0.55,
+      movingAds: 0.9,
+      velocity: 0.15,
+      hipfire: 0.05,
+      mag: 0.25,
+      optic: 0.4,
+      stealth: 0.15,
+      spread: 0.4,
+      recovery: 0.35,
+      reload: 0.4,
+      handling: 1.15,
+      hs: 0.3,
+      hipControl: 0.05,
+      fireMode: 0.55,
+    },
+  };
+
   // Aim picture / target visibility by optic × engagement distance.
   BF6.OPTIC_AIM = {
     close: { iron: 0.42, std_optic: 0.55, var_low: 0.28, var_high: 0.12, thermal: 0.32, therm_hyb: 0.3 },
     mid: { iron: 0.18, std_optic: 0.58, var_low: 0.88, var_high: 0.72, thermal: 0.6, therm_hyb: 0.7 },
     long: { iron: 0.06, std_optic: 0.38, var_low: 0.86, var_high: 0.96, thermal: 0.74, therm_hyb: 0.84 },
+  };
+
+  BF6.FOCUS_OPTIC_PROFILE = {
+    hipfire: 'close',
+    recoil: 'mid',
+    ads: 'close',
   };
 
   BF6.CLASS_RANGE_BIAS = {
@@ -328,11 +395,14 @@ window.BF6 = window.BF6 || {};
     };
   };
 
-  function opticAimFor(rangeId, sightId) {
-    return BF6.OPTIC_AIM[rangeId]?.[sightId] ?? BF6.OPTIC_AIM[rangeId]?.std_optic ?? 0.3;
+  function opticAimFor(profileId, sightId) {
+    const opticKey = BF6.OPTIC_AIM[profileId]
+      ? profileId
+      : (BF6.FOCUS_OPTIC_PROFILE[profileId] ?? 'mid');
+    return BF6.OPTIC_AIM[opticKey]?.[sightId] ?? BF6.OPTIC_AIM[opticKey]?.std_optic ?? 0.3;
   }
 
-  function explainGains(deltas, rangeId) {
+  function explainGains(deltas, profileId) {
     const labels = {
       adsGain: 'faster ADS',
       recoilGain: 'less recoil',
@@ -381,17 +451,45 @@ window.BF6 = window.BF6 || {};
         'fireModeGain',
         'hsGain',
       ],
+      hipfire: [
+        'hipGain',
+        'hipControlGain',
+        'fireModeGain',
+        'handlingGain',
+        'reloadGain',
+        'recoilGain',
+        'adsGain',
+      ],
+      recoil: [
+        'recoilGain',
+        'recoveryGain',
+        'spreadGain',
+        'movingGain',
+        'opticGain',
+        'adsGain',
+      ],
+      ads: [
+        'adsGain',
+        'handlingGain',
+        'movingGain',
+        'reloadGain',
+        'recoilGain',
+        'opticGain',
+      ],
     };
 
-    return importance[rangeId]
+    return (importance[profileId] ?? importance.mid)
       .filter((key) => deltas[key] > 0.02)
       .slice(0, 3)
       .map((key) => labels[key]);
   }
 
-  BF6.scoreVsStock = function scoreVsStock(stats, stock, rangeId, weaponClass = null) {
-    const weights = BF6.RANGE_WEIGHTS[rangeId];
-    const classBias = BF6.CLASS_RANGE_BIAS[weaponClass]?.[rangeId] ?? 1;
+  BF6.scoreVsStock = function scoreVsStock(stats, stock, profileId, weaponClass = null) {
+    const weights = BF6.RANGE_WEIGHTS[profileId] ?? BF6.FOCUS_WEIGHTS[profileId];
+    if (!weights) {
+      return { score: 0, value: 0, ptsSpent: 0, deltas: {}, why: [] };
+    }
+    const classBias = BF6.CLASS_RANGE_BIAS[weaponClass]?.[profileId] ?? 1;
 
     const adsGain = (stock.adsTimeMs - stats.adsTimeMs) / Math.max(stock.adsTimeMs, 1);
     const recoilGain = (stock.recoilPerShot - stats.recoilPerShot) / Math.max(stock.recoilPerShot, 0.01);
@@ -402,7 +500,7 @@ window.BF6 = window.BF6 || {};
         ? (stock.hipSpread - stats.hipSpread) / Math.max(stock.hipSpread, 0.01)
         : 0;
     const magGain = (stats.magSize - stock.magSize) / Math.max(stock.magSize, 1);
-    const opticGain = opticAimFor(rangeId, stats.sightId) - opticAimFor(rangeId, stock.sightId);
+    const opticGain = opticAimFor(profileId, stats.sightId) - opticAimFor(profileId, stock.sightId);
     const stealthGain = (stats.stealth ?? 0) - (stock.stealth ?? 0);
     const spreadGain = (stats.spreadControl - stock.spreadControl) / Math.max(stock.spreadControl, 0.5);
     const recoveryGain = (stats.recoilRecovery - stock.recoilRecovery) / Math.max(stock.recoilRecovery, 1);
@@ -450,7 +548,7 @@ window.BF6 = window.BF6 || {};
         hipControlGain,
         fireModeGain,
       },
-      rangeId,
+      profileId,
     );
 
     return {

@@ -665,8 +665,114 @@ body::before {
 
 .results {
   display: grid;
+  gap: 0.9rem;
+}
+
+.results-grid {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
+}
+
+.specialist {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(14, 18, 24, 0.96), rgba(8, 10, 14, 0.98));
+  overflow: hidden;
+}
+
+.specialist-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.85rem 0.95rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.specialist-title h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.specialist-title p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.focus-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.focus-tab {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.focus-tab:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.focus-tab.is-active {
+  color: #0b0d10;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.specialist-panel {
+  padding: 0.75rem;
+}
+
+.specialist-panel .range-col {
+  max-width: 420px;
+}
+
+.range-col--focus[data-range='hipfire'] {
+  border-top: 3px solid #7dd3fc;
+}
+.range-col--focus[data-range='recoil'] {
+  border-top: 3px solid #fbbf24;
+}
+.range-col--focus[data-range='ads'] {
+  border-top: 3px solid #c4b5fd;
+}
+
+.range-col--focus[data-range='hipfire'] h2 {
+  color: #7dd3fc;
+}
+.range-col--focus[data-range='recoil'] h2 {
+  color: #fbbf24;
+}
+.range-col--focus[data-range='ads'] h2 {
+  color: #c4b5fd;
+}
+
+.fav-specialist-label {
+  margin: 0.65rem 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .results.is-booting .range-col {
@@ -1036,8 +1142,12 @@ body::before {
     grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
   }
 
-  .results {
+  .results-grid {
     grid-template-columns: 1fr;
+  }
+
+  .specialist-panel .range-col {
+    max-width: none;
   }
 
   .weapon-stage {
