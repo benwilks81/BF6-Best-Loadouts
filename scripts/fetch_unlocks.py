@@ -519,13 +519,9 @@ def build_unlocks() -> dict:
         # Default barrel is usually available early; keep basic at 0 if absent.
         slots["barrel"].setdefault("basic", 0)
 
-        # Cryogenic barrels are Season 3 Hardware rewards. Some weapons (e.g. EF88)
-        # are missing the challenge id in the API and incorrectly look like mastery unlocks.
-        local_barrels = (attachments.get("WEAPON_ATTS") or {}).get(local_id, {}).get("barrel") or []
-        if "cryo" in local_barrels:
-            add_challenge(challenge, "barrel", "cryo")
-
         # Challenge-only parts are never treated as mastery unlocks (API often marks them level 0).
+        # They are optional pool entries only when the user enables challenge parts — never forced
+        # into a loadout; the optimizer still has to pick them for that gun/range.
         for slot_name, ids in challenge.items():
             bucket = slots.get(slot_name)
             if not bucket:

@@ -1,6 +1,6 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-08-12T00:28:50+00:00",
+  "fetchedAt": "2026-08-12T00:30:42+00:00",
   "playerMaxLevel": 50,
   "weaponMasteryMax": 50,
   "weapons": {
@@ -3182,11 +3182,7 @@
           "buffer": 28
         }
       },
-      "challengeAttachments": {
-        "barrel": [
-          "cryo"
-        ]
-      }
+      "challengeAttachments": {}
     },
     "l110": {
       "metaId": "l110",
@@ -5847,6 +5843,7 @@
           "basic": 4,
           "extended": 5,
           "short": 13,
+          "cryo": 26,
           "heavy_ext": 31,
           "short_light": 35,
           "ext_light": 39
@@ -5933,11 +5930,7 @@
           "match_trigger": 40
         }
       },
-      "challengeAttachments": {
-        "barrel": [
-          "cryo"
-        ]
-      }
+      "challengeAttachments": {}
     },
     "vssm": {
       "metaId": "vssm",
