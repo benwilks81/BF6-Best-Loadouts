@@ -97,6 +97,7 @@
     favList: document.getElementById('favList'),
     status: document.getElementById('status'),
     weaponMeta: document.getElementById('weaponMeta'),
+    weaponUnlockNote: document.getElementById('weaponUnlockNote'),
     weaponTitle: document.getElementById('weaponTitle'),
     weaponImage: document.getElementById('weaponImage'),
     weaponImageFallback: document.getElementById('weaponImageFallback'),
@@ -310,14 +311,12 @@
             const unlockAt = weaponUnlockLevel(w.id);
             const locked = unlockAt != null && !isWeaponUnlocked(w.id);
             const lockedClass = locked ? ' is-locked' : '';
-            const unlockLabel =
+            const unlockBadge =
               unlockAt == null
                 ? ''
-                : locked
-                  ? `Locked · lvl ${unlockAt}`
-                  : unlockAt <= 1
-                    ? 'Unlocked'
-                    : `Unlocks lvl ${unlockAt}`;
+                : `<span class="weapon-item-unlock${locked ? ' is-locked' : ''}">${
+                    locked ? 'Locked' : 'Unlock'
+                  } · player lvl ${escapeHtml(String(unlockAt))}</span>`;
             return `
               <button
                 type="button"
@@ -326,13 +325,11 @@
                 aria-selected="${w.id === state.weaponId}"
                 data-weapon-id="${escapeHtml(w.id)}"
               >
-                <span class="weapon-item-name">${escapeHtml(w.name)}</span>
-                <span class="weapon-item-cal">${escapeHtml(w.cal ?? '')}</span>
-                ${
-                  unlockLabel
-                    ? `<span class="weapon-item-unlock">${escapeHtml(unlockLabel)}</span>`
-                    : ''
-                }
+                <span class="weapon-item-top">
+                  <span class="weapon-item-name">${escapeHtml(w.name)}</span>
+                  <span class="weapon-item-cal">${escapeHtml(w.cal ?? '')}</span>
+                </span>
+                ${unlockBadge}
               </button>
             `;
           })
@@ -517,12 +514,28 @@
 
   function weaponMetaLine(weapon) {
     const bits = [`${weapon.cls}`, weapon.cal || null, `${Math.round(weapon.rpm)} RPM`].filter(Boolean);
-    const unlockAt = weaponUnlockLevel(weapon.id);
-    if (unlockAt != null) {
-      bits.push(unlockAt <= 1 ? 'Unlocks at player lvl 1' : `Unlocks at player lvl ${unlockAt}`);
-    }
-    bits.push(`Mastery ${state.masteryLevel}/${masteryMaxLevel()}`);
+    bits.push(`Layouts use mastery ${state.masteryLevel}/${masteryMaxLevel()}`);
     return bits.join(' · ');
+  }
+
+  function renderWeaponUnlockNote(weapon) {
+    const note = els.weaponUnlockNote;
+    if (!note) return;
+
+    const unlockAt = weaponUnlockLevel(weapon.id);
+    if (unlockAt == null) {
+      note.hidden = true;
+      note.textContent = '';
+      note.classList.remove('is-locked');
+      return;
+    }
+
+    const locked = !isWeaponUnlocked(weapon.id);
+    note.hidden = false;
+    note.classList.toggle('is-locked', locked);
+    note.textContent = locked
+      ? `Weapon locked — needs player level ${unlockAt} (you are ${state.playerLevel})`
+      : `Weapon unlocks at player level ${unlockAt}`;
   }
 
   function run() {
@@ -532,6 +545,7 @@
     updateFavButton();
     showWeaponVisual(weapon);
     els.weaponMeta.textContent = weaponMetaLine(weapon);
+    renderWeaponUnlockNote(weapon);
 
     const key = cacheKey(weapon.id);
     const cached = state.resultCache.get(key);
