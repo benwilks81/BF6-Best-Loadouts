@@ -25,16 +25,36 @@
       "pts": 25
     },
     {
-      "id": "thermal",
-      "name": "Thermal",
+      "id": "therm_hyb",
+      "name": "TH-RDS 1.00X",
       "noEffect": true,
-      "pts": 25
+      "pts": 35,
+      "mag": 1,
+      "thermal": true
     },
     {
-      "id": "therm_hyb",
-      "name": "Thermal Hybrid",
+      "id": "therm_1_5",
+      "name": "GRIM 1.50X",
       "noEffect": true,
-      "pts": 35
+      "pts": 25,
+      "mag": 1.5,
+      "thermal": true
+    },
+    {
+      "id": "therm_3",
+      "name": "PAS-35 3.00X",
+      "noEffect": true,
+      "pts": 25,
+      "mag": 3,
+      "thermal": true
+    },
+    {
+      "id": "therm_6",
+      "name": "TS-HD 6.00X",
+      "noEffect": true,
+      "pts": 25,
+      "mag": 6,
+      "thermal": true
     }
   ],
   "MUZZLES": [

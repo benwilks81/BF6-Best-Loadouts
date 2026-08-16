@@ -1,6 +1,7 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-08-12T00:30:42+00:00",
+  "fetchedAt": "2026-08-16T02:25:13+00:00",
+  "attachmentUnlockCap": 50,
   "playerMaxLevel": null,
   "weaponMasteryMax": null,
   "weapons": {
@@ -87,7 +88,8 @@
           "std_optic": 2,
           "var_low": 10,
           "var_high": 22,
-          "thermal": 36
+          "therm_3": 36,
+          "therm_1_5": 40
         },
         "mag": {
           "default": 0,
@@ -118,6 +120,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -206,7 +211,8 @@
           "std_optic": 0,
           "var_low": 12,
           "var_high": 18,
-          "thermal": 30
+          "therm_3": 30,
+          "therm_1_5": 37
         },
         "mag": {
           "default": 0,
@@ -248,6 +254,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -335,7 +344,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 21,
-          "thermal": 35
+          "therm_1_5": 35,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -379,6 +389,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -465,7 +478,8 @@
           "std_optic": 0,
           "var_low": 5,
           "var_high": 19,
-          "thermal": 27
+          "therm_1_5": 27,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -502,6 +516,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -582,7 +599,8 @@
           "std_optic": 0,
           "var_low": 8,
           "var_high": 27,
-          "thermal": 29
+          "therm_3": 29,
+          "therm_1_5": 40
         },
         "mag": {
           "default": 0,
@@ -613,6 +631,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -698,7 +719,8 @@
           "std_optic": 0,
           "var_low": 7,
           "var_high": 21,
-          "thermal": 34
+          "therm_1_5": 34,
+          "therm_3": 39
         },
         "mag": {
           "default": 0,
@@ -734,6 +756,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -819,7 +844,8 @@
           "std_optic": 0,
           "var_low": 13,
           "var_high": 18,
-          "thermal": 31
+          "therm_1_5": 31,
+          "therm_3": 37
         },
         "mag": {
           "default": 0,
@@ -858,6 +884,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -947,7 +976,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 23,
-          "thermal": 31
+          "therm_1_5": 31,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -986,6 +1016,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1073,7 +1106,8 @@
           "std_optic": 0,
           "var_low": 6,
           "var_high": 18,
-          "thermal": 27
+          "therm_1_5": 27,
+          "therm_3": 38
         },
         "mag": {
           "default": 0,
@@ -1110,6 +1144,9 @@
         "light": [
           "ads_taclight",
           "hip_taclight"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1201,7 +1238,8 @@
           "std_optic": 1,
           "var_low": 3,
           "var_high": 13,
-          "thermal": 34
+          "therm_1_5": 34,
+          "therm_3": 37
         },
         "mag": {
           "default": 0,
@@ -1318,7 +1356,8 @@
           "std_optic": 0,
           "var_low": 1,
           "var_high": 17,
-          "thermal": 22
+          "therm_1_5": 22,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -1357,6 +1396,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1445,7 +1487,8 @@
           "var_high": 0,
           "var_low": 1,
           "std_optic": 2,
-          "thermal": 22
+          "therm_1_5": 22,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -1478,6 +1521,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1554,7 +1600,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 21,
-          "thermal": 26
+          "therm_1_5": 26,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -1597,6 +1644,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1681,8 +1731,9 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 1,
-          "thermal": 17,
-          "var_high": 26
+          "therm_1_5": 17,
+          "var_high": 26,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -1719,6 +1770,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1793,7 +1847,8 @@
           "std_optic": 0,
           "var_low": 1,
           "var_high": 18,
-          "thermal": 27
+          "therm_1_5": 27,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -1826,6 +1881,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -1901,8 +1959,9 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 2,
-          "thermal": 15,
-          "var_high": 17
+          "therm_1_5": 15,
+          "var_high": 17,
+          "therm_3": 32
         },
         "mag": {
           "default": 0,
@@ -1936,6 +1995,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2012,8 +2074,9 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 1,
-          "thermal": 18,
-          "var_high": 21
+          "therm_1_5": 18,
+          "var_high": 21,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -2051,6 +2114,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2130,7 +2196,8 @@
           "std_optic": 0,
           "var_low": 2,
           "var_high": 17,
-          "thermal": 25
+          "therm_1_5": 25,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -2171,6 +2238,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2248,7 +2318,8 @@
           "std_optic": 5,
           "var_low": 12,
           "var_high": 19,
-          "thermal": 38
+          "therm_3": 38,
+          "therm_1_5": 40
         },
         "mag": {
           "default": 0,
@@ -2273,6 +2344,9 @@
         ],
         "ergo": [
           "buffer"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2347,7 +2421,8 @@
           "std_optic": 1,
           "var_low": 3,
           "var_high": 18,
-          "thermal": 34
+          "therm_1_5": 34,
+          "therm_3": 39
         },
         "mag": {
           "default": 0,
@@ -2381,6 +2456,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2456,7 +2534,8 @@
           "std_optic": 0,
           "var_low": 3,
           "var_high": 17,
-          "thermal": 25
+          "therm_1_5": 25,
+          "therm_3": 39
         },
         "mag": {
           "default": 0,
@@ -2486,6 +2565,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2563,7 +2645,8 @@
           "std_optic": 0,
           "var_low": 2,
           "var_high": 15,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 37
         },
         "mag": {
           "default": 0,
@@ -2597,6 +2680,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2643,7 +2729,8 @@
           "std_optic": 0,
           "var_low": 3,
           "var_high": 14,
-          "thermal": 24
+          "therm_1_5": 24,
+          "therm_3": 35
         },
         "mag": {
           "default": 0,
@@ -2673,6 +2760,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2749,7 +2839,8 @@
           "std_optic": 0,
           "var_low": 3,
           "var_high": 21,
-          "thermal": 33
+          "therm_3": 33,
+          "therm_1_5": 38
         },
         "mag": {
           "default": 0,
@@ -2774,6 +2865,9 @@
         ],
         "ergo": [
           "grtbc_burst_mode"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2849,7 +2943,8 @@
           "std_optic": 0,
           "var_high": 1,
           "var_low": 22,
-          "thermal": 37
+          "therm_3": 37,
+          "therm_1_5": 39
         },
         "mag": {
           "default": 0,
@@ -2875,6 +2970,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -2953,7 +3051,8 @@
           "std_optic": 0,
           "var_high": 8,
           "var_low": 18,
-          "thermal": 35
+          "therm_1_5": 35,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -2981,6 +3080,9 @@
         ],
         "barrel": [
           "cryo"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3057,7 +3159,8 @@
           "std_optic": 0,
           "var_low": 2,
           "var_high": 19,
-          "thermal": 31
+          "therm_1_5": 31,
+          "therm_3": 38
         },
         "mag": {
           "default": 0,
@@ -3085,6 +3188,9 @@
         "ergo": [
           "buffer",
           "grtbc_burst_mode"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3158,8 +3264,10 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 0,
-          "thermal": 0,
-          "var_high": 0
+          "therm_1_5": 0,
+          "var_high": 0,
+          "therm_3": 0,
+          "therm_6": 0
         },
         "mag": {
           "default": 0,
@@ -3265,8 +3373,9 @@
           "iron": 0,
           "std_optic": 1,
           "var_low": 2,
-          "thermal": 19,
-          "var_high": 22
+          "therm_1_5": 19,
+          "var_high": 22,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -3292,6 +3401,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3379,8 +3491,9 @@
           "iron": 0,
           "var_low": 0,
           "std_optic": 1,
-          "thermal": 22,
-          "var_high": 30
+          "therm_1_5": 22,
+          "var_high": 30,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -3421,6 +3534,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3507,7 +3623,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 14,
-          "thermal": 23
+          "therm_1_5": 23,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -3533,6 +3650,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3620,7 +3740,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 14,
-          "thermal": 23
+          "therm_1_5": 23,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -3658,6 +3779,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3740,7 +3864,8 @@
           "std_optic": 0,
           "var_low": 1,
           "var_high": 16,
-          "thermal": 21
+          "therm_1_5": 21,
+          "therm_3": 37
         },
         "mag": {
           "default": 0,
@@ -3766,6 +3891,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3851,7 +3979,8 @@
           "var_high": 0,
           "std_optic": 1,
           "var_low": 2,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 25
         },
         "mag": {
           "default": 0,
@@ -3877,6 +4006,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -3964,7 +4096,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 13,
-          "thermal": 24
+          "therm_1_5": 24,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -4000,6 +4133,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4084,7 +4220,8 @@
           "std_optic": 0,
           "var_low": 1,
           "var_high": 11,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -4111,6 +4248,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4196,7 +4336,8 @@
           "std_optic": 0,
           "var_low": 2,
           "var_high": 28,
-          "thermal": 34
+          "therm_1_5": 34,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -4217,6 +4358,9 @@
       "challengeAttachments": {
         "laser": [
           "50mw_violet"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4305,7 +4449,8 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 11,
-          "thermal": 29
+          "therm_1_5": 29,
+          "therm_3": 34
         },
         "mag": {
           "default": 0,
@@ -4418,7 +4563,9 @@
           "std_optic": 0,
           "var_low": 0,
           "var_high": 8,
-          "thermal": 25
+          "therm_1_5": 25,
+          "therm_6": 38,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -4453,6 +4600,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4537,7 +4687,9 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 10,
-          "thermal": 35
+          "therm_3": 35,
+          "therm_6": 39,
+          "therm_1_5": 40
         },
         "mag": {
           "default": 0,
@@ -4569,6 +4721,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4654,7 +4809,9 @@
           "std_optic": 1,
           "var_low": 6,
           "var_high": 9,
-          "thermal": 25
+          "therm_1_5": 25,
+          "therm_3": 31,
+          "therm_6": 40
         },
         "mag": {
           "default": 0,
@@ -4678,6 +4835,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4765,7 +4925,9 @@
           "var_low": 0,
           "std_optic": 2,
           "var_high": 18,
-          "thermal": 29
+          "therm_3": 29,
+          "therm_6": 34,
+          "therm_1_5": 39
         },
         "mag": {
           "default": 0,
@@ -4795,6 +4957,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4882,7 +5047,9 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 7,
-          "thermal": 32
+          "therm_1_5": 32,
+          "therm_3": 34,
+          "therm_6": 39
         },
         "mag": {
           "default": 0,
@@ -4912,6 +5079,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -4974,7 +5144,9 @@
           "var_low": 2,
           "var_high": 2,
           "std_optic": 4,
-          "thermal": 15
+          "therm_1_5": 15,
+          "therm_3": 27,
+          "therm_6": 38
         },
         "mag": {
           "default": 0,
@@ -4999,6 +5171,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5058,7 +5233,9 @@
           "var_high": 0,
           "var_low": 2,
           "std_optic": 4,
-          "thermal": 15
+          "therm_1_5": 15,
+          "therm_3": 27,
+          "therm_6": 40
         },
         "mag": {
           "default": 0,
@@ -5082,6 +5259,9 @@
         ],
         "ergo": [
           "buffer"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5143,7 +5323,9 @@
           "var_high": 0,
           "var_low": 2,
           "std_optic": 4,
-          "thermal": 15
+          "therm_1_5": 15,
+          "therm_3": 27,
+          "therm_6": 40
         },
         "mag": {
           "default": 0,
@@ -5165,6 +5347,9 @@
       "challengeAttachments": {
         "laser": [
           "50mw_violet"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5228,7 +5413,9 @@
           "var_low": 0,
           "std_optic": 1,
           "var_high": 2,
-          "thermal": 14
+          "therm_1_5": 14,
+          "therm_3": 27,
+          "therm_6": 40
         },
         "mag": {
           "default": 0,
@@ -5254,6 +5441,9 @@
         ],
         "muzzle": [
           "flash_comp"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5316,7 +5506,9 @@
           "var_high": 0,
           "std_optic": 1,
           "var_low": 4,
-          "thermal": 30
+          "therm_1_5": 30,
+          "therm_3": 35,
+          "therm_6": 39
         },
         "mag": {
           "default": 0,
@@ -5404,7 +5596,8 @@
           "std_optic": 1,
           "var_low": 9,
           "var_high": 14,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -5428,6 +5621,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5497,7 +5693,8 @@
           "std_optic": 1,
           "var_low": 9,
           "var_high": 14,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 39
         },
         "mag": {
           "default": 0,
@@ -5519,6 +5716,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5590,7 +5790,8 @@
           "std_optic": 0,
           "var_low": 9,
           "var_high": 14,
-          "thermal": 17
+          "therm_1_5": 17,
+          "therm_3": 36
         },
         "mag": {
           "default": 0,
@@ -5615,6 +5816,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5681,8 +5885,9 @@
           "iron": 0,
           "std_optic": 1,
           "var_low": 9,
-          "thermal": 16,
-          "var_high": 17
+          "therm_1_5": 16,
+          "var_high": 17,
+          "therm_3": 40
         },
         "mag": {
           "default": 0,
@@ -5704,6 +5909,9 @@
         ],
         "grip": [
           "slim_handstop"
+        ],
+        "sight": [
+          "therm_hyb"
         ]
       }
     },
@@ -5789,8 +5997,10 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 0,
-          "thermal": 0,
-          "var_high": 0
+          "therm_1_5": 0,
+          "var_high": 0,
+          "therm_3": 0,
+          "therm_6": 0
         },
         "mag": {
           "default": 0,
@@ -5904,8 +6114,10 @@
           "iron": 0,
           "std_optic": 0,
           "var_low": 0,
-          "thermal": 0,
-          "var_high": 0
+          "therm_1_5": 0,
+          "var_high": 0,
+          "therm_3": 0,
+          "therm_6": 0
         },
         "mag": {
           "default": 0,
@@ -6004,7 +6216,8 @@
           "var_low": 0,
           "var_high": 1,
           "std_optic": 2,
-          "thermal": 34
+          "therm_1_5": 34,
+          "therm_3": 38
         },
         "mag": {
           "default": 0,
@@ -6039,6 +6252,5 @@
       "barrel:None",
       1
     ]
-  ],
-  "attachmentUnlockCap": 50
+  ]
 }

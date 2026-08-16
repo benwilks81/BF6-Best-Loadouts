@@ -116,12 +116,20 @@ window.BF6 = window.BF6 || {};
     );
   }
 
-  const THERMAL_SIGHT_IDS = new Set(['therm_hyb', 'thermal']);
+  const THERMAL_SIGHT_IDS = new Set(['therm_hyb', 'therm_1_5', 'therm_3', 'therm_6']);
 
   function preferredSight(profileId, sightPool) {
-    // Constrained thermal pools only contain thermal optics — seed the cheaper/better hybrid first.
+    // Constrained thermal pools: pick magnification that fits the engagement band.
     if (sightPool.length && sightPool.every((s) => THERMAL_SIGHT_IDS.has(s.id))) {
-      for (const id of ['therm_hyb', 'thermal']) {
+      const thermalPrefs = {
+        close: ['therm_hyb', 'therm_1_5', 'therm_3', 'therm_6'],
+        mid: ['therm_3', 'therm_1_5', 'therm_hyb', 'therm_6'],
+        long: ['therm_6', 'therm_3', 'therm_1_5', 'therm_hyb'],
+        hipfire: ['therm_hyb', 'therm_1_5', 'therm_3', 'therm_6'],
+        recoil: ['therm_3', 'therm_1_5', 'therm_hyb', 'therm_6'],
+        ads: ['therm_hyb', 'therm_1_5', 'therm_3', 'therm_6'],
+      };
+      for (const id of thermalPrefs[profileId] ?? thermalPrefs.mid) {
         const hit = sightPool.find((s) => s.id === id);
         if (hit) return hit;
       }
@@ -131,7 +139,7 @@ window.BF6 = window.BF6 || {};
     const prefs = {
       close: ['std_optic', 'iron', 'var_low'],
       mid: ['var_low', 'std_optic', 'var_high'],
-      long: ['var_high', 'var_low', 'std_optic', 'thermal'],
+      long: ['var_high', 'var_low', 'std_optic', 'therm_3', 'therm_1_5'],
       hipfire: ['iron', 'std_optic', 'var_low'],
       recoil: ['std_optic', 'var_low', 'iron'],
       ads: ['std_optic', 'iron', 'var_low'],
@@ -163,6 +171,13 @@ window.BF6 = window.BF6 || {};
     } else {
       // Conservative fallback when unlock optics are missing — no thermals assumed.
       ids = ['iron', 'std_optic', 'var_low', 'var_high'];
+    }
+    // Season / challenge optics (e.g. TH-RDS) live outside the mastery track.
+    const challengeSights = weaponUnlocks?.challengeAttachments?.sight;
+    if (Array.isArray(challengeSights)) {
+      for (const id of challengeSights) {
+        if (id && !ids.includes(id)) ids.push(id);
+      }
     }
     if (!ids.includes('iron')) ids = ['iron', ...ids];
     const pool = ids.map((id) => sightsById[id]).filter(Boolean);

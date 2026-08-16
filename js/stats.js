@@ -135,9 +135,36 @@ window.BF6 = window.BF6 || {};
 
   // Aim picture / target visibility by optic × engagement distance.
   BF6.OPTIC_AIM = {
-    close: { iron: 0.42, std_optic: 0.55, var_low: 0.28, var_high: 0.12, thermal: 0.32, therm_hyb: 0.3 },
-    mid: { iron: 0.18, std_optic: 0.58, var_low: 0.88, var_high: 0.72, thermal: 0.6, therm_hyb: 0.7 },
-    long: { iron: 0.06, std_optic: 0.38, var_low: 0.86, var_high: 0.96, thermal: 0.74, therm_hyb: 0.84 },
+    close: {
+      iron: 0.42,
+      std_optic: 0.55,
+      var_low: 0.28,
+      var_high: 0.12,
+      therm_hyb: 0.5,
+      therm_1_5: 0.42,
+      therm_3: 0.26,
+      therm_6: 0.1,
+    },
+    mid: {
+      iron: 0.18,
+      std_optic: 0.58,
+      var_low: 0.88,
+      var_high: 0.72,
+      therm_hyb: 0.55,
+      therm_1_5: 0.68,
+      therm_3: 0.84,
+      therm_6: 0.7,
+    },
+    long: {
+      iron: 0.06,
+      std_optic: 0.38,
+      var_low: 0.86,
+      var_high: 0.96,
+      therm_hyb: 0.38,
+      therm_1_5: 0.55,
+      therm_3: 0.82,
+      therm_6: 0.94,
+    },
   };
 
   BF6.FOCUS_OPTIC_PROFILE = {

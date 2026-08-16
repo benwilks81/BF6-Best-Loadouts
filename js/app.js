@@ -756,7 +756,7 @@
     return {
       id: `thermal-${range.id}`,
       label: `${range.label} Thermal`,
-      band: `${range.band} · thermal optic (25–35 pts)`,
+      band: `${range.band} · named thermal optic`,
     };
   }
 
@@ -780,7 +780,7 @@
       cards.push(`
         <div class="results-section" role="presentation">
           <h2>Thermal layouts</h2>
-          <p>Best builds that lock a thermal optic first, then spend the remaining points.</p>
+          <p>Best builds that lock a specific thermal optic (GRIM / PAS-35 / TS-HD / TH-RDS) first, then spend the remaining points.</p>
         </div>
       `);
       cards.push(...thermalCards);

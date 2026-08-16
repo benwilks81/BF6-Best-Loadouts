@@ -232,7 +232,16 @@ def optic_category(att: dict) -> str | None:
     if "THERMAL HYBRID" in summary or "THERMAL HYBRID" in name:
         return "therm_hyb"
     if "THERMAL" in summary or "THERMAL" in name:
-        return "thermal"
+        # Distinct thermal optics — magnification matters for scoring / display.
+        if "6.00" in summary or "6.00X" in name or re.search(r"\b6(?:\.0+)?\s*X", name):
+            return "therm_6"
+        if "3.00" in summary or "3.00X" in name or re.search(r"\b3(?:\.0+)?\s*X", name):
+            return "therm_3"
+        if "1.50" in summary or "1.50X" in name or re.search(r"\b1\.5(?:0+)?\s*X", name):
+            return "therm_1_5"
+        if "1.00" in summary or "1.00X" in name or re.search(r"\b1(?:\.0+)?\s*X", name):
+            return "therm_hyb"
+        return "therm_1_5"
     if "VARIABLE 1-5" in summary:
         return "var_high"
     if "VARIABLE" in summary:
@@ -475,11 +484,15 @@ def build_unlocks() -> dict:
                     unmapped[key] = unmapped.get(key, 0) + 1
 
             elif slot == "scope":
-                # Challenge optics (e.g. season LPVO) must not pull an optic category down to level 0.
-                if challenge_only:
-                    continue
                 cat = optic_category(att)
-                if cat and cat in sight_ids:
+                if not cat or cat not in sight_ids:
+                    if cat:
+                        key = f"scope:{att.get('name')}:{cat}"
+                        unmapped[key] = unmapped.get(key, 0) + 1
+                elif challenge_only:
+                    # Season / assignment optics (e.g. TH-RDS thermal hybrid).
+                    add_challenge(challenge, "sight", cat)
+                else:
                     set_level(slots["sight"], cat, level)
 
             elif slot == "magazine":
@@ -522,8 +535,19 @@ def build_unlocks() -> dict:
         # Challenge-only parts are never treated as mastery unlocks (API often marks them level 0).
         # They are optional pool entries only when the user enables challenge parts — never forced
         # into a loadout; the optimizer still has to pick them for that gun/range.
-        for slot_name, ids in challenge.items():
+        #
+        # Optic categories are shared across many physical sights (e.g. SCOPE 4x and a season LPVO
+        # both map to var_low). Never strip mastery optic levels just because one challenge sight
+        # shares the category — only keep challenge tags for optics that are truly challenge-only.
+        for slot_name, ids in list(challenge.items()):
             bucket = slots.get(slot_name)
+            if slot_name == "sight":
+                exclusive = [att_id for att_id in ids if not bucket or att_id not in bucket]
+                if exclusive:
+                    challenge[slot_name] = exclusive
+                else:
+                    challenge.pop(slot_name, None)
+                continue
             if not bucket:
                 continue
             for att_id in ids:
@@ -544,8 +568,8 @@ def build_unlocks() -> dict:
         "source": API_BASE,
         "fetchedAt": fetched_at,
         "attachmentUnlockCap": 50,
-        "playerMaxLevel": null,
-        "weaponMasteryMax": null,
+        "playerMaxLevel": None,
+        "weaponMasteryMax": None,
         "weapons": out_weapons,
         "unmappedSample": sorted(unmapped.items(), key=lambda item: (-item[1], item[0]))[:30],
     }
