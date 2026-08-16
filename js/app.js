@@ -746,6 +746,20 @@
     return result.focusPerformance?.[focusId]?.[0] ?? result.focusValue?.[focusId]?.[0] ?? null;
   }
 
+  function bestForThermalRange(result, rangeId) {
+    return (
+      result.thermalPerformance?.[rangeId]?.[0] ?? result.thermalValue?.[rangeId]?.[0] ?? null
+    );
+  }
+
+  function thermalRangeMeta(range) {
+    return {
+      id: `thermal-${range.id}`,
+      label: `${range.label} Thermal`,
+      band: `${range.band} · thermal optic (25–35 pts)`,
+    };
+  }
+
   function renderResults(result) {
     els.results.classList.remove('is-booting');
     void els.results.offsetWidth;
@@ -753,9 +767,33 @@
     const cards = [
       ...Object.values(BF6.RANGES).map((range) => rangeCard(range, bestForRange(result, range.id))),
       ...Object.values(BF6.FOCUSES).map((focus) => rangeCard(focus, bestForFocus(result, focus.id))),
-    ].join('');
+    ];
 
-    els.results.innerHTML = cards;
+    const thermalCards = Object.values(BF6.RANGES).map((range) =>
+      rangeCard(thermalRangeMeta(range), bestForThermalRange(result, range.id))
+    );
+    const anyThermal = thermalCards.some((_, i) =>
+      bestForThermalRange(result, Object.values(BF6.RANGES)[i].id)
+    );
+
+    if (result.hasThermal || anyThermal) {
+      cards.push(`
+        <div class="results-section" role="presentation">
+          <h2>Thermal layouts</h2>
+          <p>Best builds that lock a thermal optic first, then spend the remaining points.</p>
+        </div>
+      `);
+      cards.push(...thermalCards);
+    } else if (result.hasThermal === false) {
+      cards.push(`
+        <div class="results-section" role="presentation">
+          <h2>Thermal layouts</h2>
+          <p>No thermal optic unlocked for this gun at the current gun level.</p>
+        </div>
+      `);
+    }
+
+    els.results.innerHTML = cards.join('');
     els.results.classList.add('is-booting');
   }
 
@@ -872,6 +910,12 @@
       const lo = sanitizeLoadout(raw.loadouts[focusId]);
       if (lo) loadouts[focusId] = lo;
     }
+    for (const rangeId of Object.keys(BF6.RANGES)) {
+      const key = `thermal_${rangeId}`;
+      if (!(key in raw.loadouts)) continue;
+      const lo = sanitizeLoadout(raw.loadouts[key]);
+      if (lo) loadouts[key] = lo;
+    }
     if (!Object.keys(BF6.RANGES).some((id) => loadouts[id])) return null;
 
     const savedAt = Number(raw.savedAt);
@@ -950,6 +994,15 @@
         why: entry.ranked.why,
       };
     }
+    for (const range of Object.values(BF6.RANGES)) {
+      const entry = bestForThermalRange(result, range.id);
+      if (!entry) continue;
+      loadouts[`thermal_${range.id}`] = {
+        labels: entry.labels,
+        pts: entry.stats.pts,
+        why: entry.ranked.why,
+      };
+    }
 
     const next = {
       weaponId: weapon.id,
@@ -1003,6 +1056,14 @@
         const detailFocus = Object.values(BF6.FOCUSES)
           .map((focus) => favLoadoutPanel(focus, fav.loadouts?.[focus.id]))
           .join('');
+        const detailThermal = Object.values(BF6.RANGES)
+          .map((range) =>
+            favLoadoutPanel(thermalRangeMeta(range), fav.loadouts?.[`thermal_${range.id}`])
+          )
+          .join('');
+        const hasThermalFav = Object.values(BF6.RANGES).some(
+          (range) => fav.loadouts?.[`thermal_${range.id}`]
+        );
 
         return `
           <article class="fav-card${open ? ' is-open' : ''}">
@@ -1026,6 +1087,11 @@
             <div class="fav-detail"${open ? '' : ' hidden'}>
               ${detailRanges}
               ${detailFocus}
+              ${
+                hasThermalFav
+                  ? `<div class="fav-section-label">Thermal layouts</div>${detailThermal}`
+                  : ''
+              }
             </div>
           </article>
         `;

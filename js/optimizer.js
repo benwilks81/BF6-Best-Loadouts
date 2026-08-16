@@ -116,7 +116,18 @@ window.BF6 = window.BF6 || {};
     );
   }
 
+  const THERMAL_SIGHT_IDS = new Set(['therm_hyb', 'thermal']);
+
   function preferredSight(profileId, sightPool) {
+    // Constrained thermal pools only contain thermal optics — seed the cheaper/better hybrid first.
+    if (sightPool.length && sightPool.every((s) => THERMAL_SIGHT_IDS.has(s.id))) {
+      for (const id of ['therm_hyb', 'thermal']) {
+        const hit = sightPool.find((s) => s.id === id);
+        if (hit) return hit;
+      }
+      return sightPool[0];
+    }
+
     const prefs = {
       close: ['std_optic', 'iron', 'var_low'],
       mid: ['var_low', 'std_optic', 'var_high'],
@@ -130,6 +141,16 @@ window.BF6 = window.BF6 || {};
       if (hit) return hit;
     }
     return sightPool[0];
+  }
+
+  function constrainSightPool(pools, predicate) {
+    const sights = pools.sights.filter(predicate);
+    if (!sights.length) return null;
+    return {
+      ...pools,
+      sights,
+      bySlot: { ...pools.bySlot, sight: sights },
+    };
   }
 
   function buildSightPool(atts, sightsById, weaponUnlocks = null) {
@@ -490,7 +511,8 @@ window.BF6 = window.BF6 || {};
     if (list.length > topN) list.length = topN;
   }
 
-  function optimizeProfile(weapon, pools, tables, stock, stockStats, profileId, topN) {
+  function optimizeProfile(weapon, pools, tables, stock, stockStats, profileId, topN, options = {}) {
+    const minScore = Number.isFinite(options.minScore) ? options.minScore : 0.015;
     const bestValue = [];
     const bestPerf = [];
     let considered = 0;
@@ -533,11 +555,19 @@ window.BF6 = window.BF6 || {};
       seeds.push(seed);
     }
 
+    // Thermal-budget seed: lock the expensive optic first, then let descent refill other slots.
+    if (pools.sights.some((s) => THERMAL_SIGHT_IDS.has(s.id)) &&
+        pools.sights.every((s) => THERMAL_SIGHT_IDS.has(s.id))) {
+      const seed = cloneParts(stock);
+      seed.sight = preferredSight(profileId, pools.sights) ?? seed.sight;
+      seeds.push(seed);
+    }
+
     for (const seed of seeds) {
       const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'score', 2);
       if (perf) {
         considered += perf.considered;
-        if (perf.ranked.score > 0.015) {
+        if (perf.ranked.score > minScore) {
           insertTop(bestPerf, makeEntry(perf.parts, perf.stats, perf.ranked), topN, (a, b) => {
             if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
             return a.stats.pts - b.stats.pts;
@@ -553,7 +583,7 @@ window.BF6 = window.BF6 || {};
       const value = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'value', 2);
       if (value) {
         considered += value.considered;
-        if (value.ranked.score > 0.015) {
+        if (value.ranked.score > minScore) {
           insertTop(bestValue, makeEntry(value.parts, value.stats, value.ranked), topN, (a, b) => {
             if (b.ranked.value !== a.ranked.value) return b.ranked.value - a.ranked.value;
             if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
@@ -603,6 +633,22 @@ window.BF6 = window.BF6 || {};
       maxFocus[focusId] = out.performance;
     }
 
+    // Separate pass: force a thermal optic (25–35 pts) and rebuild the rest under budget.
+    const thermalPools = constrainSightPool(pools, (s) => THERMAL_SIGHT_IDS.has(s.id));
+    const thermalValue = { close: [], mid: [], long: [] };
+    const thermalPerf = { close: [], mid: [], long: [] };
+    if (thermalPools) {
+      for (const rangeId of Object.keys(BF6.RANGES)) {
+        const out = optimizeProfile(weapon, thermalPools, tables, stock, stockStats, rangeId, topN, {
+          // Always keep a thermal layout when the optic is unlocked, even if aim score is worse.
+          minScore: -1,
+        });
+        considered += out.considered;
+        thermalValue[rangeId] = out.value;
+        thermalPerf[rangeId] = out.performance;
+      }
+    }
+
     return {
       considered,
       stock: { parts: stock, stats: stockStats },
@@ -610,6 +656,9 @@ window.BF6 = window.BF6 || {};
       performance: maxPerf,
       focusValue: bestByFocus,
       focusPerformance: maxFocus,
+      thermalValue,
+      thermalPerformance: thermalPerf,
+      hasThermal: Boolean(thermalPools),
     };
   };
 })(window.BF6);
