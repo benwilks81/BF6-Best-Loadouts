@@ -765,12 +765,8 @@
   }
 
   function killWindowShots(weapon, rangeMeters) {
-    const dmg = typeof BF6.damageAtRange === 'function' ? BF6.damageAtRange(weapon, rangeMeters) : 25;
-    const btk = dmg > 0 ? Math.ceil(100 / dmg) : 5;
-    const fireMode = String(weapon.fireMode || 'auto');
-    if (fireMode === 'bolt' || fireMode === 'pump') return Math.min(Math.max(btk, 1), 3);
-    if (fireMode === 'semi' || fireMode === 'burst') return Math.min(Math.max(btk, 3), 6);
-    return Math.min(Math.max(btk, 4), 8);
+    if (typeof BF6.killWindowShots === 'function') return BF6.killWindowShots(weapon, rangeMeters);
+    return 5;
   }
 
   function ensureSoldierMask() {
@@ -912,13 +908,17 @@
     const { impacts, recoilPath, shotCount, pellets, fireMode } = pattern;
     const aimLabel = state.spreadAim === 'hip' ? 'Hipfire' : 'ADS';
     const hitsOnFigure = impacts.filter((hit) => impactHitsSoldier(hit.x, hit.y, rangeMeters)).length;
-    const unit = pellets > 1 ? 'pellets' : fireMode === 'bolt' ? 'bolts' : 'shots';
+    const discharge = pellets > 1 ? 'shells' : fireMode === 'bolt' ? 'bolts' : 'shots';
     const burstLabel =
       burstMode === 'ttk'
-        ? `first ${shotCount} ${unit} (kill window)`
-        : `${shotCount} ${unit} dump`;
+        ? `first ${shotCount} ${discharge} (kill window)`
+        : `${shotCount} ${discharge} dump`;
+    const hitPhrase =
+      pellets > 1
+        ? `${hitsOnFigure} of ${impacts.length} pellets on the soldier`
+        : `${hitsOnFigure} of ${impacts.length} on the soldier`;
     if (els.spreadVizCaption) {
-      els.spreadVizCaption.textContent = `${aimLabel} standing · ${burstLabel} · no pull-down · ${hitsOnFigure} of ${impacts.length} on the soldier at ${rangeMeters} m`;
+      els.spreadVizCaption.textContent = `${weapon.name} · ${aimLabel} standing · ${burstLabel} · no pull-down · ${hitPhrase} at ${rangeMeters} m`;
     }
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);

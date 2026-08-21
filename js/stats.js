@@ -225,7 +225,22 @@ window.BF6 = window.BF6 || {};
 
   BF6.profileRangeMeters = profileRangeMeters;
   BF6.damageAtRange = damageAtRange;
+  BF6.bulletsToKill = bulletsToKill;
   BF6.timeToKillMsFromDamage = timeToKillMsFromDamage;
+
+  BF6.killWindowShots = function killWindowShots(weapon, rangeMeters) {
+    const dmg = damageAtRange(weapon, rangeMeters);
+    const pellets = Math.max(1, Math.round(num(weapon.pellets, 1)));
+    const mag = Math.max(1, Math.round(num(weapon.mag, 8)));
+    // Shotgun JSON damage is per pellet; a kill window is shells, assuming the cone connects.
+    const perDischarge = dmg > 0 ? dmg * (pellets > 1 ? pellets : 1) : 0;
+    const btk = bulletsToKill(perDischarge);
+    if (!Number.isFinite(btk)) return Math.min(mag, pellets > 1 ? 2 : 5);
+    const fireMode = String(weapon.fireMode || 'auto');
+    let cap = 10;
+    if (pellets > 1 || fireMode === 'bolt' || fireMode === 'pump') cap = 3;
+    return Math.min(mag, Math.max(1, Math.min(btk, cap)));
+  };
 
   function clampIndex(index, length) {
     return Math.max(0, Math.min(length - 1, index));
