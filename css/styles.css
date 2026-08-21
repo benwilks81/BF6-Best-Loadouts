@@ -826,6 +826,14 @@ body::before {
   font-size: 0.84rem;
 }
 
+.spread-viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
 .spread-viz-modes {
   display: flex;
   gap: 0.3rem;

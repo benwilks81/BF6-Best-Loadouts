@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/styles.css?v=20260822b" />
+    <link rel="stylesheet" href="./css/styles.css?v=20260822c" />
   </head>
   <body>
     <div class="fx-scan" aria-hidden="true"></div>
@@ -136,16 +136,24 @@
                 <h3>Shot grouping</h3>
                 <p class="spread-viz-caption" id="spreadVizCaption">How a stock mag dump looks on a soldier at 25 m.</p>
               </div>
-              <div class="spread-viz-modes" role="group" aria-label="Aim mode">
-                <button type="button" class="spread-mode is-on" data-spread-aim="ads" aria-pressed="true">ADS</button>
-                <button type="button" class="spread-mode" data-spread-aim="hip" aria-pressed="false">Hipfire</button>
+              <div class="spread-viz-controls">
+                <div class="spread-viz-modes" role="group" aria-label="Aim mode">
+                  <button type="button" class="spread-mode is-on" data-spread-aim="ads" aria-pressed="true">ADS</button>
+                  <button type="button" class="spread-mode" data-spread-aim="hip" aria-pressed="false">Hipfire</button>
+                </div>
+                <div class="spread-viz-modes" role="group" aria-label="Distance">
+                  <button type="button" class="spread-mode" data-spread-range="12" aria-pressed="false">12 m</button>
+                  <button type="button" class="spread-mode is-on" data-spread-range="25" aria-pressed="true">25 m</button>
+                  <button type="button" class="spread-mode" data-spread-range="50" aria-pressed="false">50 m</button>
+                  <button type="button" class="spread-mode" data-spread-range="75" aria-pressed="false">75 m</button>
+                </div>
               </div>
             </div>
             <canvas id="spreadCanvas" class="spread-canvas" width="720" height="420" aria-label="Bullet spread visualization"></canvas>
             <p class="spread-viz-legend">
               <span class="spread-swatch is-early"></span> first shots
               <span class="spread-swatch is-late"></span> later shots (bloom + climb)
-              <span class="spread-viz-hint">Figure is infantry-scale at 25 m. Stock gun, no attachments.</span>
+              <span class="spread-viz-hint">Same burst, different range — the soldier shrinks, bloom does not.</span>
             </p>
           </figure>
         </div>
@@ -153,9 +161,9 @@
       </section>
     </main>
 
-    <script src="./js/embedded-data.js?v=20260822b"></script>
-    <script src="./js/stats.js?v=20260822b"></script>
-    <script src="./js/optimizer.js?v=20260822b"></script>
-    <script src="./js/app.js?v=20260822b"></script>
+    <script src="./js/embedded-data.js?v=20260822c"></script>
+    <script src="./js/stats.js?v=20260822c"></script>
+    <script src="./js/optimizer.js?v=20260822c"></script>
+    <script src="./js/app.js?v=20260822c"></script>
   </body>
 </html>

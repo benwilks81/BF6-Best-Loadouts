@@ -25,38 +25,30 @@
   };
   // Curated latest weapon-facing patch overview (prototype). Keep only the newest notes.
   const LATEST_CHANGELOG = {
-    id: '1.3.3.0',
-    title: 'Update 1.3.3.0',
-    dateLabel: '30 Jun 2026',
-    url: 'https://www.ea.com/games/battlefield/battlefield-6/news/battlefield-6-game-update-1-3-3-0',
+    id: '1.4.2.0',
+    title: 'Update 1.4.2.0',
+    dateLabel: '18 Aug 2026',
+    url: 'https://www.ea.com/games/battlefield/battlefield-6/news/battlefield-6-game-update-1-4-2-0',
     bullets: [
       {
-        text: 'Muzzle velocity down ~5% on most primaries; more lead needed at range.',
+        text: 'Hybrid Suppressors (L / S / K) added in-game — not in the stats dump yet, so loadouts still use the four existing cans.',
         weapons: null,
       },
       {
-        text: 'Bullet drag up ~40% (Match Grade +100%); long shots drop faster.',
+        text: 'Interdictor sniper rifle added — waiting on weapon stats before it can be recommended.',
         weapons: null,
       },
       {
-        text: 'Auto headshot mults raised to 1.4 / 1.57 / 1.8 by ammo type.',
-        weapons: null,
+        text: 'Match Grade ammo damage fixes (M2010 ESR, SVK-8.6, swimming soldiers).',
+        weapons: ['m2010esr', 'svk86'],
       },
       {
-        text: 'Stomach/limb damage reduced on autos; upper-body shots matter more.',
-        weapons: null,
+        text: 'VSSM: barrel recoil modifier removed; limb damage multipliers adjusted.',
+        weapons: ['vssm'],
       },
       {
-        text: 'Dispersion growth up ~14% on average; burst/tap fire rewarded farther out.',
-        weapons: null,
-      },
-      {
-        text: 'Recoil variation reduced for more predictable sustained fire.',
-        weapons: null,
-      },
-      {
-        text: 'Bolt-action sweet spots narrowed (M2010 ESR, SV-98, PSR, L115).',
-        weapons: ['m2010esr', 'sv98', 'psr', 'l115', 'miniscout'],
+        text: 'EF88 attachment consistency and missing visuals; Mini Scout laser rail fix.',
+        weapons: ['ef88', 'miniscout'],
       },
     ],
   };
@@ -139,6 +131,7 @@
     masteryLevel: DEFAULT_MASTERY_LEVEL,
     includeChallenges: false,
     spreadAim: 'ads',
+    spreadRangeMeters: 25,
     lastResult: null,
     resultCache: new Map(),
     activeOptimizeRequest: null,
@@ -491,18 +484,33 @@
     }
 
     els.spreadViz?.addEventListener('click', (event) => {
-      const btn = event.target.closest('[data-spread-aim]');
-      if (!btn) return;
-      const aim = btn.dataset.spreadAim === 'hip' ? 'hip' : 'ads';
-      if (state.spreadAim === aim) return;
-      state.spreadAim = aim;
-      els.spreadViz.querySelectorAll('[data-spread-aim]').forEach((el) => {
-        const on = el.dataset.spreadAim === aim;
-        el.classList.toggle('is-on', on);
-        el.setAttribute('aria-pressed', String(on));
-      });
+      const aimBtn = event.target.closest('[data-spread-aim]');
+      const rangeBtn = event.target.closest('[data-spread-range]');
       const weapon = state.weapons.find((w) => w.id === state.weaponId);
-      if (weapon) renderSpreadViz(weapon);
+      if (aimBtn) {
+        const aim = aimBtn.dataset.spreadAim === 'hip' ? 'hip' : 'ads';
+        if (state.spreadAim !== aim) {
+          state.spreadAim = aim;
+          els.spreadViz.querySelectorAll('[data-spread-aim]').forEach((el) => {
+            const on = el.dataset.spreadAim === aim;
+            el.classList.toggle('is-on', on);
+            el.setAttribute('aria-pressed', String(on));
+          });
+          if (weapon) renderSpreadViz(weapon);
+        }
+        return;
+      }
+      if (rangeBtn) {
+        const range = Number(rangeBtn.dataset.spreadRange);
+        if (!Number.isFinite(range) || range === state.spreadRangeMeters) return;
+        state.spreadRangeMeters = range;
+        els.spreadViz.querySelectorAll('[data-spread-range]').forEach((el) => {
+          const on = Number(el.dataset.spreadRange) === range;
+          el.classList.toggle('is-on', on);
+          el.setAttribute('aria-pressed', String(on));
+        });
+        if (weapon) renderSpreadViz(weapon);
+      }
     });
 
     if (els.spreadCanvas && typeof ResizeObserver !== 'undefined') {
@@ -837,21 +845,22 @@
     const canvas = els.spreadCanvas;
     if (!canvas || typeof BF6.simulateShotPattern !== 'function') return;
 
+    const rangeMeters = Number(state.spreadRangeMeters) || 25;
     const pattern = BF6.simulateShotPattern(weapon, {
       aim: state.spreadAim,
-      rangeMeters: 25,
+      rangeMeters,
     });
-    const { impacts, recoilPath, shotCount, pellets, rangeMeters, fireMode } = pattern;
+    const { impacts, recoilPath, shotCount, pellets, fireMode } = pattern;
     const aimLabel = state.spreadAim === 'hip' ? 'Hipfire' : 'ADS';
     const roundWord = pellets > 1 ? `shells × ${pellets} pellets` : fireMode === 'bolt' ? 'bolts' : 'rounds';
     if (els.spreadVizCaption) {
-      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m (in-game scale)`;
+      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m`;
     }
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cssW = Math.max(canvas.clientWidth || 720, 280);
     const cssH = Math.max(Math.round(cssW * 0.62), 260);
-    const drawKey = `${weapon.id}|${state.spreadAim}|${Math.round(cssW)}`;
+    const drawKey = `${weapon.id}|${state.spreadAim}|${rangeMeters}|${Math.round(cssW)}`;
     if (canvas.dataset.drawKey === drawKey) return;
     canvas.dataset.drawKey = drawKey;
     canvas.width = Math.round(cssW * dpr);
@@ -949,7 +958,13 @@
     ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
     ctx.fillText('climb ↑', margin.l, 12);
     const cm = rangeMeters * Math.tan((Math.PI / 180) * 1) * 100;
-    ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m`, margin.l, cssH - 8);
+    let burstNote = '';
+    if (xs.length && ys.length) {
+      const spanDeg = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
+      const spanCm = rangeMeters * Math.tan((spanDeg * Math.PI) / 180) * 100;
+      burstNote = ` · this burst ≈ ${Math.round(spanCm)} cm across`;
+    }
+    ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m${burstNote}`, margin.l, cssH - 8);
   }
 
   function run() {

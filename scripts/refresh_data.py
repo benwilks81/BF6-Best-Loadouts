@@ -2,8 +2,9 @@
 """Download BF6 weapon/attachment data and rebuild js/embedded-data.js.
 
 Uses local files + ETag cache so unchanged upstream data is not re-downloaded
-or re-embedded. The weekly timer is the normal refresh cadence; the browser
-always reads the local embedded copy (no network on page load).
+or re-embedded. Run this after every game patch (new guns / attachments / stat
+changes), not only on the weekly timer — the browser always reads the local
+embedded copy.
 
 Security notes:
 - Upstream host/path is fixed; redirects off that host are rejected.
