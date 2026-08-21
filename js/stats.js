@@ -684,4 +684,176 @@ window.BF6 = window.BF6 || {};
       why,
     };
   };
+
+  function mulberry32(seed) {
+    let s = seed >>> 0;
+    return () => {
+      s = (s + 0x6d2b79f5) | 0;
+      let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 0x100000000;
+    };
+  }
+
+  function hashId(str) {
+    let h = 0;
+    for (const c of String(str)) h = (Math.imul(31, h) + c.charCodeAt(0)) | 0;
+    return h >>> 0;
+  }
+
+  function shotIntervalAfter(weapon, shotIndex) {
+    const fireMode = String(weapon.fireMode || 'auto');
+    let rpm = num(weapon.rpm, 600);
+    if (fireMode === 'burst' && num(weapon.burstRpm) > 0) rpm = num(weapon.burstRpm);
+    // Pump 1800 rpm in the dataset is not the cycle time — use a rack delay so grouping is readable.
+    if (fireMode === 'pump' && rpm > 500) return 0.45;
+    const normal = 60 / Math.max(rpm, 1);
+    const burstRounds = fireMode === 'burst' ? Math.round(num(weapon.burstRounds)) : 0;
+    const burstsPerMinute = num(weapon.burstBurstsPerMinute);
+    if (burstRounds <= 1 || burstsPerMinute <= 0) return normal;
+    const shotInBurst = (shotIndex - 1) % burstRounds;
+    if (shotInBurst < burstRounds - 1) return normal;
+    const burstCycle = 60 / burstsPerMinute;
+    const elapsedWithinBurst = (burstRounds - 1) * normal;
+    return Math.max(normal, burstCycle - elapsedWithinBurst);
+  }
+
+  function isBurstGapAfter(weapon, shotIndex) {
+    const burstRounds = String(weapon.fireMode) === 'burst' ? Math.round(num(weapon.burstRounds)) : 0;
+    return burstRounds > 1 && (shotIndex - 1) % burstRounds === burstRounds - 1;
+  }
+
+  function applySpreadRecovery(spread, seconds, recovery, baseline, sMax, dt = 1 / 60) {
+    const clamp = (v) => Math.min(Math.max(v, baseline), sMax);
+    let rem = seconds;
+    while (rem > 1e-12) {
+      const step = Math.min(dt, rem);
+      const delta = Math.max(spread - baseline, 0);
+      spread = clamp(
+        spread - step * (recovery.coef * Math.pow(delta, recovery.exp) + recovery.offset)
+      );
+      rem -= step;
+    }
+    return spread;
+  }
+
+  function applyRecoilDecay(r, decFactor, decExp, timeExp, interShotTime, decOffset = 0.06) {
+    const dt = 1 / 60;
+    let t = 0;
+    while (t < interShotTime) {
+      const step = Math.min(dt, interShotTime - t);
+      t += step;
+      const dec =
+        (Math.pow(Math.abs(r), decExp) + decOffset) * decFactor * step * Math.pow(t, timeExp);
+      if (r > 0) r = Math.max(0, r - dec);
+      else if (r < 0) r = Math.min(0, r + dec);
+    }
+    return r;
+  }
+
+  /**
+   * Stock-gun shot grouping in degrees (aim at origin, +y is recoil climb).
+   * Spread decay matches the Dr. Smiley Henry / raymdl model.
+   */
+  BF6.simulateShotPattern = function simulateShotPattern(weapon, options = {}) {
+    const aim = options.aim === 'hip' ? 'hip' : 'ads';
+    const stance = options.stance === 'move' ? 'Move' : 'Stand';
+    const rangeMeters = num(options.rangeMeters, 25);
+    const mag = Math.max(1, Math.round(num(weapon.mag, 8)));
+    const pellets = Math.max(1, Math.round(num(weapon.pellets, 1)));
+    const fireMode = String(weapon.fireMode || 'auto');
+    let shotCount = mag;
+    if (fireMode === 'auto') shotCount = Math.min(mag, 20);
+    else if (fireMode === 'burst') shotCount = Math.min(mag, 12);
+    else if (fireMode === 'semi') shotCount = Math.min(mag, 10);
+    else shotCount = Math.min(mag, 6);
+
+    const key = `${aim}${stance}`;
+    const bounds = weapon.spread?.[key] ?? (aim === 'ads' ? [0.05, weapon.spreadMax ?? 9] : [0, weapon.spreadMax ?? 9]);
+    const baseline = num(bounds[0], 0);
+    const sMax = num(bounds[1], weapon.spreadMax ?? 9);
+    const dyn = weapon.spreadDyn?.[aim] ?? {};
+    const sInc = aim === 'ads' ? num(weapon.recoilIncAds, dyn.inc) : num(dyn.inc);
+    const firing = {
+      coef: num(dyn.firingCoef, aim === 'ads' ? 1.22 : 0.51),
+      exp: num(dyn.firingExp, 2.5),
+      offset: num(dyn.firingOffset, aim === 'ads' ? 1.84 : 3.31),
+    };
+    const notFiring = {
+      coef: num(dyn.notFiringCoef, firing.coef),
+      exp: num(dyn.notFiringExp, firing.exp),
+      offset: num(dyn.notFiringOffset, firing.offset),
+    };
+    const clampSpread = (v) => Math.min(Math.max(v, baseline), sMax);
+
+    const group = weapon.recoil?.[aim] ?? {};
+    const amount = num(group.amount, weapon.recoilV) * Math.pow(num(group.amountMult, 1), num(group.amountExp, 0));
+    const variation =
+      num(group.dirVar, weapon.recoilVar) * Math.pow(num(group.dirVarMult, 1), num(group.dirVarExp, 0));
+    const dir0 = (-num(group.dir, weapon.recoilDir) * Math.PI) / 180;
+    const decF = num(group.decFactor, 72);
+    const decExp = num(group.decExp, 1);
+    const timeExp = num(group.decTimeExp, 1.2);
+    const decOffset = num(group.decOffset, 0.06);
+
+    const rng = mulberry32(hashId(weapon.id) ^ (aim === 'hip' ? 0x9e3779b9 : 0x85ebca6b));
+    const disk = (radius) => {
+      const r = radius * Math.sqrt(rng());
+      const theta = rng() * Math.PI * 2;
+      return { x: Math.cos(theta) * r, y: Math.sin(theta) * r };
+    };
+
+    // Shotgun pellet fan is not in the weapon JSON; use a readable 00-buck cone.
+    const pelletCone = pellets > 1 ? (aim === 'ads' ? 1.75 : 2.6) : 0;
+
+    let spread = baseline;
+    let cx = 0;
+    let cy = 0;
+    const recoilPath = [{ x: 0, y: 0 }];
+    const impacts = [];
+
+    for (let i = 0; i < shotCount; i++) {
+      spread = clampSpread(spread);
+      const cone = pellets > 1 ? pelletCone : spread;
+      for (let p = 0; p < pellets; p++) {
+        const off = disk(cone);
+        impacts.push({
+          x: cx + off.x,
+          y: cy + off.y,
+          shot: i,
+          pellet: p,
+        });
+      }
+
+      if (i === shotCount - 1) break;
+
+      spread = clampSpread(spread + sInc);
+      const interval = shotIntervalAfter(weapon, i + 1);
+      const kickAngle = dir0 + ((rng() * 2 - 1) * variation * Math.PI) / 180;
+      cx += Math.sin(kickAngle) * amount;
+      cy += Math.cos(kickAngle) * amount;
+
+      if (isBurstGapAfter(weapon, i + 1)) {
+        const firingTime = Math.min(60 / Math.max(num(weapon.rpm, 600), 1), interval);
+        spread = applySpreadRecovery(spread, firingTime, firing, baseline, sMax);
+        spread = applySpreadRecovery(spread, Math.max(0, interval - firingTime), notFiring, baseline, sMax);
+      } else {
+        spread = applySpreadRecovery(spread, interval, firing, baseline, sMax);
+      }
+      cx = applyRecoilDecay(cx, decF, decExp, timeExp, interval, decOffset);
+      cy = applyRecoilDecay(cy, decF, decExp, timeExp, interval, decOffset);
+      recoilPath.push({ x: cx, y: cy });
+    }
+
+    return {
+      impacts,
+      recoilPath,
+      shotCount,
+      pellets,
+      aim,
+      rangeMeters,
+      mag,
+      fireMode,
+    };
+  };
 })(window.BF6);

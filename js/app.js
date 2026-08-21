@@ -134,6 +134,7 @@
     playerLevel: DEFAULT_PLAYER_LEVEL,
     masteryLevel: DEFAULT_MASTERY_LEVEL,
     includeChallenges: false,
+    spreadAim: 'ads',
     lastResult: null,
     resultCache: new Map(),
     activeOptimizeRequest: null,
@@ -166,6 +167,9 @@
     results: document.getElementById('results'),
     detail: document.getElementById('detail'),
     dataAge: document.getElementById('dataAge'),
+    spreadViz: document.getElementById('spreadViz'),
+    spreadCanvas: document.getElementById('spreadCanvas'),
+    spreadVizCaption: document.getElementById('spreadVizCaption'),
   };
 
   try {
@@ -480,6 +484,29 @@
       els.includeChallenges.addEventListener('change', () => applyLevelInputs());
     }
 
+    els.spreadViz?.addEventListener('click', (event) => {
+      const btn = event.target.closest('[data-spread-aim]');
+      if (!btn) return;
+      const aim = btn.dataset.spreadAim === 'hip' ? 'hip' : 'ads';
+      if (state.spreadAim === aim) return;
+      state.spreadAim = aim;
+      els.spreadViz.querySelectorAll('[data-spread-aim]').forEach((el) => {
+        const on = el.dataset.spreadAim === aim;
+        el.classList.toggle('is-on', on);
+        el.setAttribute('aria-pressed', String(on));
+      });
+      const weapon = state.weapons.find((w) => w.id === state.weaponId);
+      if (weapon) renderSpreadViz(weapon);
+    });
+
+    if (els.spreadCanvas && typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => {
+        const weapon = state.weapons.find((w) => w.id === state.weaponId);
+        if (weapon) renderSpreadViz(weapon);
+      });
+      ro.observe(els.spreadCanvas);
+    }
+
     els.favToggle.addEventListener('click', toggleFavorite);
     els.favList.addEventListener('click', (event) => {
       const removeBtn = event.target.closest('[data-remove-fav]');
@@ -694,6 +721,184 @@
       : `Weapon unlocks at player level ${unlockAt}`;
   }
 
+  function metersToDeg(meters, rangeMeters) {
+    return (Math.atan(meters / Math.max(rangeMeters, 1)) * 180) / Math.PI;
+  }
+
+  function mixHex(a, b, t) {
+    const parse = (hex) => [
+      parseInt(hex.slice(1, 3), 16),
+      parseInt(hex.slice(3, 5), 16),
+      parseInt(hex.slice(5, 7), 16),
+    ];
+    const [ar, ag, ab] = parse(a);
+    const [br, bg, bb] = parse(b);
+    const r = Math.round(ar + (br - ar) * t);
+    const g = Math.round(ag + (bg - ag) * t);
+    const bl = Math.round(ab + (bb - ab) * t);
+    return `rgb(${r}, ${g}, ${bl})`;
+  }
+
+  function drawSoldierSilhouette(ctx, toX, toY, rangeMeters) {
+    const w = metersToDeg(0.42, rangeMeters);
+    const headR = metersToDeg(0.12, rangeMeters);
+    const headY = metersToDeg(0.58, rangeMeters);
+    const shoulderY = metersToDeg(0.38, rangeMeters);
+    const hipY = metersToDeg(-0.18, rangeMeters);
+    const footY = metersToDeg(-0.95, rangeMeters);
+    const legGap = metersToDeg(0.06, rangeMeters);
+
+    ctx.save();
+    ctx.fillStyle = 'rgba(180, 196, 214, 0.16)';
+    ctx.strokeStyle = 'rgba(180, 196, 214, 0.38)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.ellipse(toX(0), toY(headY), Math.abs(toX(headR) - toX(0)), Math.abs(toY(headY) - toY(headY - headR)), 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    const left = toX(-w / 2);
+    const right = toX(w / 2);
+    const top = toY(shoulderY);
+    const mid = toY(hipY);
+    ctx.moveTo(left, top);
+    ctx.lineTo(right, top);
+    ctx.lineTo(toX(w * 0.36), mid);
+    ctx.lineTo(toX(-w * 0.36), mid);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(toX(-w * 0.32), mid);
+    ctx.lineTo(toX(-legGap), footY);
+    ctx.lineTo(toX(-w * 0.08), footY);
+    ctx.lineTo(toX(-w * 0.04), mid);
+    ctx.moveTo(toX(w * 0.32), mid);
+    ctx.lineTo(toX(legGap), footY);
+    ctx.lineTo(toX(w * 0.08), footY);
+    ctx.lineTo(toX(w * 0.04), mid);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderSpreadViz(weapon) {
+    const canvas = els.spreadCanvas;
+    if (!canvas || typeof BF6.simulateShotPattern !== 'function') return;
+
+    const pattern = BF6.simulateShotPattern(weapon, {
+      aim: state.spreadAim,
+      rangeMeters: 25,
+    });
+    const { impacts, recoilPath, shotCount, pellets, rangeMeters, fireMode } = pattern;
+    const aimLabel = state.spreadAim === 'hip' ? 'Hipfire' : 'ADS';
+    const roundWord = pellets > 1 ? `shells × ${pellets} pellets` : fireMode === 'bolt' ? 'bolts' : 'rounds';
+    if (els.spreadVizCaption) {
+      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m`;
+    }
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cssW = Math.max(canvas.clientWidth || 720, 280);
+    const cssH = Math.max(Math.round(cssW * 0.48), 220);
+    const drawKey = `${weapon.id}|${state.spreadAim}|${Math.round(cssW)}`;
+    if (canvas.dataset.drawKey === drawKey) return;
+    canvas.dataset.drawKey = drawKey;
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    const xs = impacts.map((p) => p.x);
+    const ys = impacts.map((p) => p.y);
+    const silW = metersToDeg(0.5, rangeMeters);
+    const silTop = metersToDeg(0.75, rangeMeters);
+    const silBot = metersToDeg(-1.05, rangeMeters);
+    let minX = Math.min(-silW, ...(xs.length ? xs : [0]));
+    let maxX = Math.max(silW, ...(xs.length ? xs : [0]));
+    let minY = Math.min(silBot, ...(ys.length ? ys : [0]));
+    let maxY = Math.max(silTop, ...(ys.length ? ys : [0]));
+    const padX = Math.max((maxX - minX) * 0.18, 0.55);
+    const padY = Math.max((maxY - minY) * 0.16, 0.45);
+    minX -= padX;
+    maxX += padX;
+    minY -= padY;
+    maxY += padY;
+    const spanX = Math.max(maxX - minX, 1.2);
+    const spanY = Math.max(maxY - minY, 1.2);
+    const margin = { l: 36, r: 16, t: 14, b: 28 };
+    const plotW = cssW - margin.l - margin.r;
+    const plotH = cssH - margin.t - margin.b;
+    const scale = Math.min(plotW / spanX, plotH / spanY);
+    const originX = margin.l + plotW / 2 - ((minX + maxX) / 2) * scale;
+    const originY = margin.t + plotH / 2 + ((minY + maxY) / 2) * scale;
+    const toX = (deg) => originX + deg * scale;
+    const toY = (deg) => originY - deg * scale;
+
+    ctx.fillStyle = '#07090c';
+    ctx.fillRect(0, 0, cssW, cssH);
+
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    const step = spanX > 8 ? 2 : 1;
+    for (let g = Math.ceil(minX); g <= maxX; g += step) {
+      ctx.beginPath();
+      ctx.moveTo(toX(g), margin.t);
+      ctx.lineTo(toX(g), cssH - margin.b);
+      ctx.stroke();
+    }
+    for (let g = Math.ceil(minY); g <= maxY; g += step) {
+      ctx.beginPath();
+      ctx.moveTo(margin.l, toY(g));
+      ctx.lineTo(cssW - margin.r, toY(g));
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    drawSoldierSilhouette(ctx, toX, toY, rangeMeters);
+
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255, 106, 0, 0.28)';
+    ctx.setLineDash([3, 4]);
+    ctx.beginPath();
+    recoilPath.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(toX(p.x), toY(p.y));
+      else ctx.lineTo(toX(p.x), toY(p.y));
+    });
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.strokeStyle = 'rgba(125, 211, 252, 0.7)';
+    ctx.beginPath();
+    ctx.moveTo(toX(-0.18), toY(0));
+    ctx.lineTo(toX(0.18), toY(0));
+    ctx.moveTo(toX(0), toY(-0.18));
+    ctx.lineTo(toX(0), toY(0.18));
+    ctx.stroke();
+    ctx.restore();
+
+    const lastShot = Math.max(shotCount - 1, 1);
+    impacts.forEach((hit) => {
+      const t = hit.shot / lastShot;
+      ctx.beginPath();
+      ctx.fillStyle = mixHex('#7dd3fc', '#ff6a00', t);
+      const r = pellets > 1 ? 1.7 : hit.shot === 0 ? 3.1 : 2.4;
+      ctx.globalAlpha = 0.55 + (1 - t) * 0.35;
+      ctx.arc(toX(hit.x), toY(hit.y), r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    ctx.fillStyle = 'rgba(168, 176, 186, 0.75)';
+    ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+    ctx.fillText('climb ↑', margin.l, 12);
+    const cm = rangeMeters * Math.tan((Math.PI / 180) * 1) * 100;
+    ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m`, margin.l, cssH - 8);
+  }
+
   function run() {
     const weapon = state.weapons.find((w) => w.id === state.weaponId);
     if (!weapon) return;
@@ -702,6 +907,7 @@
     showWeaponVisual(weapon);
     renderWeaponStats(weapon);
     renderWeaponUnlockNote(weapon);
+    renderSpreadViz(weapon);
 
     const key = cacheKey(weapon.id);
     const cached = state.resultCache.get(key);
