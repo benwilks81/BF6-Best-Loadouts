@@ -854,7 +854,7 @@ body::before {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 340px;
+  max-height: 420px;
   background:
     radial-gradient(ellipse at 50% 58%, rgba(255, 106, 0, 0.08), transparent 52%),
     #07090c;

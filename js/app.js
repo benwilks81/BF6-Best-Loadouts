@@ -63,6 +63,10 @@
   const IMG_BASE = 'https://media.battlefield6.gg/cdn-cgi/image/format=auto,quality=80,width=720/media/';
   const META_IMG = 'https://img.battlefieldmeta.gg';
   const IMG_CACHE_KEY = 'bf6-best-loadouts-img-cache-v4';
+  const SOLDIER_IMG_SRC = './img/soldier-target.png';
+  // BF6 infantry is ~1.8 m; aim point is upper chest / plate carrier.
+  const SOLDIER_HEIGHT_M = 1.82;
+  const SOLDIER_AIM_FROM_TOP = 0.30;
   // Weapon art: battlefield6.gg media filenames, or full https URLs from battlefieldmeta.gg.
   const IMAGE_FILES = {
     m433: 'AssaultRifle-M433.png',
@@ -140,6 +144,7 @@
     activeOptimizeRequest: null,
     favorites: [],
     expandedFavs: new Set(),
+    soldierImg: null,
   };
 
   const els = {
@@ -228,6 +233,7 @@
     renderFavorites();
     renderChangelog();
     renderDataAge(BF6_DATA.refreshedAt);
+    preloadSoldierFigure();
     bind();
     run();
   }
@@ -725,6 +731,32 @@
     return (Math.atan(meters / Math.max(rangeMeters, 1)) * 180) / Math.PI;
   }
 
+  function soldierBoundsDeg(rangeMeters, img) {
+    const heightDeg = metersToDeg(SOLDIER_HEIGHT_M, rangeMeters);
+    const topDeg = heightDeg * SOLDIER_AIM_FROM_TOP;
+    const botDeg = -heightDeg * (1 - SOLDIER_AIM_FROM_TOP);
+    const aspect =
+      img && img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 0.42;
+    const widthDeg = heightDeg * aspect;
+    return { topDeg, botDeg, halfW: widthDeg / 2 };
+  }
+
+  function preloadSoldierFigure() {
+    const img = new Image();
+    img.decoding = 'async';
+    img.onload = () => {
+      state.soldierImg = img;
+      if (els.spreadCanvas) delete els.spreadCanvas.dataset.drawKey;
+      const weapon = state.weapons.find((w) => w.id === state.weaponId);
+      if (weapon) renderSpreadViz(weapon);
+    };
+    img.onerror = () => {
+      state.soldierImg = null;
+    };
+    img.src = SOLDIER_IMG_SRC;
+    if (img.complete && img.naturalWidth > 0) img.onload();
+  }
+
   function mixHex(a, b, t) {
     const parse = (hex) => [
       parseInt(hex.slice(1, 3), 16),
@@ -781,6 +813,26 @@
     ctx.restore();
   }
 
+  function drawSoldierFigure(ctx, toX, toY, rangeMeters) {
+    const img = state.soldierImg;
+    const bounds = soldierBoundsDeg(rangeMeters, img);
+    const top = toY(bounds.topDeg);
+    const bot = toY(bounds.botDeg);
+    const heightPx = Math.abs(bot - top);
+    const widthPx = Math.abs(toX(bounds.halfW) - toX(-bounds.halfW));
+    const left = toX(0) - widthPx / 2;
+
+    if (img && img.naturalWidth > 0) {
+      ctx.save();
+      ctx.globalAlpha = 0.94;
+      ctx.drawImage(img, left, top, widthPx, heightPx);
+      ctx.restore();
+      return;
+    }
+
+    drawSoldierSilhouette(ctx, toX, toY, rangeMeters);
+  }
+
   function renderSpreadViz(weapon) {
     const canvas = els.spreadCanvas;
     if (!canvas || typeof BF6.simulateShotPattern !== 'function') return;
@@ -793,12 +845,12 @@
     const aimLabel = state.spreadAim === 'hip' ? 'Hipfire' : 'ADS';
     const roundWord = pellets > 1 ? `shells × ${pellets} pellets` : fireMode === 'bolt' ? 'bolts' : 'rounds';
     if (els.spreadVizCaption) {
-      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m`;
+      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m (in-game scale)`;
     }
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cssW = Math.max(canvas.clientWidth || 720, 280);
-    const cssH = Math.max(Math.round(cssW * 0.48), 220);
+    const cssH = Math.max(Math.round(cssW * 0.62), 260);
     const drawKey = `${weapon.id}|${state.spreadAim}|${Math.round(cssW)}`;
     if (canvas.dataset.drawKey === drawKey) return;
     canvas.dataset.drawKey = drawKey;
@@ -812,13 +864,11 @@
 
     const xs = impacts.map((p) => p.x);
     const ys = impacts.map((p) => p.y);
-    const silW = metersToDeg(0.5, rangeMeters);
-    const silTop = metersToDeg(0.75, rangeMeters);
-    const silBot = metersToDeg(-1.05, rangeMeters);
-    let minX = Math.min(-silW, ...(xs.length ? xs : [0]));
-    let maxX = Math.max(silW, ...(xs.length ? xs : [0]));
-    let minY = Math.min(silBot, ...(ys.length ? ys : [0]));
-    let maxY = Math.max(silTop, ...(ys.length ? ys : [0]));
+    const figure = soldierBoundsDeg(rangeMeters, state.soldierImg);
+    let minX = Math.min(-figure.halfW, ...(xs.length ? xs : [0]));
+    let maxX = Math.max(figure.halfW, ...(xs.length ? xs : [0]));
+    let minY = Math.min(figure.botDeg, ...(ys.length ? ys : [0]));
+    let maxY = Math.max(figure.topDeg, ...(ys.length ? ys : [0]));
     const padX = Math.max((maxX - minX) * 0.18, 0.55);
     const padY = Math.max((maxY - minY) * 0.16, 0.45);
     minX -= padX;
@@ -857,7 +907,7 @@
     }
     ctx.restore();
 
-    drawSoldierSilhouette(ctx, toX, toY, rangeMeters);
+    drawSoldierFigure(ctx, toX, toY, rangeMeters);
 
     ctx.save();
     ctx.strokeStyle = 'rgba(255, 106, 0, 0.28)';
@@ -885,10 +935,13 @@
       const t = hit.shot / lastShot;
       ctx.beginPath();
       ctx.fillStyle = mixHex('#7dd3fc', '#ff6a00', t);
-      const r = pellets > 1 ? 1.7 : hit.shot === 0 ? 3.1 : 2.4;
-      ctx.globalAlpha = 0.55 + (1 - t) * 0.35;
+      const r = pellets > 1 ? 1.8 : hit.shot === 0 ? 3.4 : 2.6;
+      ctx.globalAlpha = 0.82 + (1 - t) * 0.18;
       ctx.arc(toX(hit.x), toY(hit.y), r, 0, Math.PI * 2);
       ctx.fill();
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.55)';
+      ctx.stroke();
     });
     ctx.globalAlpha = 1;
 
