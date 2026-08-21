@@ -767,6 +767,8 @@ window.BF6 = window.BF6 || {};
     else if (fireMode === 'burst') shotCount = Math.min(mag, 12);
     else if (fireMode === 'semi') shotCount = Math.min(mag, 10);
     else shotCount = Math.min(mag, 6);
+    const maxShots = Math.round(num(options.maxShots, 0));
+    if (maxShots > 0) shotCount = Math.min(shotCount, maxShots);
 
     const key = `${aim}${stance}`;
     const bounds = weapon.spread?.[key] ?? (aim === 'ads' ? [0.05, weapon.spreadMax ?? 9] : [0, weapon.spreadMax ?? 9]);

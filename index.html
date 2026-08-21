@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/styles.css?v=20260822c" />
+    <link rel="stylesheet" href="./css/styles.css?v=20260822d" />
   </head>
   <body>
     <div class="fx-scan" aria-hidden="true"></div>
@@ -147,13 +147,17 @@
                   <button type="button" class="spread-mode" data-spread-range="50" aria-pressed="false">50 m</button>
                   <button type="button" class="spread-mode" data-spread-range="75" aria-pressed="false">75 m</button>
                 </div>
+                <div class="spread-viz-modes" role="group" aria-label="Burst length">
+                  <button type="button" class="spread-mode is-on" data-spread-burst="ttk" aria-pressed="true">Kill window</button>
+                  <button type="button" class="spread-mode" data-spread-burst="dump" aria-pressed="false">Full dump</button>
+                </div>
               </div>
             </div>
             <canvas id="spreadCanvas" class="spread-canvas" width="720" height="420" aria-label="Bullet spread visualization"></canvas>
             <p class="spread-viz-legend">
               <span class="spread-swatch is-early"></span> first shots
               <span class="spread-swatch is-late"></span> later shots (bloom + climb)
-              <span class="spread-viz-hint">Same burst, different range — the soldier shrinks, bloom does not.</span>
+              <span class="spread-viz-hint">Uncompensated — no mouse pull-down. Later shots climb off the figure; that is recoil, not bloom.</span>
             </p>
           </figure>
         </div>
@@ -161,9 +165,9 @@
       </section>
     </main>
 
-    <script src="./js/embedded-data.js?v=20260822c"></script>
-    <script src="./js/stats.js?v=20260822c"></script>
-    <script src="./js/optimizer.js?v=20260822c"></script>
-    <script src="./js/app.js?v=20260822c"></script>
+    <script src="./js/embedded-data.js?v=20260822d"></script>
+    <script src="./js/stats.js?v=20260822d"></script>
+    <script src="./js/optimizer.js?v=20260822d"></script>
+    <script src="./js/app.js?v=20260822d"></script>
   </body>
 </html>

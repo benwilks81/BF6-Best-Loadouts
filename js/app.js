@@ -132,12 +132,14 @@
     includeChallenges: false,
     spreadAim: 'ads',
     spreadRangeMeters: 25,
+    spreadBurst: 'ttk',
     lastResult: null,
     resultCache: new Map(),
     activeOptimizeRequest: null,
     favorites: [],
     expandedFavs: new Set(),
     soldierImg: null,
+    soldierMask: null,
   };
 
   const els = {
@@ -486,6 +488,7 @@
     els.spreadViz?.addEventListener('click', (event) => {
       const aimBtn = event.target.closest('[data-spread-aim]');
       const rangeBtn = event.target.closest('[data-spread-range]');
+      const burstBtn = event.target.closest('[data-spread-burst]');
       const weapon = state.weapons.find((w) => w.id === state.weaponId);
       if (aimBtn) {
         const aim = aimBtn.dataset.spreadAim === 'hip' ? 'hip' : 'ads';
@@ -506,6 +509,18 @@
         state.spreadRangeMeters = range;
         els.spreadViz.querySelectorAll('[data-spread-range]').forEach((el) => {
           const on = Number(el.dataset.spreadRange) === range;
+          el.classList.toggle('is-on', on);
+          el.setAttribute('aria-pressed', String(on));
+        });
+        if (weapon) renderSpreadViz(weapon);
+        return;
+      }
+      if (burstBtn) {
+        const burst = burstBtn.dataset.spreadBurst === 'dump' ? 'dump' : 'ttk';
+        if (state.spreadBurst === burst) return;
+        state.spreadBurst = burst;
+        els.spreadViz.querySelectorAll('[data-spread-burst]').forEach((el) => {
+          const on = el.dataset.spreadBurst === burst;
           el.classList.toggle('is-on', on);
           el.setAttribute('aria-pressed', String(on));
         });
@@ -749,11 +764,52 @@
     return { topDeg, botDeg, halfW: widthDeg / 2 };
   }
 
+  function killWindowShots(weapon, rangeMeters) {
+    const dmg = typeof BF6.damageAtRange === 'function' ? BF6.damageAtRange(weapon, rangeMeters) : 25;
+    const btk = dmg > 0 ? Math.ceil(100 / dmg) : 5;
+    const fireMode = String(weapon.fireMode || 'auto');
+    if (fireMode === 'bolt' || fireMode === 'pump') return Math.min(Math.max(btk, 1), 3);
+    if (fireMode === 'semi' || fireMode === 'burst') return Math.min(Math.max(btk, 3), 6);
+    return Math.min(Math.max(btk, 4), 8);
+  }
+
+  function ensureSoldierMask() {
+    const img = state.soldierImg;
+    if (!img || img.naturalWidth < 2) return null;
+    if (state.soldierMask && state.soldierMask.w === img.naturalWidth) return state.soldierMask;
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0);
+    state.soldierMask = { ctx, w: canvas.width, h: canvas.height };
+    return state.soldierMask;
+  }
+
+  function impactHitsSoldier(xDeg, yDeg, rangeMeters) {
+    const bounds = soldierBoundsDeg(rangeMeters, state.soldierImg);
+    const spanX = bounds.halfW * 2;
+    const spanY = bounds.topDeg - bounds.botDeg;
+    if (!(spanX > 0) || !(spanY > 0)) return false;
+    const u = (xDeg + bounds.halfW) / spanX;
+    const v = (bounds.topDeg - yDeg) / spanY;
+    const mask = ensureSoldierMask();
+    if (mask && u >= 0 && u <= 1 && v >= 0 && v <= 1) {
+      const px = Math.min(mask.w - 1, Math.max(0, Math.floor(u * mask.w)));
+      const py = Math.min(mask.h - 1, Math.max(0, Math.floor(v * mask.h)));
+      return mask.ctx.getImageData(px, py, 1, 1).data[3] > 24;
+    }
+    const bodyHalf = metersToDeg(0.22, rangeMeters);
+    return yDeg <= bounds.topDeg && yDeg >= bounds.botDeg && Math.abs(xDeg) <= bodyHalf;
+  }
+
   function preloadSoldierFigure() {
     const img = new Image();
     img.decoding = 'async';
     img.onload = () => {
       state.soldierImg = img;
+      state.soldierMask = null;
       if (els.spreadCanvas) delete els.spreadCanvas.dataset.drawKey;
       const weapon = state.weapons.find((w) => w.id === state.weaponId);
       if (weapon) renderSpreadViz(weapon);
@@ -846,21 +902,29 @@
     if (!canvas || typeof BF6.simulateShotPattern !== 'function') return;
 
     const rangeMeters = Number(state.spreadRangeMeters) || 25;
+    const burstMode = state.spreadBurst === 'dump' ? 'dump' : 'ttk';
+    const ttkShots = killWindowShots(weapon, rangeMeters);
     const pattern = BF6.simulateShotPattern(weapon, {
       aim: state.spreadAim,
       rangeMeters,
+      maxShots: burstMode === 'ttk' ? ttkShots : 0,
     });
     const { impacts, recoilPath, shotCount, pellets, fireMode } = pattern;
     const aimLabel = state.spreadAim === 'hip' ? 'Hipfire' : 'ADS';
-    const roundWord = pellets > 1 ? `shells × ${pellets} pellets` : fireMode === 'bolt' ? 'bolts' : 'rounds';
+    const hitsOnFigure = impacts.filter((hit) => impactHitsSoldier(hit.x, hit.y, rangeMeters)).length;
+    const unit = pellets > 1 ? 'pellets' : fireMode === 'bolt' ? 'bolts' : 'shots';
+    const burstLabel =
+      burstMode === 'ttk'
+        ? `first ${shotCount} ${unit} (kill window)`
+        : `${shotCount} ${unit} dump`;
     if (els.spreadVizCaption) {
-      els.spreadVizCaption.textContent = `${aimLabel} standing · ${shotCount} ${roundWord} on a soldier at ${rangeMeters} m`;
+      els.spreadVizCaption.textContent = `${aimLabel} standing · ${burstLabel} · no pull-down · ${hitsOnFigure} of ${impacts.length} on the soldier at ${rangeMeters} m`;
     }
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cssW = Math.max(canvas.clientWidth || 720, 280);
     const cssH = Math.max(Math.round(cssW * 0.62), 260);
-    const drawKey = `${weapon.id}|${state.spreadAim}|${rangeMeters}|${Math.round(cssW)}`;
+    const drawKey = `${weapon.id}|${state.spreadAim}|${rangeMeters}|${burstMode}|${Math.round(cssW)}`;
     if (canvas.dataset.drawKey === drawKey) return;
     canvas.dataset.drawKey = drawKey;
     canvas.width = Math.round(cssW * dpr);
@@ -871,21 +935,21 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cssW, cssH);
 
-    const xs = impacts.map((p) => p.x);
-    const ys = impacts.map((p) => p.y);
     const figure = soldierBoundsDeg(rangeMeters, state.soldierImg);
-    let minX = Math.min(-figure.halfW, ...(xs.length ? xs : [0]));
-    let maxX = Math.max(figure.halfW, ...(xs.length ? xs : [0]));
-    let minY = Math.min(figure.botDeg, ...(ys.length ? ys : [0]));
-    let maxY = Math.max(figure.topDeg, ...(ys.length ? ys : [0]));
-    const padX = Math.max((maxX - minX) * 0.18, 0.55);
-    const padY = Math.max((maxY - minY) * 0.16, 0.45);
+    // Keep the soldier at true angular scale. Do not zoom out to fit flyers —
+    // later shots climbing off the figure is the honest recoil picture.
+    let minX = -figure.halfW;
+    let maxX = figure.halfW;
+    let minY = figure.botDeg;
+    let maxY = figure.topDeg;
+    const padX = Math.max((maxX - minX) * 0.12, 0.18);
+    const padY = Math.max((maxY - minY) * 0.08, 0.22);
     minX -= padX;
     maxX += padX;
     minY -= padY;
     maxY += padY;
-    const spanX = Math.max(maxX - minX, 1.2);
-    const spanY = Math.max(maxY - minY, 1.2);
+    const spanX = Math.max(maxX - minX, 0.8);
+    const spanY = Math.max(maxY - minY, 0.8);
     const margin = { l: 36, r: 16, t: 14, b: 28 };
     const plotW = cssW - margin.l - margin.r;
     const plotH = cssH - margin.t - margin.b;
@@ -956,15 +1020,9 @@
 
     ctx.fillStyle = 'rgba(168, 176, 186, 0.75)';
     ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
-    ctx.fillText('climb ↑', margin.l, 12);
+    ctx.fillText('climb ↑  (uncompensated)', margin.l, 12);
     const cm = rangeMeters * Math.tan((Math.PI / 180) * 1) * 100;
-    let burstNote = '';
-    if (xs.length && ys.length) {
-      const spanDeg = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
-      const spanCm = rangeMeters * Math.tan((spanDeg * Math.PI) / 180) * 100;
-      burstNote = ` · this burst ≈ ${Math.round(spanCm)} cm across`;
-    }
-    ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m${burstNote}`, margin.l, cssH - 8);
+    ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m · figure is 1.8 m tall`, margin.l, cssH - 8);
   }
 
   function run() {
