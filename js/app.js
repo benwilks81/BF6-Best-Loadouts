@@ -1019,7 +1019,7 @@
     ctx.globalAlpha = 1;
 
     ctx.fillStyle = 'rgba(168, 176, 186, 0.75)';
-    ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+    ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
     ctx.fillText('climb ↑  (uncompensated)', margin.l, 12);
     const cm = rangeMeters * Math.tan((Math.PI / 180) * 1) * 100;
     ctx.fillText(`1° ≈ ${Math.round(cm)} cm at ${rangeMeters} m · figure is 1.8 m tall`, margin.l, cssH - 8);
