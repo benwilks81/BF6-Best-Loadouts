@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-weapon ADS recoil decay tables from sym.gg. retain = exp(-decFactor * decOffset * interShotTime^decTimeExp) ^ decExp. Source of truth for index.html and preview_spread.html.",
+  "_comment": "Per-weapon legacy recoil-group fallback maps. Explicit recoil.ads/recoil.hip groups take precedence. Current component-wise stepped recovery is documented in docs/RECOIL_SPREAD_MODEL.md and implemented in sim/core.js; these maps do not define a separate exponential-retention formula.",
   "RECOIL_DEC": {
     "m433": 72,
     "b36a4": 72,
@@ -58,6 +58,7 @@
     "vz61": 40,
     "m16a4": 72,
     "rpk74m": 55,
+    "interdictor": 70.0,
     "l115": 70,
     "pp19": 55,
     "brod3": 57,
@@ -122,6 +123,7 @@
     "vz61": 0.84,
     "m16a4": 1.2,
     "rpk74m": 1.023,
+    "interdictor": 4.0,
     "l115": 4,
     "pp19": 1.023,
     "brod3": 1.045,
@@ -135,6 +137,7 @@
     "miniscout": 0.6,
     "m87a1": 0.6,
     "db12": 0.6,
+    "interdictor": 0.6,
     "l115": 0.6
   }
 }

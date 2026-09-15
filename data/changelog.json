@@ -1,0 +1,32 @@
+{
+  "id": "1.4.3.0",
+  "title": "Game Update 1.4.3.0",
+  "dateLabel": "14 Sep 2026",
+  "url": "https://www.ea.com/games/battlefield/battlefield-6/news/battlefield-6-game-update-1-4-3-0",
+  "bullets": [
+    {
+      "text": "Resolved an issue where the icon for the canted irons on the EF88 was misplaced",
+      "weapons": null
+    },
+    {
+      "text": "Fixed an issue where match ammo for the M2010 and SVK had unintended amounts of damage reduction versus opponents in water.",
+      "weapons": null
+    },
+    {
+      "text": "Corrected issues related to weapon stats not updating correctly for the EF88, BROD and VSSM.",
+      "weapons": null
+    },
+    {
+      "text": "Updated descriptions on several weapons, including mention of subsonic ammo, which is a default attribute on the M45A1 and vz.61.",
+      "weapons": null
+    },
+    {
+      "text": "The weight of the long and lightened suppressor in the L115 has been swapped.",
+      "weapons": null
+    },
+    {
+      "text": "Corrected an issue where Vertical Grips on RPKM and RPK-74M have an offset hand position when a laser or light is equipped.",
+      "weapons": null
+    }
+  ]
+}
