@@ -23,8 +23,10 @@
     subsonic_pen: 'Sub Pen',
     range_pen: 'Range Pen',
   };
-  // Curated latest weapon-facing patch overview (prototype). Keep only the newest notes.
-  const LATEST_CHANGELOG = {
+  // Fallback patch overview, used only when no fetched changelog is embedded.
+  // The live changelog is discovered weekly from ea.com by scripts/refresh_data.py
+  // and shipped inside BF6_DATA.changelog.
+  const FALLBACK_CHANGELOG = {
     id: '1.4.2.0',
     title: 'Update 1.4.2.0',
     dateLabel: '18 Aug 2026',
@@ -242,8 +244,21 @@
     });
   }
 
+  function isUsableChangelog(log) {
+    return Boolean(
+      log &&
+        typeof log.title === 'string' &&
+        log.title &&
+        typeof log.url === 'string' &&
+        log.url.startsWith('https://www.ea.com/') &&
+        Array.isArray(log.bullets) &&
+        log.bullets.length
+    );
+  }
+
   function renderChangelog() {
-    const log = LATEST_CHANGELOG;
+    const fetched = typeof BF6_DATA !== 'undefined' ? BF6_DATA?.changelog : null;
+    const log = isUsableChangelog(fetched) ? fetched : FALLBACK_CHANGELOG;
     if (!els.changelogList) return;
 
     if (els.changelogPatch) {

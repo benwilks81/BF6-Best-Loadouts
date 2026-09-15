@@ -50,6 +50,7 @@ EMBED_FILES = (
     "unlocks.json",
 )
 UNLOCKS_PATH = DATA_DIR / "unlocks.json"
+CHANGELOG_PATH = DATA_DIR / "changelog.json"
 SAFE_ID = __import__("re").compile(r"^[A-Za-z0-9_-]{1,64}$")
 MAX_JSON_BYTES = 8 * 1024 * 1024
 
@@ -208,6 +209,25 @@ def validate_recoil_decay(data: Any):
     return data
 
 
+def validate_changelog(data: Any) -> dict:
+    log = require_mapping(data, "changelog.json")
+    for key in ("id", "title", "url"):
+        if not isinstance(log.get(key), str) or not log[key] or len(log[key]) > 200:
+            raise ValueError(f"changelog.{key} invalid")
+    if not log["url"].startswith("https://www.ea.com/"):
+        raise ValueError("changelog.url must be an ea.com link")
+    if not isinstance(log.get("dateLabel", ""), str):
+        raise ValueError("changelog.dateLabel invalid")
+    bullets = require_list(log.get("bullets"), "changelog.bullets")
+    if not bullets or len(bullets) > 12:
+        raise ValueError("changelog.bullets out of range")
+    for b in bullets:
+        obj = require_mapping(b, "changelog bullet")
+        if not isinstance(obj.get("text"), str) or not obj["text"] or len(obj["text"]) > 200:
+            raise ValueError("changelog bullet text invalid")
+    return log
+
+
 def validate_unlocks(data: Any) -> dict:
     unlocks = require_mapping(data, "unlocks.json")
     weapons = require_mapping(unlocks.get("weapons"), "unlocks.weapons")
@@ -326,6 +346,40 @@ def refresh_unlocks() -> bool:
     return True
 
 
+def refresh_changelog() -> bool:
+    """Discover the latest EA game-update patch notes. Return True if changed.
+
+    Failures are non-fatal: the previous changelog.json (if any) is kept and
+    the site falls back to its built-in notes.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        from fetch_changelog import build_changelog  # noqa: WPS433
+    except Exception as err:  # noqa: BLE001
+        print(f"changelog: import failed ({err}) — keeping existing", file=sys.stderr)
+        return False
+
+    prev_raw = CHANGELOG_PATH.read_text(encoding="utf-8") if CHANGELOG_PATH.exists() else ""
+    prev = load_json(CHANGELOG_PATH, {})
+    try:
+        log = build_changelog(prev.get("id"))
+        if log is None:
+            print("changelog: no update article found — keeping existing")
+            return False
+        validate_changelog(log)
+    except Exception as err:  # noqa: BLE001
+        print(f"changelog: refresh failed ({err}) — keeping existing", file=sys.stderr)
+        return False
+
+    text = json.dumps(log, indent=2, ensure_ascii=False) + "\n"
+    if text == prev_raw:
+        print(f"unchanged data/changelog.json ({log['id']})")
+        return False
+    atomic_write_text(CHANGELOG_PATH, text)
+    print(f"updated data/changelog.json ({log['id']}, {len(log['bullets'])} bullets)")
+    return True
+
+
 def embed(refreshed_at: str) -> dict:
     weapons = validate_weapons(json.loads(safe_under(DATA_DIR, "weapons.json").read_text(encoding="utf-8")))
     attachments = validate_attachments(
@@ -338,6 +392,12 @@ def embed(refreshed_at: str) -> dict:
     if not UNLOCKS_PATH.exists():
         raise ValueError("unlocks.json missing — run scripts/fetch_unlocks.py")
     unlocks = validate_unlocks(json.loads(UNLOCKS_PATH.read_text(encoding="utf-8")))
+    changelog = None
+    if CHANGELOG_PATH.exists():
+        try:
+            changelog = validate_changelog(json.loads(CHANGELOG_PATH.read_text(encoding="utf-8")))
+        except (ValueError, json.JSONDecodeError) as err:
+            print(f"changelog: not embedding invalid file ({err})", file=sys.stderr)
 
     payload = {
         "weapons": weapons,
@@ -345,6 +405,7 @@ def embed(refreshed_at: str) -> dict:
         "balance": balance,
         "ammo": ammo,
         "unlocks": unlocks,
+        "changelog": changelog,
         "refreshedAt": refreshed_at,
     }
     body = (
@@ -427,6 +488,7 @@ def main() -> int:
         print(f"FAILED unlocks: {err}", file=sys.stderr)
         return 1
     changed = changed or unlocks_changed
+    changed = changed or refresh_changelog()
 
     if not changed and OUT_PATH.exists() and META_PATH.exists():
         prev = load_json(META_PATH, {})
