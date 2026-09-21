@@ -2,7 +2,7 @@
   "SIGHTS": [
     {
       "id": "iron",
-      "name": "Iron Sights",
+      "name": "Iron Sights (1.50x)",
       "pts": 5
     },
     {
@@ -12035,6 +12035,9 @@
             "light"
           ]
         }
+      },
+      "sightPoints": {
+        "iron": 15
       }
     },
     "l115": {
