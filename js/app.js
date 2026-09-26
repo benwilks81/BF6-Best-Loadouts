@@ -1073,11 +1073,17 @@
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (state.weaponId !== weapon.id || state.activeOptimizeRequest !== requestId) return;
-        const result = BF6.recommendSets(weapon, state.attachments, state.tables, {
-          topN: 1,
-          masteryLevel: state.masteryLevel,
-          includeChallenges: state.includeChallenges,
-        });
+        let result;
+        try {
+          result = BF6.recommendSets(weapon, state.attachments, state.tables, {
+            topN: 1,
+            masteryLevel: state.masteryLevel,
+            includeChallenges: state.includeChallenges,
+          });
+        } catch (err) {
+          console.error(err);
+          result = { error: `Could not build layouts for ${weapon.name}.` };
+        }
         state.resultCache.set(key, result);
         if (state.weaponId !== weapon.id || state.activeOptimizeRequest !== requestId) return;
         applyResult(weapon, result);
@@ -1099,6 +1105,26 @@
     );
   }
 
+  function bestForStealthRange(result, rangeId) {
+    return result.stealthPerformance?.[rangeId]?.[0] ?? result.stealthValue?.[rangeId]?.[0] ?? null;
+  }
+
+  function stealthRangeMeta(range) {
+    return {
+      id: `stealth-${range.id}`,
+      label: `${range.label} Stealth`,
+      band: `${range.band} · harder to spot`,
+      showSpot: true,
+    };
+  }
+
+  function formatSpotMeters(meters) {
+    const n = Number(meters);
+    if (!Number.isFinite(n)) return '—';
+    const rounded = Math.round(n * 10) / 10;
+    return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+  }
+
   function thermalRangeMeta(range) {
     return {
       id: `thermal-${range.id}`,
@@ -1115,6 +1141,17 @@
       ...Object.values(BF6.RANGES).map((range) => rangeCard(range, bestForRange(result, range.id))),
       ...Object.values(BF6.FOCUSES).map((focus) => rangeCard(focus, bestForFocus(result, focus.id))),
     ];
+
+    const stealthCards = Object.values(BF6.RANGES).map((range) =>
+      rangeCard(stealthRangeMeta(range), bestForStealthRange(result, range.id))
+    );
+    cards.push(`
+      <div class="results-section is-stealth" role="presentation">
+        <h2>Stealth layouts</h2>
+        <p>Same close, medium, and long goals, with muzzle flash and minimap ping scored. A suppressor is 0 m in the world and 21 m on the minimap. Flash hiders and subsonic ammo compete when they hide you for fewer drawbacks.</p>
+      </div>
+    `);
+    cards.push(...stealthCards);
 
     const thermalCards = Object.values(BF6.RANGES).map((range) =>
       rangeCard(thermalRangeMeta(range), bestForThermalRange(result, range.id))
@@ -1159,6 +1196,10 @@
 
     const { labels, stats, ranked } = entry;
     const why = ranked.why.length ? ranked.why.join(' · ') : 'balanced gains';
+    const spotLine =
+      range.showSpot && Number.isFinite(stats.worldSpot) && Number.isFinite(stats.minimapSpot)
+        ? `<p class="spot-line">On fire: ${formatSpotMeters(stats.worldSpot)} m world · ${formatSpotMeters(stats.minimapSpot)} m minimap</p>`
+        : '';
 
     return `
       <section class="range-col" data-range="${range.id}">
@@ -1181,6 +1222,7 @@
             <li><span>Ammo</span><strong>${escapeHtml(labels.ammo ?? 'Standard')}</strong></li>
             <li><span>Ergo</span><strong>${escapeHtml(labels.ergo ?? 'None')}</strong></li>
           </ul>
+          ${spotLine}
           <p class="why">${escapeHtml(why)}</p>
         </div>
       </section>
@@ -1234,7 +1276,14 @@
           .filter(Boolean)
           .slice(0, 12)
       : [];
-    return { labels, pts, why };
+    const spot = {};
+    const worldSpot = Number(raw.worldSpot);
+    const minimapSpot = Number(raw.minimapSpot);
+    if (Number.isFinite(worldSpot) && worldSpot >= 0 && worldSpot <= 500) spot.worldSpot = worldSpot;
+    if (Number.isFinite(minimapSpot) && minimapSpot >= 0 && minimapSpot <= 500) {
+      spot.minimapSpot = minimapSpot;
+    }
+    return { labels, pts, why, ...spot };
   }
 
   function sanitizeFavorite(raw) {
@@ -1256,6 +1305,12 @@
       if (!(focusId in raw.loadouts)) continue;
       const lo = sanitizeLoadout(raw.loadouts[focusId]);
       if (lo) loadouts[focusId] = lo;
+    }
+    for (const rangeId of Object.keys(BF6.RANGES)) {
+      const key = `stealth_${rangeId}`;
+      if (!(key in raw.loadouts)) continue;
+      const lo = sanitizeLoadout(raw.loadouts[key]);
+      if (lo) loadouts[key] = lo;
     }
     for (const rangeId of Object.keys(BF6.RANGES)) {
       const key = `thermal_${rangeId}`;
@@ -1342,6 +1397,17 @@
       };
     }
     for (const range of Object.values(BF6.RANGES)) {
+      const entry = bestForStealthRange(result, range.id);
+      if (!entry) continue;
+      loadouts[`stealth_${range.id}`] = {
+        labels: entry.labels,
+        pts: entry.stats.pts,
+        why: entry.ranked.why,
+        worldSpot: entry.stats.worldSpot,
+        minimapSpot: entry.stats.minimapSpot,
+      };
+    }
+    for (const range of Object.values(BF6.RANGES)) {
       const entry = bestForThermalRange(result, range.id);
       if (!entry) continue;
       loadouts[`thermal_${range.id}`] = {
@@ -1403,6 +1469,14 @@
         const detailFocus = Object.values(BF6.FOCUSES)
           .map((focus) => favLoadoutPanel(focus, fav.loadouts?.[focus.id]))
           .join('');
+        const detailStealth = Object.values(BF6.RANGES)
+          .map((range) =>
+            favLoadoutPanel(stealthRangeMeta(range), fav.loadouts?.[`stealth_${range.id}`])
+          )
+          .join('');
+        const hasStealthFav = Object.values(BF6.RANGES).some(
+          (range) => fav.loadouts?.[`stealth_${range.id}`]
+        );
         const detailThermal = Object.values(BF6.RANGES)
           .map((range) =>
             favLoadoutPanel(thermalRangeMeta(range), fav.loadouts?.[`thermal_${range.id}`])
@@ -1435,6 +1509,11 @@
               ${detailRanges}
               ${detailFocus}
               ${
+                hasStealthFav
+                  ? `<div class="fav-section-label is-stealth">Stealth layouts</div>${detailStealth}`
+                  : ''
+              }
+              ${
                 hasThermalFav
                   ? `<div class="fav-section-label">Thermal layouts</div>${detailThermal}`
                   : ''
@@ -1457,6 +1536,10 @@
     }
 
     const why = Array.isArray(lo.why) && lo.why.length ? lo.why.join(' · ') : '';
+    const spotLine =
+      Number.isFinite(lo.worldSpot) && Number.isFinite(lo.minimapSpot)
+        ? `<p class="spot-line">On fire: ${formatSpotMeters(lo.worldSpot)} m world · ${formatSpotMeters(lo.minimapSpot)} m minimap</p>`
+        : '';
     return `
       <div class="fav-loadout" data-range="${range.id}">
         <header>
@@ -1474,6 +1557,7 @@
           <li><span>Ammo</span><strong>${escapeHtml(lo.labels.ammo ?? '—')}</strong></li>
           <li><span>Ergo</span><strong>${escapeHtml(lo.labels.ergo ?? '—')}</strong></li>
         </ul>
+        ${spotLine}
         ${why ? `<p class="why">${escapeHtml(why)}</p>` : ''}
       </div>
     `;

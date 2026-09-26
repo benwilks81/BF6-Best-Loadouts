@@ -36,8 +36,8 @@ window.BF6 = window.BF6 || {};
         m.adsRecoilVariationTierMod ?? 0,
         m.hipSpreadTierMod ?? 0,
         m.adsRecoilDecayMult ?? 1,
-        m.worldSpot ?? 54,
-        m.minimapSpot ?? 150,
+        m.worldSpotMult ?? 1,
+        m.minimapSpotMult ?? 1,
         m.suppressor ? 1 : 0,
       ].join('|');
       const prev = best.get(key);
@@ -455,20 +455,23 @@ window.BF6 = window.BF6 || {};
     };
   }
 
-  function scoreParts(weapon, parts, tables, stockStats, rangeId, mode, pools) {
+  function scoreParts(weapon, parts, tables, stockStats, rangeId, mode, pools, flags = {}) {
     if (!isValidCombo(parts, pools)) return null;
     if (!partsAreEquippable(parts, pools)) return null;
     const rangeMeters = BF6.profileRangeMeters?.(rangeId) ?? 35;
-    const stats = BF6.evaluateLoadout(weapon, parts, tables, { rangeMeters });
+    const stats = BF6.evaluateLoadout(weapon, parts, tables, {
+      rangeMeters,
+      scoreStealth: Boolean(flags.scoreStealth),
+    });
     if (stats.pts > BF6.POINT_BUDGET) return null;
     const ranked = BF6.scoreVsStock(stats, stockStats, rangeId, weapon.cls, weapon);
     const metric = mode === 'value' ? ranked.value : ranked.score;
     return { parts, stats, ranked, metric };
   }
 
-  function coordinateDescent(weapon, start, pools, tables, stockStats, rangeId, mode, passes = 2) {
+  function coordinateDescent(weapon, start, pools, tables, stockStats, rangeId, mode, passes = 2, flags = {}) {
     let current = cloneParts(start);
-    let best = scoreParts(weapon, current, tables, stockStats, rangeId, mode, pools);
+    let best = scoreParts(weapon, current, tables, stockStats, rangeId, mode, pools, flags);
     if (!best) return null;
     let considered = 1;
 
@@ -493,7 +496,7 @@ window.BF6 = window.BF6 || {};
             if (slot === 'laser') trial.light = pools.bySlot.light.find((l) => l.id === 'none') ?? trial.light;
             if (slot === 'light') trial.laser = pools.bySlot.laser.find((l) => l.id === 'none') ?? trial.laser;
           }
-          const scored = scoreParts(weapon, trial, tables, stockStats, rangeId, mode, pools);
+          const scored = scoreParts(weapon, trial, tables, stockStats, rangeId, mode, pools, flags);
           considered += 1;
           if (!scored) continue;
           if (scored.metric > best.metric + 1e-9) {
@@ -528,6 +531,7 @@ window.BF6 = window.BF6 || {};
 
   function optimizeProfile(weapon, pools, tables, stock, stockStats, profileId, topN, options = {}) {
     const minScore = Number.isFinite(options.minScore) ? options.minScore : 0.015;
+    const flags = { scoreStealth: Boolean(options.scoreStealth) };
     const bestValue = [];
     const bestPerf = [];
     let considered = 0;
@@ -561,7 +565,9 @@ window.BF6 = window.BF6 || {};
 
     // Headshot-ammo seeds so 15–20 pt Synthetic / HP can rebuild the rest of the loadout
     // around the budget instead of losing to an already-full 100 pt attachment stack.
-    for (const ammoId of ['synthetic', 'hollow_pt', 'subsonic_hp']) {
+    const ammoSeeds = ['synthetic', 'hollow_pt', 'subsonic_hp'];
+    if (flags.scoreStealth) ammoSeeds.push('subsonic', 'subsonic_pen');
+    for (const ammoId of ammoSeeds) {
       const ammo = pools.ammos.find((a) => a.id === ammoId);
       if (!ammo || ammo.id === stock.ammo?.id) continue;
       const seed = cloneParts(stock);
@@ -579,7 +585,7 @@ window.BF6 = window.BF6 || {};
     }
 
     for (const seed of seeds) {
-      const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'score', 2);
+      const perf = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'score', 2, flags);
       if (perf) {
         considered += perf.considered;
         if (perf.ranked.score > minScore) {
@@ -595,7 +601,7 @@ window.BF6 = window.BF6 || {};
         }
       }
 
-      const value = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'value', 2);
+      const value = coordinateDescent(weapon, seed, pools, tables, stockStats, profileId, 'value', 2, flags);
       if (value) {
         considered += value.considered;
         if (value.ranked.score > minScore) {
@@ -648,6 +654,19 @@ window.BF6 = window.BF6 || {};
       maxFocus[focusId] = out.performance;
     }
 
+    // Separate pass: same range goals, but muzzle flash and minimap ping are scored.
+    const stealthStockStats = BF6.evaluateLoadout(weapon, stock, tables, { scoreStealth: true });
+    const stealthValue = { close: [], mid: [], long: [] };
+    const stealthPerf = { close: [], mid: [], long: [] };
+    for (const rangeId of Object.keys(BF6.RANGES)) {
+      const out = optimizeProfile(weapon, pools, tables, stock, stealthStockStats, rangeId, topN, {
+        scoreStealth: true,
+      });
+      considered += out.considered;
+      stealthValue[rangeId] = out.value;
+      stealthPerf[rangeId] = out.performance;
+    }
+
     // Separate pass: force a thermal optic (25–35 pts) and rebuild the rest under budget.
     const thermalPools = constrainSightPool(pools, (s) => THERMAL_SIGHT_IDS.has(s.id));
     const thermalValue = { close: [], mid: [], long: [] };
@@ -671,6 +690,8 @@ window.BF6 = window.BF6 || {};
       performance: maxPerf,
       focusValue: bestByFocus,
       focusPerformance: maxFocus,
+      stealthValue,
+      stealthPerformance: stealthPerf,
       thermalValue,
       thermalPerformance: thermalPerf,
       hasThermal: Boolean(thermalPools),

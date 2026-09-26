@@ -273,21 +273,35 @@ window.BF6 = window.BF6 || {};
     return baseVel;
   }
 
-  function resolveHipSpreadMin(weapon, hipCls, hipSpreadTiers, hipSpreadTierMod) {
-    const tiers = hipSpreadTiers[hipCls];
-    if (!tiers || !weapon.spread?.hipStand) return weapon.spread?.hipStand?.[0] ?? null;
-    const curMin = weapon.spread.hipStand[0];
-    let nearestIdx = 0;
-    let nearestDiff = Math.abs(tiers[0] - curMin);
-    for (let i = 1; i < tiers.length; i++) {
-      const d = Math.abs(tiers[i] - curMin);
-      if (d < nearestDiff) {
-        nearestDiff = d;
-        nearestIdx = i;
-      }
-    }
-    const newIdx = clampIndex(nearestIdx + hipSpreadTierMod, tiers.length);
-    return tiers[newIdx];
+  function resolveHipSpreadMin(weapon, tables, hipSpreadTierMod) {
+    const fallback = weapon.spread?.hipStand?.[0] ?? null;
+    const table = tables?.HIP_SPREAD_TABLE;
+    const baseIndex =
+      tables?.HIP_SPREAD_BASE_INDEX_OVERRIDES?.[weapon.id] ??
+      tables?.HIP_SPREAD_BASE_INDEX?.[weapon.id];
+    if (!Array.isArray(table) || !table.length || !Number.isInteger(baseIndex)) return fallback;
+    // Catalog mods are the opposite sign of the source row index (raymdl applyAttachments).
+    const idx = clampIndex(baseIndex - hipSpreadTierMod, table.length);
+    const stand = table[idx]?.hipStand;
+    return Number.isFinite(stand) ? stand : fallback;
+  }
+
+  // Upstream: 54 m world and 150 m minimap, each multiplied by muzzle, barrel, and ammo.
+  function spotMeters(muzzle, barrel, ammo) {
+    const world =
+      54 * (muzzle?.worldSpotMult ?? 1) * (barrel?.worldSpotMult ?? 1) * (ammo?.worldSpotMult ?? 1);
+    const map =
+      150 * (muzzle?.minimapSpotMult ?? 1) * (barrel?.minimapSpotMult ?? 1) * (ammo?.minimapSpotMult ?? 1);
+    return {
+      worldSpot: Number.isFinite(world) ? world : 54,
+      minimapSpot: Number.isFinite(map) ? map : 150,
+    };
+  }
+
+  function stealthFromDistances(worldSpot, minimapSpot) {
+    const world = 1 - Math.min(Math.max(worldSpot, 0), 54) / 54;
+    const map = 1 - Math.min(Math.max(minimapSpot, 0), 150) / 150;
+    return 0.35 * world + 0.65 * map;
   }
 
   // Higher = harder to spot. Suppressors + subsonic ammo stack.
@@ -302,9 +316,7 @@ window.BF6 = window.BF6 || {};
       minimapSpot = Math.min(minimapSpot, ammo.minimapSpot);
     }
 
-    const world = 1 - Math.min(Math.max(worldSpot, 0), 54) / 54;
-    const map = 1 - Math.min(Math.max(minimapSpot, 0), 150) / 150;
-    return 0.35 * world + 0.65 * map;
+    return stealthFromDistances(worldSpot, minimapSpot);
   }
 
   function adsSpreadControl(barrel) {
@@ -434,13 +446,10 @@ window.BF6 = window.BF6 || {};
     const hipSpreadTierMod =
       (muzzle?.hipSpreadTierMod ?? 0) +
       (barrel?.hipSpreadTierMod ?? 0) +
-      (laser?.hipSpreadTierMod ?? 0);
-    const hipSpread = resolveHipSpreadMin(
-      weapon,
-      tables.HIP_CLS[weapon.id],
-      tables.HIP_SPREAD_TIERS,
-      hipSpreadTierMod,
-    );
+      (laser?.hipSpreadTierMod ?? 0) +
+      (grip?.hipSpreadTierMod ?? 0) +
+      (ammo?.hipSpreadTierMod ?? 0);
+    const hipSpread = resolveHipSpreadMin(weapon, tables, hipSpreadTierMod);
     const hipControl = (laser?.hipSpreadDecayBoost ?? 0) + (light?.hipSpreadDecayBoost ?? 0);
 
     const bulletVel = resolveVelocity(weapon.bulletVel, barrel, tables.VELOCITY_LADDER);
@@ -452,7 +461,12 @@ window.BF6 = window.BF6 || {};
     const spreadControl = adsSpreadControl(barrel);
     const reloadScore = resolveReloadScore(magData, ergo, tables.RELOAD_SPEED_LADDER);
     const handling = resolveHandling(parts, magData);
-    const stealth = stealthRating(muzzle, ammo);
+    const spotted = options.scoreStealth ? spotMeters(muzzle, barrel, ammo) : null;
+    const worldSpot = spotted?.worldSpot ?? muzzle?.worldSpot ?? 54;
+    const minimapSpot = spotted?.minimapSpot ?? muzzle?.minimapSpot ?? 150;
+    const stealth = spotted
+      ? stealthFromDistances(worldSpot, minimapSpot)
+      : stealthRating(muzzle, ammo);
     const fireMode =
       ergo?.setsFireModeAuto && weapon.fireMode !== 'auto'
         ? 1
@@ -496,11 +510,11 @@ window.BF6 = window.BF6 || {};
       muzzleId: muzzle?.id ?? 'none',
       ammoId: ammo?.id ?? 'standard',
       ergoId: ergo?.id ?? 'none',
-      worldSpot: muzzle?.worldSpot ?? 54,
-      minimapSpot: muzzle?.minimapSpot ?? 150,
+      worldSpot,
+      minimapSpot,
       stealth,
       fireMode,
-      suppressor: Boolean(muzzle?.suppressor),
+      suppressor: Boolean(muzzle?.suppressor || barrel?.suppressor),
     };
   };
 
@@ -531,18 +545,18 @@ window.BF6 = window.BF6 || {};
     };
     const importance = {
       close: [
+        'stealthGain',
         'fireModeGain',
         'hipGain',
         'hipControlGain',
-        'stealthGain',
         'adsGain',
         'hsGain',
         'reloadGain',
         'opticGain',
       ],
       mid: [
-        'fireModeGain',
         'stealthGain',
+        'fireModeGain',
         'opticGain',
         'recoilGain',
         'spreadGain',
@@ -551,8 +565,8 @@ window.BF6 = window.BF6 || {};
         'hsGain',
       ],
       long: [
-        'opticGain',
         'stealthGain',
+        'opticGain',
         'spreadGain',
         'recoilGain',
         'velGain',
