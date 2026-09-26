@@ -152,6 +152,7 @@
     masteryLevel: document.getElementById('masteryLevel'),
     includeChallenges: document.getElementById('includeChallenges'),
     favToggle: document.getElementById('favToggle'),
+    reasonsLink: document.getElementById('reasonsLink'),
     favorites: document.getElementById('favorites'),
     favList: document.getElementById('favList'),
     status: document.getElementById('status'),
@@ -232,6 +233,7 @@
     renderDataAge(BF6_DATA.refreshedAt);
     preloadSoldierFigure();
     bind();
+    syncReasonsLink();
     run();
   }
 
@@ -351,8 +353,12 @@
     saveLevels();
     renderWeaponList();
 
-    if (!changed || !rerun) return;
+    if (!changed || !rerun) {
+      syncReasonsLink();
+      return;
+    }
     state.resultCache.clear();
+    syncReasonsLink();
     run();
   }
 
@@ -576,7 +582,17 @@
     state.weaponId = id;
     els.weapon.value = id;
     renderWeaponList();
+    syncReasonsLink();
     run();
+  }
+
+  function syncReasonsLink() {
+    if (!els.reasonsLink) return;
+    const params = new URLSearchParams();
+    if (state.weaponId) params.set('gun', state.weaponId);
+    params.set('gunLevel', String(state.masteryLevel));
+    if (state.includeChallenges) params.set('challenges', '1');
+    els.reasonsLink.href = `./why.html?${params.toString()}`;
   }
 
   function toggleFavExpand(weaponId) {

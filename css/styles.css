@@ -1808,11 +1808,56 @@ body::before {
   font-size: 0.95rem;
 }
 
-.reason-picks {
-  margin: 0;
-  padding-left: 1.1rem;
+.reason-gun {
+  display: block;
+  margin: 0.9rem 0 0.35rem;
+  color: var(--muted);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.reason-picks li + li {
-  margin-top: 0.4rem;
+#whyGun {
+  width: min(100%, 22rem);
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+}
+
+.reason-slots {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.reason-slots li {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr);
+  gap: 0.35rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+
+.reason-slots span {
+  color: var(--muted);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+
+.reason-slots strong {
+  font-weight: 650;
+}
+
+.reason-slots p {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
