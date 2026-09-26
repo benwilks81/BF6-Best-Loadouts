@@ -12,3 +12,4 @@ GitHub Pages serves `main` at https://benwilks81.github.io/BF6-Best-Loadouts/. A
 - Push with `git push origin HEAD`. If GitHub auth needs the CLI, use `git -c "credential.helper=!/usr/bin/gh auth git-credential" push origin HEAD`.
 - Do not change git config, skip hooks, or force-push.
 - If the push fails, say so and leave the commit in place.
+- If scoring or weapon/attachment stats change, run `node scripts/explain_loadouts.js` and include `README.md` in the commit. The weekly refresh already does this when stats change.

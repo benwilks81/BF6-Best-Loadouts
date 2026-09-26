@@ -1,6 +1,6 @@
 # BF6 Best Loadouts
 
-Pick a gun → see the **one best attachment layout** for close, medium, long, hipfire, recoil, and ADS.
+Pick a gun → see the **one best attachment layout** for close, medium, long, hipfire, recoil, ADS, and stealth. Thermal layouts are included when that gun has a thermal optic unlocked.
 
 Live site: https://benwilks81.github.io/BF6-Best-Loadouts/
 
@@ -9,6 +9,191 @@ Set your **player level** and **weapon mastery** so recommendations only use att
 Favourites and level prefs are saved in your browser (`bf6-best-loadouts-favorites-v1`, `bf6-best-loadouts-levels-v1`).
 
 This folder is self-contained: scripts only read/write under this directory.
+
+## Why each option is chosen
+
+Each build keeps a 100-point budget. The table for that build says why the usual optic, barrel, muzzle, grip, laser, light, magazine, ammo, and ergo win.
+
+The weekly data refresh rewrites the block between the markers whenever weapon or attachment stats change. Do not edit that block by hand. Regenerate it after a scoring change with `node scripts/explain_loadouts.js`.
+
+<!-- loadout-reasons:start -->
+Generated for **gun level 50**, challenge parts off, one layout per primary (56 guns). Data embedded 2026-09-21T03:15:05+00:00.
+Per-gun picks on the site can differ. These are the usual choices and the stats that make them win.
+
+### Close
+
+0–20 m. Highest weights: hipfire spread, ADS speed, headshot time to kill, full-auto conversion. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: clearer optic picture · better hipfire · faster reload.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Standard Optic on 56 of 56 guns. Its aim score at this range is 0.55. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Short (15 pts) on 28 of 56 guns. 1 hipfire tier better; 1 velocity tier worse. Extended is the next most common (19). |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 44 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 22 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | Polymer Case on 23 of 56 guns. 1 handling tier better. FMJ is the next most common (18). |
+| Ergo | Left empty on 33 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Medium
+
+20–50 m. Highest weights: recoil per shot, ADS bloom, optic picture, headshot time to kill. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: clearer optic picture · less recoil · faster recoil recovery.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Variable Low on 56 of 56 guns. Its aim score at this range is 0.88. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. Heavy Extended is the next most common (9). |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 34 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. 6H64 Vertical is the next most common (12). |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 23 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | FMJ on 19 of 56 guns. Kept when special ammo does not earn its point cost. Polymer Case is the next most common (17). |
+| Ergo | Left empty on 34 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Long
+
+50–100 m+. Highest weights: optic picture, recoil per shot, bullet velocity, ADS bloom. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: clearer optic picture · less recoil · higher velocity.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Variable High on 56 of 56 guns. Its aim score at this range is 0.96. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. Heavy Extended is the next most common (9). |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 30 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. 6H64 Vertical is the next most common (12). |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 23 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | FMJ on 21 of 56 guns. Kept when special ammo does not earn its point cost. Polymer Case is the next most common (15). |
+| Ergo | Left empty on 43 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Hipfire
+
+from the hip. Highest weights: hipfire spread, hipfire control, full-auto conversion, handling. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: less recoil · snappier handling · better hipfire.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Standard Optic on 48 of 56 guns. Iron Sights (1.50x) is the next most common (8). Its aim score at this range is 0.55. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Short (15 pts) on 28 of 56 guns. 1 hipfire tier better; 1 velocity tier worse. Extended is the next most common (19). |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 47 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 20 Rnd (5 pts) on 17 of 56 guns. 1 moving ADS tier better; 2 handling tiers better; 20 rounds; round count is scored against ADS and reload shifts. 30 Rnd is the next most common (9). |
+| Ammo | Polymer Case on 23 of 56 guns. 1 handling tier better. FMJ is the next most common (18). |
+| Ergo | Left empty on 33 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Recoil
+
+control and recovery. Highest weights: recoil per shot, recoil recovery, ADS bloom, moving ADS spread. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: less recoil · faster recoil recovery · tighter moving ADS.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Variable Low on 39 of 56 guns. Standard Optic is the next most common (17). Its aim score at this range is 0.88. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 46 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 22 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | FMJ on 20 of 56 guns. Kept when special ammo does not earn its point cost. Polymer Case is the next most common (17). |
+| Ergo | Left empty on 33 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### ADS
+
+snap onto target. Highest weights: ADS speed, handling, moving ADS spread, recoil per shot. Spotting is not scored, so a suppressor's hide effect cannot beat recoil or hipfire on its own.
+
+The on-site reason line is usually: less recoil · tighter moving ADS · snappier handling.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Standard Optic on 56 of 56 guns. Its aim score at this range is 0.55. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. |
+| Muzzle | Compensated Brake (20 pts) on 49 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×. |
+| Grip | Classic Vertical (35 pts) on 45 of 56 guns. 5 recoil tiers better; 1 moving ADS tier worse. |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 15 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. 20 Rnd is the next most common (11). |
+| Ammo | Polymer Case on 24 of 56 guns. 1 handling tier better. FMJ is the next most common (18). |
+| Ergo | Left empty on 33 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Close stealth
+
+0–20 m, spotting scored. Highest weights: hipfire spread, ADS speed, headshot time to kill, full-auto conversion. Spotting is scored: world flash starts at 54 m and the minimap ping at 150 m, each multiplied by the muzzle, barrel, and ammo. A suppressor is 0 m in the world and 21 m on the minimap.
+
+The on-site reason line is usually: harder to spot · clearer optic picture · better hipfire.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Standard Optic on 56 of 56 guns. Its aim score at this range is 0.55. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Short (15 pts) on 28 of 56 guns. 1 hipfire tier better; 1 velocity tier worse. Extended is the next most common (19). |
+| Muzzle | Hybrid Suppressor K (50 pts) on 38 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×; spotted at 0 m in the world and 21 m on the minimap. CQB Suppressor is the next most common (16). |
+| Grip | Folding Vertical (10 pts) on 26 of 56 guns. 2 recoil tiers better; 1 moving ADS tier worse. |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 22 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | Polymer Case on 23 of 56 guns. 1 handling tier better. FMJ is the next most common (14). |
+| Ergo | Left empty on 44 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Medium stealth
+
+20–50 m, spotting scored. Highest weights: recoil per shot, ADS bloom, optic picture, headshot time to kill. Spotting is scored: world flash starts at 54 m and the minimap ping at 150 m, each multiplied by the muzzle, barrel, and ammo. A suppressor is 0 m in the world and 21 m on the minimap.
+
+The on-site reason line is usually: clearer optic picture · harder to spot · less recoil.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Variable Low on 56 of 56 guns. Its aim score at this range is 0.88. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. Heavy Extended is the next most common (9). |
+| Muzzle | Hybrid Suppressor K (50 pts) on 32 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×; spotted at 0 m in the world and 21 m on the minimap. Long Suppressor is the next most common (11). |
+| Grip | Folding Vertical (10 pts) on 27 of 56 guns. 2 recoil tiers better; 1 moving ADS tier worse. 6H64 Vertical is the next most common (9). |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 23 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | FMJ on 18 of 56 guns. Kept when special ammo does not earn its point cost. Polymer Case is the next most common (17). |
+| Ergo | Left empty on 46 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Long stealth
+
+50–100 m+, spotting scored. Highest weights: optic picture, recoil per shot, bullet velocity, ADS bloom. Spotting is scored: world flash starts at 54 m and the minimap ping at 150 m, each multiplied by the muzzle, barrel, and ammo. A suppressor is 0 m in the world and 21 m on the minimap.
+
+The on-site reason line is usually: clearer optic picture · harder to spot · less recoil.
+
+| Slot | Why it is chosen |
+| --- | --- |
+| Optic | Variable High on 56 of 56 guns. Its aim score at this range is 0.96. The optic changes the picture score only, not recoil or spread. |
+| Barrel | Extended (5 pts) on 43 of 56 guns. 1 velocity tier better. Heavy Extended is the next most common (9). |
+| Muzzle | Hybrid Suppressor L (30 pts) on 39 of 56 guns. 1 recoil tier better; recoil recovers at 1.2×; 1 hipfire tier worse; spotted at 0 m in the world and 21 m on the minimap. Long Suppressor is the next most common (11). |
+| Grip | 6H64 Vertical (25 pts) on 30 of 56 guns. 4 recoil tiers better; 1 moving ADS tier worse. Folding Vertical is the next most common (13). |
+| Laser | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Light | Left empty on 56 of 56 guns. Many guns share one underbarrel slot, and a grip's recoil or ADS effect beats spending points on a laser or light. |
+| Mag | 30 Rnd (5 pts) on 23 of 56 guns. 30 rounds; round count is scored against ADS and reload shifts. |
+| Ammo | FMJ on 20 of 56 guns. Kept when special ammo does not earn its point cost. Polymer Case is the next most common (16). |
+| Ergo | Left empty on 43 of 56 guns. Nothing in this slot raised the score enough to spend the points. |
+
+### Close thermal
+
+No primary has a named thermal optic unlocked at gun level 50 (GRIM, PAS-35, TS-HD, or TH-RDS). This build shows on the site once those optics are in the data.
+
+### Medium thermal
+
+No primary has a named thermal optic unlocked at gun level 50 (GRIM, PAS-35, TS-HD, or TH-RDS). This build shows on the site once those optics are in the data.
+
+### Long thermal
+
+No primary has a named thermal optic unlocked at gun level 50 (GRIM, PAS-35, TS-HD, or TH-RDS). This build shows on the site once those optics are in the data.
+<!-- loadout-reasons:end -->
 
 ## Keep the local site online
 
@@ -68,6 +253,7 @@ Upstream weapon/attachment JSON comes from [raymdl/BF6-Weapon-Analyzer](https://
 - writes files atomically
 - uses **ETags / hashes** so unchanged files are not re-downloaded or re-embedded
 - **commits and pushes** changed data to this GitHub repo so GitHub Pages stays current
+- rewrites the loadout-reason tables in this README from the current optimizer, and publishes that too when they change
 
 If a browser refresh feels slow, that is the local layout optimizer — not a network download.
 
@@ -88,7 +274,7 @@ Re-run the installer after pulling service-file hardening changes so `~/.config/
 systemctl --user start bf6-loadouts-refresh.service
 ```
 
-If nothing changed upstream, the script exits quickly with `refresh ok (noop)`.
+If nothing changed upstream, the data step exits with `refresh ok (noop)`. The loadout-reason rewrite still runs, and is published only if that section changed.
 
 Logs: `journalctl --user -u bf6-loadouts-refresh.service -n 50`
 
