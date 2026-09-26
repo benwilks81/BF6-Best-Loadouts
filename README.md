@@ -14,7 +14,9 @@ This folder is self-contained: scripts only read/write under this directory.
 
 Each build keeps a 100-point budget. The table for that build says why the usual optic, barrel, muzzle, grip, laser, light, magazine, ammo, and ergo win.
 
-The weekly data refresh rewrites the block between the markers whenever weapon or attachment stats change. Do not edit that block by hand. Regenerate it after a scoring change with `node scripts/explain_loadouts.js`.
+The same notes are on the site. From the main page, open **Why these parts**, or go to [why.html](https://benwilks81.github.io/BF6-Best-Loadouts/why.html).
+
+The weekly data refresh rewrites the block between the markers, and that page, whenever weapon or attachment stats change. Do not edit that block by hand. Regenerate both after a scoring change with `node scripts/explain_loadouts.js`.
 
 <!-- loadout-reasons:start -->
 Generated for **gun level 50**, challenge parts off, one layout per primary (56 guns). Data embedded 2026-09-21T03:15:05+00:00.

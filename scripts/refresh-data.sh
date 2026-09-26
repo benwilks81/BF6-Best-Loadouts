@@ -46,6 +46,7 @@ SYNC_PATHS=(
   data/last-refresh.json
   js/embedded-data.js
   README.md
+  why.html
 )
 
 /usr/bin/git add -- "${SYNC_PATHS[@]}"
@@ -61,9 +62,19 @@ export GIT_COMMITTER_NAME="${GIT_COMMITTER_NAME:-$GIT_AUTHOR_NAME}"
 export GIT_COMMITTER_EMAIL="${GIT_COMMITTER_EMAIL:-$GIT_AUTHOR_EMAIL}"
 
 STAGED="$(/usr/bin/git diff --cached --name-only)"
-if printf '%s\n' "$STAGED" | grep -qx 'README.md' && printf '%s\n' "$STAGED" | grep -qv '^README.md$'; then
+HAS_REASONS=0
+HAS_OTHER=0
+while IFS= read -r path; do
+  [[ -z "$path" ]] && continue
+  if [[ "$path" == "README.md" || "$path" == "why.html" ]]; then
+    HAS_REASONS=1
+  else
+    HAS_OTHER=1
+  fi
+done <<< "$STAGED"
+if [[ "$HAS_REASONS" -eq 1 && "$HAS_OTHER" -eq 1 ]]; then
   COMMIT_MSG="Refresh weapon data and the loadout reasons."
-elif printf '%s\n' "$STAGED" | grep -qx 'README.md'; then
+elif [[ "$HAS_REASONS" -eq 1 ]]; then
   COMMIT_MSG="Update loadout reasons for the current weapon and attachment stats."
 else
   COMMIT_MSG="Refresh weapon data for GitHub Pages."
