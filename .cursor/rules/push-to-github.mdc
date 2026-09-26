@@ -1,0 +1,14 @@
+---
+description: Commit and push project changes so GitHub Pages stays current
+alwaysApply: true
+---
+
+# Publish changes to GitHub
+
+GitHub Pages serves `main` at https://benwilks81.github.io/BF6-Best-Loadouts/. After you change files in this repo, commit and push to `origin` before finishing. Local edits are not live until that push succeeds.
+
+- Commit the files for the change you just made. Do not commit secrets (`.env`, credentials, tokens).
+- Write a short commit message that says why the change was made.
+- Push with `git push origin HEAD`. If GitHub auth needs the CLI, use `git -c "credential.helper=!/usr/bin/gh auth git-credential" push origin HEAD`.
+- Do not change git config, skip hooks, or force-push.
+- If the push fails, say so and leave the commit in place.
