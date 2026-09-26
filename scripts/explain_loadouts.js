@@ -10,7 +10,7 @@ const vm = require('vm');
 const ROOT = path.resolve(__dirname, '..');
 const README = path.join(ROOT, 'README.md');
 const WHY_PAGE = path.join(ROOT, 'why.html');
-const CSS_VERSION = '20260926c';
+const CSS_VERSION = '20260926d';
 const START = '<!-- loadout-reasons:start -->';
 const END = '<!-- loadout-reasons:end -->';
 const MASTERY = 50;
@@ -183,8 +183,10 @@ function effectsFor(slot, part, build) {
   if (p.reloadSpeedMult > 1) push(`reload at ${fmtNum(p.reloadSpeedMult)}×`);
   if (slot === 'mag' && p.mag) push(`${p.mag} rounds`);
   if (slot === 'ammo') {
-    if (p.id === 'synthetic' || p.hsMult === 'synthetic') push('higher headshot multiplier');
-    if (p.id === 'hollow_pt' || p.hsMult === 'hp') push('higher headshot damage');
+    if (p.id === 'synthetic' || p.hsMult === 'synthetic') {
+      push('raises the headshot multiplier, so headshot time to kill drops when that breakpoint is scored');
+    }
+    if (p.id === 'hollow_pt' || p.hsMult === 'hp') push('raises headshot damage');
     if (String(p.id || '').startsWith('subsonic')) push('slower bullet, harder to spot when stealth is scored');
   }
   if (build.stealth || p.suppressor || (p.worldSpotMult != null && p.worldSpotMult !== 1)) {
@@ -194,7 +196,7 @@ function effectsFor(slot, part, build) {
   return bits;
 }
 
-function whySlot(slot, row, runner, total, build, BF6) {
+function whySlot(slot, row, total, build, BF6) {
   const name = row.name;
   const count = `${row.n} of ${total}`;
   if (slot === 'optic' && build.thermal) {
@@ -203,10 +205,9 @@ function whySlot(slot, row, runner, total, build, BF6) {
   if (slot === 'optic') {
     const table = BF6.OPTIC_AIM[opticTableKey(BF6, build)] ?? {};
     const score = fmtScore(table[row.id]);
-    const other = runner ? ` ${md(runner.name)} is the next most common (${runner.n}).` : '';
     const scoreBit = score ? ` Its aim score at this range is ${score}.` : '';
     const picture = row.part?.noEffect ? ' The optic changes the picture score only, not recoil or spread.' : '';
-    return `${md(name)} on ${count} guns.${other}${scoreBit}${picture}`;
+    return `${md(name)} on ${count} guns.${scoreBit}${picture}`;
   }
   const bits = effectsFor(slot, row.part, build);
   const empty = !row.id || row.id === 'none' || row.name === 'None' || row.name === '—';
@@ -217,17 +218,18 @@ function whySlot(slot, row, runner, total, build, BF6) {
     return `Left empty on ${count} guns. Nothing in this slot raised the score enough to spend the points.`;
   }
   if (slot === 'ammo' && !bits.length) {
-    bits.push('kept when special ammo does not earn its point cost');
+    if (!row.id || row.id === 'standard') {
+      bits.push('default ballistics, kept when a special round does not earn its point cost');
+    } else {
+      bits.push('wins on these guns because its scored trade beats the other rounds');
+    }
   }
   if (slot === 'mag') bits.push('round count is scored against ADS and reload shifts');
   const detail = bits.length
     ? ` ${bits[0].charAt(0).toUpperCase()}${bits[0].slice(1)}${bits.length > 1 ? `; ${bits.slice(1).join('; ')}` : ''}.`
     : '';
   const cost = slot !== 'ammo' && Number.isFinite(row.part?.pts) ? ` (${fmtNum(row.part.pts)} pts)` : '';
-  const alt = runner && runner.n >= Math.max(3, total * 0.15)
-    ? ` ${md(runner.name)} is the next most common (${runner.n}).`
-    : '';
-  return `${md(name)}${cost} on ${count} guns.${detail}${alt}`;
+  return `${md(name)}${cost} on ${count} guns.${detail}`;
 }
 
 function topWhy(entries) {
@@ -284,7 +286,7 @@ function collectSections(BF6, results) {
       const ordered = [...ranked.values()].sort((a, b) => b.n - a.n);
       slots.push({
         label: `${label[0].toUpperCase()}${label.slice(1)}`,
-        why: whySlot(label, ordered[0], ordered[1], rows.length, build, BF6),
+        picks: ordered.map((row) => whySlot(label, row, rows.length, build, BF6)),
       });
     }
     sections.push({
@@ -307,13 +309,13 @@ function markdownBody(data, resultsCount, sections) {
     const table = [
       '| Slot | Why it is chosen |',
       '| --- | --- |',
-      ...section.slots.map((slot) => `| ${slot.label} | ${slot.why} |`),
+      ...section.slots.map((slot) => `| ${slot.label} | ${slot.picks.join('<br>')} |`),
     ].join('\n');
     return `### ${section.build.title}\n\n${section.intro}\n\n${cited}${table}\n`;
   });
   return [
     `Generated for **gun level ${MASTERY}**, challenge parts off, one layout per primary (${resultsCount} guns).${refreshed}`,
-    'Per-gun picks on the site can differ. These are the usual choices and the stats that make them win.',
+    'Every part that wins a slot on at least one gun is listed. A gun on the main page can still differ.',
     '',
     blocks.join('\n'),
   ].join('\n');
@@ -339,10 +341,10 @@ function whyPage(data, resultsCount, sections) {
         ? `\n        <p class="reason-cite">The loadout card usually says: ${esc(section.cited.join(' · '))}.</p>`
         : '';
       const rows = section.slots
-        .map(
-          (slot) =>
-            `            <tr><th scope="row">${esc(slot.label)}</th><td>${esc(slot.why)}</td></tr>`
-        )
+        .map((slot) => {
+          const items = slot.picks.map((pick) => `<li>${esc(pick)}</li>`).join('');
+          return `            <tr><th scope="row">${esc(slot.label)}</th><td><ul class="reason-picks">${items}</ul></td></tr>`;
+        })
         .join('\n');
       return `      <article class="reason-card" id="${esc(section.build.id)}" data-build="${esc(section.build.id)}">
         <h2>${esc(section.build.title)}</h2>
@@ -387,7 +389,7 @@ ${rows}
       <p class="brand">Battlefield 6</p>
       <h1>Why these <span>parts</span></h1>
       <p class="reasons-lead">Usual picks at gun level ${MASTERY}, challenge parts off, across ${resultsCount} primaries.${refreshed}</p>
-      <p class="reasons-note">Each gun on the main page can differ. These are the choices that win most often, and the stats that make them win. This page is rewritten when weapon or attachment stats change.</p>
+      <p class="reasons-note">Every part that wins a slot on at least one of those guns is listed, with the stat that makes it win. This page is rewritten when weapon or attachment stats change.</p>
       <nav class="reasons-nav" aria-label="Builds">
           ${nav}
       </nav>

@@ -1807,3 +1807,12 @@ body::before {
 .reason-card td {
   font-size: 0.95rem;
 }
+
+.reason-picks {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.reason-picks li + li {
+  margin-top: 0.4rem;
+}
