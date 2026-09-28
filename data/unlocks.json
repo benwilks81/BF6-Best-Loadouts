@@ -1,6 +1,6 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-09-21T03:16:29+00:00",
+  "fetchedAt": "2026-09-28T03:15:34+00:00",
   "attachmentUnlockCap": 50,
   "playerMaxLevel": null,
   "weaponMasteryMax": null,
@@ -4327,7 +4327,10 @@
       "attachments": {
         "muzzle": {
           "none": 0,
+          "compensator": 0,
           "flash_hider": 0,
+          "sp_brake": 0,
+          "tp_brake": 0,
           "slant_brake": 2,
           "std_supp": 8,
           "linear_comp": 11,
@@ -4341,6 +4344,9 @@
         "barrel": {
           "none": 0,
           "heavy_ext": 0,
+          "cryo": 0,
+          "extended": 0,
+          "light": 0,
           "basic": 4,
           "heavy": 20,
           "short": 31
@@ -4349,6 +4355,7 @@
           "none": 0,
           "bipod": 0,
           "bipod_sr": 0,
+          "underslung_mount": 0,
           "adj_angled": 1,
           "fold_vert": 3,
           "fold_stubby": 7,
@@ -4392,21 +4399,25 @@
         },
         "laser": {
           "none": 0,
-          "5mw_red": 6,
-          "5mw_green": 9,
-          "50mw_green": 16,
-          "50mw_blue": 34,
-          "120mw_blue": 40
+          "120mw_blue": 0,
+          "5mw_green": 0,
+          "5mw_red": 0,
+          "50mw_blue": 0,
+          "50mw_green": 0,
+          "50mw_violet": 0,
+          "combo_green": 0,
+          "combo_red": 0
         },
         "light": {
           "none": 0,
-          "flashlight": 1
+          "flashlight": 0,
+          "range_finder": 0
         },
         "sight": {
           "iron": 0,
           "var_low": 0,
-          "std_optic": 1,
-          "var_high": 11
+          "var_high": 0,
+          "std_optic": 1
         },
         "mag": {
           "default": 0,
@@ -4421,6 +4432,7 @@
         },
         "ammo": {
           "standard": 0,
+          "long_range": 0,
           "penetration": 5,
           "lightweight": 13,
           "frangible": 22,
@@ -4430,6 +4442,8 @@
         "ergo": {
           "none": 0,
           "buffer": 0,
+          "ads_bolt": 0,
+          "mag_catch": 0,
           "mag_flare": 12,
           "match_trigger": 38
         }
@@ -6255,7 +6269,7 @@
     ],
     [
       "scope:TS-HD 6.00X:therm_6",
-      14
+      15
     ],
     [
       "barrel:",
