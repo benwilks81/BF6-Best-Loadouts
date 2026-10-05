@@ -1,6 +1,6 @@
 {
-  "refreshedAt": "2026-09-28T03:15:00+00:00",
-  "lastCheckedAt": "2026-09-28T03:15:00+00:00",
+  "refreshedAt": "2026-10-05T03:15:00+00:00",
+  "lastCheckedAt": "2026-10-05T03:15:00+00:00",
   "changed": true,
   "source": "https://raw.githubusercontent.com/raymdl/BF6-Weapon-Analyzer/main/data/",
   "files": [
@@ -19,5 +19,5 @@
     "unlocks.json"
   ],
   "weaponCount": 63,
-  "embeddedBytes": 530364
+  "embeddedBytes": 542284
 }
