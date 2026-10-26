@@ -1,6 +1,6 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-10-19T03:15:38+00:00",
+  "fetchedAt": "2026-10-26T03:15:34+00:00",
   "attachmentUnlockCap": 50,
   "playerMaxLevel": null,
   "weaponMasteryMax": null,
@@ -760,10 +760,7 @@
           "cryo"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "grip": [
           "slim_handstop"
@@ -1659,10 +1656,7 @@
           "cryo"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "grip": [
           "slim_handstop"
@@ -2377,11 +2371,6 @@
         "ergo": [
           "buffer"
         ],
-        "muzzle": [
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
-        ],
         "sight": [
           "therm_hyb"
         ]
@@ -2491,10 +2480,7 @@
           "cryo"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "sight": [
           "therm_hyb"
@@ -2602,10 +2588,7 @@
           "cryo"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "sight": [
           "therm_hyb"
@@ -2719,10 +2702,7 @@
           "cryo"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "sight": [
           "therm_hyb"
@@ -2909,11 +2889,6 @@
         "ergo": [
           "burst_training"
         ],
-        "muzzle": [
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
-        ],
         "sight": [
           "therm_hyb"
         ]
@@ -3016,10 +2991,7 @@
           "50mw_violet"
         ],
         "muzzle": [
-          "flash_comp",
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
+          "flash_comp"
         ],
         "sight": [
           "therm_hyb"
@@ -3129,11 +3101,6 @@
         "barrel": [
           "cryo"
         ],
-        "muzzle": [
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
-        ],
         "sight": [
           "therm_hyb"
         ]
@@ -3241,11 +3208,6 @@
           "buffer",
           "burst_training"
         ],
-        "muzzle": [
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
-        ],
         "sight": [
           "therm_hyb"
         ]
@@ -3345,13 +3307,7 @@
           "buffer": 28
         }
       },
-      "challengeAttachments": {
-        "muzzle": [
-          "hybrid_supp_k",
-          "hybrid_supp_l",
-          "hybrid_supp_s"
-        ]
-      }
+      "challengeAttachments": {}
     },
     "l110": {
       "metaId": "l110",
