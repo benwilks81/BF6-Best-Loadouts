@@ -360,6 +360,7 @@ def build_unlocks() -> dict:
 
     out_weapons: dict[str, Any] = {}
     missing: list[str] = []
+    placeholder: list[str] = []
     unmapped: dict[str, int] = {}
 
     for weapon in weapons:
@@ -399,6 +400,15 @@ def build_unlocks() -> dict:
         time.sleep(REQUEST_PAUSE_S)
         if not isinstance(atts, list):
             raise ValueError(f"attachments for {meta_id} must be an array")
+
+        # New guns are listed with a generic part list (no magazines, every level 0) until the
+        # real unlock track is published; trusting it would mark every part unlocked at level 1.
+        levels_known = any(isinstance(a, dict) and a.get("slotId") == "magazine" for a in atts) or any(
+            isinstance(a, dict) and a.get("unlockAtWeaponLevel") not in (0, None) for a in atts
+        )
+        if not levels_known:
+            placeholder.append(local_id)
+            atts = []
 
         for att in atts:
             if not isinstance(att, dict):
@@ -559,6 +569,7 @@ def build_unlocks() -> dict:
             "unlockAtPlayerLevel": int(unlock_player or 0),
             "attachments": slots,
             "challengeAttachments": challenge,
+            "attachmentLevelsKnown": levels_known,
         }
 
     # A brand-new gun can appear upstream before battlefieldmeta lists it; the site treats a gun
@@ -567,6 +578,8 @@ def build_unlocks() -> dict:
         raise ValueError(f"could not map weapons to meta IDs: {', '.join(missing)}")
     if missing:
         print(f"warning: no unlock data yet for: {', '.join(missing)}", file=sys.stderr)
+    if placeholder:
+        print(f"warning: attachment unlock levels not published yet for: {', '.join(placeholder)}", file=sys.stderr)
 
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     payload = {

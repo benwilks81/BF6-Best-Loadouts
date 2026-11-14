@@ -280,8 +280,12 @@ window.BF6 = window.BF6 || {};
   }
 
   function filterPool(pool, weaponUnlocks, slot, masteryLevel, options = {}) {
-    const kept = pool.filter((item) =>
-      isAttachmentUnlocked(weaponUnlocks, slot, item?.id, masteryLevel, options)
+    // The gun ships with its stock parts, whatever the unlock data says.
+    const stockId = options.stockId;
+    const kept = pool.filter(
+      (item) =>
+        (stockId && item?.id === stockId) ||
+        isAttachmentUnlocked(weaponUnlocks, slot, item?.id, masteryLevel, options)
     );
     return kept.length
       ? kept
@@ -294,12 +298,13 @@ window.BF6 = window.BF6 || {};
 
     const unlocks = options.unlocks ?? tables.unlocks ?? data.unlocks ?? null;
     const attachmentCap = unlocks?.attachmentUnlockCap ?? 50;
-    const masteryLevel = clampMasteryLevel(
-      options.masteryLevel ?? attachmentCap,
-      attachmentCap
-    );
     const includeChallenges = Boolean(options.includeChallenges);
     const weaponUnlocks = unlocks?.weapons?.[weapon.id] ?? null;
+    // Without a published unlock track the gun level can't gate anything, so build from every part.
+    const levelsKnown = Boolean(weaponUnlocks) && weaponUnlocks.attachmentLevelsKnown !== false;
+    const masteryLevel = levelsKnown
+      ? clampMasteryLevel(options.masteryLevel ?? attachmentCap, attachmentCap)
+      : Math.max(attachmentCap, clampMasteryLevel(options.masteryLevel ?? attachmentCap, attachmentCap));
 
     const muzzlesById = BF6.byId(data.MUZZLES);
     const barrelsById = BF6.byId(data.BARRELS);
@@ -341,15 +346,21 @@ window.BF6 = window.BF6 || {};
     if (!mags.length) mags.push({ id: 'default', name: 'Default', pts: 0, mag: weapon.mag });
     allowed.mag = new Set(mags.map((m) => m.id));
 
-    let { pool: ammos } = buildAmmoPool(weapon, data, tables);
+    let { pool: ammos, defId: ammoDefId } = buildAmmoPool(weapon, data, tables);
     allowed.ammo = new Set(ammos.map((a) => a.id));
     const ergoIds = data.WEAPON_ERGO?.[weapon.id]?.avail ?? [];
     let ergos = uniqueErgos(ergoIds, ergosById);
 
+    const stockIds = {
+      barrel: atts.barrelDef ?? atts.barrel?.[0] ?? 'basic',
+      mag: wm?.def,
+      ammo: ammoDefId,
+    };
     const filterOptsFor = (slot) => ({
       includeChallenges,
       attachmentCap,
       allowedIds: allowed[slot],
+      stockId: stockIds[slot],
     });
 
     muzzles = filterPool(muzzles, weaponUnlocks, 'muzzle', masteryLevel, filterOptsFor('muzzle'));

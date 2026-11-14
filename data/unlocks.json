@@ -1,6 +1,6 @@
 {
   "source": "https://app.battlefieldmeta.gg/api",
-  "fetchedAt": "2026-11-14T10:52:28+00:00",
+  "fetchedAt": "2026-11-14T10:57:02+00:00",
   "attachmentUnlockCap": 50,
   "playerMaxLevel": null,
   "weaponMasteryMax": null,
@@ -126,7 +126,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "b36a4": {
       "metaId": "b36a4",
@@ -262,7 +263,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sor556": {
       "metaId": "sor-556-mk2",
@@ -399,7 +401,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "ak4d": {
       "metaId": "ak4d",
@@ -528,7 +531,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "tr7": {
       "metaId": "tr-7",
@@ -644,7 +648,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "kord6p67": {
       "metaId": "kord-6p67",
@@ -768,7 +773,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "nvo228e": {
       "metaId": "nvo-228e",
@@ -898,7 +904,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "l85a3": {
       "metaId": "l85a3",
@@ -1032,7 +1039,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "vcr2": {
       "metaId": "vcr-2",
@@ -1162,7 +1170,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m16a4": {
       "metaId": "m16a4",
@@ -1283,7 +1292,8 @@
         "barrel": [
           "cryo"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m4a1": {
       "metaId": "m4a1",
@@ -1415,7 +1425,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m277": {
       "metaId": "m277",
@@ -1542,7 +1553,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "ak205": {
       "metaId": "ak-205",
@@ -1664,7 +1676,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m417a2": {
       "metaId": "m417-a2",
@@ -1792,7 +1805,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "grtbc": {
       "metaId": "grt-bc",
@@ -1904,7 +1918,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "qbz192": {
       "metaId": "qbz-192",
@@ -2022,7 +2037,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sg553r": {
       "metaId": "sg-553r",
@@ -2143,7 +2159,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sor300sc": {
       "metaId": "sor-300sc",
@@ -2269,7 +2286,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sgx": {
       "metaId": "sgx",
@@ -2374,7 +2392,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "pw5a3": {
       "metaId": "pw5a3",
@@ -2485,7 +2504,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "pw7a2": {
       "metaId": "pw7a2",
@@ -2593,7 +2613,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "umg40": {
       "metaId": "umg-40",
@@ -2707,7 +2728,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "usg90": {
       "metaId": "usg-90",
@@ -2788,7 +2810,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "kv9": {
       "metaId": "kv9",
@@ -2892,7 +2915,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "scw10": {
       "metaId": "scw-10",
@@ -2996,7 +3020,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sl9": {
       "metaId": "sl9",
@@ -3104,7 +3129,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "cz3a1": {
       "metaId": "cz3a1",
@@ -3211,7 +3237,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "pp19": {
       "metaId": "pp-19",
@@ -3307,7 +3334,8 @@
           "buffer": 28
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": true
     },
     "l110": {
       "metaId": "l110",
@@ -3424,7 +3452,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "drsiar": {
       "metaId": "drs-iar",
@@ -3559,7 +3588,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m60": {
       "metaId": "m60",
@@ -3677,7 +3707,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "rpkm": {
       "metaId": "rpkm",
@@ -3808,7 +3839,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m123k": {
       "metaId": "m123k",
@@ -3921,7 +3953,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m250": {
       "metaId": "m250",
@@ -4038,7 +4071,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "kts100": {
       "metaId": "kts100-mk8",
@@ -4167,7 +4201,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m240l": {
       "metaId": "m240l",
@@ -4286,7 +4321,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m121a2": {
       "metaId": "m121-a2",
@@ -4400,7 +4436,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "rpk74m": {
       "metaId": "rpk-74m",
@@ -4535,7 +4572,8 @@
           "hybrid_supp_l",
           "hybrid_supp_s"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m39emr": {
       "metaId": "m39-emr",
@@ -4662,7 +4700,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "lmr27": {
       "metaId": "lmr27",
@@ -4783,7 +4822,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "svk86": {
       "metaId": "svk-86",
@@ -4900,7 +4940,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "svdm": {
       "metaId": "svdm",
@@ -5025,7 +5066,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "grtcps": {
       "metaId": "grt-cps",
@@ -5148,7 +5190,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m2010esr": {
       "metaId": "m2010-esr",
@@ -5241,7 +5284,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "sv98": {
       "metaId": "sv-98",
@@ -5330,7 +5374,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "psr": {
       "metaId": "psr",
@@ -5421,7 +5466,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "miniscout": {
       "metaId": "mini-scout",
@@ -5516,7 +5562,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "l115": {
       "metaId": "l115",
@@ -5603,7 +5650,8 @@
           "hybrid_supp_l",
           "hybrid_supp_s"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "interdictor": {
       "metaId": "interdictor",
@@ -5679,7 +5727,8 @@
           "mag_catch": 18
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": true
     },
     "m87a1": {
       "metaId": "m87a1",
@@ -5780,7 +5829,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "m1014": {
       "metaId": "m1014",
@@ -5879,7 +5929,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "ks18k": {
       "metaId": "185ks-k",
@@ -5983,7 +6034,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "db12": {
       "metaId": "db-12",
@@ -6080,7 +6132,8 @@
         "sight": [
           "therm_hyb"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "brod3": {
       "metaId": "brod-3",
@@ -6198,7 +6251,8 @@
           "hybrid_supp_l",
           "hybrid_supp_s"
         ]
-      }
+      },
+      "attachmentLevelsKnown": true
     },
     "ef88": {
       "metaId": "ef88",
@@ -6310,7 +6364,8 @@
           "match_trigger": 40
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": true
     },
     "vssm": {
       "metaId": "vssm",
@@ -6407,376 +6462,116 @@
           "full_auto_vssm": 15
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": true
     },
     "mk24": {
       "metaId": "mk-24",
       "unlockAtPlayerLevel": 1,
       "attachments": {
         "muzzle": {
-          "none": 0,
-          "comp_brake": 0,
-          "compensator": 0,
-          "cqb_supp": 0,
-          "dp_brake": 0,
-          "flash_comp": 0,
-          "flash_hider": 0,
-          "hybrid_supp_k": 0,
-          "hybrid_supp_l": 0,
-          "hybrid_supp_s": 0,
-          "light_supp": 0,
-          "linear_comp": 0,
-          "long_supp": 0,
-          "sp_brake": 0,
-          "std_supp": 0,
-          "tp_brake": 0
+          "none": 0
         },
         "barrel": {
           "none": 0,
-          "basic": 0,
-          "cryo": 0,
-          "extended": 0,
-          "heavy": 0,
-          "heavy_ext": 0,
-          "light": 0,
-          "short": 0
+          "basic": 0
         },
         "grip": {
-          "none": 0,
-          "6h64_vert": 0,
-          "6h64_vert_db12": 0,
-          "6h64_vert_ks18k": 0,
-          "6h64_vert_svk86": 0,
-          "6h64_vert_vssm": 0,
-          "adj_angled": 0,
-          "alloy_vert": 0,
-          "bipod": 0,
-          "bipod_sr": 0,
-          "canted_stubby": 0,
-          "classic_grip_pod": 0,
-          "classic_grip_pod_sr": 0,
-          "classic_vert": 0,
-          "classic_vert_db12": 0,
-          "classic_vert_ks18k": 0,
-          "classic_vert_svk86": 0,
-          "classic_vert_vssm": 0,
-          "fold_stubby": 0,
-          "fold_vert": 0,
-          "full_angled": 0,
-          "full_angled_sr": 0,
-          "lp_stubby": 0,
-          "lp_stubby_db12": 0,
-          "lp_stubby_ks18k": 0,
-          "lp_stubby_sr": 0,
-          "lp_stubby_svk86": 0,
-          "lp_stubby_vssm": 0,
-          "underslung_mount": 0,
-          "ptt_grip_pod": 0,
-          "qd_grip_pod": 0,
-          "qd_grip_pod_sr": 0,
-          "ribbed_stubby": 0,
-          "ribbed_vert": 0,
-          "slim_angled": 0,
-          "slim_angled_interdictor": 0,
-          "slim_angled_smg": 0,
-          "slim_angled_sr": 0,
-          "slim_handstop": 0,
-          "stipp_stubby": 0,
-          "stipp_stubby_db12": 0,
-          "stipp_stubby_ks18k": 0,
-          "stipp_stubby_svk86": 0,
-          "stipp_stubby_vssm": 0
+          "none": 0
         },
         "laser": {
-          "none": 0,
-          "120mw_blue": 0,
-          "5mw_green": 0,
-          "5mw_red": 0,
-          "50mw_blue": 0,
-          "50mw_green": 0,
-          "50mw_violet": 0,
-          "combo_green": 0,
-          "combo_red": 0
+          "none": 0
         },
         "light": {
-          "none": 0,
-          "flashlight": 0,
-          "range_finder": 0
+          "none": 0
         },
         "sight": {
-          "iron": 0,
-          "var_low": 0,
-          "std_optic": 0,
-          "var_high": 0
+          "iron": 0
         },
         "mag": {
           "default": 0
         },
         "ammo": {
-          "standard": 0,
-          "frangible": 0,
-          "hollow_pt": 0,
-          "long_range": 0,
-          "lightweight": 0,
-          "synthetic": 0,
-          "penetration": 0
+          "standard": 0
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0,
-          "ads_bolt": 0,
-          "mag_catch": 0,
-          "mag_flare": 0,
-          "match_trigger": 0
+          "none": 0
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": false
     },
     "elr40": {
       "metaId": "elr-40",
       "unlockAtPlayerLevel": 1,
       "attachments": {
         "muzzle": {
-          "none": 0,
-          "comp_brake": 0,
-          "compensator": 0,
-          "cqb_supp": 0,
-          "dp_brake": 0,
-          "flash_comp": 0,
-          "flash_hider": 0,
-          "hybrid_supp_k": 0,
-          "hybrid_supp_l": 0,
-          "hybrid_supp_s": 0,
-          "light_supp": 0,
-          "linear_comp": 0,
-          "long_supp": 0,
-          "sp_brake": 0,
-          "std_supp": 0,
-          "tp_brake": 0
+          "none": 0
         },
         "barrel": {
           "none": 0,
-          "basic": 0,
-          "cryo": 0,
-          "extended": 0,
-          "heavy": 0,
-          "heavy_ext": 0,
-          "light": 0,
-          "short": 0
+          "basic": 0
         },
         "grip": {
-          "none": 0,
-          "6h64_vert": 0,
-          "6h64_vert_db12": 0,
-          "6h64_vert_ks18k": 0,
-          "6h64_vert_svk86": 0,
-          "6h64_vert_vssm": 0,
-          "adj_angled": 0,
-          "alloy_vert": 0,
-          "bipod": 0,
-          "bipod_sr": 0,
-          "canted_stubby": 0,
-          "classic_grip_pod": 0,
-          "classic_grip_pod_sr": 0,
-          "classic_vert": 0,
-          "classic_vert_db12": 0,
-          "classic_vert_ks18k": 0,
-          "classic_vert_svk86": 0,
-          "classic_vert_vssm": 0,
-          "fold_stubby": 0,
-          "fold_vert": 0,
-          "full_angled": 0,
-          "full_angled_sr": 0,
-          "lp_stubby": 0,
-          "lp_stubby_db12": 0,
-          "lp_stubby_ks18k": 0,
-          "lp_stubby_sr": 0,
-          "lp_stubby_svk86": 0,
-          "lp_stubby_vssm": 0,
-          "underslung_mount": 0,
-          "ptt_grip_pod": 0,
-          "qd_grip_pod": 0,
-          "qd_grip_pod_sr": 0,
-          "ribbed_stubby": 0,
-          "ribbed_vert": 0,
-          "slim_angled": 0,
-          "slim_angled_interdictor": 0,
-          "slim_angled_smg": 0,
-          "slim_angled_sr": 0,
-          "slim_handstop": 0,
-          "stipp_stubby": 0,
-          "stipp_stubby_db12": 0,
-          "stipp_stubby_ks18k": 0,
-          "stipp_stubby_svk86": 0,
-          "stipp_stubby_vssm": 0
+          "none": 0
         },
         "laser": {
-          "none": 0,
-          "120mw_blue": 0,
-          "5mw_green": 0,
-          "5mw_red": 0,
-          "50mw_blue": 0,
-          "50mw_green": 0,
-          "50mw_violet": 0,
-          "combo_green": 0,
-          "combo_red": 0
+          "none": 0
         },
         "light": {
-          "none": 0,
-          "flashlight": 0,
-          "range_finder": 0
+          "none": 0
         },
         "sight": {
-          "iron": 0,
-          "var_low": 0,
-          "std_optic": 0,
-          "var_high": 0
+          "iron": 0
         },
         "mag": {
           "default": 0
         },
         "ammo": {
-          "standard": 0,
-          "frangible": 0,
-          "hollow_pt": 0,
-          "long_range": 0,
-          "lightweight": 0,
-          "synthetic": 0,
-          "penetration": 0
+          "standard": 0
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0,
-          "ads_bolt": 0,
-          "mag_catch": 0,
-          "mag_flare": 0,
-          "match_trigger": 0
+          "none": 0
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": false
     },
     "z84m": {
       "metaId": "z84m",
       "unlockAtPlayerLevel": 1,
       "attachments": {
         "muzzle": {
-          "none": 0,
-          "comp_brake": 0,
-          "compensator": 0,
-          "cqb_supp": 0,
-          "dp_brake": 0,
-          "flash_comp": 0,
-          "flash_hider": 0,
-          "hybrid_supp_k": 0,
-          "hybrid_supp_l": 0,
-          "hybrid_supp_s": 0,
-          "light_supp": 0,
-          "linear_comp": 0,
-          "long_supp": 0,
-          "sp_brake": 0,
-          "std_supp": 0,
-          "tp_brake": 0
+          "none": 0
         },
         "barrel": {
           "none": 0,
-          "basic": 0,
-          "cryo": 0,
-          "extended": 0,
-          "heavy": 0,
-          "heavy_ext": 0,
-          "light": 0,
-          "short": 0
+          "basic": 0
         },
         "grip": {
-          "none": 0,
-          "6h64_vert": 0,
-          "6h64_vert_db12": 0,
-          "6h64_vert_ks18k": 0,
-          "6h64_vert_svk86": 0,
-          "6h64_vert_vssm": 0,
-          "adj_angled": 0,
-          "alloy_vert": 0,
-          "bipod": 0,
-          "bipod_sr": 0,
-          "canted_stubby": 0,
-          "classic_grip_pod": 0,
-          "classic_grip_pod_sr": 0,
-          "classic_vert": 0,
-          "classic_vert_db12": 0,
-          "classic_vert_ks18k": 0,
-          "classic_vert_svk86": 0,
-          "classic_vert_vssm": 0,
-          "fold_stubby": 0,
-          "fold_vert": 0,
-          "full_angled": 0,
-          "full_angled_sr": 0,
-          "lp_stubby": 0,
-          "lp_stubby_db12": 0,
-          "lp_stubby_ks18k": 0,
-          "lp_stubby_sr": 0,
-          "lp_stubby_svk86": 0,
-          "lp_stubby_vssm": 0,
-          "underslung_mount": 0,
-          "ptt_grip_pod": 0,
-          "qd_grip_pod": 0,
-          "qd_grip_pod_sr": 0,
-          "ribbed_stubby": 0,
-          "ribbed_vert": 0,
-          "slim_angled": 0,
-          "slim_angled_interdictor": 0,
-          "slim_angled_smg": 0,
-          "slim_angled_sr": 0,
-          "slim_handstop": 0,
-          "stipp_stubby": 0,
-          "stipp_stubby_db12": 0,
-          "stipp_stubby_ks18k": 0,
-          "stipp_stubby_svk86": 0,
-          "stipp_stubby_vssm": 0
+          "none": 0
         },
         "laser": {
-          "none": 0,
-          "120mw_blue": 0,
-          "5mw_green": 0,
-          "5mw_red": 0,
-          "50mw_blue": 0,
-          "50mw_green": 0,
-          "50mw_violet": 0,
-          "combo_green": 0,
-          "combo_red": 0
+          "none": 0
         },
         "light": {
-          "none": 0,
-          "flashlight": 0,
-          "range_finder": 0
+          "none": 0
         },
         "sight": {
-          "iron": 0,
-          "var_low": 0,
-          "std_optic": 0,
-          "var_high": 0
+          "iron": 0
         },
         "mag": {
           "default": 0
         },
         "ammo": {
-          "standard": 0,
-          "frangible": 0,
-          "hollow_pt": 0,
-          "long_range": 0,
-          "lightweight": 0,
-          "synthetic": 0,
-          "penetration": 0
+          "standard": 0
         },
         "ergo": {
-          "none": 0,
-          "buffer": 0,
-          "ads_bolt": 0,
-          "mag_catch": 0,
-          "mag_flare": 0,
-          "match_trigger": 0
+          "none": 0
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": false
     },
     "rspr": {
       "metaId": "rspr",
@@ -6880,21 +6675,22 @@
           "buffer": 39
         }
       },
-      "challengeAttachments": {}
+      "challengeAttachments": {},
+      "attachmentLevelsKnown": true
     }
   },
   "unmappedSample": [
     [
       "scope:GRIM 1.50X:therm_1_5",
-      60
+      57
     ],
     [
       "scope:PAS-35 3.00X:therm_3",
-      60
+      57
     ],
     [
       "scope:TS-HD 6.00X:therm_6",
-      18
+      15
     ],
     [
       "barrel:",

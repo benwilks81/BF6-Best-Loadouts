@@ -771,19 +771,32 @@
     if (!note) return;
 
     const unlockAt = weaponUnlockLevel(weapon.id);
-    if (unlockAt == null) {
+    const levelsNote =
+      !attachmentLevelsKnown(weapon.id) && state.masteryLevel < attachmentUnlockCap()
+        ? 'Attachment unlock levels for this gun are not published yet, so its builds use every attachment whatever your gun level.'
+        : '';
+    if (unlockAt == null && !levelsNote) {
       note.hidden = true;
       note.textContent = '';
       note.classList.remove('is-locked');
       return;
     }
 
-    const locked = !isWeaponUnlocked(weapon.id);
+    const locked = unlockAt != null && !isWeaponUnlocked(weapon.id);
+    const weaponNote =
+      unlockAt == null
+        ? ''
+        : locked
+          ? `Weapon locked — needs player level ${unlockAt} (you are ${state.playerLevel})`
+          : `Weapon unlocks at player level ${unlockAt}`;
     note.hidden = false;
     note.classList.toggle('is-locked', locked);
-    note.textContent = locked
-      ? `Weapon locked — needs player level ${unlockAt} (you are ${state.playerLevel})`
-      : `Weapon unlocks at player level ${unlockAt}`;
+    note.textContent = [weaponNote, levelsNote].filter(Boolean).join('. ');
+  }
+
+  function attachmentLevelsKnown(weaponId) {
+    const entry = state.unlocks?.weapons?.[weaponId];
+    return Boolean(entry) && entry.attachmentLevelsKnown !== false;
   }
 
   function metersToDeg(meters, rangeMeters) {
