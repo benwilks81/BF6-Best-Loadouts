@@ -28,6 +28,7 @@ API_BASE = f"https://{ALLOWED_HOST}/api"
 UA = "bf6-best-loadouts-unlocks/1.0"
 MAX_JSON_BYTES = 8 * 1024 * 1024
 REQUEST_PAUSE_S = 0.05
+MAX_UNMAPPED_WEAPONS = 3
 
 SAFE_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
@@ -560,8 +561,12 @@ def build_unlocks() -> dict:
             "challengeAttachments": challenge,
         }
 
-    if missing:
+    # A brand-new gun can appear upstream before battlefieldmeta lists it; the site treats a gun
+    # without an unlock entry as unlocked. Many misses at once means the mapping itself broke.
+    if len(missing) > MAX_UNMAPPED_WEAPONS:
         raise ValueError(f"could not map weapons to meta IDs: {', '.join(missing)}")
+    if missing:
+        print(f"warning: no unlock data yet for: {', '.join(missing)}", file=sys.stderr)
 
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     payload = {

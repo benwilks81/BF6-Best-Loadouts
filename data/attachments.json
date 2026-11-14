@@ -65,7 +65,21 @@
         "z84m": 0.6666667,
         "rspr": 0.6666667
       },
-      "magnification": 1.5
+      "magnification": 1.5,
+      "weaponOverrides": {
+        "m16a4": {
+          "name": "Carry Handle Irons"
+        },
+        "m4a1": {
+          "name": "Flip-Up Irons"
+        },
+        "pw7a2": {
+          "name": "Aperture Sight"
+        },
+        "umg40": {
+          "name": "Aperture Sight"
+        }
+      }
     },
     {
       "id": "std_optic",
@@ -192,7 +206,7 @@
       "category": "therm_hyb",
       "pts": 35,
       "magnification": 1.0,
-      "noEffect": true
+      "adsMoveSpeedTierShift": 1
     },
     {
       "id": "2pro_1_25x",
@@ -400,7 +414,7 @@
     },
     {
       "id": "st_prism_5_00x",
-      "name": "ST Prism 5.00x",
+      "name": "ST Prisim 5.00x",
       "category": "std_optic",
       "pts": 10,
       "magnification": 5.0,
@@ -453,6 +467,45 @@
       "pts": 10,
       "magnification": 10.0,
       "noEffect": true
+    },
+    {
+      "id": "pa_sl_2_50x",
+      "name": "PA-SL 2.50x",
+      "category": "std_optic",
+      "pts": 10,
+      "magnification": 2.5,
+      "noEffect": true
+    },
+    {
+      "id": "carry_handle_irons",
+      "name": "Carry Handle Irons",
+      "category": "iron",
+      "pts": 5,
+      "magnification": 1.5,
+      "weaponSwayMultByWeapon": {
+        "m4a1": 0.6666667
+      }
+    },
+    {
+      "id": "cqb_sights",
+      "name": "CQB Sights",
+      "category": "iron",
+      "pts": 5,
+      "magnification": 1.5,
+      "weaponSwayMultByWeapon": {
+        "pw7a2": 0.6666667,
+        "umg40": 0.6666667
+      }
+    },
+    {
+      "id": "flip_up_irons",
+      "name": "Flip-Up Irons",
+      "category": "iron",
+      "pts": 5,
+      "magnification": 1.5,
+      "weaponSwayMultByWeapon": {
+        "m16a4": 0.6666667
+      }
     }
   ],
   "MUZZLES": [
@@ -511,10 +564,6 @@
         "vz61": {
           "pts": 10,
           "weaponSwayMult": 1
-        },
-        "rspr": {
-          "adsRecoilTierMod": 7,
-          "hipRecoilTierMod": 7
         }
       }
     },
@@ -577,6 +626,9 @@
       "worldSpotMult": 1,
       "minimapSpotMult": 1,
       "weaponOverrides": {
+        "ks18k": {
+          "name": "Multi-Port Brake"
+        },
         "sv98": {
           "adsRecoilTierMod": 6,
           "hipRecoilTierMod": 6
@@ -700,11 +752,6 @@
       "adsRecoilTierMod": 0,
       "adsSpreadDecayBoost": 0,
       "hipSpreadTierMod": 1,
-      "weaponOverrides": {
-        "l115": {
-          "hipSpreadTierMod": 0
-        }
-      },
       "pts": 20,
       "worldSpotMult": 0,
       "minimapSpotMult": 0.14
@@ -796,12 +843,6 @@
           "recoilDecreaseTimeExponentAdd": -0.5
         },
         "psr": {
-          "recoilDurationOverride": 0.066667,
-          "adsRecoilDecayMult": 1.728,
-          "hipRecoilDecayMult": 1.728,
-          "recoilDecreaseTimeExponentAdd": -0.5
-        },
-        "sv98": {
           "recoilDurationOverride": 0.066667,
           "adsRecoilDecayMult": 1.728,
           "hipRecoilDecayMult": 1.728,
@@ -925,7 +966,7 @@
         "elr40": 1,
         "es57": 1,
         "ggh22": 1,
-        "grtbc": 1,
+        "grtbc": 0,
         "grtcps": 1,
         "interdictor": 1,
         "kord6p67": 1,
@@ -948,6 +989,7 @@
         "m87a1": 1,
         "miniscout": 1,
         "mk24": 1,
+        "nsw4": 1,
         "nvo228e": 1,
         "p18": 1,
         "pp19": 1,
@@ -972,6 +1014,9 @@
         "usg90": 1,
         "vcr2": 1,
         "vz61": 1
+      },
+      "hipSpreadTierModByWeapon": {
+        "grtbc": -1
       }
     },
     {
@@ -1034,7 +1079,7 @@
         "drsiar": 0,
         "ef88": 0,
         "elr40": 0,
-        "grtbc": 0,
+        "grtbc": -1,
         "grtcps": 0,
         "interdictor": 0,
         "ks18k": 0,
@@ -1054,6 +1099,7 @@
         "m87a1": 0,
         "miniscout": 0,
         "mk24": 0,
+        "nsw4": 0,
         "nvo228e": 0,
         "pp19": 0,
         "psr": 0,
@@ -1073,6 +1119,12 @@
         "tr7": 0,
         "umg40": 0,
         "vcr2": 0
+      },
+      "adsRecoilTierModByWeapon": {
+        "grtbc": 1
+      },
+      "hipRecoilTierModByWeapon": {
+        "grtbc": 1
       }
     },
     {
@@ -1102,6 +1154,7 @@
         "m250": 0,
         "m277": 0,
         "m60": 0,
+        "nsw4": 0,
         "pw7a2": 0,
         "rpk74m": 0,
         "rpkm": 0,
@@ -1166,7 +1219,7 @@
         "elr40": 1,
         "es57": 1,
         "ggh22": 1,
-        "grtbc": 1,
+        "grtbc": 0,
         "grtcps": 1,
         "interdictor": 1,
         "kord6p67": 1,
@@ -1185,6 +1238,7 @@
         "m60": 1,
         "miniscout": 1,
         "mk24": 1,
+        "nsw4": 1,
         "nvo228e": 1,
         "p18": 1,
         "pp19": 1,
@@ -1201,6 +1255,9 @@
         "usg90": 1,
         "vcr2": 1,
         "z84m": 1
+      },
+      "hipSpreadTierModByWeapon": {
+        "grtbc": -1
       }
     },
     {
@@ -1224,6 +1281,7 @@
         "m16a4": 1,
         "m277": 1,
         "m417a2": 1,
+        "nsw4": 1,
         "nvo228e": 1,
         "pp19": 1,
         "pw5a3": 1,
@@ -1432,6 +1490,12 @@
           "deployTimeTierShift": 0
         },
         "vz61": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "db12": {
           "adsTimeTierMod": 0,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -1675,6 +1739,12 @@
           "deployTimeTierShift": -1
         },
         "z84m": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "deployTimeTierShift": -1
+        },
+        "nsw4": {
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -2001,6 +2071,12 @@
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -2319,6 +2395,12 @@
           "deployTimeTierShift": 0
         },
         "z84m": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nsw4": {
           "adsTimeTierMod": 0,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -2645,6 +2727,12 @@
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -2949,6 +3037,12 @@
           "adsMoveSpeedTierShift": 1,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 1,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -3249,6 +3343,12 @@
           "deployTimeTierShift": 0
         },
         "z84m": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 1,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nsw4": {
           "adsTimeTierMod": 0,
           "adsMoveSpeedTierShift": 1,
           "sprintRecoveryTierShift": 0,
@@ -3581,6 +3681,12 @@
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -3905,6 +4011,12 @@
           "deployTimeTierShift": 0
         },
         "z84m": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nsw4": {
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -4237,6 +4349,12 @@
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -4547,6 +4665,12 @@
           "adsMoveSpeedTierShift": 1,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 1,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -4851,6 +4975,12 @@
           "adsMoveSpeedTierShift": 1,
           "sprintRecoveryTierShift": 0,
           "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 1,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
         }
       }
     },
@@ -5005,6 +5135,12 @@
         "z84m": {
           "hipRecoilTierMod": 2,
           "adsRecoilTierMod": 2,
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "deployTimeTierShift": -1
+        },
+        "nsw4": {
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -5238,6 +5374,12 @@
           "deployTimeTierShift": -1
         },
         "z84m": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "deployTimeTierShift": -1
+        },
+        "nsw4": {
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -5554,6 +5696,12 @@
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
           "deployTimeTierShift": -1
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "deployTimeTierShift": -1
         }
       }
     },
@@ -5844,14 +5992,12 @@
       "pts": 15,
       "frostyModifiers": {
         "elr40": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
           "deployTimeTierShift": -1
         },
         "l115": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -5864,21 +6010,18 @@
           "deployTimeTierShift": -1
         },
         "miniscout": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
           "deployTimeTierShift": -1
         },
         "psr": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
           "deployTimeTierShift": -1
         },
         "sv98": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -5942,7 +6085,7 @@
       "name": "Underslung Mount",
       "adsRecoilTierMod": 0,
       "movingAdsSpreadTierMod": 0,
-      "pts": 10,
+      "pts": 5,
       "utilities": {
         "Gadget Draw Speed": "Yes"
       },
@@ -5996,6 +6139,12 @@
           "deployTimeTierShift": 0
         },
         "sor556": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nsw4": {
           "adsTimeTierMod": 0,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -6472,6 +6621,16 @@
             "recoilTierMod": 8,
             "hipSpreadTierMod": -2
           }
+        },
+        "nsw4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0,
+          "deployed": {
+            "recoilTierMod": 8,
+            "hipSpreadTierMod": -2
+          }
         }
       },
       "deployed": {
@@ -6745,6 +6904,18 @@
             "recoilTierMod": 8,
             "hipSpreadTierMod": -2
           }
+        },
+        "nsw4": {
+          "hipRecoilTierMod": 3,
+          "adsRecoilTierMod": 3,
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0,
+          "deployed": {
+            "recoilTierMod": 8,
+            "hipSpreadTierMod": -2
+          }
         }
       },
       "deployed": {
@@ -7004,6 +7175,16 @@
             "recoilTierMod": 8,
             "hipSpreadTierMod": -2
           }
+        },
+        "nsw4": {
+          "adsTimeTierMod": 1,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0,
+          "deployed": {
+            "recoilTierMod": 8,
+            "hipSpreadTierMod": -2
+          }
         }
       },
       "deployed": {
@@ -7111,7 +7292,6 @@
           "deployTimeTierShift": 0
         },
         "l115": {
-          "movingAdsSpreadTierMod": 0,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -7244,7 +7424,6 @@
       "pts": 15,
       "frostyModifiers": {
         "interdictor": {
-          "movingAdsSpreadTierMod": -1,
           "adsTimeTierMod": 1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
@@ -7562,6 +7741,334 @@
           "deployTimeTierShift": 0
         }
       }
+    },
+    {
+      "id": "rubberized_vert",
+      "name": "Rubberized Vertical",
+      "adsRecoilTierMod": 3,
+      "movingAdsSpreadTierMod": 0,
+      "pts": 30,
+      "hipRecoilTierMod": 3,
+      "frostyModifiers": {
+        "m433": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "b36a4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "sor556": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "ak4d": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "tr7": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "kord6p67": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nvo228e": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "l85a3": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "vcr2": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m16a4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m4a1": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m277": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "ak205": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m417a2": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "grtbc": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "qbz192": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "sg553r": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "sor300sc": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "sgx": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "pw5a3": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "pw7a2": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "umg40": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "kv9": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "scw10": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "sl9": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "cz3a1": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "pp19": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "l110": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "drsiar": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m60": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "rpkm": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m123k": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m250": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "kts100": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m240l": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m121a2": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "rpk74m": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m39emr": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "lmr27": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "svk86": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "svdm": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "grtcps": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m87a1": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "m1014": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "ks18k": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "db12": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "brod3": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "ef88": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "vssm": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "mk24": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "z84m": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "rspr": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        },
+        "nsw4": {
+          "adsTimeTierMod": 0,
+          "adsMoveSpeedTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "deployTimeTierShift": 0
+        }
+      }
     }
   ],
   "LASERS": [
@@ -7840,6 +8347,10 @@
         "z84m": {
           "hipSpreadTierMod": -1,
           "movingAdsSpreadTierMod": 0
+        },
+        "nsw4": {
+          "hipSpreadTierMod": -1,
+          "movingAdsSpreadTierMod": 0
         }
       }
     },
@@ -8112,6 +8623,10 @@
         "z84m": {
           "hipSpreadTierMod": -2,
           "movingAdsSpreadTierMod": 0
+        },
+        "nsw4": {
+          "hipSpreadTierMod": -2,
+          "movingAdsSpreadTierMod": 0
         }
       }
     },
@@ -8358,6 +8873,10 @@
           "movingAdsSpreadTierMod": 1
         },
         "z84m": {
+          "hipSpreadTierMod": 0,
+          "movingAdsSpreadTierMod": 1
+        },
+        "nsw4": {
           "hipSpreadTierMod": 0,
           "movingAdsSpreadTierMod": 1
         }
@@ -8632,6 +9151,10 @@
         "z84m": {
           "hipSpreadTierMod": -3,
           "movingAdsSpreadTierMod": 0
+        },
+        "nsw4": {
+          "hipSpreadTierMod": -3,
+          "movingAdsSpreadTierMod": 0
         }
       }
     },
@@ -8878,6 +9401,10 @@
           "movingAdsSpreadTierMod": 1
         },
         "z84m": {
+          "hipSpreadTierMod": -2,
+          "movingAdsSpreadTierMod": 1
+        },
+        "nsw4": {
           "hipSpreadTierMod": -2,
           "movingAdsSpreadTierMod": 1
         }
@@ -9128,6 +9655,10 @@
         "z84m": {
           "hipSpreadTierMod": -3,
           "movingAdsSpreadTierMod": 1
+        },
+        "nsw4": {
+          "hipSpreadTierMod": -3,
+          "movingAdsSpreadTierMod": 1
         }
       }
     },
@@ -9269,7 +9800,7 @@
     },
     {
       "id": "hip_taclight",
-      "name": "Taclight - Hipfire",
+      "name": "Taclight - Hip",
       "pts": 15,
       "utilities": {
         "Flashlight": "Yes (Hipfire)"
@@ -9308,7 +9839,8 @@
       "pts": 10,
       "utilities": {
         "Reload in ADS": "Yes"
-      }
+      },
+      "reloadSpeedMult": 1.063
     },
     {
       "id": "mag_catch",
@@ -9325,6 +9857,15 @@
         "hipRecoilTierMod": 3,
         "recoilDecreaseFactorMult": 1.728,
         "spreadIncMult": 0
+      },
+      "weaponOverrides": {
+        "m44": {
+          "pts": 10,
+          "semiAuto": null,
+          "adsRecoilDecayMult": 1.2,
+          "hipRecoilDecayMult": 1.2,
+          "recoilDurationOverride": 0.05
+        }
       }
     },
     {
@@ -9361,8 +9902,7 @@
       "id": "fast_deploy_10",
       "name": "Gunslinger",
       "pts": 10,
-      "sprintRecoveryTierShift": -2,
-      "deployTimeTierShift": -2
+      "hipSpreadTierMod": -1
     },
     {
       "id": "burst_training",
@@ -9496,6 +10036,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -9614,6 +10155,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -9696,6 +10241,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -9757,6 +10306,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -9799,6 +10349,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -9917,6 +10468,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -9996,6 +10551,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -10060,6 +10619,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -10102,6 +10662,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "underslung_mount",
         "fold_stubby",
         "ribbed_stubby",
@@ -10220,6 +10781,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -10299,6 +10864,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -10363,6 +10932,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -10404,6 +10974,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "stipp_stubby",
@@ -10521,6 +11092,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -10603,6 +11178,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -10664,6 +11243,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -10704,6 +11284,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "fold_stubby",
         "ribbed_stubby",
         "classic_vert",
@@ -10817,6 +11398,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -10899,6 +11484,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -10960,6 +11549,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -10996,6 +11586,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "fold_stubby",
         "ribbed_stubby",
         "classic_vert",
@@ -11109,6 +11700,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11191,6 +11786,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11252,6 +11851,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -11293,6 +11893,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -11408,6 +12009,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11490,6 +12095,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11551,6 +12160,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -11594,6 +12204,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -11712,6 +12323,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11794,6 +12409,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -11855,6 +12474,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -11902,6 +12522,7 @@
         "canted_stubby",
         "full_angled",
         "6h64_vert",
+        "rubberized_vert",
         "stipp_stubby",
         "classic_vert",
         "lp_stubby",
@@ -12011,6 +12632,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12090,6 +12715,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -12154,6 +12783,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -12197,6 +12827,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -12291,6 +12922,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12369,6 +13004,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12404,6 +13043,7 @@
       ],
       "sight": [
         "iron",
+        "flip_up_irons",
         "dvo_lpvo",
         "mc_co_lpvo",
         "mini_flex_1_00x",
@@ -12426,6 +13066,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -12466,6 +13107,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -12584,6 +13226,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12666,6 +13312,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12705,6 +13355,8 @@
       ],
       "sight": [
         "iron",
+        "carry_handle_irons",
+        "dvo_lpvo",
         "mini_flex_1_00x",
         "ngfc_lpvo",
         "osa_7_1_00x",
@@ -12725,6 +13377,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -12767,6 +13420,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -12885,6 +13539,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -12967,6 +13625,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -13027,6 +13689,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -13062,6 +13725,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -13174,6 +13838,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -13253,6 +13921,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -13327,6 +13999,10 @@
             {
               "slot": "mag",
               "attachment": "50_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "60_rnd"
             }
           ]
         },
@@ -13365,6 +14041,10 @@
             {
               "slot": "mag",
               "attachment": "50_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "60_rnd"
             }
           ]
         },
@@ -13437,12 +14117,17 @@
             {
               "slot": "mag",
               "attachment": "50_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "60_rnd"
             }
           ]
         }
       ],
       "sight": [
         "iron",
+        "dvo_lpvo",
         "mars_f_lpvo",
         "mini_flex_1_00x",
         "osa_7_1_00x",
@@ -13463,6 +14148,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -13502,6 +14188,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "underslung_mount",
         "fold_stubby",
@@ -13620,6 +14307,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -13702,6 +14393,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -13741,6 +14436,7 @@
       ],
       "sight": [
         "iron",
+        "dvo_lpvo",
         "mini_flex_1_00x",
         "ngfc_lpvo",
         "osa_7_1_00x",
@@ -13761,6 +14457,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -13801,6 +14498,7 @@
         "alloy_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "cmpct_handstop",
         "ribbed_stubby",
         "canted_stubby",
@@ -13908,6 +14606,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -13990,6 +14692,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -14029,6 +14735,7 @@
       ],
       "sight": [
         "iron",
+        "dvo_lpvo",
         "mars_f_lpvo",
         "mini_flex_1_00x",
         "osa_7_1_00x",
@@ -14049,6 +14756,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -14081,6 +14789,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "adj_angled",
         "slim_angled",
         "ribbed_stubby",
@@ -14195,295 +14904,7 @@
             },
             {
               "slot": "sight",
-              "attachment": "baker_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pas_35_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "qmk_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "mgo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sdo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pvq_31_4_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "lds_4_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sf_g2_5_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "st_prism_5_00x"
-            }
-          ]
-        },
-        {
-          "slot": "accessory",
-          "attachment": "secondary_optic",
-          "requiresAny": [
-            {
-              "slot": "sight",
-              "attachment": "osa_7_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "2pro_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "1p87_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "grim_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "su_123_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "3vzr_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_m_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cco_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r4t_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "bf_2m_2_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "baker_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pas_35_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "qmk_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "mgo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sdo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pvq_31_4_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "lds_4_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sf_g2_5_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "st_prism_5_00x"
-            }
-          ]
-        }
-      ],
-      "sight": [
-        "iron",
-        "mars_f_lpvo",
-        "mini_flex_1_00x",
-        "osa_7_1_00x",
-        "r_mr_1_00x",
-        "su_230_lpvo",
-        "th_rds_1_00x",
-        "2pro_1_25x",
-        "cq_rds_1_25x",
-        "ro_s_1_25x",
-        "1p86_lpvo",
-        "1p87_1_50x",
-        "grim_1_50x",
-        "rox_1_50x",
-        "su_123_1_50x",
-        "3vzr_1_75x",
-        "a_p2_1_75x",
-        "ro_m_1_75x",
-        "cco_2_00x",
-        "r4t_2_00x",
-        "bf_2m_2_50x",
-        "baker_3_00x",
-        "pas_35_3_00x",
-        "qmk_3_00x",
-        "mgo_3_50x",
-        "sdo_3_50x",
-        "pvq_31_4_00x",
-        "lds_4_50x",
-        "sf_g2_5_00x",
-        "st_prism_5_00x"
-      ]
-    },
-    "sg553r": {
-      "muzzle": [
-        "flash_hider",
-        "flash_comp",
-        "linear_comp",
-        "dp_brake",
-        "comp_brake",
-        "sp_brake",
-        "std_supp",
-        "long_supp",
-        "cqb_supp",
-        "light_supp",
-        "compensator",
-        "hybrid_supp_l",
-        "hybrid_supp_k",
-        "hybrid_supp_s"
-      ],
-      "barrel": [
-        "basic",
-        "extended",
-        "light"
-      ],
-      "barrelDef": "basic",
-      "grip": [
-        "fold_vert",
-        "alloy_vert",
-        "ribbed_vert",
-        "fold_stubby",
-        "6h64_vert",
-        "slim_angled",
-        "ribbed_stubby",
-        "canted_stubby",
-        "full_angled",
-        "slim_handstop",
-        "classic_vert",
-        "stipp_stubby",
-        "lp_stubby",
-        "actuated_module"
-      ],
-      "laser": [
-        "50mw_violet",
-        "5mw_red",
-        "5mw_green",
-        "50mw_green",
-        "50mw_blue",
-        "120mw_blue"
-      ],
-      "light": [
-        "ads_taclight",
-        "hip_taclight",
-        "flashlight"
-      ],
-      "slots": {
-        "grip": {
-          "accepts": [
-            "grip"
-          ]
-        },
-        "laser": {
-          "accepts": [
-            "laser"
-          ]
-        },
-        "light": {
-          "accepts": [
-            "light"
-          ]
-        }
-      },
-      "dependencies": [
-        {
-          "slot": "accessory",
-          "attachment": "canted_irons",
-          "requiresAny": [
-            {
-              "slot": "sight",
-              "attachment": "mini_flex_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "osa_7_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r_mr_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "2pro_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cq_rds_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_s_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "1p87_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "grim_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "rox_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "su_123_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "3vzr_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "a_p2_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_m_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cco_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r4t_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "bf_2m_2_50x"
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -14569,299 +14990,7 @@
             },
             {
               "slot": "sight",
-              "attachment": "baker_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pas_35_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "qmk_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "mgo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sdo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pvq_31_4_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "lds_4_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sf_g2_5_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "st_prism_5_00x"
-            }
-          ]
-        }
-      ],
-      "sight": [
-        "iron",
-        "mars_f_lpvo",
-        "mini_flex_1_00x",
-        "osa_7_1_00x",
-        "r_mr_1_00x",
-        "su_230_lpvo",
-        "th_rds_1_00x",
-        "2pro_1_25x",
-        "cq_rds_1_25x",
-        "ro_s_1_25x",
-        "1p86_lpvo",
-        "1p87_1_50x",
-        "grim_1_50x",
-        "rox_1_50x",
-        "su_123_1_50x",
-        "3vzr_1_75x",
-        "a_p2_1_75x",
-        "ro_m_1_75x",
-        "cco_2_00x",
-        "r4t_2_00x",
-        "bf_2m_2_50x",
-        "baker_3_00x",
-        "pas_35_3_00x",
-        "qmk_3_00x",
-        "mgo_3_50x",
-        "sdo_3_50x",
-        "pvq_31_4_00x",
-        "lds_4_50x",
-        "sf_g2_5_00x",
-        "st_prism_5_00x"
-      ]
-    },
-    "sor300sc": {
-      "muzzle": [
-        "flash_hider",
-        "flash_comp",
-        "sp_brake",
-        "linear_comp",
-        "dp_brake",
-        "comp_brake",
-        "std_supp",
-        "long_supp",
-        "cqb_supp",
-        "light_supp",
-        "compensator",
-        "hybrid_supp_l",
-        "hybrid_supp_k",
-        "hybrid_supp_s"
-      ],
-      "barrel": [
-        "basic",
-        "extended",
-        "short",
-        "light",
-        "cryo"
-      ],
-      "barrelDef": "basic",
-      "grip": [
-        "fold_vert",
-        "cmpct_handstop",
-        "alloy_vert",
-        "ribbed_vert",
-        "fold_stubby",
-        "adj_angled",
-        "6h64_vert",
-        "slim_angled",
-        "full_angled",
-        "slim_handstop",
-        "ribbed_stubby",
-        "canted_stubby",
-        "classic_vert",
-        "stipp_stubby",
-        "lp_stubby",
-        "actuated_module"
-      ],
-      "laser": [
-        "50mw_violet",
-        "5mw_red",
-        "5mw_green",
-        "50mw_green",
-        "50mw_blue",
-        "120mw_blue"
-      ],
-      "light": [
-        "ads_taclight",
-        "hip_taclight",
-        "flashlight"
-      ],
-      "slots": {
-        "grip": {
-          "accepts": [
-            "grip"
-          ]
-        },
-        "laser": {
-          "accepts": [
-            "laser"
-          ]
-        },
-        "light": {
-          "accepts": [
-            "light"
-          ]
-        }
-      },
-      "dependencies": [
-        {
-          "slot": "accessory",
-          "attachment": "canted_irons",
-          "requiresAny": [
-            {
-              "slot": "sight",
-              "attachment": "mini_flex_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "osa_7_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r_mr_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "2pro_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cq_rds_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_s_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "1p87_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "grim_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "rox_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "su_123_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "3vzr_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "a_p2_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_m_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cco_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r4t_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "bf_2m_2_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "baker_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pas_35_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "qmk_3_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "mgo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sdo_3_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "pvq_31_4_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "lds_4_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "sf_g2_5_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "st_prism_5_00x"
-            }
-          ]
-        },
-        {
-          "slot": "accessory",
-          "attachment": "secondary_optic",
-          "requiresAny": [
-            {
-              "slot": "sight",
-              "attachment": "osa_7_1_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "2pro_1_25x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "1p87_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "grim_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "su_123_1_50x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "3vzr_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "ro_m_1_75x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "cco_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "r4t_2_00x"
-            },
-            {
-              "slot": "sight",
-              "attachment": "bf_2m_2_50x"
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -14906,7 +15035,615 @@
         "iron",
         "dvo_lpvo",
         "mars_f_lpvo",
-        "mc_co_lpvo",
+        "mini_flex_1_00x",
+        "osa_7_1_00x",
+        "r_mr_1_00x",
+        "su_230_lpvo",
+        "th_rds_1_00x",
+        "2pro_1_25x",
+        "cq_rds_1_25x",
+        "ro_s_1_25x",
+        "1p86_lpvo",
+        "1p87_1_50x",
+        "grim_1_50x",
+        "rox_1_50x",
+        "su_123_1_50x",
+        "3vzr_1_75x",
+        "a_p2_1_75x",
+        "ro_m_1_75x",
+        "cco_2_00x",
+        "r4t_2_00x",
+        "bf_2m_2_50x",
+        "pa_sl_2_50x",
+        "baker_3_00x",
+        "pas_35_3_00x",
+        "qmk_3_00x",
+        "mgo_3_50x",
+        "sdo_3_50x",
+        "pvq_31_4_00x",
+        "lds_4_50x",
+        "sf_g2_5_00x",
+        "st_prism_5_00x"
+      ]
+    },
+    "sg553r": {
+      "muzzle": [
+        "flash_hider",
+        "flash_comp",
+        "linear_comp",
+        "dp_brake",
+        "comp_brake",
+        "sp_brake",
+        "std_supp",
+        "long_supp",
+        "cqb_supp",
+        "light_supp",
+        "compensator",
+        "hybrid_supp_l",
+        "hybrid_supp_k",
+        "hybrid_supp_s"
+      ],
+      "barrel": [
+        "basic",
+        "extended",
+        "light"
+      ],
+      "barrelDef": "basic",
+      "grip": [
+        "fold_vert",
+        "alloy_vert",
+        "ribbed_vert",
+        "fold_stubby",
+        "6h64_vert",
+        "rubberized_vert",
+        "slim_angled",
+        "ribbed_stubby",
+        "canted_stubby",
+        "full_angled",
+        "slim_handstop",
+        "classic_vert",
+        "stipp_stubby",
+        "lp_stubby",
+        "actuated_module"
+      ],
+      "laser": [
+        "50mw_violet",
+        "5mw_red",
+        "5mw_green",
+        "50mw_green",
+        "50mw_blue",
+        "120mw_blue"
+      ],
+      "light": [
+        "ads_taclight",
+        "hip_taclight",
+        "flashlight"
+      ],
+      "slots": {
+        "grip": {
+          "accepts": [
+            "grip"
+          ]
+        },
+        "laser": {
+          "accepts": [
+            "laser"
+          ]
+        },
+        "light": {
+          "accepts": [
+            "light"
+          ]
+        }
+      },
+      "dependencies": [
+        {
+          "slot": "accessory",
+          "attachment": "canted_irons",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "mini_flex_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r_mr_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cq_rds_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_s_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "rox_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "a_p2_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        },
+        {
+          "slot": "accessory",
+          "attachment": "secondary_optic",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        }
+      ],
+      "sight": [
+        "iron",
+        "dvo_lpvo",
+        "mars_f_lpvo",
+        "mini_flex_1_00x",
+        "osa_7_1_00x",
+        "r_mr_1_00x",
+        "su_230_lpvo",
+        "th_rds_1_00x",
+        "2pro_1_25x",
+        "cq_rds_1_25x",
+        "ro_s_1_25x",
+        "1p86_lpvo",
+        "1p87_1_50x",
+        "grim_1_50x",
+        "rox_1_50x",
+        "su_123_1_50x",
+        "3vzr_1_75x",
+        "a_p2_1_75x",
+        "ro_m_1_75x",
+        "cco_2_00x",
+        "r4t_2_00x",
+        "bf_2m_2_50x",
+        "pa_sl_2_50x",
+        "baker_3_00x",
+        "pas_35_3_00x",
+        "qmk_3_00x",
+        "mgo_3_50x",
+        "sdo_3_50x",
+        "pvq_31_4_00x",
+        "lds_4_50x",
+        "sf_g2_5_00x",
+        "st_prism_5_00x"
+      ]
+    },
+    "sor300sc": {
+      "muzzle": [
+        "flash_hider",
+        "flash_comp",
+        "sp_brake",
+        "linear_comp",
+        "dp_brake",
+        "comp_brake",
+        "std_supp",
+        "long_supp",
+        "cqb_supp",
+        "light_supp",
+        "compensator",
+        "hybrid_supp_l",
+        "hybrid_supp_k",
+        "hybrid_supp_s"
+      ],
+      "barrel": [
+        "basic",
+        "extended",
+        "short",
+        "light",
+        "cryo"
+      ],
+      "barrelDef": "basic",
+      "grip": [
+        "fold_vert",
+        "cmpct_handstop",
+        "alloy_vert",
+        "ribbed_vert",
+        "fold_stubby",
+        "adj_angled",
+        "6h64_vert",
+        "rubberized_vert",
+        "slim_angled",
+        "full_angled",
+        "slim_handstop",
+        "ribbed_stubby",
+        "canted_stubby",
+        "classic_vert",
+        "stipp_stubby",
+        "lp_stubby",
+        "actuated_module"
+      ],
+      "laser": [
+        "50mw_violet",
+        "5mw_red",
+        "5mw_green",
+        "50mw_green",
+        "50mw_blue",
+        "120mw_blue"
+      ],
+      "light": [
+        "ads_taclight",
+        "hip_taclight",
+        "flashlight"
+      ],
+      "slots": {
+        "grip": {
+          "accepts": [
+            "grip"
+          ]
+        },
+        "laser": {
+          "accepts": [
+            "laser"
+          ]
+        },
+        "light": {
+          "accepts": [
+            "light"
+          ]
+        }
+      },
+      "dependencies": [
+        {
+          "slot": "accessory",
+          "attachment": "canted_irons",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "mini_flex_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r_mr_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cq_rds_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_s_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "rox_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "a_p2_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        },
+        {
+          "slot": "accessory",
+          "attachment": "secondary_optic",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        }
+      ],
+      "sight": [
+        "iron",
+        "dvo_lpvo",
         "mini_flex_1_00x",
         "ngfc_lpvo",
         "osa_7_1_00x",
@@ -14927,6 +15664,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -14964,6 +15702,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "fold_stubby",
         "classic_vert",
         "lp_stubby",
@@ -15211,6 +15950,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -15246,6 +15986,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -15352,6 +16093,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -15430,6 +16175,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -15489,6 +16238,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -15527,6 +16277,7 @@
         "fold_stubby",
         "slim_angled_smg",
         "6h64_vert",
+        "rubberized_vert",
         "ribbed_stubby",
         "canted_stubby",
         "classic_vert",
@@ -15634,6 +16385,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -15716,6 +16471,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -15755,6 +16514,7 @@
       ],
       "sight": [
         "iron",
+        "cqb_sights",
         "mars_f_lpvo",
         "mini_flex_1_00x",
         "osa_7_1_00x",
@@ -15775,6 +16535,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -15816,6 +16577,7 @@
         "fold_stubby",
         "slim_angled_smg",
         "6h64_vert",
+        "rubberized_vert",
         "ribbed_stubby",
         "canted_stubby",
         "classic_vert",
@@ -15997,6 +16759,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16032,6 +16798,7 @@
       ],
       "sight": [
         "iron",
+        "cqb_sights",
         "mars_f_lpvo",
         "mini_flex_1_00x",
         "osa_7_1_00x",
@@ -16052,6 +16819,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -16190,6 +16958,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16272,6 +17044,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16331,6 +17107,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -16366,6 +17143,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "fold_stubby",
         "lp_stubby",
         "ribbed_stubby",
@@ -16477,6 +17255,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16559,6 +17341,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16618,6 +17404,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -16654,6 +17441,7 @@
         "ribbed_vert",
         "lp_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "alloy_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -16763,6 +17551,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16845,6 +17637,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -16904,6 +17700,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -16949,6 +17746,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert"
       ],
       "laser": [
@@ -17050,6 +17848,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -17132,6 +17934,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -17191,6 +17997,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -17231,6 +18038,7 @@
         "ribbed_vert",
         "canted_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "stipp_stubby",
         "classic_vert",
         "lp_stubby"
@@ -17336,6 +18144,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -17418,6 +18230,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -17477,6 +18293,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -17509,6 +18326,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -17698,6 +18516,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -17959,6 +18781,28 @@
         },
         {
           "slot": "grip",
+          "attachment": "rubberized_vert",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "20_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "30_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "30_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "35_rnd"
+            }
+          ]
+        },
+        {
+          "slot": "grip",
           "attachment": "slim_angled_smg",
           "requiresAny": [
             {
@@ -18024,6 +18868,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -18064,6 +18909,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "slim_angled",
         "ribbed_stubby",
         "canted_stubby",
@@ -18179,6 +19025,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18261,6 +19111,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18322,6 +19176,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -18365,6 +19220,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "adj_angled",
         "slim_angled",
         "ribbed_stubby",
@@ -18481,6 +19337,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18563,6 +19423,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18624,6 +19488,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -18664,6 +19529,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "adj_angled",
         "slim_angled",
         "ribbed_stubby",
@@ -18780,6 +19646,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18862,6 +19732,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -18923,6 +19797,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -18964,6 +19839,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "adj_angled",
         "slim_angled",
         "ribbed_stubby",
@@ -19081,6 +19957,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -19160,6 +20040,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -19318,6 +20202,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -19357,6 +20242,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "ribbed_stubby",
         "canted_stubby",
         "full_angled",
@@ -19472,6 +20358,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -19554,6 +20444,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -19615,6 +20509,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -19654,6 +20549,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "adj_angled",
         "slim_angled",
         "ribbed_stubby",
@@ -19771,6 +20667,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -19853,6 +20753,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -19914,6 +20818,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -19954,6 +20859,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "slim_angled",
         "ribbed_stubby",
         "canted_stubby",
@@ -20068,6 +20974,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20150,6 +21060,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20211,6 +21125,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -20248,6 +21163,7 @@
         "ribbed_vert",
         "fold_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "slim_angled",
         "ribbed_stubby",
         "canted_stubby",
@@ -20363,6 +21279,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20445,6 +21365,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20506,6 +21430,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -20551,6 +21476,7 @@
         "full_angled",
         "stipp_stubby",
         "6h64_vert",
+        "rubberized_vert",
         "lp_stubby",
         "classic_vert",
         "bipod",
@@ -20661,6 +21587,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20743,6 +21673,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -20804,6 +21738,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -20843,6 +21778,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -20961,6 +21897,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -21040,6 +21980,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -21188,6 +22132,44 @@
               "attachment": "95_rnd"
             }
           ]
+        },
+        {
+          "slot": "ergo",
+          "attachment": "rail_cover",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "30_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "30_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "36_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "45_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "45_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "50_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "60_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "95_rnd"
+            }
+          ]
         }
       ],
       "sight": [
@@ -21215,6 +22197,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -21254,6 +22237,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -21371,6 +22355,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -21473,6 +22461,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -21555,6 +22547,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -21602,6 +22595,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -21719,6 +22713,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -21817,6 +22815,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -21899,6 +22901,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -21943,6 +22946,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert_svk86",
+        "rubberized_vert",
         "classic_vert_svk86",
         "fold_stubby",
         "ribbed_stubby",
@@ -22060,6 +23064,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22158,6 +23166,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22240,6 +23252,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -22285,6 +23298,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -22403,6 +23417,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22501,6 +23519,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22583,6 +23605,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -22636,6 +23659,7 @@
         "canted_stubby",
         "full_angled",
         "6h64_vert",
+        "rubberized_vert",
         "stipp_stubby",
         "classic_vert",
         "lp_stubby",
@@ -22747,6 +23771,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22845,6 +23873,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -22927,6 +23959,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -22990,7 +24023,7 @@
         "range_finder"
       ],
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "slots": {
         "grip": {
@@ -23234,6 +24267,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -23332,6 +24369,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -23414,6 +24455,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -23434,11 +24476,11 @@
     },
     "sv98": {
       "muzzle": [
-        "flash_comp",
+        "flash_hider",
         "tp_brake",
         "thread_prot",
         "comp_brake",
-        "light_supp",
+        "std_supp",
         "hybrid_supp_l"
       ],
       "barrel": [
@@ -23471,7 +24513,7 @@
         "range_finder"
       ],
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "slots": {
         "grip": {
@@ -23715,6 +24757,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -23809,6 +24855,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -23891,6 +24941,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -23952,7 +25003,7 @@
         "range_finder"
       ],
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "slots": {
         "grip": {
@@ -24196,6 +25247,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -24294,6 +25349,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -24376,6 +25435,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -24441,7 +25501,7 @@
         "range_finder"
       ],
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "slots": {
         "grip": {
@@ -24677,6 +25737,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -24771,6 +25835,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -24853,6 +25921,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -24924,7 +25993,7 @@
         }
       },
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "dependencies": [
         {
@@ -25139,6 +26208,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -25237,6 +26310,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -25315,6 +26392,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -25335,6 +26413,7 @@
     },
     "l115": {
       "muzzle": [
+        "flash_hider",
         "dp_brake",
         "sp_brake",
         "comp_brake",
@@ -25376,7 +26455,7 @@
         "120mw_blue"
       ],
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "slots": {
         "grip": {
@@ -25620,6 +26699,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -25711,6 +26794,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -25796,6 +26883,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -25834,6 +26922,7 @@
         "fold_stubby",
         "adj_angled",
         "6h64_vert",
+        "rubberized_vert",
         "canted_stubby",
         "ribbed_vert",
         "classic_vert",
@@ -25924,6 +27013,10 @@
             {
               "slot": "sight",
               "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -26020,6 +27113,64 @@
               "attachment": "st_prism_5_00x"
             }
           ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "compensator",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "5_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "7_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "8_rnd"
+            }
+          ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "cqb_supp",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "5_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "7_rnd"
+            }
+          ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "light_supp",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "5_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "7_rnd"
+            }
+          ]
         }
       ],
       "sight": [
@@ -26043,6 +27194,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -26074,6 +27226,7 @@
         "fold_stubby",
         "adj_angled",
         "6h64_vert",
+        "rubberized_vert",
         "canted_stubby",
         "ribbed_vert",
         "classic_vert",
@@ -26176,6 +27329,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -26292,6 +27449,64 @@
               "attachment": "st_prism_5_00x"
             }
           ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "compensator",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "4_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "4_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "8_rnd"
+            }
+          ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "cqb_supp",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "4_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "4_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            }
+          ]
+        },
+        {
+          "slot": "muzzle",
+          "attachment": "light_supp",
+          "requiresAny": [
+            {
+              "slot": "mag",
+              "attachment": "4_fast"
+            },
+            {
+              "slot": "mag",
+              "attachment": "4_rnd"
+            },
+            {
+              "slot": "mag",
+              "attachment": "6_rnd"
+            }
+          ]
         }
       ],
       "sight": [
@@ -26316,6 +27531,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -26348,6 +27564,7 @@
         "fold_vert",
         "fold_stubby",
         "6h64_vert_ks18k",
+        "rubberized_vert",
         "canted_stubby",
         "ribbed_vert",
         "classic_vert_ks18k",
@@ -26456,6 +27673,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -26538,6 +27759,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -26597,6 +27822,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -26620,12 +27846,14 @@
       "barrelDef": "basic",
       "grip": [
         "factory_angled_db12",
+        "cmpct_handstop",
         "slim_handstop",
         "fold_vert",
         "alloy_vert",
         "fold_stubby",
         "ribbed_vert",
         "6h64_vert_db12",
+        "rubberized_vert",
         "slim_angled",
         "ribbed_stubby",
         "canted_stubby",
@@ -26734,6 +27962,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -26816,6 +28048,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -26875,6 +28111,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -26937,6 +28174,7 @@
     "es57": {
       "muzzle": [
         "flash_hider",
+        "flash_comp",
         "sp_brake",
         "std_supp",
         "cqb_supp",
@@ -27091,6 +28329,7 @@
       "grip": [],
       "sight": [
         "iron",
+        "mc_co_lpvo",
         "mini_flex_1_00x",
         "osa_7_1_00x",
         "r_mr_1_00x",
@@ -27098,6 +28337,7 @@
         "cq_rds_1_25x",
         "ro_s_1_25x",
         "1p87_1_50x",
+        "grim_1_50x",
         "rox_1_50x",
         "su_123_1_50x",
         "3vzr_1_75x",
@@ -27106,14 +28346,17 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
+        "pas_35_3_00x",
         "qmk_3_00x",
         "mgo_3_50x",
         "sdo_3_50x",
         "pvq_31_4_00x",
         "lds_4_50x",
         "sf_g2_5_00x",
-        "st_prism_5_00x"
+        "st_prism_5_00x",
+        "nfx_8_00x"
       ],
       "slots": {
         "grip": {
@@ -27168,6 +28411,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "qmk_3_00x",
         "mgo_3_50x",
@@ -27275,6 +28519,7 @@
         "ptt_grip_pod",
         "qd_grip_pod",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "canted_stubby",
         "stipp_stubby",
@@ -27387,6 +28632,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -27469,6 +28718,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -27508,6 +28761,7 @@
       ],
       "sight": [
         "iron",
+        "dvo_lpvo",
         "mars_f_lpvo",
         "mini_flex_1_00x",
         "ngfc_lpvo",
@@ -27529,6 +28783,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -27574,6 +28829,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "fold_stubby",
         "ribbed_stubby",
         "canted_stubby",
@@ -27690,6 +28946,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -27768,6 +29028,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -27829,6 +29093,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -27852,6 +29117,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -27968,6 +29234,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -28066,6 +29336,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -28148,6 +29422,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -28195,6 +29470,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -28312,6 +29588,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -28386,6 +29666,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -28439,6 +29723,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -28504,7 +29789,7 @@
         }
       },
       "sightPoints": {
-        "iron": 15
+        "iron": 10
       },
       "dependencies": [
         {
@@ -28731,6 +30016,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -28826,6 +30115,10 @@
             {
               "slot": "sight",
               "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
             },
             {
               "slot": "sight",
@@ -28969,6 +30262,7 @@
         "r4t_2_00x",
         "sm_rifle_variable",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "1p88_variable",
         "baker_3_00x",
         "pas_35_3_00x",
@@ -29012,6 +30306,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -29128,6 +30423,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -29210,6 +30509,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -29271,6 +30574,7 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -29311,6 +30615,7 @@
         "alloy_vert",
         "ribbed_vert",
         "6h64_vert",
+        "rubberized_vert",
         "classic_vert",
         "fold_stubby",
         "ribbed_stubby",
@@ -29421,6 +30726,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -29503,6 +30812,10 @@
             },
             {
               "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
               "attachment": "baker_3_00x"
             },
             {
@@ -29562,6 +30875,317 @@
         "cco_2_00x",
         "r4t_2_00x",
         "bf_2m_2_50x",
+        "pa_sl_2_50x",
+        "baker_3_00x",
+        "pas_35_3_00x",
+        "qmk_3_00x",
+        "mgo_3_50x",
+        "sdo_3_50x",
+        "pvq_31_4_00x",
+        "lds_4_50x",
+        "sf_g2_5_00x",
+        "st_prism_5_00x"
+      ]
+    },
+    "nsw4": {
+      "muzzle": [
+        "sp_brake",
+        "dp_brake",
+        "comp_brake",
+        "linear_comp",
+        "flash_hider",
+        "flash_comp",
+        "std_supp",
+        "long_supp",
+        "light_supp",
+        "cqb_supp",
+        "compensator",
+        "hybrid_supp_l",
+        "hybrid_supp_s",
+        "hybrid_supp_k"
+      ],
+      "barrel": [
+        "basic",
+        "extended",
+        "heavy",
+        "light",
+        "cryo"
+      ],
+      "barrelDef": "basic",
+      "grip": [
+        "slim_handstop",
+        "fold_vert",
+        "alloy_vert",
+        "ribbed_vert",
+        "6h64_vert",
+        "rubberized_vert",
+        "classic_vert",
+        "fold_stubby",
+        "ribbed_stubby",
+        "canted_stubby",
+        "stipp_stubby",
+        "lp_stubby",
+        "adj_angled",
+        "slim_angled",
+        "full_angled",
+        "underslung_mount",
+        "ptt_grip_pod",
+        "qd_grip_pod",
+        "classic_grip_pod",
+        "actuated_module"
+      ],
+      "laser": [
+        "5mw_red",
+        "5mw_green",
+        "50mw_violet",
+        "50mw_green",
+        "50mw_blue",
+        "120mw_blue"
+      ],
+      "light": [
+        "ads_taclight",
+        "flashlight",
+        "hip_taclight"
+      ],
+      "slots": {
+        "grip": {
+          "accepts": [
+            "grip"
+          ]
+        },
+        "laser": {
+          "accepts": [
+            "laser"
+          ]
+        },
+        "light": {
+          "accepts": [
+            "light"
+          ]
+        }
+      },
+      "dependencies": [
+        {
+          "slot": "accessory",
+          "attachment": "canted_irons",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "mini_flex_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r_mr_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cq_rds_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_s_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "rox_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "a_p2_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        },
+        {
+          "slot": "accessory",
+          "attachment": "secondary_optic",
+          "requiresAny": [
+            {
+              "slot": "sight",
+              "attachment": "osa_7_1_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "2pro_1_25x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "1p87_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "grim_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "su_123_1_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "3vzr_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "ro_m_1_75x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "cco_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "r4t_2_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "bf_2m_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pa_sl_2_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "baker_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pas_35_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "qmk_3_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "mgo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sdo_3_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "pvq_31_4_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "lds_4_50x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "sf_g2_5_00x"
+            },
+            {
+              "slot": "sight",
+              "attachment": "st_prism_5_00x"
+            }
+          ]
+        }
+      ],
+      "sight": [
+        "iron",
+        "dvo_lpvo",
+        "mini_flex_1_00x",
+        "ngfc_lpvo",
+        "osa_7_1_00x",
+        "r_mr_1_00x",
+        "su_230_lpvo",
+        "th_rds_1_00x",
+        "2pro_1_25x",
+        "cq_rds_1_25x",
+        "ro_s_1_25x",
+        "1p86_lpvo",
+        "1p87_1_50x",
+        "grim_1_50x",
+        "rox_1_50x",
+        "su_123_1_50x",
+        "3vzr_1_75x",
+        "a_p2_1_75x",
+        "ro_m_1_75x",
+        "cco_2_00x",
+        "r4t_2_00x",
+        "bf_2m_2_50x",
+        "pa_sl_2_50x",
         "baker_3_00x",
         "pas_35_3_00x",
         "qmk_3_00x",
@@ -29577,12 +31201,14 @@
   "WEAPON_ERGO": {
     "m433": {
       "avail": [
+        "rail_cover",
         "mag_flare",
         "match_trigger"
       ]
     },
     "b36a4": {
       "avail": [
+        "rail_cover",
         "match_trigger",
         "buffer"
       ]
@@ -29621,6 +31247,7 @@
     },
     "l85a3": {
       "avail": [
+        "rail_cover",
         "match_trigger"
       ]
     },
@@ -29641,6 +31268,7 @@
     },
     "m277": {
       "avail": [
+        "rail_cover",
         "mag_catch",
         "mag_flare",
         "match_trigger"
@@ -29711,7 +31339,8 @@
     "usg90": {
       "avail": [
         "mag_catch",
-        "buffer"
+        "buffer",
+        "fast_deploy"
       ]
     },
     "scw10": {
@@ -29789,6 +31418,7 @@
     },
     "m2010esr": {
       "avail": [
+        "rail_cover",
         "ads_bolt"
       ]
     },
@@ -29800,6 +31430,7 @@
     },
     "psr": {
       "avail": [
+        "rail_cover",
         "mag_catch",
         "ads_bolt"
       ]
@@ -29815,6 +31446,7 @@
     },
     "rpk74m": {
       "avail": [
+        "rail_cover",
         "buffer",
         "mag_flare",
         "match_trigger"
@@ -29851,7 +31483,8 @@
     "m44": {
       "avail": [
         "fast_deploy",
-        "fast_deploy_10"
+        "fast_deploy_10",
+        "match_trigger"
       ]
     },
     "ggh22": {
@@ -29872,6 +31505,7 @@
     },
     "sgx": {
       "avail": [
+        "rail_cover",
         "buffer"
       ]
     },
@@ -29936,6 +31570,30 @@
       ]
     },
     "rspr": {
+      "avail": [
+        "rail_cover",
+        "mag_flare",
+        "mag_catch",
+        "match_trigger",
+        "buffer"
+      ]
+    },
+    "m1014": {
+      "avail": [
+        "rail_cover"
+      ]
+    },
+    "m250": {
+      "avail": [
+        "rail_cover"
+      ]
+    },
+    "svk86": {
+      "avail": [
+        "rail_cover"
+      ]
+    },
+    "nsw4": {
       "avail": [
         "rail_cover",
         "mag_flare",
@@ -30312,6 +31970,12 @@
         "canted_irons",
         "secondary_optic"
       ]
+    },
+    "nsw4": {
+      "avail": [
+        "canted_irons",
+        "secondary_optic"
+      ]
     }
   },
   "WEAPON_MAG": {
@@ -30460,6 +32124,17 @@
           "sprintRecoveryTierShift": 0,
           "reloadSpeedTier": 0,
           "deployTimeTierShift": 0,
+          "movingAdsSpreadTierMod": 0
+        },
+        "60_rnd": {
+          "name": "60 Rnd",
+          "pts": 55,
+          "mag": 60,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 1,
+          "adsMoveSpeedTierShift": 1,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
         }
       },
@@ -30916,7 +32591,7 @@
       "deployTimeTable": "primary"
     },
     "grtbc": {
-      "defAds": 4,
+      "defAds": 5,
       "defAms": 7,
       "def": "30_rnd",
       "mags": {
@@ -30974,6 +32649,30 @@
           "reloadSpeedTier": 1,
           "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
+        },
+        "20_rnd": {
+          "name": "20 Rnd",
+          "pts": 5,
+          "mag": 20,
+          "adsTimeTierShift": -1,
+          "sprintRecoveryTierShift": -2,
+          "adsMoveSpeedTierShift": -2,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": -2,
+          "movingAdsSpreadTierMod": 1,
+          "weaponSwayMult": 0.4444444
+        },
+        "20_fast": {
+          "name": "20 Fast",
+          "pts": 5,
+          "mag": 20,
+          "adsTimeTierShift": -1,
+          "sprintRecoveryTierShift": -1,
+          "adsMoveSpeedTierShift": -2,
+          "reloadSpeedTier": 1,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 1,
+          "weaponSwayMult": 0.6666667
         }
       },
       "sprintRecoveryBaseIndex": 6,
@@ -31134,10 +32833,10 @@
           "adsTimeTierShift": -1,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
-          "reloadSpeedTier": 1,
+          "reloadSpeedTier": 0,
           "deployTimeTierShift": -1,
           "weaponSwayMult": 0.6666667,
-          "movingAdsSpreadTierMod": 0
+          "movingAdsSpreadTierMod": 1
         },
         "45_fast": {
           "name": "45 Fast",
@@ -31145,11 +32844,12 @@
           "mag": 45,
           "adsTimeTierShift": -1,
           "adsMoveSpeedTierShift": 0,
-          "sprintRecoveryTierShift": 0,
-          "reloadSpeedTier": 2,
+          "sprintRecoveryTierShift": -1,
+          "reloadSpeedTier": 0,
           "weaponSwayMult": 0.6666667,
-          "deployTimeTierShift": 0,
-          "movingAdsSpreadTierMod": 0
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 1,
+          "reloadSpeedMult": 1.063
         },
         "50_rnd": {
           "name": "50 Rnd",
@@ -31158,10 +32858,10 @@
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 0,
           "sprintRecoveryTierShift": -1,
-          "reloadSpeedTier": 1,
+          "reloadSpeedTier": 0,
           "deployTimeTierShift": -1,
           "weaponSwayMult": 0.6666667,
-          "movingAdsSpreadTierMod": 0
+          "movingAdsSpreadTierMod": 1
         },
         "60_rnd": {
           "name": "60 Rnd",
@@ -31180,10 +32880,10 @@
           "mag": 60,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 0,
-          "sprintRecoveryTierShift": 0,
-          "reloadSpeedTier": 1,
-          "deployTimeTierShift": 0,
-          "movingAdsSpreadTierMod": 0
+          "sprintRecoveryTierShift": -1,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 1
         },
         "100_rnd": {
           "name": "100 Rnd",
@@ -31198,7 +32898,7 @@
         }
       },
       "sprintRecoveryBaseIndex": 4,
-      "deployBaseIndex": 4,
+      "deployBaseIndex": 3,
       "deployTimeTable": "primary"
     },
     "kv9": {
@@ -31234,20 +32934,20 @@
           "mag": 23,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 2,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 2,
           "movingAdsSpreadTierMod": 0
         },
         "27_rnd": {
           "name": "27 Rnd",
           "pts": 45,
           "mag": 27,
-          "adsTimeTierShift": 0,
+          "adsTimeTierShift": 1,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 2,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 2,
           "movingAdsSpreadTierMod": 0
         }
       },
@@ -31508,6 +33208,28 @@
           "reloadSpeedTier": 0,
           "deployTimeTierShift": -1,
           "movingAdsSpreadTierMod": 0
+        },
+        "75_rnd": {
+          "name": "75 Rnd",
+          "pts": 20,
+          "mag": 75,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "adsMoveSpeedTierShift": 0,
+          "tacRldOverrideMs": 4534,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "100_fast": {
+          "name": "100 Fast",
+          "pts": 40,
+          "mag": 100,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "adsMoveSpeedTierShift": 0,
+          "tacRldOverrideMs": 4534,
+          "deployTimeTierShift": 0,
+          "movingAdsSpreadTierMod": 0
         }
       },
       "sprintRecoveryBaseIndex": 2,
@@ -31550,6 +33272,17 @@
           "adsMoveSpeedTierShift": 0,
           "reloadSpeedTier": 0,
           "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "8_rnd": {
+          "name": "8 Rnd",
+          "pts": 35,
+          "mag": 8,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 1,
+          "adsMoveSpeedTierShift": 0,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
         }
       },
@@ -31719,6 +33452,17 @@
           "tacRldOverrideMs": 7100,
           "deployTimeTierShift": 0,
           "movingAdsSpreadTierMod": 0
+        },
+        "75_fast": {
+          "name": "75 Fast",
+          "pts": 40,
+          "mag": 75,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "adsMoveSpeedTierShift": 0,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0
         }
       },
       "sprintRecoveryBaseIndex": 2,
@@ -31748,6 +33492,17 @@
           "adsTimeTierShift": 0,
           "sprintRecoveryTierShift": 1,
           "adsMoveSpeedTierShift": 1,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "75_rnd": {
+          "name": "75 Rnd",
+          "pts": 30,
+          "mag": 75,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 1,
+          "adsMoveSpeedTierShift": 0,
           "reloadSpeedTier": 0,
           "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
@@ -31942,7 +33697,7 @@
         },
         "25_rnd": {
           "name": "25 Rnd",
-          "pts": 15,
+          "pts": 20,
           "mag": 25,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 1,
@@ -32181,6 +33936,17 @@
           "adsMoveSpeedTierShift": 0,
           "reloadSpeedTier": 0,
           "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "8_rnd": {
+          "name": "8 Rnd",
+          "pts": 20,
+          "mag": 8,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "adsMoveSpeedTierShift": 0,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 0,
           "movingAdsSpreadTierMod": 0
         }
       },
@@ -32673,20 +34439,20 @@
           "mag": 20,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 2,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 2,
           "movingAdsSpreadTierMod": 0
         },
         "25_rnd": {
           "name": "25 Rnd",
           "pts": 45,
           "mag": 25,
-          "adsTimeTierShift": 0,
+          "adsTimeTierShift": 1,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 2,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 2,
           "movingAdsSpreadTierMod": 0
         }
       },
@@ -32751,9 +34517,9 @@
           "mag": 36,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 1,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
         },
         "40_rnd": {
@@ -32762,9 +34528,9 @@
           "mag": 40,
           "adsTimeTierShift": 0,
           "adsMoveSpeedTierShift": 1,
-          "sprintRecoveryTierShift": 0,
+          "sprintRecoveryTierShift": 1,
           "reloadSpeedTier": 0,
-          "deployTimeTierShift": 0,
+          "deployTimeTierShift": 1,
           "movingAdsSpreadTierMod": 0
         },
         "40_fast": {
@@ -32774,9 +34540,10 @@
           "adsTimeTierShift": 0,
           "sprintRecoveryTierShift": 1,
           "adsMoveSpeedTierShift": 1,
-          "reloadSpeedTier": 1,
+          "reloadSpeedTier": 0,
           "deployTimeTierShift": 1,
-          "movingAdsSpreadTierMod": 0
+          "movingAdsSpreadTierMod": 0,
+          "reloadSpeedMult": 1.063
         }
       },
       "sprintRecoveryBaseIndex": 6,
@@ -34203,7 +35970,7 @@
         },
         "25_rnd": {
           "name": "25 Rnd",
-          "pts": 15,
+          "pts": 20,
           "mag": 25,
           "adsTimeTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -34214,7 +35981,7 @@
         },
         "25_fast": {
           "name": "25 Fast",
-          "pts": 20,
+          "pts": 25,
           "mag": 25,
           "adsTimeTierShift": 0,
           "sprintRecoveryTierShift": 1,
@@ -34225,7 +35992,7 @@
         },
         "30_rnd": {
           "name": "30 Rnd",
-          "pts": 25,
+          "pts": 40,
           "mag": 30,
           "adsTimeTierShift": 0,
           "sprintRecoveryTierShift": 0,
@@ -34433,29 +36200,98 @@
       "sprintRecoveryBaseIndex": 7,
       "deployBaseIndex": 7,
       "deployTimeTable": "primary"
+    },
+    "nsw4": {
+      "defAds": 4,
+      "defAms": 7,
+      "def": "30_rnd",
+      "mags": {
+        "30_rnd": {
+          "name": "30 Rnd",
+          "pts": 5,
+          "mag": 30,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": -1,
+          "adsMoveSpeedTierShift": 0,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "20_fast": {
+          "name": "20 Fast",
+          "pts": 5,
+          "mag": 20,
+          "adsTimeTierShift": -1,
+          "sprintRecoveryTierShift": -1,
+          "adsMoveSpeedTierShift": -2,
+          "reloadSpeedTier": 1,
+          "deployTimeTierShift": -1,
+          "movingAdsSpreadTierMod": 0,
+          "weaponSwayMult": 0.6666667
+        },
+        "20_rnd": {
+          "name": "20 Rnd",
+          "pts": 5,
+          "mag": 20,
+          "adsTimeTierShift": -1,
+          "sprintRecoveryTierShift": -2,
+          "adsMoveSpeedTierShift": -2,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": -2,
+          "movingAdsSpreadTierMod": 1,
+          "weaponSwayMult": 0.4444444
+        },
+        "36_rnd": {
+          "name": "36 Rnd",
+          "pts": 15,
+          "mag": 36,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "adsMoveSpeedTierShift": 1,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 0,
+          "movingAdsSpreadTierMod": 0
+        },
+        "40_rnd": {
+          "name": "40 Rnd",
+          "pts": 25,
+          "mag": 40,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "adsMoveSpeedTierShift": 1,
+          "reloadSpeedTier": 0,
+          "deployTimeTierShift": 0,
+          "movingAdsSpreadTierMod": 0
+        },
+        "40_fast": {
+          "name": "40 Fast",
+          "pts": 30,
+          "mag": 40,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 1,
+          "adsMoveSpeedTierShift": 1,
+          "reloadSpeedTier": 1,
+          "deployTimeTierShift": 1,
+          "movingAdsSpreadTierMod": 0
+        },
+        "30_fast": {
+          "name": "30 Fast",
+          "pts": 10,
+          "mag": 30,
+          "adsTimeTierShift": 0,
+          "sprintRecoveryTierShift": 0,
+          "adsMoveSpeedTierShift": 0,
+          "reloadSpeedTier": 1,
+          "deployTimeTierShift": 0,
+          "movingAdsSpreadTierMod": 0
+        }
+      },
+      "sprintRecoveryBaseIndex": 6,
+      "deployBaseIndex": 6,
+      "deployTimeTable": "primary"
     }
   },
   "GAME_BUGS": [
-    {
-      "ref": "1",
-      "slot": "grip",
-      "attachments": [
-        "slim_angled_sr",
-        "slim_angled_interdictor"
-      ],
-      "weapons": [
-        "psr",
-        "sv98",
-        "l115",
-        "miniscout",
-        "interdictor",
-        "elr40"
-      ],
-      "metrics": [
-        "Mov Spread"
-      ],
-      "note": "Also applies the Full Angled grip's moving-ADS penalty."
-    },
     {
       "ref": "2",
       "slot": "ammo",
@@ -34465,35 +36301,12 @@
         "penetration"
       ],
       "weapons": [
-        "m45a1",
-        "m121a2"
+        "m45a1"
       ],
       "metrics": [
         "Collateral Mult"
       ],
       "note": "Also gets FMJ's penetration bonus, so collateral damage is higher."
-    },
-    {
-      "ref": "3",
-      "slot": "grip",
-      "attachments": [
-        "slim_angled_smg"
-      ],
-      "weapons": [
-        "sgx",
-        "pw5a3",
-        "pw7a2",
-        "umg40",
-        "kv9",
-        "scw10",
-        "cz3a1",
-        "pp19",
-        "rspr"
-      ],
-      "metrics": [
-        "Deploy Speed"
-      ],
-      "note": "The promised faster draw isn't applied."
     },
     {
       "ref": "4",
@@ -34525,35 +36338,6 @@
       "note": "The promised recoil smoothing and recovery aren't applied."
     },
     {
-      "ref": "7",
-      "slot": "mag",
-      "attachments": [
-        "200_rnd"
-      ],
-      "weapons": [
-        "l110",
-        "m123k"
-      ],
-      "metrics": [
-        "Mov Spread"
-      ],
-      "note": "The listed moving-ADS penalty isn't applied."
-    },
-    {
-      "ref": "12",
-      "slot": "muzzle",
-      "attachments": [
-        "std_supp"
-      ],
-      "weapons": [
-        "l115"
-      ],
-      "metrics": [
-        "Hipfire Spread"
-      ],
-      "note": "The listed hipfire penalty isn't applied."
-    },
-    {
       "ref": "16",
       "slot": "sight",
       "attachments": [
@@ -34566,35 +36350,6 @@
         "Weapon Sway"
       ],
       "note": "The promised sway reduction isn't applied."
-    },
-    {
-      "ref": "19",
-      "slot": "muzzle",
-      "attachments": [
-        "sp_brake"
-      ],
-      "weapons": [
-        "rspr"
-      ],
-      "metrics": [
-        "ADS Recoil/Shot"
-      ],
-      "suspected": true,
-      "note": "Reduces recoil by seven steps instead of one."
-    },
-    {
-      "ref": "20",
-      "slot": "ammo",
-      "attachments": [
-        "penetration"
-      ],
-      "weapons": [
-        "m121a2"
-      ],
-      "metrics": [
-        "Collateral Mult"
-      ],
-      "note": "The stat panel shows x0.00 past the end of its table; damage through a target is the full x1.00, as fired."
     },
     {
       "ref": "20",

@@ -184,6 +184,23 @@
         "Sidearm": 0.75
       },
       "hipRecoilTierMod": -1
+    },
+    {
+      "id": "supersonic",
+      "name": "Supersonic FMJ",
+      "adsRecoilTierMod": -1,
+      "hipRecoilTierMod": -1,
+      "collateralMult": {
+        "Assault Rifle": 0.75,
+        "Carbine": 0.75,
+        "LMG": 0.75,
+        "DMR": 0.75,
+        "Sniper Rifle": 0.75,
+        "SMG": 0.57,
+        "Sidearm": 0.57
+      },
+      "worldSpotMult": 2,
+      "minimapSpotMult": 2.3333335
     }
   ],
   "WEAPON_AMMO": {
@@ -194,7 +211,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "b36a4": {
@@ -204,7 +221,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20
       }
     },
@@ -215,7 +232,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20
       }
     },
@@ -226,7 +243,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "tr7": {
@@ -236,7 +253,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "kord6p67": {
@@ -246,7 +263,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "nvo228e": {
@@ -256,7 +273,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "l85a3": {
@@ -266,7 +283,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20
       }
     },
@@ -277,7 +294,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "m16a4": {
@@ -287,7 +304,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "m4a1": {
@@ -297,7 +314,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "m277": {
@@ -306,7 +323,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "ak205": {
@@ -316,7 +333,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 25
       }
     },
@@ -327,7 +344,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 10,
         "subsonic_hp": 30
       },
@@ -359,7 +376,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "qbz192": {
@@ -369,7 +386,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 25
       }
     },
@@ -380,7 +397,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 10,
         "subsonic_hp": 30
       },
@@ -414,7 +431,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic_hp": 30,
         "subsonic": 10
       },
@@ -447,7 +464,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 15,
         "subsonic_hp": 30
       },
@@ -480,7 +497,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20,
         "subsonic": 15,
         "subsonic_hp": 30
@@ -514,7 +531,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20,
         "subsonic_pen": 10
       },
@@ -532,7 +549,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 25,
         "subsonic": 10,
         "subsonic_hp": 25
@@ -567,7 +584,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 10,
         "subsonic_hp": 25
       },
@@ -598,7 +615,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 15,
         "subsonic_hp": 30
       },
@@ -631,7 +648,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 15,
         "subsonic_hp": 35
       },
@@ -664,7 +681,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20,
         "subsonic": 10,
         "subsonic_hp": 25
@@ -698,7 +715,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 15,
         "subsonic_hp": 30
       },
@@ -731,7 +748,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20,
         "subsonic": 10,
         "subsonic_hp": 25
@@ -766,7 +783,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "drsiar": {
@@ -775,8 +792,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
-        "synthetic": 20,
+        "frangible": 15,
         "lightweight": 10
       }
     },
@@ -787,7 +803,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "rpkm": {
@@ -797,7 +813,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 30
       }
     },
@@ -808,7 +824,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "m250": {
@@ -818,7 +834,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "kts100": {
@@ -827,7 +843,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20,
         "lightweight": 10
       }
@@ -839,7 +855,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "m121a2": {
@@ -849,7 +865,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "rpk74m": {
@@ -859,7 +875,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20
       }
     },
@@ -871,7 +887,7 @@
         "lightweight": 10,
         "long_range": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "lmr27": {
@@ -880,7 +896,7 @@
         "standard": 5,
         "penetration": 5,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 30
       }
     },
@@ -891,7 +907,7 @@
         "penetration": 5,
         "long_range": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "svdm": {
@@ -901,7 +917,7 @@
         "penetration": 5,
         "long_range": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "grtcps": {
@@ -911,7 +927,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 30
       }
     },
@@ -921,7 +937,7 @@
         "standard": 5,
         "penetration": 5,
         "long_range": 10,
-        "frangible": 20
+        "frangible": 15
       },
       "effectOverrides": {
         "penetration": {
@@ -936,7 +952,7 @@
         "standard": 5,
         "penetration": 5,
         "long_range": 10,
-        "frangible": 20
+        "frangible": 15
       },
       "effectOverrides": {
         "penetration": {
@@ -951,7 +967,7 @@
         "standard": 5,
         "penetration": 5,
         "long_range": 10,
-        "frangible": 20
+        "frangible": 15
       },
       "effectOverrides": {
         "penetration": {
@@ -964,9 +980,15 @@
       "def": "standard",
       "ammo": {
         "standard": 5,
-        "frangible": 20,
+        "frangible": 15,
         "long_range": 10,
         "penetration": 5
+      },
+      "effectOverrides": {
+        "penetration": {
+          "adsRecoilTierMod": -6,
+          "hipRecoilTierMod": -6
+        }
       }
     },
     "l115": {
@@ -975,7 +997,13 @@
         "standard": 5,
         "penetration": 5,
         "long_range": 10,
-        "frangible": 20
+        "frangible": 15
+      },
+      "effectOverrides": {
+        "penetration": {
+          "adsRecoilTierMod": -6,
+          "hipRecoilTierMod": -6
+        }
       }
     },
     "miniscout": {
@@ -983,7 +1011,7 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20
+        "frangible": 15
       },
       "effectOverrides": {
         "penetration": {
@@ -1365,7 +1393,7 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20,
+        "frangible": 15,
         "hollow_pt": 15,
         "subsonic": 10,
         "subsonic_hp": 30
@@ -1388,10 +1416,11 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20,
+        "frangible": 15,
         "hollow_pt": 15,
         "subsonic": 10,
-        "subsonic_hp": 30
+        "subsonic_hp": 30,
+        "synthetic": 20
       },
       "velocityTreatments": {
         "subsonic": {
@@ -1411,7 +1440,7 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20,
+        "frangible": 15,
         "hollow_pt": 15
       }
     },
@@ -1421,7 +1450,7 @@
         "standard": 5,
         "hollow_pt": 20,
         "penetration": 5,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "ggh22": {
@@ -1429,10 +1458,11 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20,
+        "frangible": 15,
         "hollow_pt": 15,
         "subsonic": 10,
-        "subsonic_hp": 30
+        "subsonic_hp": 30,
+        "synthetic": 20
       },
       "velocityTreatments": {
         "subsonic": {
@@ -1451,6 +1481,8 @@
       "def": "standard",
       "ammo": {
         "standard": 5,
+        "penetration": 5,
+        "frangible": 15,
         "hollow_pt": 20
       }
     },
@@ -1459,7 +1491,7 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20,
+        "frangible": 15,
         "hollow_pt": 15,
         "synthetic": 25
       }
@@ -1471,7 +1503,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "ef88": {
@@ -1481,7 +1513,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 15,
-        "frangible": 20,
+        "frangible": 15,
         "synthetic": 20
       }
     },
@@ -1491,7 +1523,7 @@
         "penetration": 5,
         "range_pen": 10,
         "long_range": 10,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "mk24": {
@@ -1509,7 +1541,7 @@
       "ammo": {
         "standard": 5,
         "penetration": 5,
-        "frangible": 20
+        "frangible": 15
       },
       "effectOverrides": {
         "penetration": {
@@ -1525,7 +1557,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20
+        "frangible": 15
       }
     },
     "rspr": {
@@ -1535,7 +1567,7 @@
         "penetration": 5,
         "lightweight": 10,
         "hollow_pt": 20,
-        "frangible": 20,
+        "frangible": 15,
         "subsonic": 10,
         "subsonic_hp": 30
       },
@@ -1559,6 +1591,23 @@
         "subsonic_hp": {
           "adsRecoilTierMod": 1,
           "hipRecoilTierMod": 1
+        }
+      }
+    },
+    "nsw4": {
+      "def": "standard",
+      "ammo": {
+        "standard": 5,
+        "penetration": 5,
+        "lightweight": 10,
+        "hollow_pt": 15,
+        "frangible": 15,
+        "supersonic": 15
+      },
+      "velocityTreatments": {
+        "supersonic": {
+          "kind": "supersonic-absolute",
+          "subsonicVelocityMps": 611.328125
         }
       }
     }

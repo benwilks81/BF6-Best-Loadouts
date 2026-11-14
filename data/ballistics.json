@@ -1,10 +1,11 @@
 {
   "schemaVersion": 2,
   "source": {
-    "build": "1.4.3.0",
+    "generatedFrom": "1.4.3.0",
     "generatedBy": "scripts/frosty-ballistics.py",
     "attachmentTrace": "frosty-hit-zones-2026-09-15.json",
     "attachmentTraceSha256": "eb67585bae08c714145912ad44ba4bbc543d6c947f5ddf007b39501a86a6d3c9",
+    "projectileSha256Status": "Historical: SHA-256 of the 1.4.3.0 XML-export files the generator read (15 Sep 2026). Later builds were checked by comparison, not by regenerating, so these hashes are not of the current game files. Verified-through status: data/provenance/data-status.json.",
     "projectileSha256": {
       "Common/Hardware/Weapons/_Bullets/PD_545x39mm_Carbine.xml": "21645365446517c58924fc8b2c0570e23e8161052c383580189197450033b718",
       "Common/Hardware/Weapons/_Bullets/PD_762x51mmNATO.xml": "6d02f9254966cdd6773aae9f7442bda5717f000c0fe1abbfe03443bfe0d3b196",
@@ -145,7 +146,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_.416Barrett_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "bc175b96-b4cb-4ec7-a4a4-e644d263ee1d"
     },
     "Common/Hardware/Weapons/_Bullets/PD_545x39mm": {
@@ -180,7 +181,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_.338LapuaMagnum2_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "b95ee31f-a7bd-4f36-a6c5-da7baad6590a"
     },
     "Common/Hardware/Weapons/_Bullets/PD_12gaNo01Buck300_Semi": {
@@ -215,7 +216,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_.300WinMag_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "0657cf96-3127-4479-b609-c381d5d3c3e0"
     },
     "Common/Hardware/Weapons/_Bullets/PD_68x51mm_MG": {
@@ -240,7 +241,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_762x51mmNATO_Semi_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "f6662111-5724-4219-bf8c-768a00d2b215"
     },
     "Common/Hardware/Weapons/_Bullets/PD_762x51mmNATO_Carbine": {
@@ -300,7 +301,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_.338NormaMagnum_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "d11c7ee6-889a-490f-a638-17f3ad288b2d"
     },
     "Common/Hardware/Weapons/_Bullets/PD_46x30_PDW": {
@@ -345,7 +346,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_762x54mmR_Bolt_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "c75fdbc4-fb85-4c04-9361-1fb48895a846"
     },
     "Common/Hardware/Weapons/_Bullets/PD_762x54mmR_Semi": {
@@ -355,7 +356,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_762x54mmR_Semi_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "d75a3ed8-5ee8-44ca-a0c9-2d647919f346"
     },
     "Common/Hardware/Weapons/_Bullets/PD_.338LapuaMagnum_Semi": {
@@ -365,7 +366,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_.338LapuaMagnum_Semi_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "ca1272af-2550-4167-9e8d-d77d707b70bd"
     },
     "Common/Hardware/Weapons/_Bullets/PD_.40SW_PDW": {
@@ -385,7 +386,7 @@
     },
     "Common/Hardware/Weapons/_Bullets/PD_9x39mm_Match": {
       "gravityMps2": -9.81,
-      "dragPerMeter": 0.002,
+      "dragPerMeter": 0.0025,
       "guid": "2a47e87f-024a-4cc8-be7b-1af871350b71"
     },
     "Common/Hardware/Weapons/_Bullets/PD_32ACP_PDW": {
@@ -489,7 +490,6 @@
         "penetration": "Common/Hardware/Weapons/_Bullets/PD_556x45mmNATO_MG",
         "hollow_pt": "Common/Hardware/Weapons/_Bullets/PD_556x45mmNATO_MG",
         "frangible": "Common/Hardware/Weapons/_Bullets/PD_556x45mmNATO_MG",
-        "synthetic": "Common/Hardware/Weapons/_Bullets/PD_556x45mmNATO_MG",
         "lightweight": "Common/Hardware/Weapons/_Bullets/PD_556x45mmNATO_MG"
       }
     },
@@ -512,7 +512,8 @@
         "frangible": "Common/Hardware/Weapons/_Bullets/PD_57x28mm",
         "hollow_pt": "Common/Hardware/Weapons/_Bullets/PD_57x28mm",
         "subsonic": "Common/Hardware/Weapons/_Bullets/PD_57x28mm",
-        "subsonic_hp": "Common/Hardware/Weapons/_Bullets/PD_57x28mm"
+        "subsonic_hp": "Common/Hardware/Weapons/_Bullets/PD_57x28mm",
+        "synthetic": "Common/Hardware/Weapons/_Bullets/PD_57x28mm"
       }
     },
     "ggh22": {
@@ -523,7 +524,8 @@
         "frangible": "Common/Hardware/Weapons/_Bullets/PD_.40SW",
         "hollow_pt": "Common/Hardware/Weapons/_Bullets/PD_.40SW",
         "subsonic": "Common/Hardware/Weapons/_Bullets/PD_.40SW",
-        "subsonic_hp": "Common/Hardware/Weapons/_Bullets/PD_.40SW"
+        "subsonic_hp": "Common/Hardware/Weapons/_Bullets/PD_.40SW",
+        "synthetic": "Common/Hardware/Weapons/_Bullets/PD_.40SW"
       }
     },
     "grtbc": {
@@ -718,6 +720,8 @@
       "base": "Common/Hardware/Weapons/_Bullets/PD_.357Magnum",
       "ammo": {
         "standard": "Common/Hardware/Weapons/_Bullets/PD_.357Magnum",
+        "penetration": "Common/Hardware/Weapons/_Bullets/PD_.357Magnum",
+        "frangible": "Common/Hardware/Weapons/_Bullets/PD_.357Magnum",
         "hollow_pt": "Common/Hardware/Weapons/_Bullets/PD_.357Magnum"
       }
     },
@@ -1106,6 +1110,17 @@
         "frangible": "Common/Hardware/Weapons/_Bullets/PD_762x39mm_PDW",
         "subsonic": "Common/Hardware/Weapons/_Bullets/PD_762x39mm_PDW",
         "subsonic_hp": "Common/Hardware/Weapons/_Bullets/PD_762x39mm_PDW"
+      }
+    },
+    "nsw4": {
+      "base": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+      "ammo": {
+        "standard": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+        "penetration": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+        "lightweight": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+        "hollow_pt": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+        "frangible": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine",
+        "supersonic": "Common/Hardware/Weapons/_Bullets/PD_.300BLK_Carbine"
       }
     }
   }
